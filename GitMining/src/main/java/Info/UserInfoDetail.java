@@ -1,50 +1,50 @@
 package Info;
 
 /**
- * ÏêÏ¸ÓÃ»§µÄĞÅÏ¢
+ * è¯¦ç»†ç”¨æˆ·ä¿¡æ¯
  * 
- * @author ÕÅÈÊÖª
+ * @author å¼ ä»çŸ¥
  *
  */
 public class UserInfoDetail {
 
 	/**
-	 * ÓÃ»§ĞÕÃû
+	 * ç”¨æˆ·å§“å
 	 */
 	private String userName;
 	
 	/**
-	 * ¶ÔÓÃ»§µÄ¼òÒªÃèÊö
+	 * å¯¹ç”¨æˆ·çš„ç®€è¦æè¿°
 	 */
 	private String descriptionUser;
 	
 	/**
-	 * ÓÃ»§ÓÊÏä
+	 * ç”¨æˆ·é‚®ç®±
 	 */
 	private String email;
 	
 	/**
-	 * ÓÃ»§¼ÓÈëÏîÄ¿µÄÊ±¼ä
+	 * ç”¨æˆ·å‚åŠ è¿™ä¸ªé¡¹ç›®çš„æ—¶é—´
 	 */
 	private Date joinDate;
 	
 	/**
-	 * ÓÃ»§ËùÔÚ¹«Ë¾
+	 * ç”¨æˆ·æ‰€åœ¨å…¬å¸
 	 */
 	private String company;
 	
 	/**
-	 * ÓÃ»§µØÖ·
+	 * ç”¨æˆ·åœ°å€
 	 */
 	private String address;
 	
 	/**
-	 * ÓÃ»§²ÎÓëµÄÏîÄ¿ÊıÁ¿
+	 * ç”¨æˆ·å‚ä¸çš„é¡¹ç›®æ•°é‡
 	 */
 	private int projectInvolved;
 	
 	/**
-	 * ÓÃ»§´´½¨µÄÏîÄ¿ÊıÁ¿
+	 * ç”¨æˆ·åˆ›å»ºçš„é¡¹ç›®æ•°é‡
 	 */
 	private int projectCreate;
 

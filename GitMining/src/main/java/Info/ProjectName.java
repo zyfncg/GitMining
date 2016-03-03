@@ -1,21 +1,21 @@
 package Info;
 
 /**
- * ÏîÄ¿Ãû³Æ
- * °üº¬ÏîÄ¿µÄÓµÓĞÕßºÍËùÔÚ²Ö¿â
+ * é¡¹ç›®åç§°
+ * åŒ…å«é¡¹ç›®æ‹¥æœ‰è€…å’Œæ‰€åœ¨ä»“åº“
  * 
- * @author ÕÅÈÊÖª
+ * @author å¼ ä»çŸ¥
  *
  */
 public class ProjectName {
 
 	/**
-	 * ÏîÄ¿µÄÓµÓĞÕßÃû³Æ
+	 * é¡¹ç›®æ‹¥æœ‰è€…
 	 */
 	private String owner;
 	
 	/**
-	 * ÏîÄ¿ËùÔÚ²Ö¿â
+	 * é¡¹ç›®æ‰€åœ¨ä»“åº“
 	 */
 	private String repository;
 
@@ -33,7 +33,7 @@ public class ProjectName {
 	}
 
 	/**
-	 * ·µ»ØÏîÄ¿ÓµÓĞÕßºÍÏîÄ¿ËùÔÚ²Ö¿âĞÅÏ¢
+	 * è¿”å›é¡¹ç›®æ‰€æœ‰è€…å’Œæ‰€åœ¨ä»“åº“
 	 */
 	public String getProjectName() {
 		return this.owner + "/" +this.repository;

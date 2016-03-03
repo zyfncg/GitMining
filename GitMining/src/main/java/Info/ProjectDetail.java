@@ -1,50 +1,50 @@
 package Info;
 
 /**
- * ÏîÄ¿ÏêÏ¸ĞÅÏ¢
+ * é¡¹ç›®è¯¦ç»†ä¿¡æ¯
  * 
- * @author ÕÅÈÊÖª
+ * @author å¼ ä»çŸ¥
  *
  */
 public class ProjectDetail {
 	
 	/** 
-	 * ¶ÔÏîÄ¿µÄ¼òÒªÃèÊö
+	 * å¯¹é¡¹ç›®çš„ç®€è¦æè¿°
 	 */
 	private String description;
 	
 	/**
-	 * ÏîÄ¿ËùÊ¹ÓÃµÄ±à³ÌÓïÑÔ
+	 * é¡¹ç›®æ‰€ä½¿ç”¨çš„è¯­è¨€
 	 */
 	private String language;
 	
 	/**
-	 * ÏîÄ¿Ö÷Ò³
+	 * é¡¹ç›®ä¸»é¡µ
 	 */
 	private String URL;
 	
 	/**
-	 * ÏîÄ¿Ãû³Æ
+	 * é¡¹ç›®åç§°
 	 */
 	private ProjectName projectName;
 	
 	/**
-	 * ÏîÄ¿µÄforkÊıÁ¿
+	 * é¡¹ç›®çš„forkæ•°é‡
 	 */
 	private int forks;
 	
 	/**
-	 * ÏîÄ¿µÄstarÊıÁ¿
+	 * é¡¹ç›®çš„staræ•°é‡
 	 */
 	private int stars;
 	
 	/**
-	 * ÏîÄ¿µÄ¹±Ï×ÕßÊıÁ¿
+	 * é¡¹ç›®è´¡çŒ®è€…
 	 */
 	private int contributors;
 	
 	/**
-	 * ÏîÄ¿µÄĞ­×÷ÕßÊıÁ¿
+	 * é¡¹ç›®åä½œè€…
 	 */
 	private int collaborators;
 

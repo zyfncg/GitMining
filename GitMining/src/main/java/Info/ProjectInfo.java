@@ -1,35 +1,35 @@
 package Info;
 
 /**
- * °üº¬ÏîÄ¿ĞÅÏ¢µÄÀà
+ * é¡¹ç›®ä¿¡æ¯
  * 
- * @author ÕÅÈÊÖª
+ * @author å¼ ä»çŸ¥
  *
  */
 public class ProjectInfo {
 
 	/**
-	 * ¶ÔÏîÄ¿µÄ¼òÒªÃèÊö
+	 * å¯¹é¡¹ç›®çš„ç®€è¦æè¿°
 	 */
 	private String description;
 	
 	/**
-	 * ÏîÄ¿Ãû³Æ
+	 * é¡¹ç›®åç§°
 	 */
 	private ProjectName projectName;
 	
 	/**
-	 * ÏîÄ¿µÄforkÊıÁ¿
+	 * é¡¹ç›®çš„forkæ•°é‡
 	 */
 	private int forks;
 	
 	/**
-	 * ÏîÄ¿µÄstarÊıÁ¿
+	 * é¡¹ç›®çš„staræ•°é‡
 	 */
 	private int stars;
 	
 	/**
-	 * ÏîÄ¿µÄ¹±Ï×ÕßÊıÁ¿
+	 * é¡¹ç›®çš„è´¡çŒ®è€…æ•°é‡
 	 */
 	private int contributors;
 

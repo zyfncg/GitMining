@@ -1,30 +1,30 @@
 package Info;
 
 /**
- * ÓÃ»§µÄĞÅÏ¢
+ * ç”¨æˆ·ä¿¡æ¯
  * 
- * @author ÕÅÈÊÖª
+ * @author å¼ ä»çŸ¥
  *
  */
 public class UserInfo {
 
 	/**
-	 * ÓÃ»§ĞÕÃû
+	 * ç”¨æˆ·å§“å
 	 */
 	private String userName;
 	
 	/**
-	 * ¶ÔÓÃ»§µÄ¼òÒªÃèÊö
+	 * å¯¹ç”¨æˆ·çš„ç®€è¦æè¿°
 	 */
 	private String descriptionUser;
 	
 	/**
-	 * ÓÃ»§²ÎÓëµÄÏîÄ¿ÊıÁ¿
+	 * ç”¨æˆ·å‚ä¸è¿‡çš„é¡¹ç›®æ•°é‡
 	 */
 	private int projectInvolved;
 	
 	/**
-	 * ÓÃ»§´´½¨µÄÏîÄ¿ÊıÁ¿
+	 * ç”¨æˆ·åˆ›å»ºçš„é¡¹ç›®æ•°é‡
 	 */
 	private int projectCreate;
 
