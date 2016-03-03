@@ -1,6 +1,6 @@
-package dataImpl;
+package data.dataImpl;
 
-import dataServer.ProjectDataServer;
+import data.dataServer.ProjectDataServer;
 
 public class ProjectDataController implements ProjectDataServer{
 

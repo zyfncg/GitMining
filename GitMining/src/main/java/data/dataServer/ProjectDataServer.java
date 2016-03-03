@@ -1,4 +1,4 @@
-package dataServer;
+package data.dataServer;
 
 public interface ProjectDataServer {
 
