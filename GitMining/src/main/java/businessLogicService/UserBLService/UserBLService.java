@@ -16,7 +16,7 @@ public interface UserBLService {
 	 * @return 返回用户信息列表
 	 * @throws Exception 
 	 */
-	public List<UserInfo> getAllUsers();
+	public List<UserInfo> getAllUsers()throws Exception;
 	/**
 	 *description: 取得某一用户详细信息
 	 * 前置条件：无
@@ -26,7 +26,7 @@ public interface UserBLService {
 	 * @return 返回用户详细信息
 	 * @throws Exception 
 	 */
-	public UserInfoDetail getUserByName(String name);
+	public UserInfoDetail getUserByName(String name)throws Exception;
 	/**
 	 *description: 通过关键字搜索
 	 * 前置条件：无
@@ -36,5 +36,5 @@ public interface UserBLService {
 	 * @return 返回用户信息列表
 	 * @throws Exception 
 	 */
-	public List<UserInfo> searchUsers(String key);
+	public List<UserInfo> searchUsers(String key)throws Exception;
 }

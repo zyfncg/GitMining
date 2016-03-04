@@ -38,4 +38,10 @@ public class ProjectName {
 	public String getProjectName() {
 		return this.owner + "/" +this.repository;
 	}
+	public String getrepository() {
+		return this.repository;
+	}
+	public String getowner() {
+		return this.owner;
+	}
 }

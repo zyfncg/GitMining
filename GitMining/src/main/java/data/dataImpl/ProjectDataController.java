@@ -4,6 +4,7 @@ import java.util.List;
 
 import Info.ProjectDetail;
 import Info.ProjectInfo;
+import Info.ProjectName;
 import data.dataServer.ProjectDataServer;
 
 public class ProjectDataController implements ProjectDataServer{
@@ -13,7 +14,7 @@ public class ProjectDataController implements ProjectDataServer{
 		return null;
 	}
 
-	public ProjectDetail getProjectByName(String name) {
+	public ProjectDetail getProjectByName(ProjectName name) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

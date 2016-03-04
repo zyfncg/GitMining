@@ -4,6 +4,7 @@ import java.util.List;
 
 import Info.ProjectDetail;
 import Info.ProjectInfo;
+import Info.ProjectName;
 
 public interface ProjectDataServer {
 
@@ -16,6 +17,6 @@ public interface ProjectDataServer {
 	 * 
 	 * @return 返回单个项目的信息 
 	 */
-	public ProjectDetail getProjectByName(String name)throws Exception;
+	public ProjectDetail getProjectByName(ProjectName name)throws Exception;
 	
 }
