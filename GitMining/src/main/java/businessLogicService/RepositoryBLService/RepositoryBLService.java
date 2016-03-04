@@ -17,7 +17,7 @@ public interface RepositoryBLService {
 	 * @return 返回项目信息列表
 	 * @throws Exception 
 	 */
-	public List<ProjectInfo> getAllRepositorys();
+	public List<ProjectInfo> getAllRepositorys()throws Exception;
 	/**
 	 *description: 取得某一项目详细信息
 	 * 前置条件：无
@@ -27,7 +27,7 @@ public interface RepositoryBLService {
 	 * @return 返回项目详细信息
 	 * @throws Exception 
 	 */
-	public ProjectDetail getRepositoryByName(ProjectName name);
+	public ProjectDetail getRepositoryByName(ProjectName name)throws Exception;
 	/**
 	 *description: 通过关键字搜索
 	 * 前置条件：无
@@ -37,7 +37,7 @@ public interface RepositoryBLService {
 	 * @return 返回项目信息列表
 	 * @throws Exception 
 	 */
-	public List<ProjectInfo> searchRepositorys(String key);
+	public List<ProjectInfo> searchRepositorys(String key)throws Exception;
 	/**
 	 *description: 通过相应排序方法排序项目
 	 * 前置条件：无
@@ -47,6 +47,6 @@ public interface RepositoryBLService {
 	 * @return 返回项目信息列表
 	 * @throws Exception 
 	 */
-	public List<ProjectInfo> getSortedRepositorys(SortType type);
+	public List<ProjectInfo> getSortedRepositorys(SortType type)throws Exception;
 	
 }
