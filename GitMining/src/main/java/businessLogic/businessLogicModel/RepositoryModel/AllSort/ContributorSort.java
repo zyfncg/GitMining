@@ -4,16 +4,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import Info.ProjectInfo;
+import Info.ProjectDetail;
 import businessLogic.businessLogicModel.RepositoryModel.DetailSort;
 
 public class ContributorSort implements DetailSort{
 
-	public List<ProjectInfo> MakeSort(List<ProjectInfo> projectInfos) {
+	public List<ProjectDetail> MakeSort(List<ProjectDetail> projectInfos) {
 		// TODO Auto-generated method stub
 		
-		 Collections.sort(projectInfos,new Comparator<ProjectInfo>(){
-	            public int compare(ProjectInfo arg0, ProjectInfo arg1) {
+		 Collections.sort(projectInfos,new Comparator<ProjectDetail>(){
+	            public int compare(ProjectDetail arg0, ProjectDetail arg1) {
 	                return (new Integer(arg0.getContributors())).compareTo(new Integer(arg1.getContributors()));
 	            }
 	        });
