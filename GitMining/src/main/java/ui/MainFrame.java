@@ -28,15 +28,11 @@ public class MainFrame extends JFrame {
 	
 	private UserPage user;
 	
-	private ProjectInfoPage projectInfo;
-	
-	private UserInfoPage userInfo;
-	
 	private PanelSwitcher switcher;
 	
 	private JPanel btnPanel;
 	
-	private Page currentPage = Page.START;
+	private JPanel currentPage;
 	
 	private Map<Page, JPanel> pageMap =
 			new HashMap<Page, JPanel>();
@@ -49,7 +45,7 @@ public class MainFrame extends JFrame {
 	/**
 	 *页面宽度 
 	 */
-	private static final int PAGE_WIDTH =
+	public static final int PAGE_WIDTH =
 			CARD_NUM * CardsPanel.CARD_WIDTH +
 			(CARD_NUM + 1) * CardsPanel.CARD_GAP +
 			(SwitchPanel.SWITCH_WIDTH << 1);
@@ -57,7 +53,7 @@ public class MainFrame extends JFrame {
 	/**
 	 *页面高度 
 	 */
-	private static final int PAGE_HEIGHT =
+	public static final int PAGE_HEIGHT =
 			(((CardsPanel.CARD_HEIGHT << 1) +
 			 3 * CardsPanel.CARD_GAP) * 3) >> 1;
 			
@@ -76,8 +72,7 @@ public class MainFrame extends JFrame {
 		this.start = new StartPage(PAGE_WIDTH, PAGE_HEIGHT, switcher);
 		this.project = new ProjectPage(CARD_NUM, PAGE_WIDTH, PAGE_HEIGHT, switcher);
 		this.user = new UserPage(CARD_NUM, PAGE_WIDTH, PAGE_HEIGHT, switcher);
-		this.projectInfo = new ProjectInfoPage(CARD_NUM, PAGE_WIDTH, PAGE_HEIGHT, switcher);
-		this.userInfo = new UserInfoPage(CARD_NUM, PAGE_WIDTH, PAGE_HEIGHT, switcher);
+		this.currentPage = this.start;
 		
 		this.mapPage();
 		this.switcher.setPageMap(this.pageMap);
@@ -134,9 +129,7 @@ public class MainFrame extends JFrame {
 	private void mapPage() {
 		this.pageMap.put(Page.START, this.start);
 		this.pageMap.put(Page.PROJECT, this.project);
-		this.pageMap.put(Page.PROJECT_INFO, this.projectInfo);
 		this.pageMap.put(Page.USER, this.user);
-		this.pageMap.put(Page.USER_INFO, this.userInfo);
 	}
 	
 	/**
@@ -176,7 +169,7 @@ public class MainFrame extends JFrame {
 		
 	}
 	
-	public void setCurrentPage(Page page) {
+	public void setCurrentPage(JPanel page) {
 		this.currentPage = page;
 	}
 }

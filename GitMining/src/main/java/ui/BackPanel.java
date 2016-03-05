@@ -12,10 +12,11 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class BackPanel extends JPanel {
 	
-	public BackPanel(int width, int height,
+	public BackPanel(ClickHandler handler, int width, int height,
 			int btnW, int btnH) {
 		//后退按钮
 		JButton back = new JButton("后退");//TODO 用图片表示
+		back.addActionListener(e -> handler.handle());
 		back.setPreferredSize(new Dimension(btnW, btnH));
 		
 		//面板
