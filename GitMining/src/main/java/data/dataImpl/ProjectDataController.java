@@ -3,13 +3,12 @@ package data.dataImpl;
 import java.util.List;
 
 import Info.ProjectDetail;
-import Info.ProjectInfo;
 import Info.ProjectName;
 import data.dataServer.ProjectDataServer;
 
 public class ProjectDataController implements ProjectDataServer{
 
-	public List<ProjectInfo> getAllProjects() {
+	public List<ProjectDetail> getAllProjects() {
 		// TODO Auto-generated method stub
 		return null;
 	}

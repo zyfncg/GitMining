@@ -2,7 +2,7 @@ package businessLogic.businessLogicModel.RepositoryModel;
 
 import java.util.List;
 
-import Info.ProjectInfo;
+import Info.ProjectDetail;
 import businessLogic.businessLogicModel.RepositoryModel.AllSort.ContributorSort;
 import businessLogic.businessLogicModel.RepositoryModel.AllSort.ForkSort;
 import businessLogic.businessLogicModel.RepositoryModel.AllSort.StarSort;
@@ -10,11 +10,11 @@ import constant.SortType;
 
 public class RepositorySort {
 
-	public List<ProjectInfo> GetSortedRepositorys(SortType type) {
+	public List<ProjectDetail> GetSortedRepositorys(SortType type) {
 		DetailSort SortWay = this.GetDetailSort(type);
 		RepositoryHandle repositoryHandle = new RepositoryHandle();
-		List<ProjectInfo> allRepositorys = repositoryHandle.getallProjects();
-		List<ProjectInfo> sortedRepositorys = SortWay.MakeSort(allRepositorys);
+		List<ProjectDetail> allRepositorys = repositoryHandle.getallProjects();
+		List<ProjectDetail> sortedRepositorys = SortWay.MakeSort(allRepositorys);
 		return sortedRepositorys;
 	}
 	
