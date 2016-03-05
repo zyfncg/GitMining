@@ -1,5 +1,6 @@
 package data.connectUtil;
 
+import Info.Date;
 import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
@@ -125,7 +126,7 @@ public class JsonUtil {
 		String userName;
 		String descriptionUser = null;
 		String email;
-		String joinDate;
+		Date joinDate;
 		String company;
 		String address;
 		int projectInvolved;
@@ -134,11 +135,24 @@ public class JsonUtil {
 		json = JSONObject.fromObject(jsonString);
 		
 		userName=json.getString("login");
+		
+		try {
+			descriptionUser = json.getString("bio");
+		} catch (Exception e) {
+			descriptionUser="无";
+		}
+		
+		try {
+			company = json.getString("company");
+		} catch (Exception e) {
+			company="未知";
+		}
 		email=json.getString("email");
-		joinDate=json.getString("created_at");
+		String dateString=json.getString("created_at");
+		joinDate=Date.stringToDate(dateString);
 		address=json.getString("location");
-		projectInvolved=json.getInt("public_repos");
-		projectCreate=json.getInt("public_gists");
+		projectInvolved=json.getInt("following");
+		projectCreate=json.getInt("public_repos");
 		
 		return new UserInfoDetail(userName, descriptionUser, email, joinDate, company, address, projectInvolved, projectCreate);	
 	}
