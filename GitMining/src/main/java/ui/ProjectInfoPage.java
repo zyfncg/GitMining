@@ -10,26 +10,40 @@ import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Info.ProjectInfo;
+import Info.ProjectDetail;
 import Info.UserInfo;
+import constant.Page;
 
 /**
  *项目详细信息面板 
  */
 @SuppressWarnings("serial")
 public class ProjectInfoPage extends JPanel {
-
-	public ProjectInfoPage(int lineCardNum, int width, int height, PanelSwitcher switcher) {
+	
+	/**
+	 *显示的贡献者信息卡片的行数
+	 */
+	private static final int CONTRIBUTOR_ROW = 1;
+	
+	/**
+	 *显示的协作者信息卡片的行数
+	 */
+	private static final int COLLABORATOR_ROW = 1;
+	
+	public ProjectInfoPage(int lineCardNum, int width, int height,
+			PanelSwitcher switcher, ProjectDetail project) {
 		//分成5部分， 图像面板：描述面板: 信息面板：贡献者面板：协作者面板 = 2 / 3 : 1 / 3 : 1 : 2 : 2
 		
 		//图像面板
 		int iconH = height / 9;
 		int btnH = iconH >> 1;
 		int btnW = btnH << 1;
-		BackPanel icon = new BackPanel(width, iconH, btnW, btnH);
+		ClickHandler handler = () -> switcher.jump(this, Page.PROJECT, PanelSwitcher.RIGHT);
+		BackPanel icon = new BackPanel(handler, width, iconH, btnW, btnH);
 		
 		//描述面板
-		JLabel txt = new JLabel("Linux, an operation system kernel",
+		//TODO 添加项目URL
+		JLabel txt = new JLabel(project.getDescription(),
 				JLabel.CENTER);
 		FlowLayout fl = new FlowLayout();
 		fl.setVgap(0);
@@ -40,12 +54,18 @@ public class ProjectInfoPage extends JPanel {
 		//信息面板
 		int itemW = width >> 3;
 		int itemH = height / 6;
-		ItemPanel language = new ItemPanel(itemW, itemH, "language", "Java");
-		ItemPanel star = new ItemPanel(itemW, itemH, "star", "100");
-		ItemPanel fork = new ItemPanel(itemW, itemH, "fork", "20");
-		ItemPanel contributor = new ItemPanel(itemW, itemH, "contributor", "10");
-		ItemPanel collaborator = new ItemPanel(itemW, itemH, "collaborator", "4");
-		ItemPanel subscriber = new ItemPanel(itemW, itemH, "subscriber", "20");
+		ItemPanel language = new ItemPanel(
+				itemW, itemH, "language", project.getLanguage());
+		ItemPanel star = new ItemPanel(
+				itemW, itemH, "star", String.valueOf(project.getStars()));
+		ItemPanel fork = new ItemPanel(
+				itemW, itemH, "fork", String.valueOf(project.getForks()));
+		ItemPanel contributor = new ItemPanel(
+				itemW, itemH, "contributor", String.valueOf(project.getContributors()));
+		ItemPanel collaborator = new ItemPanel(
+				itemW, itemH, "collaborator", String.valueOf(project.getCollaborators()));
+		ItemPanel subscriber = new ItemPanel(
+				itemW, itemH, "subscriber", String.valueOf("33"));
 		FlowLayout layout = new FlowLayout();
 		layout.setVgap(0);
 		JPanel info = new JPanel(layout);
@@ -58,19 +78,19 @@ public class ProjectInfoPage extends JPanel {
 		
 		//贡献者面板
 		//TODO 具体信息获取
-		List<ProjectInfo> projects = new ArrayList<ProjectInfo>();
+		List<UserInfo> u1 = new ArrayList<UserInfo>();
 		for(int i = 0; i < lineCardNum; ++i) {
-			projects.add(new ProjectInfo(null, null, 0, 0, 0));
+			u1.add(new UserInfo(null, null, 0, 0));
 		}
-		CardsPanel c1 = CardsPanel.createProjectCards(projects);
+		CardsPanel c1 = CardsPanel.createUserCards(switcher, CONTRIBUTOR_ROW, lineCardNum, u1);
 		SwitchPanel contri = SwitchPanel.rightOnly(null, c1);
 
 		//参与者面板
-		List<UserInfo> users = new ArrayList<UserInfo>();
+		List<UserInfo> u2 = new ArrayList<UserInfo>();
 		for(int i = 0; i < lineCardNum; ++i) {
-			users.add(new UserInfo(null, null, 0, 0));
+			u2.add(new UserInfo(null, null, 0, 0));
 		}
-		CardsPanel c2 = CardsPanel.createUserCards(users);
+		CardsPanel c2 = CardsPanel.createUserCards(switcher, COLLABORATOR_ROW, lineCardNum, u2);
 		SwitchPanel involve = SwitchPanel.rightOnly(null, c2);
 		
 		//组装所有面板

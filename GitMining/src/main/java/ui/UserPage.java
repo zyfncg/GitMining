@@ -9,15 +9,27 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.JPanel;
 
-import Info.ProjectInfo;
 import Info.UserInfo;
+import businessLogicService.UserBLService.UserBLService;
 import constant.Page;
+import stub.UserController_Stub;
 
 /**
  *用户信息主页 
  */
 @SuppressWarnings("serial")
 public class UserPage extends JPanel{
+	
+	private UserBLService user = new UserController_Stub();
+	
+	private int userNum = 0;
+	
+	private int userIndex = 0;
+	
+	/**
+	 *显示的信息卡片的行数 
+	 */
+	private static final int CARD_ROW = 2;
 	
 	public UserPage(int lineCardNum, int width, int height, PanelSwitcher switcher) {
 		//分为3部分，图像面板：搜索面板：信息面板 = 1 : 1 : 4;
@@ -41,26 +53,29 @@ public class UserPage extends JPanel{
 		JPanel search = new JPanel(layout);
 		search.add(s);
 		
-		//TODO 信息获取
-		//第一行信息卡片
-		List<ProjectInfo> projects = new ArrayList<ProjectInfo>();
-		for(int i = 0; i < lineCardNum; ++i) {
-			projects.add(new ProjectInfo(null, null, 0, 0, 0));
+		//信息面板
+		List<UserInfo> allUsers = null;
+		try {
+			allUsers = this.user.getAllUsers();
+		} catch (Exception e) {
+			//TODO 处理异常
+			String msg = e.getMessage();
+		}	
+		this.userNum = allUsers.size();
+		this.userIndex = 0;
+		CardsPanel panel = null;
+		if(this.userNum == 0) {
+			panel = CardsPanel.createPlainPanel(CARD_ROW, lineCardNum);
+		}else{
+			int total = CARD_ROW * lineCardNum;
+			List<UserInfo> info = new ArrayList<UserInfo>();
+			for(int i = 0; i < userNum && i < total; ++i) {
+				info.add(allUsers.get(i));
+			}
+			panel = CardsPanel.createUserCards(switcher, CARD_ROW, lineCardNum, info);
+			userIndex += info.size();
 		}
-		CardsPanel line1 = CardsPanel.createProjectCards(projects);
-		//第二行信息卡片
-		List<UserInfo> users = new ArrayList<UserInfo>();
-		for(int i = 0; i < lineCardNum; ++i) {
-			users.add(new UserInfo(null, null, 0, 0));
-		}
-		CardsPanel line2 = CardsPanel.createUserCards(users);
-		//组合信息卡片，形成信息面板
-		JPanel cards = new JPanel(new BorderLayout());
-		Box box = Box.createVerticalBox();
-		box.add(line1);
-		box.add(line2);
-		cards.add(box, BorderLayout.CENTER);
-		SwitchPanel switchCards = SwitchPanel.rightOnly(null, cards);
+		SwitchPanel switchCards = SwitchPanel.rightOnly(null, panel);
 		
 		//组合所有面板
 		Box container = Box.createVerticalBox();

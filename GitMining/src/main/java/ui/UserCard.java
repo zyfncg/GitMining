@@ -10,8 +10,8 @@ import Info.UserInfo;
 public class UserCard extends Card {
 	
 	//TODO, 以后用具体的信息填充
-	public UserCard(int width, int height, UserInfo user) {
-		super(width, height, "Linus, an interesting programmer");
+	public UserCard(ClickHandler handler, int width, int height, UserInfo user) {
+		super(handler, width, height, "Linus, an interesting programmer");
 		
 		int itemW = width >> 2;
 		ItemPanel projectInvolve = new ItemPanel(itemW, height, "参与项目", "20");

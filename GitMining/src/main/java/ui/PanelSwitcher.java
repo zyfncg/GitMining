@@ -66,16 +66,49 @@ public class PanelSwitcher {
 	 *@param from, 被切换页面
 	 *@param to, 新页面
 	 *@param direction, 切换的方向,
-	 *有PanelSwitcher.LEFT, PanelSwitcher.RIGHT,其他值默认为PanelSwitcher.LEFT
+	 *有PanelSwitcher.LEFT, PanelSwitcher.RIGHT
 	 */
 	public void jump(Page from, Page to, int direction) {
 		JPanel f = this.map.get(from);
 		JPanel t = this.map.get(to);
 		if(f == t) return;
-		f.setVisible(false);
-		t.setVisible(true);
-		this.frame.add(t, BorderLayout.CENTER);
-		this.panelSlide(f, t, direction);
+		this.jump(f, t, direction);
+	}
+	
+	/**
+	 *不同页面之间的切换 
+	 *@param from, 被切换页面
+	 *@param to, 新页面
+	 *@param direction, 切换的方向,
+	 *有PanelSwitcher.LEFT, PanelSwitcher.RIGHT
+	 */
+	public void jump(JPanel from, Page to, int direction) {
+		JPanel t = this.map.get(to);
+		if(from == t) return ;
+		this.jump(from, t, direction);
+	}
+	
+	/**
+	 *不同页面之间的切换 
+	 *@param from, 被切换页面
+	 *@param to, 新面板
+	 *@param direction, 切换的方向,
+	 *有PanelSwitcher.LEFT, PanelSwitcher.RIGHT
+	 */
+	public void jump(Page from, JPanel to, int direction) {
+		JPanel f = this.map.get(from);
+		if(f == to) return ;
+		this.jump(f, to, direction);
+	}
+	
+	/**
+	 * 父容器为MainFrame
+	 */
+	private void jump(JPanel from, JPanel to, int direction) {
+		from.setVisible(false);
+		to.setVisible(true);
+		this.frame.add(to, BorderLayout.CENTER);
+		this.panelSlide(from, to, direction);
 		this.frame.setCurrentPage(to);
 		this.frame.revalidate();
 	}

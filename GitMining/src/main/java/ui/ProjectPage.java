@@ -11,9 +11,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
-import Info.UserInfo;
+import businessLogicService.RepositoryBLService.RepositoryBLService;
 import constant.Page;
 import constant.SortType;
+import stub.RepositoryController_Stub;
 
 /**
  *项目信息主页 
@@ -55,6 +56,16 @@ public class ProjectPage extends JPanel {
 //	 */
 //	private JButton contributor;
 	
+	private RepositoryBLService repository = new RepositoryController_Stub();
+	
+	private int projectNum;
+	
+	private int projectIndex;
+	
+	/**
+	 *显示的信息卡片的行数 
+	 */
+	private static final int CARD_ROW = 2;
 	
 	public ProjectPage(int lineCardNum, int width, int height, PanelSwitcher switcher) {
 		//分为三个部分，搜索面板：排序面板：信息面板 = 1 : 1 : 4
@@ -100,26 +111,28 @@ public class ProjectPage extends JPanel {
 		JPanel sort = new JPanel(outLayout);
 		sort.add(btnPanel);
 		
-		//TODO 具体信息获取
-		//第一行信息卡片面板
-		List<ProjectInfo> projects = new ArrayList<ProjectInfo>();
-		for(int i = 0; i < lineCardNum; ++i) {
-			projects.add(new ProjectInfo(null, null, 0, 0, 0));
+		//信息面板
+		List<ProjectInfo> allProjects = null;
+		try {
+			allProjects = this.repository.getAllRepositorys();
+		} catch (Exception e) {
+			//TODO 异常处理
 		}
-		CardsPanel line1 = CardsPanel.createProjectCards(projects);
-		//第二行信息卡片面板
-		List<UserInfo> users = new ArrayList<UserInfo>();
-		for(int i = 0; i < lineCardNum; ++i) {
-			users.add(new UserInfo(null, null, 0, 0));
+		this.projectNum = allProjects.size();
+		this.projectIndex = 0;
+		CardsPanel panel = null;
+		if(this.projectNum == 0) {
+			panel = CardsPanel.createPlainPanel(CARD_ROW, lineCardNum);
+		}else{
+			int total = CARD_ROW * lineCardNum;
+			List<ProjectInfo> info = new ArrayList<ProjectInfo>();
+			for(int i = 0; i < projectNum && i < total; ++i) {
+				info.add(allProjects.get(i));
+			}
+			panel = CardsPanel.createProjectCards(switcher, CARD_ROW, lineCardNum, info);
+			projectIndex += info.size();
 		}
-		CardsPanel line2 = CardsPanel.createUserCards(users);
-		//组合卡片面板，形成信息面板
-		JPanel cards = new JPanel(new BorderLayout());
-		Box box = Box.createVerticalBox();
-		box.add(line1);
-		box.add(line2);
-		cards.add(box, BorderLayout.CENTER);
-		SwitchPanel switchCards = SwitchPanel.rightOnly(null, cards);
+		SwitchPanel switchCards = SwitchPanel.rightOnly(null, panel);
 		
 		//组合所有面板
 		Box container = Box.createVerticalBox();

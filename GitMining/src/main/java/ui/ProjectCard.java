@@ -10,8 +10,8 @@ import Info.ProjectInfo;
 public class ProjectCard extends Card {
 	
 	//TODO, 以后用具体的信息填充
-	public ProjectCard(int width, int height, ProjectInfo info) {
-		super(width, height, "Linux, an operation system kernel");
+	public ProjectCard(ClickHandler handler, int width, int height, ProjectInfo info) {
+		super(handler, width, height, "Linux, an operation system kernel");
 		
 		//信息面板
 		int itemW = width >> 2;
