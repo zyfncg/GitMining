@@ -7,12 +7,14 @@ import data.dataServer.UserDataServer;
 
 public class UserDataController implements UserDataServer{
 
-	public List<UserInfoDetail> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	private UserDataUtil userDataUtil=new UserDataUtil();
+	
+	public List<UserInfoDetail> getAllUsers() throws Exception{
+
+		return userDataUtil.getAllUsers();
 	}
 
-	public UserInfoDetail getUserByName(String name) {
+	public UserInfoDetail getUserByName(String name) throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}

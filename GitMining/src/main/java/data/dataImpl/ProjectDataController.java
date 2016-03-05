@@ -8,14 +8,17 @@ import data.dataServer.ProjectDataServer;
 
 public class ProjectDataController implements ProjectDataServer{
 
-	public List<ProjectDetail> getAllProjects() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	private ProjectDataUtil projectdataUtil=new ProjectDataUtil();
+	
+	public List<ProjectDetail> getAllProjects() throws Exception{
+		
+		return projectdataUtil.getAllProjects();
 	}
 
 	public ProjectDetail getProjectByName(ProjectName name) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		return projectdataUtil.getProjectByName(name);
 	}
 
 }

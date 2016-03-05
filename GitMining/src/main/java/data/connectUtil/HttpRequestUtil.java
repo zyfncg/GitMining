@@ -11,12 +11,12 @@ import java.net.URL;
 
 public class HttpRequestUtil {
 	/** 
-     * ��url�����л�÷��ص��ַ��� 
+     * 通过url返回数据的字符串
      * 
      * @param requestUrl 
-     * @return �ַ��� 
+     * @return  数据字符串
      */ 
-    public static String httpRequest(String requestUrl) { 
+    public static String httpRequest(String requestUrl)throws Exception { 
         StringBuffer sb = new StringBuffer(); 
         InputStream ips = getInputStream(requestUrl); 
         InputStreamReader isreader = null; 
@@ -24,7 +24,8 @@ public class HttpRequestUtil {
         try { 
             isreader = new InputStreamReader(ips, "utf-8"); 
         } catch (UnsupportedEncodingException e) { 
-            e.printStackTrace(); 
+            e.printStackTrace();
+            throw e;
         } 
         BufferedReader bufferedReader = new BufferedReader(isreader); 
         String temp = null; 
@@ -38,17 +39,17 @@ public class HttpRequestUtil {
             ips.close(); 
             ips = null; 
         } catch (IOException e) { 
-            e.printStackTrace(); 
+            e.printStackTrace();
+            throw e;
         } 
         return sb.toString(); 
     }
     
     /** 
-     * �������URL�л�ȡ���ص������� 
      * @param requestUrl 
      * @return InputStream 
      */ 
-    private static InputStream getInputStream(String requestUrl) { 
+    private static InputStream getInputStream(String requestUrl) throws Exception{ 
         URL url = null; 
         HttpURLConnection conn = null; 
         InputStream in = null; 
@@ -56,7 +57,8 @@ public class HttpRequestUtil {
         try { 
             url = new URL(requestUrl); 
         } catch (MalformedURLException e) { 
-            e.printStackTrace(); 
+            e.printStackTrace();
+            throw e;
         } 
         try { 
             conn = (HttpURLConnection) url.openConnection(); 
@@ -66,7 +68,8 @@ public class HttpRequestUtil {
 
             in = conn.getInputStream(); 
         } catch (IOException e) { 
-            e.printStackTrace(); 
+            e.printStackTrace();
+            throw e;
         } 
         return in; 
     }
