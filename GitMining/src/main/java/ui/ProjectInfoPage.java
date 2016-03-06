@@ -3,16 +3,21 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Info.ProjectDetail;
 import Info.UserInfo;
-import constant.Page;
 
 /**
  *项目详细信息面板 
@@ -32,28 +37,52 @@ public class ProjectInfoPage extends JPanel {
 	
 	public ProjectInfoPage(int lineCardNum, int width, int height,
 			PanelSwitcher switcher, ProjectDetail project) {
-		//分成5部分， 图像面板：描述面板: 信息面板：贡献者面板：协作者面板 = 2 / 3 : 1 / 3 : 1 : 2 : 2
+		//分成5部分， 图像面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
+		//= 1 / 3 : 1 / 6: 1 / 6: 1 / 3 : 1 : 2 : 2
 		
 		//图像面板
 		int iconH = height / 9;
 		int btnH = iconH >> 1;
 		int btnW = btnH << 1;
-		ClickHandler handler = () -> switcher.jump(this, Page.PROJECT, PanelSwitcher.RIGHT);
+		ClickHandler handler = () -> switcher.back(this, PanelSwitcher.RIGHT);
 		BackPanel icon = new BackPanel(handler, width, iconH, btnW, btnH);
 		
 		//描述面板
-		//TODO 添加项目URL
 		JLabel txt = new JLabel(project.getDescription(),
-				JLabel.CENTER);
+				SwingConstants.CENTER);
 		FlowLayout fl = new FlowLayout();
 		fl.setVgap(0);
 		JPanel description = new JPanel(fl);
 		description.setPreferredSize(new Dimension(width, iconH >> 1));
 		description.add(txt);
 		
+		//项目地址面板
+		JPanel URL = new JPanel();
+		int urlW = width >> 1;
+		int urlH = iconH >> 1;
+		JTextField url = new JTextField();
+		url.setText(project.getURL());
+		url.setPreferredSize(new Dimension((int)(urlW * 0.8), urlH));
+		url.setEditable(false);
+		JButton copy = new JButton("复制");//TODO字符串资源统一管理
+		copy.setToolTipText("将地址复制到剪贴板");
+		copy.addActionListener(e -> {
+			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
+			StringSelection content = new StringSelection(url.getText());
+			board.setContents(content, null);
+			copy.setToolTipText("已复制到剪贴板");
+		});
+		copy.setPreferredSize(new Dimension(urlW / 5, urlH));
+		FlowLayout urlLayout = new FlowLayout();
+		urlLayout.setVgap(urlH >> 3);
+		urlLayout.setHgap(0);
+		URL.setLayout(urlLayout);
+		URL.add(url);
+		URL.add(copy);
+		
 		//信息面板
 		int itemW = width >> 3;
-		int itemH = height / 6;
+		int itemH = height >> 3;
 		ItemPanel language = new ItemPanel(
 				itemW, itemH, "language", project.getLanguage());
 		ItemPanel star = new ItemPanel(
@@ -67,7 +96,7 @@ public class ProjectInfoPage extends JPanel {
 		ItemPanel subscriber = new ItemPanel(
 				itemW, itemH, "subscriber", String.valueOf("33"));
 		FlowLayout layout = new FlowLayout();
-		layout.setVgap(0);
+		layout.setVgap(itemH >> 3);
 		JPanel info = new JPanel(layout);
 		info.add(language);
 		info.add(star);
@@ -82,7 +111,7 @@ public class ProjectInfoPage extends JPanel {
 		for(int i = 0; i < lineCardNum; ++i) {
 			u1.add(new UserInfo(null, null, 0, 0));
 		}
-		CardsPanel c1 = CardsPanel.createUserCards(switcher, CONTRIBUTOR_ROW, lineCardNum, u1);
+		CardsPanel c1 = CardsPanel.createUserCards(this, switcher, CONTRIBUTOR_ROW, lineCardNum, u1);
 		SwitchPanel contri = SwitchPanel.rightOnly(null, c1);
 
 		//参与者面板
@@ -90,13 +119,14 @@ public class ProjectInfoPage extends JPanel {
 		for(int i = 0; i < lineCardNum; ++i) {
 			u2.add(new UserInfo(null, null, 0, 0));
 		}
-		CardsPanel c2 = CardsPanel.createUserCards(switcher, COLLABORATOR_ROW, lineCardNum, u2);
+		CardsPanel c2 = CardsPanel.createUserCards(this, switcher, COLLABORATOR_ROW, lineCardNum, u2);
 		SwitchPanel involve = SwitchPanel.rightOnly(null, c2);
 		
 		//组装所有面板
 		Box all = Box.createVerticalBox();
 		all.add(icon);
 		all.add(description);
+		all.add(URL);
 		all.add(info);
 		all.add(contri);
 		all.add(involve);

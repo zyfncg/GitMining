@@ -147,9 +147,9 @@ public class JsonUtil {
 		
 		
 		
-	    
 		return new ProjectDetail(description, language, URL, proname, 
 				forks, stars, contributors, collaborators,subscribers);
+
 	}
 	
 	public static UserInfo jsonToUser(String jsonString)throws Exception{

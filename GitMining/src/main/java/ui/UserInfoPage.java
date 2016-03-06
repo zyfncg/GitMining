@@ -10,10 +10,10 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Info.ProjectInfo;
 import Info.UserInfoDetail;
-import constant.Page;
 
 /**
  *用户详细信息页面 
@@ -39,7 +39,7 @@ public class UserInfoPage extends JPanel {
 		int iconH = height / 6;
 		int btnH = iconH / 3;
 		int btnW = btnH << 1;
-		ClickHandler handler = () -> switcher.jump(this, Page.USER, PanelSwitcher.RIGHT);
+		ClickHandler handler = () -> switcher.back(this, PanelSwitcher.RIGHT);
 		BackPanel icon = new BackPanel(handler, width, iconH, btnW, btnH);
 		
 		//信息面板
@@ -64,7 +64,7 @@ public class UserInfoPage extends JPanel {
 		for(int i = 0; i < lineCardNum; ++i) {
 			p1.add(new ProjectInfo(null, null, 0, 0, 0));
 		}
-		CardsPanel c1 = CardsPanel.createProjectCards(null, CREATE_ROW, lineCardNum, p1);
+		CardsPanel c1 = CardsPanel.createProjectCards(this, switcher, CREATE_ROW, lineCardNum, p1);
 		SwitchPanel create = SwitchPanel.rightOnly(null, c1);
 		
 		//参与项目面板
@@ -72,7 +72,7 @@ public class UserInfoPage extends JPanel {
 		for(int i = 0; i < lineCardNum; ++i) {
 			p2.add(new ProjectInfo(null, null, 0, 0, 0));
 		}
-		CardsPanel c2 = CardsPanel.createProjectCards(null, INVOLVED_ROW, lineCardNum, p2);
+		CardsPanel c2 = CardsPanel.createProjectCards(this, switcher, INVOLVED_ROW, lineCardNum, p2);
 		SwitchPanel involve = SwitchPanel.rightOnly(null, c2);
 		
 		//组装所有面板
@@ -94,7 +94,7 @@ public class UserInfoPage extends JPanel {
 			JLabel txtLabel = new JLabel(text);
 			txtLabel.setFont(new Font("斜体", Font.ITALIC, 15));
 			txtLabel.setForeground(Color.BLUE);
-			txtLabel.setHorizontalAlignment(JLabel.CENTER);
+			txtLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			
 			this.setPreferredSize(new Dimension(width, height));
 			this.setLayout(new BorderLayout());

@@ -35,6 +35,7 @@ public class ProjectName {
 	/**
 	 * 返回项目所有者和所在仓库
 	 */
+	@Override
 	public String toString() {
 		return this.owner + "/" +this.repository;
 	}
