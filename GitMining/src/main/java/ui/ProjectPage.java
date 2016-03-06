@@ -58,9 +58,9 @@ public class ProjectPage extends JPanel {
 	private RepositoryBLService repository = new RepositoryController_Stub();
 	
 	/**
-	 *当前显示的项目信息 
+	 *所有的项目信息 
 	 */
-	private List<ProjectInfo> projects;
+	private List<ProjectInfo> allProjects;
 	
 	/**
 	 *当前页面所显示的项目信息 面板
@@ -77,14 +77,14 @@ public class ProjectPage extends JPanel {
 		
 		//信息面板
 		JPanel switchCards = new JPanel(new BorderLayout());	//项目信息面板
-		projects = null;
+		allProjects = null;
 		try {
-			projects = this.repository.getAllRepositorys();
+			allProjects = this.repository.getAllRepositorys();
 		} catch (Exception e) {
 			//TODO 异常处理
 		}
 		SwitchPanel projectPanel = this.getProjectInfoPanel(
-				projects, switchCards, switcher, lineCardNum);
+				allProjects, switchCards, switcher, lineCardNum);
 		currentPanel = projectPanel;
 		switchCards.add(currentPanel, BorderLayout.CENTER);
 		
@@ -161,7 +161,7 @@ public class ProjectPage extends JPanel {
 			}
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
 				JPanel from = currentPanel.getCurrentPanel();
-				SwitchPanel to = getProjectInfoPanel(projects, parent, switcher, col);
+				SwitchPanel to = getProjectInfoPanel(allProjects, parent, switcher, col);
 				switcher.jump(parent, from, to, PanelSwitcher.RIGHT);
 				currentPanel = to;
 			}else {
@@ -199,9 +199,7 @@ public class ProjectPage extends JPanel {
 		public SortButton(int width, int height, String text, SortType type) {
 			this.setPreferredSize(new Dimension(width, height));
 			this.setText(text);
-			this.addActionListener(e -> {
-				
-			});
+			
 		}
 	}
 }
