@@ -57,6 +57,6 @@ public interface RepositoryBLService {
 	 * @return 返回排序后的项目信息列表
 	 * @throws Exception 
 	 */
-	public List<ProjectInfo> SortSearchRepositorys(SortType type,List<ProjectInfo> SomeProjects)throws Exception;
+	public List<ProjectInfo> SortSearchRepositorys(SortType type,List<ProjectInfo> SomeProjects);
 	
 }

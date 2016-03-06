@@ -11,56 +11,31 @@ import javax.swing.JPanel;
 
 import Info.ProjectInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
+import businessLogicService.UserBLService.UserBLService;
 import constant.Page;
 import constant.SortType;
 import stub.RepositoryController_Stub;
+import stub.UserController_Stub;
 
 /**
  *项目信息主页 
  */
 @SuppressWarnings("serial")
 public class ProjectPage extends JPanel {
-//	/**
-//	 * 页面切换面板
-//	 */
-//	private SwitchPanel Switcher;
-//	
-//	/**
-//	 *搜索框面板 
-//	 */
-//	private SearchPanel search;
-//	
-//	/**
-//	 *排序依据面板 
-//	 */
-//	private JPanel sort;
-//	
-//	/**
-//	 *无序 
-//	 */
-//	private JButton general;
-//	
-//	/**
-//	 *根据star数量排序 
-//	 */
-//	private JButton star;
-//	
-//	/**
-//	 *根据fork数量排序 
-//	 */
-//	private JButton fork;
-//	
-//	/**
-//	 *根据contributor数量排序 
-//	 */
-//	private JButton contributor;
 	
 	private RepositoryBLService repository = new RepositoryController_Stub();
+	
+	private UserBLService user = new UserController_Stub();
 	
 	/**
 	 *所有的项目信息 
 	 */
 	private List<ProjectInfo> allProjects;
+	
+	/**
+	 *当前显示的项目信息 
+	 */
+	private List<ProjectInfo> currentProjects;
 	
 	/**
 	 *当前页面所显示的项目信息 面板
@@ -83,8 +58,15 @@ public class ProjectPage extends JPanel {
 		} catch (Exception e) {
 			//TODO 异常处理
 		}
-		SwitchPanel projectPanel = this.getProjectInfoPanel(
-				allProjects, switchCards, switcher, lineCardNum);
+		currentProjects = allProjects;
+		SwitchPanel projectPanel = null;
+		try {
+			projectPanel = InfoManager.getProjectInfoPanel(
+					allProjects, switchCards, switcher, lineCardNum,
+					this, CARD_ROW, repository, user);
+		} catch (Exception e) {
+			// TODO 异常处理
+		}
 		currentPanel = projectPanel;
 		switchCards.add(currentPanel, BorderLayout.CENTER);
 		
@@ -109,13 +91,17 @@ public class ProjectPage extends JPanel {
 		btnW = (btnW > btnH * 3) ? (btnH * 3) : btnW;
 		//四种排序依据
 		SortButton general = new SortButton(btnW, btnH,
-				"general", SortType.General);
+				"general", SortType.General, 
+				this.getSortHandler(SortType.General, switcher, switchCards, lineCardNum));
 		SortButton star = new SortButton(btnW, btnH,
-				"star", SortType.Star);
+				"star", SortType.Star,
+				this.getSortHandler(SortType.Star, switcher, switchCards, lineCardNum));
 		SortButton fork = new SortButton(btnW, btnH,
-				"fork", SortType.Fork);
-		SortButton contributor = new SortButton(
-				btnW, btnH,"contributor", SortType.Contributors);
+				"fork", SortType.Fork,
+				this.getSortHandler(SortType.Fork, switcher, switchCards, lineCardNum));
+		SortButton contributor = new SortButton(btnW, btnH,
+				"contributor", SortType.Contributors,
+				this.getSortHandler(SortType.Contributors, switcher, switchCards, lineCardNum));
 		//四个按钮的按钮面板
 		FlowLayout inLayout = new FlowLayout();
 		inLayout.setHgap(0);
@@ -153,54 +139,97 @@ public class ProjectPage extends JPanel {
 			String tip, PanelSwitcher switcher,
 			JPanel parent, int col) {
 		ClickHandler handler = () -> {
-			List<ProjectInfo> projects = null;
+			List<ProjectInfo> result = null;
 			try {
-				projects = repository.searchRepositorys(search.getText());
+				result = repository.searchRepositorys(search.getText());
 			} catch (Exception e1) {
 				// TODO 异常处理
 			}
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
-				JPanel from = currentPanel.getCurrentPanel();
-				SwitchPanel to = getProjectInfoPanel(allProjects, parent, switcher, col);
-				switcher.jump(parent, from, to, PanelSwitcher.RIGHT);
-				currentPanel = to;
+				this.jump(allProjects, switcher, parent, col, PanelSwitcher.RIGHT);
 			}else {
-				SwitchPanel from = currentPanel.getCurrentPanel();
-				SwitchPanel to = getProjectInfoPanel(projects, parent, switcher, col);
-				switcher.jump(parent, from, to, PanelSwitcher.LEFT);
-				currentPanel = to;
+				this.jump(result, switcher, parent, col, PanelSwitcher.LEFT);
 			}
 		};
 		return handler;
 	}
 	
 	/**
-	 *将所有项目信息传入，让面板自行管理信息面板的跳转
-	 *@param projects 所有的项目信息
+	 *获得排序按钮被点击后的事件处理 
+	 *@param type 排序类型
+	 *@param switcher 页面切换器
 	 *@param parent 项目信息面板的父容器
-	 *@param switcher 面板转换器
-	 *@param 项目面板一行所要显示的项目信息数量 
+	 *@param col 信息面板显示的信息卡片的列数
+	 *@param direction 面板切换的方向
 	 */
-	private SwitchPanel getProjectInfoPanel(List<ProjectInfo> projects,
-			JPanel parent, PanelSwitcher switcher, int lineCardNum) {
-		if(projects.size() == 0) {
-			CardsPanel panel = CardsPanel.createPlainPanel(CARD_ROW, lineCardNum);
-			return SwitchPanel.noSwitch(panel);
-		}else{
-			SwitchPanel p = new SwitchPanel();
-			return p.projectListPanel(projects, this, parent, switcher, CARD_ROW, lineCardNum);
-		}
+	private ClickHandler getSortHandler(SortType type,
+			PanelSwitcher switcher, JPanel parent, int col) {
+		ClickHandler handler = () -> {
+			currentProjects = repository.SortSearchRepositorys(type, currentProjects);
+			jump(currentProjects, switcher, parent, col, PanelSwitcher.LEFT);
+		};
+		return handler;
 	}
+	
+	/**
+	 *从当前项目信息面板跳转到
+	 *根据新的项目信息创建的面板
+	 *@param projects 项目信息 
+	 *@param switcher 页面切换器
+	 *@param parent 面板的父容器
+	 *@param col 面板显示的信息卡片列数
+	 *@param direction 面板切换的方向
+	 */
+	private void jump(List<ProjectInfo> projects, PanelSwitcher switcher,
+			JPanel parent, int col, int direction) {
+		JPanel from = currentPanel.getCurrentPanel();
+		SwitchPanel to = null;
+		try {
+			to = InfoManager.getProjectInfoPanel(
+					projects, parent, switcher,
+					col, this, CARD_ROW, repository, user);
+		} catch (Exception e) {
+			// TODO 异常处理
+		}
+		switcher.jump(parent, from, to, direction);
+		currentPanel = to;
+		currentProjects = projects;
+	}
+	
+//	/**
+//	 *将所有项目信息传入，让面板自行管理信息面板的跳转
+//	 *@param projects 所有的项目信息
+//	 *@param parent 项目信息面板的父容器
+//	 *@param switcher 面板转换器
+//	 *@param 项目面板一行所要显示的项目信息数量 
+//	 */
+//	private SwitchPanel getProjectInfoPanel(List<ProjectInfo> projects,
+//			JPanel parent, PanelSwitcher switcher, int lineCardNum) {
+//		if(projects.size() == 0) {
+//			CardsPanel panel = CardsPanel.createPlainPanel(CARD_ROW, lineCardNum);
+//			return SwitchPanel.noSwitch(panel);
+//		}else{
+//			SwitchPanel p = new SwitchPanel();
+//			try {
+//				return p.projectListPanel(projects, this, parent,
+//						switcher, CARD_ROW, lineCardNum, repository, user);
+//			} catch (Exception e) {
+//				// TODO 异常处理
+//			}
+//			return null;
+//		}
+//	}
 	
 	/**
 	 *排序依据按钮 
 	 */
 	private class SortButton extends JButton {
-		public SortButton(int width, int height, String text, SortType type) {
+		public SortButton(int width, int height, String text,
+				SortType type, ClickHandler handler) {
 			this.setPreferredSize(new Dimension(width, height));
 			this.setText(text);
 			this.addActionListener(e -> {
-//				repository.getSortedRepositorys(type);
+				handler.handle();
 			});
 		}
 	}

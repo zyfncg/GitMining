@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
@@ -18,6 +17,8 @@ import javax.swing.SwingConstants;
 
 import Info.ProjectDetail;
 import Info.UserInfo;
+import businessLogicService.RepositoryBLService.RepositoryBLService;
+import businessLogicService.UserBLService.UserBLService;
 
 /**
  *项目详细信息面板 
@@ -36,7 +37,8 @@ public class ProjectInfoPage extends JPanel {
 	private static final int COLLABORATOR_ROW = 1;
 	
 	public ProjectInfoPage(int lineCardNum, int width, int height,
-			PanelSwitcher switcher, ProjectDetail project) {
+			PanelSwitcher switcher, ProjectDetail project,
+			RepositoryBLService repo, UserBLService user) {
 		//分成5部分， 图像面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
 		//= 1 / 3 : 1 / 6: 1 / 6: 1 / 3 : 1 : 2 : 2
 		
@@ -106,21 +108,28 @@ public class ProjectInfoPage extends JPanel {
 		info.add(subscriber);
 		
 		//贡献者面板
-		//TODO 具体信息获取
-		List<UserInfo> u1 = new ArrayList<UserInfo>();
-		for(int i = 0; i < lineCardNum; ++i) {
-			u1.add(new UserInfo(null, null, 0, 0));
+		List<UserInfo> u1 = project.getContributorsInfo();
+		JPanel contri = new JPanel(new BorderLayout());
+		SwitchPanel p1 = null;
+		try {
+			 p1 = InfoManager.getUserInfoPanel(u1, contri, switcher,
+					lineCardNum, CONTRIBUTOR_ROW, this, repo, user);
+		} catch (Exception e2) {
+			// TODO 异常处理
 		}
-		CardsPanel c1 = CardsPanel.createUserCards(this, switcher, CONTRIBUTOR_ROW, lineCardNum, u1);
-		SwitchPanel contri = SwitchPanel.rightOnly(null, c1);
+		contri.add(p1, BorderLayout.CENTER);
 
 		//参与者面板
-		List<UserInfo> u2 = new ArrayList<UserInfo>();
-		for(int i = 0; i < lineCardNum; ++i) {
-			u2.add(new UserInfo(null, null, 0, 0));
+		List<UserInfo> u2 = project.getCollaboratorsInfo();
+		JPanel involve = new JPanel(new BorderLayout());
+		SwitchPanel p2 = null;
+		try {
+			p2 = InfoManager.getUserInfoPanel(u2, involve, switcher,
+					lineCardNum, COLLABORATOR_ROW, this, repo, user);
+		} catch (Exception e1) {
+			// TODO 异常处理
 		}
-		CardsPanel c2 = CardsPanel.createUserCards(this, switcher, COLLABORATOR_ROW, lineCardNum, u2);
-		SwitchPanel involve = SwitchPanel.rightOnly(null, c2);
+		involve.add(p2, BorderLayout.CENTER);
 		
 		//组装所有面板
 		Box all = Box.createVerticalBox();

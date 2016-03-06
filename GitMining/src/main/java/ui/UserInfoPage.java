@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
@@ -14,6 +13,8 @@ import javax.swing.SwingConstants;
 
 import Info.ProjectInfo;
 import Info.UserInfoDetail;
+import businessLogicService.RepositoryBLService.RepositoryBLService;
+import businessLogicService.UserBLService.UserBLService;
 
 /**
  *用户详细信息页面 
@@ -22,17 +23,13 @@ import Info.UserInfoDetail;
 public class UserInfoPage extends JPanel {
 	
 	/**
-	 *显示的参与项目信息卡片的行数 
-	 */
-	private static final int INVOLVED_ROW = 1;
-	
-	/**
 	 *显示的创建项目信息卡片的行数 
 	 */
-	private static final int CREATE_ROW = 1;
+	private static final int CREATE_ROW = 2;
 	
 	public UserInfoPage(int lineCardNum, int width, int height,
-			PanelSwitcher switcher, UserInfoDetail user) {
+			PanelSwitcher switcher, UserInfoDetail user,
+			RepositoryBLService service, UserBLService u) {
 		//分成4部分， 图像面板：信息面板：创建项目面板：参与项目面板 = 1 : 1 : 2 : 2
 		
 		//图像面板
@@ -59,28 +56,23 @@ public class UserInfoPage extends JPanel {
 		info.add(address);
 		
 		//创建项目面板
-		//TODO 具体信息获取
-		List<ProjectInfo> p1 = new ArrayList<ProjectInfo>();
-		for(int i = 0; i < lineCardNum; ++i) {
-			p1.add(new ProjectInfo(null, null, 0, 0, 0));
+		List<ProjectInfo> p1 = user.getProjectCreatInfo();
+		JPanel switchCards = new JPanel(new BorderLayout());
+		SwitchPanel create = null;
+		try {
+			create = InfoManager.getProjectInfoPanel(
+					p1, switchCards, switcher, lineCardNum, this, CREATE_ROW, service, u);
+		} catch (Exception e) {
+			// TODO 异常处理
 		}
-		CardsPanel c1 = CardsPanel.createProjectCards(this, switcher, CREATE_ROW, lineCardNum, p1);
-		SwitchPanel create = SwitchPanel.rightOnly(null, c1);
+		switchCards.add(create, BorderLayout.CENTER);
 		
-		//参与项目面板
-		List<ProjectInfo> p2 = new ArrayList<ProjectInfo>();
-		for(int i = 0; i < lineCardNum; ++i) {
-			p2.add(new ProjectInfo(null, null, 0, 0, 0));
-		}
-		CardsPanel c2 = CardsPanel.createProjectCards(this, switcher, INVOLVED_ROW, lineCardNum, p2);
-		SwitchPanel involve = SwitchPanel.rightOnly(null, c2);
 		
 		//组装所有面板
 		Box all = Box.createVerticalBox();
 		all.add(icon);
 		all.add(info);
-		all.add(create);
-		all.add(involve);
+		all.add(switchCards);
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
 	}

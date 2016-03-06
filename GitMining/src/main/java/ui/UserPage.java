@@ -9,8 +9,10 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 import Info.UserInfo;
+import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import constant.Page;
+import stub.RepositoryController_Stub;
 import stub.UserController_Stub;
 
 /**
@@ -20,6 +22,8 @@ import stub.UserController_Stub;
 public class UserPage extends JPanel{
 	
 	private UserBLService user = new UserController_Stub();
+	
+	private RepositoryBLService repository = new RepositoryController_Stub();
 	
 	/**
 	 *所有的用户信息 
@@ -48,8 +52,14 @@ public class UserPage extends JPanel{
 			//					String msg = e.getMessage();
 		}	
 		JPanel switchCards = new JPanel(new BorderLayout());
-		SwitchPanel userPanel =this.getUserInfoPanel(
-				allUsers, switchCards, switcher, lineCardNum);
+		SwitchPanel userPanel = null;
+		try {
+			userPanel = InfoManager.getUserInfoPanel(
+					allUsers, switchCards, switcher, lineCardNum,
+					CARD_ROW, this, repository, user);
+		} catch (Exception e) {
+			// TODO 异常处理
+		}
 		currentPanel = userPanel;
 		switchCards.add(currentPanel, BorderLayout.CENTER);
 		
@@ -103,28 +113,52 @@ public class UserPage extends JPanel{
 				// TODO 异常处理
 			}
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
-				JPanel from = currentPanel.getCurrentPanel();
-				SwitchPanel to = getUserInfoPanel(allUsers, parent, switcher, col);
-				switcher.jump(parent, from, to, PanelSwitcher.RIGHT);
-				currentPanel = to;
+				this.jump(allUsers, switcher, parent, col, PanelSwitcher.RIGHT);
 			}else {
-				SwitchPanel from = currentPanel.getCurrentPanel();
-				SwitchPanel to = getUserInfoPanel(users, parent, switcher, col);
-				switcher.jump(parent, from, to, PanelSwitcher.LEFT);
-				currentPanel = to;
+				this.jump(users, switcher, parent, col, PanelSwitcher.LEFT);
 			}
 		};
 		return handler;
 	}
 	
-	private SwitchPanel getUserInfoPanel(List<UserInfo> users,
-			JPanel parent, PanelSwitcher switcher, int lineCardNum) {
-		if(users.size() == 0) {
-			CardsPanel panel = CardsPanel.createPlainPanel(CARD_ROW, lineCardNum);
-			return SwitchPanel.noSwitch(panel);
-		}else{
-			SwitchPanel p = new SwitchPanel();
-			return p.userListPanel(users, this, parent, switcher, CARD_ROW, lineCardNum);
+	/**
+	 *从当前用户信息面板跳转到
+	 *根据新的用户信息创建的面板
+	 *@param projects 用户信息 
+	 *@param switcher 页面切换器
+	 *@param parent 面板的父容器
+	 *@param col 面板显示的信息卡片列数
+	 *@param direction 面板切换的方向
+	 */
+	private void jump(List<UserInfo> users, PanelSwitcher switcher,
+			JPanel parent, int col, int direction) {
+		JPanel from = currentPanel.getCurrentPanel();
+		SwitchPanel to = null;
+		try {
+			to = InfoManager.getUserInfoPanel(
+					users, parent, switcher, col,
+					CARD_ROW, this, repository, user);
+		} catch (Exception e) {
+			// TODO 异常处理
 		}
+		switcher.jump(parent, from, to, direction);
+		currentPanel = to;
 	}
+	
+//	private SwitchPanel getUserInfoPanel(List<UserInfo> users,
+//			JPanel parent, PanelSwitcher switcher, int lineCardNum) {
+//		if(users.size() == 0) {
+//			CardsPanel panel = CardsPanel.createPlainPanel(CARD_ROW, lineCardNum);
+//			return SwitchPanel.noSwitch(panel);
+//		}else{
+//			SwitchPanel p = new SwitchPanel();
+//			try {
+//				return p.userListPanel(users, this, parent, switcher,
+//						CARD_ROW, lineCardNum, repository, user);
+//			} catch (Exception e) {
+//				// TODO 处理异常
+//			}
+//			return null;
+//		}
+//	}
 }
