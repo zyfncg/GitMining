@@ -18,6 +18,12 @@ public class RepositorySort {
 		return sortedRepositorys;
 	}
 	
+	public List<ProjectInfo> SortSearchRepositorys(SortType type,List<ProjectInfo> someProjects){
+		DetailSort SortWay = this.GetDetailSort(type);
+		List<ProjectInfo> sortedSearchRepositorys = SortWay.MakeSort(someProjects);
+		return sortedSearchRepositorys;
+	}
+	
 	//通过Type找到对应方法
 	public DetailSort GetDetailSort(SortType Type){
 		if (Type.equals(SortType.Fork)) {

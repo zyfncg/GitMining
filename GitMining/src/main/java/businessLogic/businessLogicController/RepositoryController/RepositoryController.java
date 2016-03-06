@@ -38,4 +38,12 @@ public class RepositoryController implements RepositoryBLService {
 		return repositorySort.GetSortedRepositorys(type);
 	}
 
+	@Override
+	public List<ProjectInfo> SortSearchRepositorys(SortType type, List<ProjectInfo> SomeProjects) throws Exception {
+		// TODO Auto-generated method stub
+		return repositorySort.SortSearchRepositorys(type, SomeProjects);
+	}
+	
+
+
 }
