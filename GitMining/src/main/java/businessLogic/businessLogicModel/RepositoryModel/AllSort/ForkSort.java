@@ -4,15 +4,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import Info.ProjectDetail;
+import Info.ProjectInfo;
 import businessLogic.businessLogicModel.RepositoryModel.DetailSort;
 
 public class ForkSort implements DetailSort{
 
-	public List<ProjectDetail> MakeSort(List<ProjectDetail> projectInfos) {
+	public List<ProjectInfo> MakeSort(List<ProjectInfo> projectInfos) {
 		// TODO Auto-generated method stub
-		 Collections.sort(projectInfos,new Comparator<ProjectDetail>(){
-	            public int compare(ProjectDetail arg0, ProjectDetail arg1) {
+		 Collections.sort(projectInfos,new Comparator<ProjectInfo>(){
+	            public int compare(ProjectInfo arg0, ProjectInfo arg1) {
 	                return (new Integer(arg0.getForks())).compareTo(new Integer(arg1.getForks()));
 	            }
 	        });
