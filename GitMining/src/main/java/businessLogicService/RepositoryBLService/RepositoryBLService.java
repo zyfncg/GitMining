@@ -48,5 +48,15 @@ public interface RepositoryBLService {
 	 * @throws Exception 
 	 */
 	public List<ProjectInfo> getSortedRepositorys(SortType type)throws Exception;
+	/**
+	 *description: 通过相应排序方法排序搜索的相关项目
+	 * 前置条件：无
+	 * 后置条件：返回排序后的项目信息列表
+	 * 需要的服务： 无
+	 * @param SortType :排序信息，List<ProjectInfo> ：项目信息列表
+	 * @return 返回排序后的项目信息列表
+	 * @throws Exception 
+	 */
+	public List<ProjectInfo> SortSearchRepositorys(SortType type,List<ProjectInfo> SomeProjects);
 	
 }
