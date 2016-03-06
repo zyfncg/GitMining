@@ -27,7 +27,7 @@ public class RepositoryStub implements ProjectDataServer {
 	@Override
 	public ProjectDetail getProjectByName(ProjectName name) throws Exception {
 		// TODO Auto-generated method stub
-		return new ProjectDetail("asd", "java", "http:", new ProjectName("rww", "rww1"), 7, 7, 7, 7, 7);
+		return new ProjectDetail("asd", "java", "http:", new ProjectName("rww", "rww1"), 7, 7, 7, 7, 7,null,null);
 	}
 
 }

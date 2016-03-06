@@ -66,7 +66,7 @@ public class ProjectDetail {
 
 	public ProjectDetail(String description, String language, String uRL,
 			ProjectName projectName, int forks, int stars, int contributors,
-			int collaborators,int subscribers) {
+			int collaborators,int subscribers,List<UserInfo> ContributorsInfo,List<UserInfo> CollaboratorsInfo) {
 		super();
 		this.description = description;
 		this.language = language;
@@ -77,6 +77,8 @@ public class ProjectDetail {
 		this.contributors = contributors;
 		this.collaborators = collaborators;
 		this.subscribers = subscribers;
+		this.ContributorsInfo = ContributorsInfo;
+		this.CollaboratorsInfo = CollaboratorsInfo;
 	}
 
 	public String getDescription() {
