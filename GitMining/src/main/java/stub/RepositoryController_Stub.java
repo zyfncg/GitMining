@@ -47,4 +47,10 @@ public class RepositoryController_Stub implements RepositoryBLService {
 		return projects;
 	}
 
+	@Override
+	public List<ProjectInfo> SortSearchRepositorys(SortType type, List<ProjectInfo> SomeProjects){
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
