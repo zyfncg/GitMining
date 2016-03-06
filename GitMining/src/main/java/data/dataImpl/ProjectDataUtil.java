@@ -31,6 +31,7 @@ public class ProjectDataUtil {
 		List<String> reponame=stringTool.getStringList(reponameList);
 		
 		for(int i=0;i<reponame.size();i++){
+//		for(int i=0;i<reponame.size();i++){
 			projectURL=URLString.getRepositoryApiString()+reponame.get(i);
 			projectJson=HttpRequestUtil.httpRequest(projectURL);
 			projectInfo=JsonUtil.jsonToProject(projectJson);
