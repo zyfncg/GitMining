@@ -18,8 +18,8 @@ public class UserDataController implements UserDataServer{
 
 	@Override
 	public UserInfoDetail getUserByName(String name) throws Exception{
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userDataUtil.getUserByName(name);
 	}
 
 }

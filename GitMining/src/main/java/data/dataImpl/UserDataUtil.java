@@ -14,6 +14,7 @@ public class UserDataUtil {
 	
 	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
 	private StringListTool stringTool=new StringListTool();
+	
 	public List<UserInfo> getAllUsers() throws Exception{
 		
 		List<UserInfo> userList=new ArrayList<UserInfo>();
