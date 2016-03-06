@@ -14,7 +14,6 @@ import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfo;
 import Info.UserInfoDetail;
-import constant.Page;
 
 /**
  *卡片信息面板
@@ -46,11 +45,13 @@ public class CardsPanel extends JPanel {
 	/**
 	 *根据项目信息创建信息面板
 	 *每个项目信息以一个卡片的形式展现
-	 **@param row, 信息卡片的行数
-	 *@param lineNum, 一行包括的信息卡片的数量
-	 *@param users, 用户信息列表
+	 *@param page 面板所在页面
+	 *@param switcher 页面转换器
+	 *@param row 信息卡片的行数
+	 *@param lineNum 一行包括的信息卡片的数量
+	 *@param projects 项目信息列表
 	 */
-	public static CardsPanel createProjectCards(PanelSwitcher switcher,
+	public static CardsPanel createProjectCards(JPanel page, PanelSwitcher switcher,
 			int row, int lineNum, List<ProjectInfo> projects) {
 		Box box = Box.createVerticalBox();
 		int size = projects.size();
@@ -58,12 +59,12 @@ public class CardsPanel extends JPanel {
 			CardsPanel panel = createCardContainer(lineNum);
 			int j;
 			for(j = 0; j < lineNum && i * lineNum + j < size; ++j) {
-				ClickHandler handler = () ->
-					switcher.jump(Page.PROJECT,
+				ClickHandler handler = () ->{
+					switcher.backableJump(page,
 							new ProjectInfoPage(lineNum, MainFrame.PAGE_WIDTH, MainFrame.PAGE_HEIGHT, switcher,
 									new ProjectDetail("OS kernel", "C", "https://www.github.com",//TODO 获取具体信息 
-											new ProjectName("Linus", "Linux"), 100, 200, 300, 400,1)),
-							PanelSwitcher.LEFT);
+											new ProjectName("Linus", "Linux"), 100, 200, 300, 400, 1)),
+							PanelSwitcher.LEFT);};
 				panel.add(new ProjectCard(handler,
 						CARD_WIDTH, CARD_HEIGHT, projects.get(i * lineNum + j)));
 			}
@@ -83,11 +84,13 @@ public class CardsPanel extends JPanel {
 	 *根据用户信息创建信息面板
 	 *每个用户信息以一个卡片的形式展现
 	 *返回包含所有卡片的信息面板
-	 *@param row, 信息卡片的行数
-	 *@param lineNum, 一行包括的信息卡片的数量
-	 *@param users, 用户信息列表
+	 *@param page 面板所在页面
+	 *@param switcher 页面转换器
+	 *@param row 信息卡片的行数
+	 *@param lineNum 一行包括的信息卡片的数量
+	 *@param users 用户信息列表
 	 */
-	public static CardsPanel createUserCards(PanelSwitcher switcher,
+	public static CardsPanel createUserCards(JPanel page, PanelSwitcher switcher,
 			int row, int lineNum, List<UserInfo> users) {
 		Box box = Box.createVerticalBox();
 		int size = users.size();
@@ -96,7 +99,7 @@ public class CardsPanel extends JPanel {
 			int j;
 			for(j = 0; j < lineNum && i * lineNum + j < size; ++j) {
 				ClickHandler handler = () -> {
-					switcher.jump(Page.USER,
+					switcher.backableJump(page,
 							new UserInfoPage(lineNum, MainFrame.PAGE_WIDTH, MainFrame.PAGE_HEIGHT, switcher,
 									new UserInfoDetail("Linus", "a programmer", "linus@example.com",	//TODO 获取具体信息
 											new Date(1980, 10, 23), "Microsoft", "America", 200, 1000)),

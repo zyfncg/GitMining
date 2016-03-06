@@ -14,7 +14,7 @@ public class RepositoryController_Stub implements RepositoryBLService {
 	@Override
 	public List<ProjectInfo> getAllRepositorys() throws Exception {
 		List<ProjectInfo> projects = new ArrayList<ProjectInfo>();
-		for(int i = 0; i < 20; i++) {
+		for(int i = 0; i < 8; i++) {
 			projects.add(new ProjectInfo("OS kernel",
 					new ProjectName("Linus", "Linux"), 10 * i, 20 * i, 30 * i));
 		}

@@ -100,7 +100,7 @@ public class JsonUtil {
 	    String collaboratorsNameList[]=collaboratorsName.split(",");
 	    collaborators=collaboratorsNameList.length;
 	    
-		return new ProjectDetail(description, language, URL, proname, forks, stars, contributors, collaborators);
+		return new ProjectDetail(description, language, URL, proname, forks, stars, contributors, collaborators, 1);
 	}
 	
 	public static UserInfo jsonToUser(String jsonString)throws Exception{

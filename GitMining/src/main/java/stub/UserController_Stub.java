@@ -13,7 +13,7 @@ public class UserController_Stub implements UserBLService{
 	@Override
 	public List<UserInfo> getAllUsers() throws Exception {
 		List<UserInfo> users = new ArrayList<UserInfo>();
-		for(int i = 0; i < 20; i++) {
+		for(int i = 0; i < 10; i++) {
 			users.add(new UserInfo("linus", "a programmer", i * 2, i * 3));
 		}
 		return users;
@@ -28,7 +28,7 @@ public class UserController_Stub implements UserBLService{
 	@Override
 	public List<UserInfo> searchUsers(String key) throws Exception {
 		List<UserInfo> users = new ArrayList<UserInfo>();
-		for(int i = 0; i < 20; i++) {
+		for(int i = 0; i < 2; i++) {
 			users.add(new UserInfo(key, "a programmer", i * 2, i * 3));
 		}
 		return users;
