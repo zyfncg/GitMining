@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *信息卡片 
@@ -45,7 +46,7 @@ public class Card extends JPanel {
 		this.iconPanel.setPreferredSize(new Dimension(width, iconH));
 		
 		//描述面板
-		JLabel txtLabel = new JLabel(text, JLabel.CENTER);
+		JLabel txtLabel = new JLabel(text, SwingConstants.CENTER);
 		txtLabel.setOpaque(false);
 		FlowLayout layout = new FlowLayout();
 		layout.setVgap(0);

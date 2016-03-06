@@ -63,7 +63,7 @@ public class CardsPanel extends JPanel {
 					switcher.backableJump(page,
 							new ProjectInfoPage(lineNum, MainFrame.PAGE_WIDTH, MainFrame.PAGE_HEIGHT, switcher,
 									new ProjectDetail("OS kernel", "C", "https://www.github.com",//TODO 获取具体信息 
-											new ProjectName("Linus", "Linux"), 100, 200, 300, 400)),
+											new ProjectName("Linus", "Linux"), 100, 200, 300, 400, 1)),
 							PanelSwitcher.LEFT);};
 				panel.add(new ProjectCard(handler,
 						CARD_WIDTH, CARD_HEIGHT, projects.get(i * lineNum + j)));

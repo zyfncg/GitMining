@@ -10,11 +10,13 @@ public class UserDataController implements UserDataServer{
 
 	private UserDataUtil userDataUtil=new UserDataUtil();
 	
+	@Override
 	public List<UserInfo> getAllUsers() throws Exception{
 
 		return userDataUtil.getAllUsers();
 	}
 
+	@Override
 	public UserInfoDetail getUserByName(String name) throws Exception{
 		// TODO Auto-generated method stub
 		return null;

@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *信息项面板，分为两部分
@@ -35,8 +36,8 @@ public class ItemPanel extends JPanel {
 			this.setFont(new Font("斜体", Font.ITALIC, 15));
 			this.setText(text);
 			this.setForeground(Color.BLUE);
-			this.setHorizontalAlignment(JLabel.CENTER);
-			this.setVerticalAlignment(JLabel.CENTER);
+			this.setHorizontalAlignment(SwingConstants.CENTER);
+			this.setVerticalAlignment(SwingConstants.CENTER);
 		}
 	}
 }

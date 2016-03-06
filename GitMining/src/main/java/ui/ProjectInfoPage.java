@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Info.ProjectDetail;
 import Info.UserInfo;
@@ -48,7 +49,7 @@ public class ProjectInfoPage extends JPanel {
 		
 		//描述面板
 		JLabel txt = new JLabel(project.getDescription(),
-				JLabel.CENTER);
+				SwingConstants.CENTER);
 		FlowLayout fl = new FlowLayout();
 		fl.setVgap(0);
 		JPanel description = new JPanel(fl);

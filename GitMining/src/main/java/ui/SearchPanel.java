@@ -100,6 +100,7 @@ public class SearchPanel extends JPanel {
 				}
 			}
 			
+			@Override
 			public void focusLost(FocusEvent e) {
 				if(text.getText().isEmpty()) {
 					setTip(tip);

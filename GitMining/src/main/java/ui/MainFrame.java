@@ -3,6 +3,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -109,7 +110,7 @@ public class MainFrame extends JFrame {
 				e -> switcher.jump(currentPage, Page.USER, PanelSwitcher.LEFT));
 		//最小化按钮
 		JButton min = new JButton("min");
-		min.addActionListener(e -> setExtendedState(JFrame.ICONIFIED));
+		min.addActionListener(e -> setExtendedState(Frame.ICONIFIED));
 		//退出按钮
 		JButton exit = new JButton("exit");
 		exit.addActionListener(e -> System.exit(0));

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Info.ProjectInfo;
 import Info.UserInfoDetail;
@@ -93,7 +94,7 @@ public class UserInfoPage extends JPanel {
 			JLabel txtLabel = new JLabel(text);
 			txtLabel.setFont(new Font("斜体", Font.ITALIC, 15));
 			txtLabel.setForeground(Color.BLUE);
-			txtLabel.setHorizontalAlignment(JLabel.CENTER);
+			txtLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			
 			this.setPreferredSize(new Dimension(width, height));
 			this.setLayout(new BorderLayout());
