@@ -3,6 +3,7 @@ package data.dataServer;
 import java.util.List;
 
 import Info.ProjectDetail;
+import Info.ProjectInfo;
 import Info.ProjectName;
 
 public interface ProjectDataServer {
@@ -10,7 +11,7 @@ public interface ProjectDataServer {
 	/**
 	 * @return 返回所有项目信息 
 	 */
-	public List<ProjectDetail> getAllProjects()throws Exception;
+	public List<ProjectInfo> getAllProjects()throws Exception;
 	
 	/**
 	 * 

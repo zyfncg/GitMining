@@ -2,6 +2,7 @@ package data.dataImpl;
 
 import java.util.List;
 
+import Info.UserInfo;
 import Info.UserInfoDetail;
 import data.dataServer.UserDataServer;
 
@@ -9,7 +10,7 @@ public class UserDataController implements UserDataServer{
 
 	private UserDataUtil userDataUtil=new UserDataUtil();
 	
-	public List<UserInfoDetail> getAllUsers() throws Exception{
+	public List<UserInfo> getAllUsers() throws Exception{
 
 		return userDataUtil.getAllUsers();
 	}
