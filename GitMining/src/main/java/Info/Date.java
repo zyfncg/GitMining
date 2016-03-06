@@ -8,7 +8,7 @@ public class Date {
 	
 	private int day;
 	
-	private String seperator = "/";
+	private static String seperator = "-";
 	
 	public Date(int year, int month, int day) {
 		this.year = year;
@@ -18,5 +18,15 @@ public class Date {
 	
 	public String getDate() {
 		return year + seperator + month + seperator + day;
+	}
+	
+	public static Date stringToDate(String dateString){
+		dateString=dateString.substring(0,10);
+		String time[]=dateString.split(seperator);
+		int toYear=Integer.parseInt(time[0]);
+		int toMonth=Integer.parseInt(time[1]);
+		int toDay=Integer.parseInt(time[2]);
+		
+		return new Date(toYear,toMonth,toDay);
 	}
 }
