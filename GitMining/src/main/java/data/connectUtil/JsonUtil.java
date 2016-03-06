@@ -51,14 +51,13 @@ public class JsonUtil {
 		    forks=json.getInt("forks_count");
 		    stars=json.getInt("stargazers_count");
 		    proname=new ProjectName(owner,reponame);
-		    contributorsNameURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/contributors/login";
-		    
-		    String contributorsName=HttpRequestUtil.httpRequest(contributorsNameURL);
-		    String contributorsNameList[]=contributorsName.split(",");
-		    contributors=contributorsNameList.length;
+//		    contributorsNameURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/contributors/login";
+//		    
+//		    String contributorsName=HttpRequestUtil.httpRequest(contributorsNameURL);
+//		    String contributorsNameList[]=contributorsName.split(",");
+//		    contributors=contributorsNameList.length;
 		    
 
-		    
 		} catch (JSONException e) {
 
 		      e.printStackTrace();
@@ -67,7 +66,8 @@ public class JsonUtil {
 
 		}
 		
-		return new ProjectInfo(description,proname,forks,stars,contributors);
+//		return new ProjectInfo(description,proname,forks,stars,contributors);
+		return new ProjectInfo(description,proname,forks,stars,12);
 	}
 	
 	/**
