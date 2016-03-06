@@ -3,7 +3,6 @@ package data.dataImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import Info.ProjectDetail;
 import Info.UserInfo;
 import Info.UserInfoDetail;
 import data.connectUtil.HttpRequestUtil;
@@ -15,6 +14,7 @@ public class UserDataUtil {
 	
 	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
 	private StringListTool stringTool=new StringListTool();
+	
 	public List<UserInfo> getAllUsers() throws Exception{
 		
 		List<UserInfo> userList=new ArrayList<UserInfo>();

@@ -1,16 +1,32 @@
 package dataTest;
 
+import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.junit.Test;
 
 import Info.ProjectInfo;
 import data.dataImpl.ProjectDataController;
+import data.dataServer.ProjectDataServer;
 
 public class ProjectTest {
 
 	@Test
 	public void test() {
-		ProjectDataController projectdata=new ProjectDataController();
+		ProjectDataServer projectdata=new ProjectDataController();
 		ProjectInfo proinfo;
+		try {
+			List<ProjectInfo> projectList=projectdata.getAllProjects();
+			proinfo=projectList.get(0);
+			System.out.println(projectList.size());
+			assertEquals(453,proinfo.getForks());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 

@@ -1,5 +1,8 @@
 package data.connectUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Info.Date;
 import Info.ProjectDetail;
 import Info.ProjectInfo;
@@ -14,7 +17,7 @@ import net.sf.json.JSONObject;
  * 
  */
 public class JsonUtil {
-
+	
 	/**
 	 *@param json格式的字符串
 	 *@return json转为的ProjectInfo类 
@@ -26,7 +29,7 @@ public class JsonUtil {
 		ProjectName proname;
 		String owner;
 		String reponame;
-		String description;
+		String description="";
 		String contributorsNameURL;
 		int forks;
 		int stars;
@@ -37,7 +40,12 @@ public class JsonUtil {
 		    
 		    JSONObject ownerJson=json.getJSONObject("owner");
 		    
-		    description=json.getString("description");
+		    try {
+				description=json.getString("description");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		    reponame=json.getString("name");
 		    owner=ownerJson.getString("login");
 		    forks=json.getInt("forks_count");
@@ -54,7 +62,8 @@ public class JsonUtil {
 		} catch (JSONException e) {
 
 		      e.printStackTrace();
-		      throw e;
+		      
+		      return null;
 
 		}
 		
@@ -67,6 +76,9 @@ public class JsonUtil {
 	 * 
 	 */
 	public static ProjectDetail jsonToProjectDetail(String jsonString) throws Exception{
+		
+		StringListTool stringTool=new StringListTool();
+		
 		JSONObject json;
 		
 		ProjectName proname;
@@ -76,31 +88,68 @@ public class JsonUtil {
 		String reponame;
 		String description;
 		String collaboratorsNameURL;
+		String userURL;
+		String userJson;
 		int forks;
 		int stars;
 		int contributors;
 		int collaborators;
+		int subscribers;
+		UserInfo userInfo;
 		
 		ProjectInfo projectInfo=jsonToProject(jsonString);
 		
 		json = JSONObject.fromObject(jsonString);
+		
 		proname=projectInfo.getProjectName();
 		owner=proname.getowner();
 		reponame=proname.getrepository();
 		
-		description=projectInfo.getDescription();
-		URL=json.getString("html_url");
-		language=json.getString("language");
-		forks=projectInfo.getForks();
-		stars=projectInfo.getStars();
-		contributors=projectInfo.getContributors();
+		//获取所有contributors的个人信息
+		List<UserInfo> contributorsInfo=new ArrayList<UserInfo>();
+		String contributorsListURL;
+		List<String> contributorsList;
+		contributorsListURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/contributors/login";
+		String contributorsString=HttpRequestUtil.httpRequest(contributorsListURL);
+		contributorsList=stringTool.getStringList(contributorsString);
 		
+		for(int i=0;i<contributorsList.size();i++){
+			userURL=URLString.getUserApiString()+contributorsList.get(i);
+			userJson=HttpRequestUtil.httpRequest(userURL);
+			userInfo=JsonUtil.jsonToUser(userJson);
+			contributorsInfo.add(userInfo);
+		}
+		
+		//获取所有的collaborators的个人信息
+		List<UserInfo> collaboratorsInfo=new ArrayList<UserInfo>(); 
 		collaboratorsNameURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/collaborators/login";
 		String collaboratorsName=HttpRequestUtil.httpRequest(collaboratorsNameURL);
-	    String collaboratorsNameList[]=collaboratorsName.split(",");
-	    collaborators=collaboratorsNameList.length;
+	    List<String> collaboratorsNameList=stringTool.getStringList(collaboratorsName);
+	    collaborators=collaboratorsNameList.size();
 	    
-		return new ProjectDetail(description, language, URL, proname, forks, stars, contributors, collaborators);
+	    for(int i=0;i<collaboratorsNameList.size();i++){
+			userURL=URLString.getUserApiString()+collaboratorsNameList.get(i);
+			userJson=HttpRequestUtil.httpRequest(userURL);
+			userInfo=JsonUtil.jsonToUser(userJson);
+			collaboratorsInfo.add(userInfo);
+		}
+	    
+		
+		URL=json.getString("html_url");
+		language=json.getString("language");
+		subscribers=json.getInt("subscribers_count");
+		
+		
+		forks=projectInfo.getForks();
+		stars=projectInfo.getStars();
+		description=projectInfo.getDescription();
+		contributors=projectInfo.getContributors();
+		
+		
+		
+	    
+		return new ProjectDetail(description, language, URL, proname, 
+				forks, stars, contributors, collaborators,subscribers);
 	}
 	
 	public static UserInfo jsonToUser(String jsonString)throws Exception{
@@ -114,8 +163,8 @@ public class JsonUtil {
 		json = JSONObject.fromObject(jsonString);
 		
 		userName=json.getString("login");
-		projectInvolved=json.getInt("public_repos");
-		projectCreate=json.getInt("public_gists");
+		projectInvolved=json.getInt("following");
+		projectCreate=json.getInt("public_repos");
 		
 		return new UserInfo(userName, descriptionUser, projectInvolved, projectCreate);	
 	}
@@ -139,12 +188,14 @@ public class JsonUtil {
 		try {
 			descriptionUser = json.getString("bio");
 		} catch (Exception e) {
+			e.printStackTrace();
 			descriptionUser="无";
 		}
 		
 		try {
 			company = json.getString("company");
 		} catch (Exception e) {
+			e.printStackTrace();
 			company="未知";
 		}
 		email=json.getString("email");
