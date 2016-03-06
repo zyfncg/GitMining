@@ -6,6 +6,7 @@ import java.util.List;
 import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
+import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import constant.SortType;
 
@@ -23,8 +24,19 @@ public class RepositoryController_Stub implements RepositoryBLService {
 
 	@Override
 	public ProjectDetail getRepositoryByName(ProjectName name) throws Exception {
-		return new ProjectDetail("OS kernel", "C", "https://www.github.com", 
+		ProjectDetail d = new ProjectDetail("OS kernel", "C", "https://www.github.com", 
 				new ProjectName("Linus", "Linux"), 100, 200, 300, 400,1);
+		List<UserInfo> c = new ArrayList<>();
+		for(int i = 0; i < 15; ++i) {
+			c.add(new UserInfo("Linus", "father of Linux kernel", 100 + i, 200 + i));
+		}
+		d.setCollaboratorsInfo(c);
+		List<UserInfo> u = new ArrayList<>();
+		for(int i = 0; i < 15; ++i) {
+			u.add(new UserInfo("Linus", "father of Linux kernel", 100 + i, 200 + i));
+		}
+		d.setContributorsInfo(u);
+		return d;
 	}
 
 	@Override
@@ -49,8 +61,7 @@ public class RepositoryController_Stub implements RepositoryBLService {
 
 	@Override
 	public List<ProjectInfo> SortSearchRepositorys(SortType type, List<ProjectInfo> SomeProjects){
-		// TODO Auto-generated method stub
-		return null;
+		return SomeProjects;
 	}
 
 }

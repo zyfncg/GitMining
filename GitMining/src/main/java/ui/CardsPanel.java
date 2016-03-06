@@ -8,12 +8,12 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.JPanel;
 
-import Info.Date;
 import Info.ProjectDetail;
 import Info.ProjectInfo;
-import Info.ProjectName;
 import Info.UserInfo;
 import Info.UserInfoDetail;
+import businessLogicService.RepositoryBLService.RepositoryBLService;
+import businessLogicService.UserBLService.UserBLService;
 
 /**
  *卡片信息面板
@@ -50,20 +50,26 @@ public class CardsPanel extends JPanel {
 	 *@param row 信息卡片的行数
 	 *@param lineNum 一行包括的信息卡片的数量
 	 *@param projects 项目信息列表
+	 *@param service 获取项目信息的接口
+	 *@param user 获取用户信息列表的接口
+	 * @throws Exception 
 	 */
 	public static CardsPanel createProjectCards(JPanel page, PanelSwitcher switcher,
-			int row, int lineNum, List<ProjectInfo> projects) {
+			int row, int lineNum, List<ProjectInfo> projects,
+			RepositoryBLService service, UserBLService user) throws Exception {
 		Box box = Box.createVerticalBox();
 		int size = projects.size();
 		for(int i = 0; i < row; ++i) {
 			CardsPanel panel = createCardContainer(lineNum);
 			int j;
 			for(j = 0; j < lineNum && i * lineNum + j < size; ++j) {
+				final ProjectDetail detail = service.getRepositoryByName(
+						projects.get(i * lineNum + j).getProjectName());
 				ClickHandler handler = () ->{
 					switcher.backableJump(page,
-							new ProjectInfoPage(lineNum, MainFrame.PAGE_WIDTH, MainFrame.PAGE_HEIGHT, switcher,
-									new ProjectDetail("OS kernel", "C", "https://www.github.com",//TODO 获取具体信息 
-											new ProjectName("Linus", "Linux"), 100, 200, 300, 400, 1)),
+							new ProjectInfoPage(lineNum, MainFrame.PAGE_WIDTH,
+									MainFrame.PAGE_HEIGHT, switcher, detail,
+									service, user),
 							PanelSwitcher.LEFT);};
 				panel.add(new ProjectCard(handler,
 						CARD_WIDTH, CARD_HEIGHT, projects.get(i * lineNum + j)));
@@ -89,20 +95,25 @@ public class CardsPanel extends JPanel {
 	 *@param row 信息卡片的行数
 	 *@param lineNum 一行包括的信息卡片的数量
 	 *@param users 用户信息列表
+	 *@param repo 获取项目信息列表的接口
+	 *@param u 获取用户信息列表的接口
+	 * @throws Exception 
 	 */
 	public static CardsPanel createUserCards(JPanel page, PanelSwitcher switcher,
-			int row, int lineNum, List<UserInfo> users) {
+			int row, int lineNum, List<UserInfo> users,
+			RepositoryBLService repo, UserBLService u) throws Exception {
 		Box box = Box.createVerticalBox();
 		int size = users.size();
 		for(int i = 0; i < row; ++i) {
 			CardsPanel panel = createCardContainer(lineNum);
 			int j;
 			for(j = 0; j < lineNum && i * lineNum + j < size; ++j) {
+				UserInfoDetail detail = u.getUserByName(
+						users.get(i * lineNum + j).getUserName());
 				ClickHandler handler = () -> {
 					switcher.backableJump(page,
-							new UserInfoPage(lineNum, MainFrame.PAGE_WIDTH, MainFrame.PAGE_HEIGHT, switcher,
-									new UserInfoDetail("Linus", "a programmer", "linus@example.com",	//TODO 获取具体信息
-											new Date(1980, 10, 23), "Microsoft", "America", 200, 1000)),
+							new UserInfoPage(lineNum, MainFrame.PAGE_WIDTH,
+									MainFrame.PAGE_HEIGHT, switcher,detail, repo, u),
 							PanelSwitcher.LEFT);
 				};
 				panel.add(new UserCard(handler,

@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 import Info.ProjectInfo;
 import Info.UserInfo;
+import businessLogicService.RepositoryBLService.RepositoryBLService;
+import businessLogicService.UserBLService.UserBLService;
 
 /**
  *切换面板
@@ -63,10 +65,15 @@ public class SwitchPanel extends JPanel {
 	 *@param switcher 页面转换器
 	 *@param row 项目信息卡片的行数
 	 *@param column 项目信息卡片的列数
+	 *@param service 获取项目信息的接口
+	 *@param user 获取用户信息的接口
+	 * @throws Exception 
 	 */
 	public SwitchPanel projectListPanel(List<ProjectInfo> projects,
-			JPanel page, JPanel parent, PanelSwitcher switcher, int row, int column) {
-		this.initProjectList(projects, page, switcher, row, column);
+			JPanel page, JPanel parent, PanelSwitcher switcher,
+			int row, int column, RepositoryBLService service,
+			UserBLService user) throws Exception {
+		this.initProjectList(projects, page, switcher, row, column, service, user);
 		this.nowIndex = 0;
 		this.size = this.panelList.size();
 		Dimension d = getSize(panelList.get(nowIndex));
@@ -93,10 +100,14 @@ public class SwitchPanel extends JPanel {
 	 *@param switcher 页面转换器
 	 *@param row 用户信息卡片的行数
 	 *@param column 用户信息卡片的列数
+	 *@param repo 获取项目信息列表的接口
+	 *@param u 获取用户信息列表的接口
+	 * @throws Exception 
 	 */
 	public SwitchPanel userListPanel(List<UserInfo> users,
-			JPanel page, JPanel parent, PanelSwitcher switcher, int row, int column) {
-		this.initUserList(users, page, switcher, row, column);
+			JPanel page, JPanel parent, PanelSwitcher switcher, int row, int column,
+			RepositoryBLService repo, UserBLService u) throws Exception {
+		this.initUserList(users, page, switcher, row, column, repo, u);
 		this.nowIndex = 0;
 		this.size = this.panelList.size();
 		Dimension d = getSize(panelList.get(nowIndex));
@@ -201,9 +212,13 @@ public class SwitchPanel extends JPanel {
 	 *@param switcher 页面转换器
 	 *@param row 信息卡片面板中卡片的行数
 	 *@param column 信息卡片面板中卡片的列数
+	 *@param service 获取项目信息的接口
+	 *@param user 获取用户信息的接口
+	 * @throws Exception 
 	 */
 	private void initProjectList(List<ProjectInfo> projects,
-			JPanel page, PanelSwitcher switcher, int row, int column) {
+			JPanel page, PanelSwitcher switcher, int row, int column,
+			RepositoryBLService service, UserBLService user) throws Exception {
 		int size = projects.size();
 		int num = row * column;
 		int i;
@@ -212,7 +227,8 @@ public class SwitchPanel extends JPanel {
 			for(int j = i; j < i + num; ++j) {
 				info.add(projects.get(j));
 			}
-			JPanel panel = CardsPanel.createProjectCards(page, switcher, row, column, info);
+			JPanel panel = CardsPanel.createProjectCards(
+					page, switcher, row, column, info, service, user);
 			this.panelList.add(panel);
 		}
 		if(i < size && i + num > size) {
@@ -220,7 +236,8 @@ public class SwitchPanel extends JPanel {
 			for(int j = i; j < size; ++j) {
 				info.add(projects.get(j));
 			}
-			JPanel panel = CardsPanel.createProjectCards(page, switcher, row, column, info);
+			JPanel panel = CardsPanel.createProjectCards(
+					page, switcher, row, column, info, service, user);
 			this.panelList.add(panel);
 		}
 	}
@@ -232,9 +249,13 @@ public class SwitchPanel extends JPanel {
 	 *@param switcher 页面转换器
 	 *@param row 信息卡片面板中卡片的行数
 	 *@param column 信息卡片面板中卡片的列数
+	 *@param repo 获取项目信息列表的接口
+	 *@param u 获取用户信息列表的接口
+	 * @throws Exception 
 	 */
 	private void initUserList(List<UserInfo> users,
-			JPanel page, PanelSwitcher switcher, int row, int column) {
+			JPanel page, PanelSwitcher switcher, int row, int column,
+			RepositoryBLService repo, UserBLService u) throws Exception {
 		int size = users.size();
 		int num = row * column;
 		int i;
@@ -243,7 +264,8 @@ public class SwitchPanel extends JPanel {
 			for(int j = i; j < i + num; ++j) {
 				info.add(users.get(j));
 			}
-			JPanel panel = CardsPanel.createUserCards(page, switcher, row, column, info);
+			JPanel panel = CardsPanel.createUserCards(
+					page, switcher, row, column, info, repo, u);
 			this.panelList.add(panel);
 		}
 		if(i < size && i + num > size) {
@@ -251,7 +273,8 @@ public class SwitchPanel extends JPanel {
 			for(int j = i; j < size; ++j) {
 				info.add(users.get(j));
 			}
-			JPanel panel = CardsPanel.createUserCards(page, switcher, row, column, info);
+			JPanel panel = CardsPanel.createUserCards(
+					page, switcher, row, column, info, repo, u);
 			this.panelList.add(panel);
 		}
 	}
