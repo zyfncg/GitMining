@@ -35,7 +35,7 @@ public class ProjectName {
 	/**
 	 * 返回项目所有者和所在仓库
 	 */
-	public String getProjectName() {
+	public String toString() {
 		return this.owner + "/" +this.repository;
 	}
 	public String getrepository() {

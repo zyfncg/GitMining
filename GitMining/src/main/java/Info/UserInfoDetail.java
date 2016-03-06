@@ -1,5 +1,7 @@
 package Info;
 
+import java.util.List;
+
 /**
  * 详细用户信息
  * 
@@ -44,9 +46,19 @@ public class UserInfoDetail {
 	private int projectInvolved;
 	
 	/**
+	 * 用户参与的项目信息列表
+	 */
+	private List<ProjectInfo> ProjectInvolvedInfo;
+	
+	/**
 	 * 用户创建的项目数量
 	 */
 	private int projectCreate;
+	
+	/**
+	 * 用户创建的项目信息列表
+	 */
+	private List<ProjectInfo> ProjectCreatInfo;
 
 	public UserInfoDetail(String userName, String descriptionUser,
 			String email, Date joinDate, String company, String address,
@@ -124,6 +136,28 @@ public class UserInfoDetail {
 	public void setProjectCreate(int projectCreate) {
 		this.projectCreate = projectCreate;
 	}
+
+	public List<ProjectInfo> getProjectInvolvedInfo() {
+		return ProjectInvolvedInfo;
+	}
+
+	public void setProjectInvolvedInfo(List<ProjectInfo> projectInvolvedInfo) {
+		ProjectInvolvedInfo = projectInvolvedInfo;
+	}
+
+	public List<ProjectInfo> getProjectCreatInfo() {
+		return ProjectCreatInfo;
+	}
+
+	public void setProjectCreatInfo(List<ProjectInfo> projectCreatInfo) {
+		ProjectCreatInfo = projectCreatInfo;
+	}
 	
-	
+	/**
+	 * 将用户详细信息转为用户粗略信息
+	 */
+	public UserInfo ChangeDetailToInfo(){
+		UserInfo userInfo = new UserInfo(this.userName, this.descriptionUser, this.projectInvolved, this.projectCreate);
+		return userInfo;
+	}
 }

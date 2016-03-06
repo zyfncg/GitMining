@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import Info.ProjectDetail;
 import Info.ProjectInfo;
 import businessLogic.businessLogicModel.RepositoryModel.DetailSort;
 

@@ -24,7 +24,7 @@ public class RepositoryController_Stub implements RepositoryBLService {
 	@Override
 	public ProjectDetail getRepositoryByName(ProjectName name) throws Exception {
 		return new ProjectDetail("OS kernel", "C", "https://www.github.com", 
-				new ProjectName("Linus", "Linux"), 100, 200, 300, 400);
+				new ProjectName("Linus", "Linux"), 100, 200, 300, 400,1);
 	}
 
 	@Override

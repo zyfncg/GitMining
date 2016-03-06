@@ -1,5 +1,7 @@
 package Info;
 
+import java.util.List;
+
 /**
  * 项目详细信息
  * 
@@ -42,15 +44,29 @@ public class ProjectDetail {
 	 * 项目贡献者
 	 */
 	private int contributors;
+	/**
+	 * 项目贡献者相关信息列表
+	 */
+	private List<UserInfo> ContributorsInfo;
 	
 	/**
 	 * 项目协作者
 	 */
 	private int collaborators;
+	
+	/**
+	 * 项目协作者相关信息列表
+	 */
+	private List<UserInfo> CollaboratorsInfo;
+
+	/**
+	 * 用户订阅
+	 */
+	private int subscribers;
 
 	public ProjectDetail(String description, String language, String uRL,
 			ProjectName projectName, int forks, int stars, int contributors,
-			int collaborators) {
+			int collaborators,int subscribers) {
 		super();
 		this.description = description;
 		this.language = language;
@@ -60,6 +76,7 @@ public class ProjectDetail {
 		this.stars = stars;
 		this.contributors = contributors;
 		this.collaborators = collaborators;
+		this.subscribers = subscribers;
 	}
 
 	public String getDescription() {
@@ -126,6 +143,35 @@ public class ProjectDetail {
 		this.collaborators = collaborators;
 	}
 	
+	public void setSubscribers(int subscribers) {
+		this.subscribers = subscribers;
+	}
 	
+	public int getSubscribers() {
+		return subscribers;
+	}
+	public List<UserInfo> getContributorsInfo() {
+		return ContributorsInfo;
+	}
+
+	public void setContributorsInfo(List<UserInfo> contributorsInfo) {
+		ContributorsInfo = contributorsInfo;
+	}
+
+	public List<UserInfo> getCollaboratorsInfo() {
+		return CollaboratorsInfo;
+	}
+
+	public void setCollaboratorsInfo(List<UserInfo> collaboratorsInfo) {
+		CollaboratorsInfo = collaboratorsInfo;
+	}
+	
+	/**
+	 * 将项目详细信息转为项目粗略信息
+	 */
+	public ProjectInfo ChangeDetailToInfo(){
+		ProjectInfo pInfo = new ProjectInfo(this.description, this.projectName, this.forks, this.stars, this.contributors);
+		return pInfo;
+	}
 }
  
