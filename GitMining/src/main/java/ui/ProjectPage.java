@@ -199,7 +199,9 @@ public class ProjectPage extends JPanel {
 		public SortButton(int width, int height, String text, SortType type) {
 			this.setPreferredSize(new Dimension(width, height));
 			this.setText(text);
-			
+			this.addActionListener(e -> {
+//				repository.getSortedRepositorys(type);
+			});
 		}
 	}
 }

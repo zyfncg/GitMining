@@ -1,6 +1,8 @@
 package stub;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import Info.ProjectDetail;
@@ -45,6 +47,11 @@ public class RepositoryController_Stub implements RepositoryBLService {
 					new ProjectName("Linus", "Linux"), 10 * i, 20 * i, 30 * i));
 		}
 		return projects;
+	}
+
+	@Override
+	public List<ProjectInfo> SortSearchRepositorys(SortType type, List<ProjectInfo> SomeProjects) throws Exception {
+		return null;
 	}
 
 }
