@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -29,6 +31,11 @@ public class SearchPanel extends JPanel {
 	private JButton search;
 	
 	/**
+	 *点击响应处理
+	 */
+	private ClickHandler handler;
+	
+	/**
 	 *提示信息字体格式 
 	 */
 	private static final Font TIP_FONT = new Font("斜体", Font.ITALIC, 12);
@@ -39,9 +46,9 @@ public class SearchPanel extends JPanel {
 	private static final Font TEXT_FONT = new Font("宋体", Font.PLAIN, 14);
 	
 	/**
-	 *@param width, 面板的宽度
-	 *@param height, 面板的高度
-	 *@param tip, 显示在搜索框中的提示信息
+	 *@param width 面板的宽度
+	 *@param height 面板的高度
+	 *@param tip 显示在搜索框中的提示信息
 	 *			  如果没有显示信息，传入"",不接受null值 
 	 */
 	public SearchPanel(int width, int height, String tip) {
@@ -51,6 +58,10 @@ public class SearchPanel extends JPanel {
 		//TODO 字符串统一管理
 		search = new JButton("搜索");
 		search.setPreferredSize(new Dimension(btnW, btnH));
+		search.addActionListener(e -> {
+			if(handler != null) {
+				handler.handle();
+			}});
 		
 		this.initTextUI(width - btnW, btnH, tip);
 		
@@ -70,6 +81,15 @@ public class SearchPanel extends JPanel {
 		text = new JTextField();
 		this.setTip(tip);
 		text.setPreferredSize(new Dimension(txtW, height));
+		text.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER
+						&& handler != null) {
+					handler.handle();
+				}
+			}
+		});
 		
 		text.addFocusListener(new FocusAdapter() {
 			
@@ -106,8 +126,8 @@ public class SearchPanel extends JPanel {
 		text.setText("");
 	}
 	
-	public JButton getSearchBtn() {
-		return this.search;
+	public void setClickHandler(ClickHandler handler) {
+		this.handler = handler;
 	}
 	
 	public String getText() {
