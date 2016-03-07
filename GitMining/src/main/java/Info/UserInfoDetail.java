@@ -62,7 +62,7 @@ public class UserInfoDetail {
 
 	public UserInfoDetail(String userName, String descriptionUser,
 			String email, Date joinDate, String company, String address,
-			int projectInvolved, int projectCreate) {
+			int projectInvolved, int projectCreate,List<ProjectInfo> ProjectInvolvedInfo,List<ProjectInfo> ProjectCreatInfo) {
 		this.userName = userName;
 		this.descriptionUser = descriptionUser;
 		this.email = email;
@@ -71,6 +71,8 @@ public class UserInfoDetail {
 		this.address = address;
 		this.projectInvolved = projectInvolved;
 		this.projectCreate = projectCreate;
+		this.ProjectInvolvedInfo = ProjectInvolvedInfo;
+		this.ProjectCreatInfo = ProjectCreatInfo;
 	}
 
 	public String getUserName() {

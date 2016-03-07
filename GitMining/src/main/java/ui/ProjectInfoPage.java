@@ -1,17 +1,20 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -62,19 +65,43 @@ public class ProjectInfoPage extends JPanel {
 		JPanel URL = new JPanel();
 		int urlW = width >> 1;
 		int urlH = iconH >> 1;
+		//项目地址文本框
 		JTextField url = new JTextField();
 		url.setText(project.getURL());
 		url.setPreferredSize(new Dimension((int)(urlW * 0.8), urlH));
 		url.setEditable(false);
+		//复制按钮
 		JButton copy = new JButton("复制");//TODO字符串资源统一管理
-		copy.setToolTipText("将地址复制到剪贴板");
-		copy.addActionListener(e -> {
-			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
-			StringSelection content = new StringSelection(url.getText());
-			board.setContents(content, null);
-			copy.setToolTipText("已复制到剪贴板");
+//		copy.setToolTipText("将地址复制到剪贴板");
+//		ToolTipManager.sharedInstance().setInitialDelay(0);
+//		copy.addActionListener(e -> {
+//			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
+//			StringSelection content = new StringSelection(url.getText());
+//			board.setContents(content, null);
+//			copy.setToolTipText("已复制到剪贴板");
+//		});
+		JPopupMenu popup = new JPopupMenu();
+		TipText tip = new TipText();
+		tip.setEnabled(false);
+		popup.add(tip);
+		copy.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				tip.setText(Color.BLACK);
+				popup.show(copy, -20, -20);
+			};
+			
+			public void mouseReleased(MouseEvent e) {
+				tip.setText(Color.WHITE);
+				popup.show(copy,-20, -20);
+			};
+			
+			public void mouseExited(MouseEvent e) {
+				popup.setVisible(false);
+			};
 		});
 		copy.setPreferredSize(new Dimension(urlW / 5, urlH));
+		
+		//将文本框和按钮加到面板
 		FlowLayout urlLayout = new FlowLayout();
 		urlLayout.setVgap(urlH >> 3);
 		urlLayout.setHgap(0);
@@ -85,6 +112,7 @@ public class ProjectInfoPage extends JPanel {
 		//信息面板
 		int itemW = width >> 3;
 		int itemH = height >> 3;
+		//各项信息面板
 		ItemPanel language = new ItemPanel(
 				itemW, itemH, "language", project.getLanguage());
 		ItemPanel star = new ItemPanel(
@@ -96,7 +124,8 @@ public class ProjectInfoPage extends JPanel {
 		ItemPanel collaborator = new ItemPanel(
 				itemW, itemH, "collaborator", String.valueOf(project.getCollaborators()));
 		ItemPanel subscriber = new ItemPanel(
-				itemW, itemH, "subscriber", String.valueOf("33"));
+				itemW, itemH, "subscriber", String.valueOf(project.getSubscribers()));
+		//将信息面板组合
 		FlowLayout layout = new FlowLayout();
 		layout.setVgap(itemH >> 3);
 		JPanel info = new JPanel(layout);
@@ -141,5 +170,23 @@ public class ProjectInfoPage extends JPanel {
 		all.add(involve);
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
+	}
+	
+	private class TipText extends JMenuItem {
+		private Color c;
+		
+		public TipText() {
+			this.setPreferredSize(new Dimension(40, 26));
+		}
+		
+		public void setText(Color c) {//TOOD 以后用图片代替
+			this.c = c;
+			this.repaint();
+		};
+		
+		protected void paintComponent(Graphics g) {
+			g.setColor(c);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		};
 	}
 }
