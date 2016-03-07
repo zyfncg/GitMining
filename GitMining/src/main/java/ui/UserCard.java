@@ -9,13 +9,16 @@ import Info.UserInfo;
 @SuppressWarnings("serial")
 public class UserCard extends Card {
 	
-	//TODO, 以后用具体的信息填充
+	//TODO 字符串统一管理
 	public UserCard(ClickHandler handler, int width, int height, UserInfo user) {
-		super(handler, width, height, "Linus, an interesting programmer");
+		super(handler, width, height,
+				user.getUserName() + "," + user.getDescriptionUser());
 		
-		int itemW = width >> 2;
-		ItemPanel projectInvolve = new ItemPanel(itemW, height, "参与项目", "20");
-		ItemPanel projectCreate = new ItemPanel(itemW, height, "创建项目", "10");
+		int itemW = width / 3;
+		ItemPanel projectInvolve = new ItemPanel(itemW, height,
+				"参与项目人数", String.valueOf(user.getProjectInvolved()));
+		ItemPanel projectCreate = new ItemPanel(itemW, height,
+				"创建项目人数", String.valueOf(user.getProjectCreate()));
 		this.itemPanel.add(projectInvolve);
 		this.itemPanel.add(projectCreate);
 	}

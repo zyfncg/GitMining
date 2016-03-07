@@ -1,5 +1,11 @@
 package data.dataImpl;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +22,37 @@ public class ProjectDataUtil {
 	private StringListTool stringTool=new StringListTool();
 	
 	/**
-	 * 获得所有的项目信息
+	 *从文件中获取项目数据 
+	 * 
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ProjectInfo> getAllProjectsFromFile() throws Exception{
+		
+		List<ProjectInfo> pList = null;
+		
+		try {
+			ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectData.ser"));
+			
+		    pList=(List<ProjectInfo>) is.readObject();
+		    is.close();
+		    
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return pList;
+	}
+	
+	/**
+	 * 使用URL获得所有的项目信息
 	 * @author ZhangYF
 	 * @return 项目列表 
 	 * 
@@ -36,6 +72,16 @@ public class ProjectDataUtil {
 			projectJson=HttpRequestUtil.httpRequest(projectURL);
 			projectInfo=JsonUtil.jsonToProject(projectJson);
 			ProjectList.add(projectInfo);
+		}
+		
+		try {
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("projectData.ser"));
+			oos.writeObject(ProjectList);
+			oos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 		
 		return ProjectList;

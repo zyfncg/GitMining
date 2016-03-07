@@ -40,17 +40,20 @@ public class JsonUtil {
 		    
 		    JSONObject ownerJson=json.getJSONObject("owner");
 		    
-		    try {
-				description=json.getString("description");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		    reponame=json.getString("name");
 		    owner=ownerJson.getString("login");
 		    forks=json.getInt("forks_count");
 		    stars=json.getInt("stargazers_count");
 		    proname=new ProjectName(owner,reponame);
+		    
+		    try {
+				description=json.getString("description");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				description="";
+				return new ProjectInfo(description,proname,forks,stars,12);
+			}
+		    
 //		    contributorsNameURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/contributors/login";
 //		    
 //		    String contributorsName=HttpRequestUtil.httpRequest(contributorsNameURL);
@@ -148,7 +151,7 @@ public class JsonUtil {
 		
 		
 		return new ProjectDetail(description, language, URL, proname, 
-				forks, stars, contributors, collaborators,subscribers);
+				forks, stars, contributors, collaborators,subscribers, contributorsInfo, collaboratorsInfo);
 
 	}
 	
@@ -205,7 +208,7 @@ public class JsonUtil {
 		projectInvolved=json.getInt("following");
 		projectCreate=json.getInt("public_repos");
 		
-		return new UserInfoDetail(userName, descriptionUser, email, joinDate, company, address, projectInvolved, projectCreate);	
+		return new UserInfoDetail(userName, descriptionUser, email, joinDate, company, address, projectInvolved, projectCreate, null);	
 	}
 	
 }

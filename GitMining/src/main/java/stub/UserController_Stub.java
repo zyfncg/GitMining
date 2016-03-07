@@ -24,7 +24,7 @@ public class UserController_Stub implements UserBLService{
 	@Override
 	public UserInfoDetail getUserByName(String name) throws Exception {
 		UserInfoDetail d = new UserInfoDetail(name, "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null,null);
+				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null);
 		List<ProjectInfo> p = new ArrayList<>();
 		for(int i = 0; i < 20; ++i) {
 			p.add(new ProjectInfo("linus", new ProjectName("linus", "OS kernel"),
