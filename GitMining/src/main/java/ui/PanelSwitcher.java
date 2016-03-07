@@ -89,8 +89,6 @@ public class PanelSwitcher {
 		parent.add(to);
 		this.panelSlide(from, to, direction);
 		parent.revalidate();
-		//如果进行的不是可返回跳转，把之前压栈的面板清空
-		panelStack.clear();
 	}
 	
 	/**
