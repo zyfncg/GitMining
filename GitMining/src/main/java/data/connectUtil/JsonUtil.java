@@ -151,7 +151,7 @@ public class JsonUtil {
 		
 		
 		return new ProjectDetail(description, language, URL, proname, 
-				forks, stars, contributors, collaborators,subscribers);
+				forks, stars, contributors, collaborators,subscribers, contributorsInfo, collaboratorsInfo);
 
 	}
 	
@@ -208,7 +208,7 @@ public class JsonUtil {
 		projectInvolved=json.getInt("following");
 		projectCreate=json.getInt("public_repos");
 		
-		return new UserInfoDetail(userName, descriptionUser, email, joinDate, company, address, projectInvolved, projectCreate);	
+		return new UserInfoDetail(userName, descriptionUser, email, joinDate, company, address, projectInvolved, projectCreate, null, null);	
 	}
 	
 }
