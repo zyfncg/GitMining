@@ -46,11 +46,6 @@ public class UserInfoDetail {
 	private int projectInvolved;
 	
 	/**
-	 * 用户参与的项目信息列表
-	 */
-	private List<ProjectInfo> ProjectInvolvedInfo;
-	
-	/**
 	 * 用户创建的项目数量
 	 */
 	private int projectCreate;
@@ -62,7 +57,7 @@ public class UserInfoDetail {
 
 	public UserInfoDetail(String userName, String descriptionUser,
 			String email, Date joinDate, String company, String address,
-			int projectInvolved, int projectCreate,List<ProjectInfo> ProjectInvolvedInfo,List<ProjectInfo> ProjectCreatInfo) {
+			int projectInvolved, int projectCreate,List<ProjectInfo> ProjectCreatInfo) {
 		this.userName = userName;
 		this.descriptionUser = descriptionUser;
 		this.email = email;
@@ -71,7 +66,6 @@ public class UserInfoDetail {
 		this.address = address;
 		this.projectInvolved = projectInvolved;
 		this.projectCreate = projectCreate;
-		this.ProjectInvolvedInfo = ProjectInvolvedInfo;
 		this.ProjectCreatInfo = ProjectCreatInfo;
 	}
 
@@ -137,14 +131,6 @@ public class UserInfoDetail {
 
 	public void setProjectCreate(int projectCreate) {
 		this.projectCreate = projectCreate;
-	}
-
-	public List<ProjectInfo> getProjectInvolvedInfo() {
-		return ProjectInvolvedInfo;
-	}
-
-	public void setProjectInvolvedInfo(List<ProjectInfo> projectInvolvedInfo) {
-		ProjectInvolvedInfo = projectInvolvedInfo;
 	}
 
 	public List<ProjectInfo> getProjectCreatInfo() {
