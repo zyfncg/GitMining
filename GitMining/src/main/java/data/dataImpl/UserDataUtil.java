@@ -1,5 +1,11 @@
 package data.dataImpl;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +20,31 @@ public class UserDataUtil {
 	
 	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
 	private StringListTool stringTool=new StringListTool();
+	
+	@SuppressWarnings("unchecked")
+	public List<UserInfo> getAllUsersFromFile(){
+		
+		List<UserInfo> userList = null;
+		
+		ObjectInputStream is;
+		try {
+			is = new ObjectInputStream(new FileInputStream("userData.ser"));
+			userList=(List<UserInfo>) is.readObject();
+			is.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return userList;
+	} 
 	
 	public List<UserInfo> getAllUsers() throws Exception{
 		
@@ -41,6 +72,16 @@ public class UserDataUtil {
 				userList.add(userInfo);
 			}
 				
+		}
+		
+		try {
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("userData.ser"));
+			oos.writeObject(userNameList);
+			oos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 		
 		return userList;

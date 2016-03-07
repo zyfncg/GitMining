@@ -46,19 +46,20 @@ public class JsonUtil {
 		    stars=json.getInt("stargazers_count");
 		    proname=new ProjectName(owner,reponame);
 		    
+		    contributorsNameURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/contributors/login";
+		    
+		    String contributorsName=HttpRequestUtil.httpRequest(contributorsNameURL);
+		    String contributorsNameList[]=contributorsName.split(",");
+		    contributors=contributorsNameList.length;
+		    
 		    try {
 				description=json.getString("description");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				description="";
-				return new ProjectInfo(description,proname,forks,stars,12);
+				return new ProjectInfo(description,proname,forks,stars,contributors);
 			}
 		    
-//		    contributorsNameURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/contributors/login";
-//		    
-//		    String contributorsName=HttpRequestUtil.httpRequest(contributorsNameURL);
-//		    String contributorsNameList[]=contributorsName.split(",");
-//		    contributors=contributorsNameList.length;
+		    
 		    
 
 		} catch (JSONException e) {
@@ -69,8 +70,8 @@ public class JsonUtil {
 
 		}
 		
-//		return new ProjectInfo(description,proname,forks,stars,contributors);
-		return new ProjectInfo(description,proname,forks,stars,12);
+		return new ProjectInfo(description,proname,forks,stars,contributors);
+//		return new ProjectInfo(description,proname,forks,stars,12);
 	}
 	
 	/**

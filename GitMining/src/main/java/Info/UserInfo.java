@@ -1,12 +1,19 @@
 package Info;
 
+import java.io.Serializable;
+
 /**
  * 用户信息
  * 
  * @author 张仁知
  *
  */
-public class UserInfo {
+public class UserInfo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6651047262265824152L;
 
 	/**
 	 * 用户姓名

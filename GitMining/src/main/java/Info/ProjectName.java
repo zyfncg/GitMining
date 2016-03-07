@@ -1,5 +1,7 @@
 package Info;
 
+import java.io.Serializable;
+
 /**
  * 项目名称
  * 包含项目拥有者和所在仓库
@@ -7,7 +9,12 @@ package Info;
  * @author 张仁知
  *
  */
-public class ProjectName {
+public class ProjectName implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4721227330680232032L;
 
 	/**
 	 * 项目拥有者

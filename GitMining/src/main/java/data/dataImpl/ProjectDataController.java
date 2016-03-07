@@ -16,8 +16,8 @@ public class ProjectDataController implements ProjectDataServer{
 	@Override
 	public List<ProjectInfo> getAllProjects() throws Exception{
 		
-//		return projectdataUtil.getAllProjectsFromFile();
-		return projectdataUtil.getAllProjects();
+		return projectdataUtil.getAllProjectsFromFile();
+//		return projectdataUtil.getAllProjects();
 	}
 
 	@Override
