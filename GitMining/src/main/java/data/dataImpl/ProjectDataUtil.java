@@ -16,7 +16,7 @@ public class ProjectDataUtil {
 	private StringListTool stringTool=new StringListTool();
 	
 	/**
-	 * 获得所有的项目信息
+	 * 使用URL获得所有的项目信息
 	 * @author ZhangYF
 	 * @return 项目列表 
 	 * 

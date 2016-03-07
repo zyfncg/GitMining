@@ -40,17 +40,20 @@ public class JsonUtil {
 		    
 		    JSONObject ownerJson=json.getJSONObject("owner");
 		    
-		    try {
-				description=json.getString("description");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		    reponame=json.getString("name");
 		    owner=ownerJson.getString("login");
 		    forks=json.getInt("forks_count");
 		    stars=json.getInt("stargazers_count");
 		    proname=new ProjectName(owner,reponame);
+		    
+		    try {
+				description=json.getString("description");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				description="";
+				return new ProjectInfo(description,proname,forks,stars,12);
+			}
+		    
 //		    contributorsNameURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/contributors/login";
 //		    
 //		    String contributorsName=HttpRequestUtil.httpRequest(contributorsNameURL);
