@@ -1,11 +1,17 @@
-who�����Ʒ�
-when���ڶ���
-what������������ݲ�Ŀ���
-problem�����ݶ�ȡʱ�����
-todo���Ľ���Ʒ������ӿ����ݶ�ȡ
+who：张云飞
+when：第二周
+what：初步完成数据层的开发
+problem：数据读取时间过长
+todo：改进设计方案，加快数据读取
 
-who: Ф����
-when: �ڶ���
-what: ������ɽ�����߼���չ��
-problem: ��֮��Ľ����ӿڹ���
-todo:��������
+who: 肖安祥
+when: 第二周
+what: 基本完成界面的逻辑与展现
+problem: 类之间的交互接口过大
+todo:美化界面
+
+who:阮威威
+when:第二周
+what:基本完成逻辑层的开发
+problem:逻辑层的处理效率不够高
+todo:对逻辑层进行优化处理
