@@ -10,14 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
+import businessLogic.businessLogicController.RepositoryController.RepositoryController;
+import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import constant.Page;
 import constant.SortType;
 import res.Colors;
 import res.Strings;
-import stub.RepositoryController_Stub;
-import stub.UserController_Stub;
 
 /**
  *项目信息主页 
@@ -25,9 +25,9 @@ import stub.UserController_Stub;
 @SuppressWarnings("serial")
 public class ProjectPage extends JPanel {
 	
-	private RepositoryBLService repository = new RepositoryController_Stub();
+	private RepositoryBLService repository = new RepositoryController();
 	
-	private UserBLService user = new UserController_Stub();
+	private UserBLService user = new UserController();
 	
 	/**
 	 *所有的项目信息 
