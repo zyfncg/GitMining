@@ -200,17 +200,16 @@ public class JsonUtil {
 	 *将json字符串转为UserInfoDetail对象 
 	 * 
 	 */
-	@SuppressWarnings("finally")
 	public static UserInfoDetail jsonToUserDetail(String jsonString)throws Exception{
 		
 		JSONObject json;
 		FileUtil proFile=new FileUtil();
 		
 		String userName;
-		String descriptionUser = null;
+		String descriptionUser = "";
 		String email;
 		Date joinDate;
-		String company;
+		String company = "";
 		String address;
 		int projectInvolved;
 		int projectCreate;
@@ -240,20 +239,18 @@ public class JsonUtil {
 		
 		try {
 			descriptionUser = json.getString("bio");
+		    company = json.getString("company");
 		} catch (Exception e) {
 			e.printStackTrace();
 			descriptionUser="无";
-		}finally{
-			try {
-				company = json.getString("company");
-			} catch (Exception e) {
-				e.printStackTrace();
-				company="未知";
-			}
-			
-			return new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
+		    company="未知";
+		    System.out.println(userName);
+		    return new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
 					address, projectInvolved, projectCreate, ProjectCreatList);
 		}
+			
+		return new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
+				address, projectInvolved, projectCreate, ProjectCreatList);
 			
 	}
 	
