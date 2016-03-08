@@ -24,9 +24,9 @@ public class RepositoryHandle {
 	
 	
 	public List<ProjectInfo> GetAllRepositorys()throws Exception{
-//		List<ProjectInfo> allProjects = projectData.getAllProjects();
+		List<ProjectInfo> allProjects = projectData.getAllProjects();
 		//junit Test
-		List<ProjectInfo> allProjects = repositoryStub.getAllProjects();
+//		List<ProjectInfo> allProjects = repositoryStub.getAllProjects();
 		
 		allprojects.addAll(allProjects);
 		return allProjects;
@@ -34,10 +34,10 @@ public class RepositoryHandle {
 	
 	public ProjectDetail GetRepositoryByName(ProjectName name)throws Exception {
 		
-//		return projectData.getProjectByName(name);
+		return projectData.getProjectByName(name);
 		
 		//Junit Test
-		return repositoryStub.getProjectByName(name);
+//		return repositoryStub.getProjectByName(name);
 	}
 	
 	public List<ProjectInfo> SearchRepositorys(String key)throws Exception {

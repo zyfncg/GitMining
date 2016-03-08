@@ -70,13 +70,13 @@ public class RepositoryHandleTest {
 			// TODO: handle exception
 		}	
 		List<ProjectInfo> sortProject = new ArrayList<ProjectInfo>();
-		sortProject.add(new ProjectInfo("end", new ProjectName("rww", "rww2"), 1, 4, 0));
-		sortProject.add(new ProjectInfo("NO", new ProjectName("rww", "rww3"), 3, 5, 7));
-		sortProject.add(new ProjectInfo("no", new ProjectName("rww", "rww2"), 4, 4, 4));
-		sortProject.add(new ProjectInfo("END", new ProjectName("rww", "rww4"), 4, 13, 6));
-		sortProject.add(new ProjectInfo("or", new ProjectName("rww", "rww1"), 5, 8, 2));
-		sortProject.add(new ProjectInfo("YES", new ProjectName("rww", "rww2"), 6, 9, 6));
 		sortProject.add(new ProjectInfo("yes", new ProjectName("rww", "rww1"), 7, 7, 5));
+		sortProject.add(new ProjectInfo("YES", new ProjectName("rww", "rww2"), 6, 9, 6));
+		sortProject.add(new ProjectInfo("or", new ProjectName("rww", "rww1"), 5, 8, 2));
+		sortProject.add(new ProjectInfo("END", new ProjectName("rww", "rww4"), 4, 13, 6));
+		sortProject.add(new ProjectInfo("no", new ProjectName("rww", "rww2"), 4, 4, 4));
+		sortProject.add(new ProjectInfo("NO", new ProjectName("rww", "rww3"), 3, 5, 7));
+		sortProject.add(new ProjectInfo("end", new ProjectName("rww", "rww2"), 1, 4, 0));
 		
 		for(int i=0;i<sortlist1.size();i++){
 			assertEquals(sortlist1.get(i).getDescription(),sortProject.get(i).getDescription());

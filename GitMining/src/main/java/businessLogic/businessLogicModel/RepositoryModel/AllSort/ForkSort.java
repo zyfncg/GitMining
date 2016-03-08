@@ -15,7 +15,7 @@ public class ForkSort implements DetailSort{
 		 Collections.sort(projectInfos,new Comparator<ProjectInfo>(){
 	            @Override
 				public int compare(ProjectInfo arg0, ProjectInfo arg1) {
-	                return (new Integer(arg0.getForks())).compareTo(new Integer(arg1.getForks()));
+	                return (new Integer(arg1.getForks())).compareTo(new Integer(arg0.getForks()));
 	            }
 	        });
 		return projectInfos;

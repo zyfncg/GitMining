@@ -16,7 +16,7 @@ public class ContributorSort implements DetailSort{
 		 Collections.sort(projectInfos,new Comparator<ProjectInfo>(){
 	            @Override
 				public int compare(ProjectInfo arg0, ProjectInfo arg1) {
-	                return (new Integer(arg0.getContributors())).compareTo(new Integer(arg1.getContributors()));
+	                return (new Integer(arg1.getContributors())).compareTo(new Integer(arg0.getContributors()));
 	            }
 	        });
 		return projectInfos;
