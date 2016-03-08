@@ -26,5 +26,6 @@ public class BackPanel extends JPanel {
 		this.setPreferredSize(new Dimension(width, height));
 		this.setLayout(layout);
 		this.add(back);
+		this.setOpaque(false);
 	}
 }

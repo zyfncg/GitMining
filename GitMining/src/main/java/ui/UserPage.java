@@ -9,11 +9,13 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 import Info.UserInfo;
+import businessLogic.businessLogicController.RepositoryController.RepositoryController;
+import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import constant.Page;
-import stub.RepositoryController_Stub;
-import stub.UserController_Stub;
+import res.Colors;
+import res.Strings;
 
 /**
  *用户信息主页 
@@ -21,9 +23,9 @@ import stub.UserController_Stub;
 @SuppressWarnings("serial")
 public class UserPage extends JPanel{
 	
-	private UserBLService user = new UserController_Stub();
+	private UserBLService user = new UserController();
 	
-	private RepositoryBLService repository = new RepositoryController_Stub();
+	private RepositoryBLService repository = new RepositoryController();
 	
 	/**
 	 *所有的用户信息 
@@ -52,11 +54,12 @@ public class UserPage extends JPanel{
 			//					String msg = e.getMessage();
 		}	
 		JPanel switchCards = new JPanel(new BorderLayout());
+		switchCards.setOpaque(false);
 		SwitchPanel userPanel = null;
 		try {
 			userPanel = InfoManager.getUserInfoPanel(
 					allUsers, switchCards, switcher, lineCardNum,
-					CARD_ROW, this, repository, user);
+					CARD_ROW, this, repository, user, null);//TODO 给出用户信息的图片
 		} catch (Exception e) {
 			// TODO 异常处理
 		}
@@ -67,15 +70,16 @@ public class UserPage extends JPanel{
 		int iconW = width - (SwitchPanel.SWITCH_WIDTH << 1);
 		int iconH = height / 6;
 		JPanel icon = new JPanel();
+		icon.setOpaque(false);
 		icon.setPreferredSize(new Dimension(iconW, iconH));
 		ClickHandler handler =
 				() -> switcher.jump(Page.USER, Page.PROJECT, PanelSwitcher.RIGHT);
-		SwitchPanel switcherPanel = SwitchPanel.leftOnly(handler, icon);
+		SwitchPanel switcherPanel = SwitchPanel.leftOnly(handler, icon, null);
 		
 		//搜索面板
 		int searchW = iconW;
 		int searchH = iconH;
-		String tip = "用户名";//TODO 字符串统一处理
+		String tip = Strings.USER_SEARCH_TIP;
 		SearchPanel s = new SearchPanel(searchW, searchH, tip);
 		s.setClickHandler(this.getSearchHandler(
 				s, tip, switcher, switchCards, lineCardNum));
@@ -83,15 +87,18 @@ public class UserPage extends JPanel{
 		layout.setHgap(SwitchPanel.SWITCH_WIDTH);
 		layout.setVgap(0);
 		JPanel search = new JPanel(layout);
+		search.setOpaque(false);
 		search.add(s);
 		
 		//组合所有面板
 		Box container = Box.createVerticalBox();
+		container.setOpaque(false);
 		container.add(switcherPanel);
 		container.add(search);
 		container.add(switchCards);
 		this.setLayout(new BorderLayout());
 		this.add(container);
+		this.setBackground(Colors.PAGE_BG);
 	}
 	
 	/**
@@ -137,7 +144,7 @@ public class UserPage extends JPanel{
 		try {
 			to = InfoManager.getUserInfoPanel(
 					users, parent, switcher, col,
-					CARD_ROW, this, repository, user);
+					CARD_ROW, this, repository, user, null);//TODO 给出用户信息的提示
 		} catch (Exception e) {
 			// TODO 异常处理
 		}

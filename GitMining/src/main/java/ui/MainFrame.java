@@ -1,21 +1,25 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import constant.Page;
+import res.Img;
 
 /**
  *主窗体 
@@ -23,18 +27,49 @@ import constant.Page;
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 	
+	/**
+	 *开始页面 
+	 */
 	private StartPage start;
 	
+	/**
+	 *项目主页 
+	 */
 	private ProjectPage project;
 	
+	/**
+	 *用户主页 
+	 */
 	private UserPage user;
 	
+	/**
+	 *页面切换器 
+	 */
 	private PanelSwitcher switcher;
 	
+	/**
+	 *按钮面板 
+	 */
 	private JPanel btnPanel;
 	
+	/**
+	 *当前显示的页面 
+	 */
 	private JPanel currentPage;
 	
+	/**
+	 *窗口顶级面板 
+	 */
+	private JPanel root = new JPanel() {
+		protected void paintComponent(java.awt.Graphics g) {
+			g.drawImage(Img.START, 0, 0,
+					PAGE_WIDTH, PAGE_HEIGHT + BUTTON_SIZE, null);
+		};
+	};
+	
+	/**
+	 *页面标识符与页面的映射表 
+	 */
 	private Map<Page, JPanel> pageMap =
 			new HashMap<Page, JPanel>();
 	
@@ -59,6 +94,11 @@ public class MainFrame extends JFrame {
 			 3 * CardsPanel.CARD_GAP) * 3) >> 1;
 			
 	/**
+	 *按钮边长 
+	 */
+	public static final int BUTTON_SIZE = 36;
+			
+	/**
 	 *鼠标位于窗口左上角的x坐标 
 	 */
 	private int x;
@@ -79,9 +119,12 @@ public class MainFrame extends JFrame {
 		this.switcher.setPageMap(this.pageMap);
 		this.initButtonPannel();
 		
+		this.root.setLayout(new BorderLayout());
+		root.add(this.btnPanel, BorderLayout.NORTH);
+		root.add(this.start, BorderLayout.CENTER);
+		
+		this.add(root);
 		this.setUndecorated(true);
-		this.add(this.btnPanel, BorderLayout.NORTH);
-		this.add(this.start, BorderLayout.CENTER);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.pack();
@@ -97,23 +140,19 @@ public class MainFrame extends JFrame {
 	 */
 	private void initButtonPannel() {
 		//开始主页按钮
-		JButton home = new JButton("Home");
-		home.addActionListener(
+		FrameButton home = new FrameButton(null,
 				e -> switcher.jump(currentPage, Page.START, PanelSwitcher.RIGHT));
 		//项目主页按钮
-		JButton project = new JButton("Project");
-		project.addActionListener(
+		FrameButton project = new FrameButton(null,
 				e -> switcher.jump(currentPage, Page.PROJECT, PanelSwitcher.LEFT));
 		//用户主页按钮
-		JButton user = new JButton("User");
-		user.addActionListener(
+		FrameButton user = new FrameButton(null,
 				e -> switcher.jump(currentPage, Page.USER, PanelSwitcher.LEFT));
 		//最小化按钮
-		JButton min = new JButton("min");
-		min.addActionListener(e -> setExtendedState(Frame.ICONIFIED));
+		FrameButton min = new FrameButton(null,
+				e -> setExtendedState(Frame.ICONIFIED));
 		//退出按钮
-		JButton exit = new JButton("exit");
-		exit.addActionListener(e -> System.exit(0));
+		FrameButton exit = new FrameButton(null, e -> System.exit(0));
 		
 		FlowLayout layout = new FlowLayout(FlowLayout.RIGHT, 0, 0);
 		this.btnPanel = new JPanel(layout);
@@ -122,6 +161,7 @@ public class MainFrame extends JFrame {
 		this.btnPanel.add(user);
 		this.btnPanel.add(min);
 		this.btnPanel.add(exit);
+		this.btnPanel.setOpaque(false);
 	}
 	
 	/**
@@ -142,6 +182,15 @@ public class MainFrame extends JFrame {
 		int x = (int) ((d.getWidth() - size.getWidth()) / 2);
 		int y = (int) ((d.getHeight() - size.getHeight()) / 2);
 		frame.setLocation(x, y);
+	}
+	
+	private class FrameButton extends JButton {
+		
+		public FrameButton(ImageIcon icon, ActionListener l) {
+			this.setBackground(Color.BLACK);
+			this.addActionListener(l);
+			this.setPreferredSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));
+		}
 	}
 	
 	/**
@@ -172,5 +221,9 @@ public class MainFrame extends JFrame {
 	
 	public void setCurrentPage(JPanel page) {
 		this.currentPage = page;
+	}
+	
+	public JPanel getRootPanel() {
+		return this.root;
 	}
 }

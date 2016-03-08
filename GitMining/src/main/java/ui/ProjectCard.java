@@ -1,6 +1,7 @@
 package ui;
 
 import Info.ProjectInfo;
+import res.Strings;
 
 /**
  *项目信息的简介
@@ -17,10 +18,12 @@ public class ProjectCard extends Card {
 		
 		//信息面板
 		int itemW = width >> 2;
-		ItemPanel star = new ItemPanel(itemW, height,
-				"star", String.valueOf(info.getStars()));
-		ItemPanel fork = new ItemPanel(itemW, height,
-				"fork", String.valueOf(info.getForks()));
+		KVPanel star = new KVPanel(itemW, height,
+				Strings.STAR_LABEL, String.valueOf(info.getStars()),
+				KVPanel.VERTICAL);
+		KVPanel fork = new KVPanel(itemW, height,
+				Strings.FORK_LABEL, String.valueOf(info.getForks()),
+				KVPanel.VERTICAL);
 //		ItemPanel contributor = new ItemPanel(itemW, height, "contributor", "30");
 		this.itemPanel.add(star);
 		this.itemPanel.add(fork);

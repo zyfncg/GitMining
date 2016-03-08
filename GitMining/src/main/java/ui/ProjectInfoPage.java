@@ -11,17 +11,17 @@ import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import Info.ProjectDetail;
 import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
+import res.Colors;
+import res.Strings;
 
 /**
  *项目详细信息面板 
@@ -53,16 +53,12 @@ public class ProjectInfoPage extends JPanel {
 		BackPanel icon = new BackPanel(handler, width, iconH, btnW, btnH);
 		
 		//描述面板
-		JLabel txt = new JLabel(project.getDescription(),
-				SwingConstants.CENTER);
-		FlowLayout fl = new FlowLayout();
-		fl.setVgap(0);
-		JPanel description = new JPanel(fl);
-		description.setPreferredSize(new Dimension(width, iconH >> 1));
-		description.add(txt);
+		TextPanel description = new TextPanel(
+				project.getDescription(), width, iconH >> 1);
 		
 		//项目地址面板
 		JPanel URL = new JPanel();
+		URL.setOpaque(false);
 		int urlW = width >> 1;
 		int urlH = iconH >> 1;
 		//项目地址文本框
@@ -71,7 +67,7 @@ public class ProjectInfoPage extends JPanel {
 		url.setPreferredSize(new Dimension((int)(urlW * 0.8), urlH));
 		url.setEditable(false);
 		//复制按钮
-		JButton copy = new JButton("复制");//TODO字符串资源统一管理
+		JButton copy = new JButton(Strings.COPY_LABEL);//TODO字符串资源统一管理
 //		copy.setToolTipText("将地址复制到剪贴板");
 //		ToolTipManager.sharedInstance().setInitialDelay(0);
 //		copy.addActionListener(e -> {
@@ -113,22 +109,23 @@ public class ProjectInfoPage extends JPanel {
 		int itemW = width >> 3;
 		int itemH = height >> 3;
 		//各项信息面板
-		ItemPanel language = new ItemPanel(
-				itemW, itemH, "language", project.getLanguage());
-		ItemPanel star = new ItemPanel(
-				itemW, itemH, "star", String.valueOf(project.getStars()));
-		ItemPanel fork = new ItemPanel(
-				itemW, itemH, "fork", String.valueOf(project.getForks()));
-		ItemPanel contributor = new ItemPanel(
-				itemW, itemH, "contributor", String.valueOf(project.getContributors()));
-		ItemPanel collaborator = new ItemPanel(
-				itemW, itemH, "collaborator", String.valueOf(project.getCollaborators()));
-		ItemPanel subscriber = new ItemPanel(
-				itemW, itemH, "subscriber", String.valueOf(project.getSubscribers()));
+		KVPanel language = new KVPanel(itemW, itemH,
+				"language", project.getLanguage(), KVPanel.VERTICAL);
+		KVPanel star = new KVPanel(itemW, itemH,
+				"star", String.valueOf(project.getStars()), KVPanel.VERTICAL);
+		KVPanel fork = new KVPanel(itemW, itemH,
+				"fork", String.valueOf(project.getForks()), KVPanel.VERTICAL);
+		KVPanel contributor = new KVPanel(itemW, itemH,Strings.CONTRIBUTOR_LABEL,
+				String.valueOf(project.getContributors()), KVPanel.VERTICAL);
+		KVPanel collaborator = new KVPanel(itemW, itemH, Strings.COLLABORATOR_LABEL,
+				String.valueOf(project.getCollaborators()), KVPanel.VERTICAL);
+		KVPanel subscriber = new KVPanel(itemW, itemH, Strings.SUBSCRIBER_LABEL,
+				String.valueOf(project.getSubscribers()), KVPanel.VERTICAL);
 		//将信息面板组合
 		FlowLayout layout = new FlowLayout();
 		layout.setVgap(itemH >> 3);
 		JPanel info = new JPanel(layout);
+		info.setOpaque(false);
 		info.add(language);
 		info.add(star);
 		info.add(fork);
@@ -139,10 +136,11 @@ public class ProjectInfoPage extends JPanel {
 		//贡献者面板
 		List<UserInfo> u1 = project.getContributorsInfo();
 		JPanel contri = new JPanel(new BorderLayout());
+		contri.setOpaque(false);
 		SwitchPanel p1 = null;
 		try {
 			 p1 = InfoManager.getUserInfoPanel(u1, contri, switcher,
-					lineCardNum, CONTRIBUTOR_ROW, this, repo, user);
+					lineCardNum, CONTRIBUTOR_ROW, this, repo, user, null);//TODO 给出贡献者的图片
 		} catch (Exception e2) {
 			// TODO 异常处理
 		}
@@ -151,10 +149,11 @@ public class ProjectInfoPage extends JPanel {
 		//参与者面板
 		List<UserInfo> u2 = project.getCollaboratorsInfo();
 		JPanel involve = new JPanel(new BorderLayout());
+		involve.setOpaque(false);
 		SwitchPanel p2 = null;
 		try {
 			p2 = InfoManager.getUserInfoPanel(u2, involve, switcher,
-					lineCardNum, COLLABORATOR_ROW, this, repo, user);
+					lineCardNum, COLLABORATOR_ROW, this, repo, user, null);//TODO 给出参与者的图片
 		} catch (Exception e1) {
 			// TODO 异常处理
 		}
@@ -162,6 +161,7 @@ public class ProjectInfoPage extends JPanel {
 		
 		//组装所有面板
 		Box all = Box.createVerticalBox();
+		all.setOpaque(false);
 		all.add(icon);
 		all.add(description);
 		all.add(URL);
@@ -170,6 +170,7 @@ public class ProjectInfoPage extends JPanel {
 		all.add(involve);
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
+		this.setBackground(Colors.PAGE_BG);
 	}
 	
 	private class TipText extends JMenuItem {

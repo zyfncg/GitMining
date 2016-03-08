@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Image;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -29,14 +30,14 @@ public class InfoManager {
 	public static SwitchPanel getProjectInfoPanel(List<ProjectInfo> projects,
 			JPanel parent, PanelSwitcher switcher, int lineCardNum,
 			JPanel page, int row, RepositoryBLService repository,
-			UserBLService user) throws Exception {
+			UserBLService user, Image image) throws Exception {
 		if(projects.size() == 0) {
 			CardsPanel panel = CardsPanel.createPlainPanel(row, lineCardNum);
-			return SwitchPanel.noSwitch(panel);
+			return SwitchPanel.noSwitch(panel, image);
 		}else{
 			SwitchPanel p = new SwitchPanel();
 				return p.projectListPanel(projects, page, parent,
-						switcher, row, lineCardNum, repository, user);
+						switcher, row, lineCardNum, repository, user, image);
 		}
 	}
 	
@@ -55,14 +56,14 @@ public class InfoManager {
 	public static SwitchPanel getUserInfoPanel(List<UserInfo> users,
 			JPanel parent, PanelSwitcher switcher, int lineCardNum,
 			int row, JPanel page, RepositoryBLService repository,
-			UserBLService user) throws Exception {
+			UserBLService user, Image image) throws Exception {
 		if(users.size() == 0) {
 			CardsPanel panel = CardsPanel.createPlainPanel(row, lineCardNum);
-			return SwitchPanel.noSwitch(panel);
+			return SwitchPanel.noSwitch(panel, image);
 		}else{
 			SwitchPanel p = new SwitchPanel();
 			return p.userListPanel(users, page, parent, switcher,
-					row, lineCardNum, repository, user);
+					row, lineCardNum, repository, user, image);
 		}
 	}
 }

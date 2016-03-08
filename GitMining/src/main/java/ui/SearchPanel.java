@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import res.Strings;
+
 /**
  *搜索框面板
  *包含一个搜索框和一个确定按钮
@@ -55,8 +57,7 @@ public class SearchPanel extends JPanel {
 		int btnH = height / 3;
 		int btnW = height << 1;
 		btnW = (btnW > width / 3) ? (width / 3) : btnW;
-		//TODO 字符串统一管理
-		search = new JButton("搜索");
+		search = new JButton(Strings.SEARCH_LABEL);
 		search.setPreferredSize(new Dimension(btnW, btnH));
 		search.addActionListener(e -> {
 			if(handler != null) {
@@ -65,13 +66,14 @@ public class SearchPanel extends JPanel {
 		
 		this.initTextUI(width - btnW, btnH, tip);
 		
+		this.add(text);
+		this.add(search);
 		FlowLayout layout = new FlowLayout();
 		layout.setHgap(0);
 		layout.setVgap(height / 3);
 		this.setLayout(layout);
 		this.setPreferredSize(new Dimension(width, height));
-		this.add(text);
-		this.add(search);
+		this.setOpaque(false);
 	}
 	
 	/**
