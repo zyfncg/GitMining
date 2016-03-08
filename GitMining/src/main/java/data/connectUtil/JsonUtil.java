@@ -9,6 +9,7 @@ import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfo;
 import Info.UserInfoDetail;
+import data.dataImpl.FileUtil;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 
@@ -82,6 +83,7 @@ public class JsonUtil {
 	public static ProjectDetail jsonToProjectDetail(String jsonString) throws Exception{
 		
 		StringListTool stringTool=new StringListTool();
+		FileUtil userFile=new FileUtil();
 		
 		JSONObject json;
 		
@@ -92,14 +94,14 @@ public class JsonUtil {
 		String reponame;
 		String description;
 		String collaboratorsNameURL;
-		String userURL;
-		String userJson;
+//		String userURL;
+//		String userJson;
 		int forks;
 		int stars;
 		int contributors;
 		int collaborators;
 		int subscribers;
-		UserInfo userInfo;
+//		UserInfo userInfo;
 		
 		ProjectInfo projectInfo=jsonToProject(jsonString);
 		
@@ -117,11 +119,21 @@ public class JsonUtil {
 		String contributorsString=HttpRequestUtil.httpRequest(contributorsListURL);
 		contributorsList=stringTool.getStringList(contributorsString);
 		
-		for(int i=0;i<contributorsList.size();i++){
-			userURL=URLString.getUserApiString()+contributorsList.get(i);
-			userJson=HttpRequestUtil.httpRequest(userURL);
-			userInfo=JsonUtil.jsonToUser(userJson);
-			contributorsInfo.add(userInfo);
+//		for(int i=0;i<contributorsList.size();i++){
+//			userURL=URLString.getUserApiString()+contributorsList.get(i);
+//			userJson=HttpRequestUtil.httpRequest(userURL);
+//			userInfo=JsonUtil.jsonToUser(userJson);
+//			contributorsInfo.add(userInfo);
+//		}
+		
+		List<UserInfo> allUser=userFile.getUserListFromFile();
+		for(String name:contributorsList){
+			for(UserInfo user:allUser){
+				if(user.getUserName().equals(name)){
+					contributorsInfo.add(user);
+					continue;
+				}
+			}
 		}
 		
 		//获取所有的collaborators的个人信息
@@ -131,13 +143,20 @@ public class JsonUtil {
 	    List<String> collaboratorsNameList=stringTool.getStringList(collaboratorsName);
 	    collaborators=collaboratorsNameList.size();
 	    
-	    for(int i=0;i<collaboratorsNameList.size();i++){
-			userURL=URLString.getUserApiString()+collaboratorsNameList.get(i);
-			userJson=HttpRequestUtil.httpRequest(userURL);
-			userInfo=JsonUtil.jsonToUser(userJson);
-			collaboratorsInfo.add(userInfo);
+//	    for(int i=0;i<collaboratorsNameList.size();i++){
+//			userURL=URLString.getUserApiString()+collaboratorsNameList.get(i);
+//			userJson=HttpRequestUtil.httpRequest(userURL);
+//			userInfo=JsonUtil.jsonToUser(userJson);
+//			collaboratorsInfo.add(userInfo);
+//		}
+	    for(String name:collaboratorsNameList){
+			for(UserInfo user:allUser){
+				if(user.getUserName().equals(name)){
+					collaboratorsInfo.add(user);
+					continue;
+				}
+			}
 		}
-	    
 		
 		URL=json.getString("html_url");
 		language=json.getString("language");
@@ -156,6 +175,10 @@ public class JsonUtil {
 
 	}
 	
+	/**
+	 *将json格式字符串转为UserInfo对象 
+	 * 
+	 */
 	public static UserInfo jsonToUser(String jsonString)throws Exception{
 		JSONObject json;
 		
@@ -173,8 +196,15 @@ public class JsonUtil {
 		return new UserInfo(userName, descriptionUser, projectInvolved, projectCreate);	
 	}
 	
+	/**
+	 *将json字符串转为UserInfoDetail对象 
+	 * 
+	 */
+	@SuppressWarnings("finally")
 	public static UserInfoDetail jsonToUserDetail(String jsonString)throws Exception{
+		
 		JSONObject json;
+		FileUtil proFile=new FileUtil();
 		
 		String userName;
 		String descriptionUser = null;
@@ -184,24 +214,13 @@ public class JsonUtil {
 		String address;
 		int projectInvolved;
 		int projectCreate;
+		List<ProjectInfo> ProjectCreatList=new ArrayList<ProjectInfo>();
+		
+		
 		
 		json = JSONObject.fromObject(jsonString);
 		
 		userName=json.getString("login");
-		
-		try {
-			descriptionUser = json.getString("bio");
-		} catch (Exception e) {
-			e.printStackTrace();
-			descriptionUser="无";
-		}
-		
-		try {
-			company = json.getString("company");
-		} catch (Exception e) {
-			e.printStackTrace();
-			company="未知";
-		}
 		email=json.getString("email");
 		String dateString=json.getString("created_at");
 		joinDate=Date.stringToDate(dateString);
@@ -209,7 +228,33 @@ public class JsonUtil {
 		projectInvolved=json.getInt("following");
 		projectCreate=json.getInt("public_repos");
 		
-		return new UserInfoDetail(userName, descriptionUser, email, joinDate, company, address, projectInvolved, projectCreate, null);	
+		List<ProjectInfo> projectList=proFile.getProjectListFromFile();
+		ProjectName proName;
+		for(ProjectInfo project:projectList){
+			proName=project.getProjectName();
+			if(proName.getowner().equals(userName)){
+				ProjectCreatList.add(project);
+			}
+		}
+		
+		
+		try {
+			descriptionUser = json.getString("bio");
+		} catch (Exception e) {
+			e.printStackTrace();
+			descriptionUser="无";
+		}finally{
+			try {
+				company = json.getString("company");
+			} catch (Exception e) {
+				e.printStackTrace();
+				company="未知";
+			}
+			
+			return new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
+					address, projectInvolved, projectCreate, ProjectCreatList);
+		}
+			
 	}
 	
 }

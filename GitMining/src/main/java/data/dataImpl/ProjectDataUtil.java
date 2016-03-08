@@ -1,11 +1,5 @@
 package data.dataImpl;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,34 +14,19 @@ import data.connectUtil.URLString;
 public class ProjectDataUtil {
 	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
 	private StringListTool stringTool=new StringListTool();
+	private FileUtil proFile=new FileUtil();
 	
 	/**
 	 *从文件中获取项目数据 
 	 * 
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
 	public List<ProjectInfo> getAllProjectsFromFile() throws Exception{
 		
 		List<ProjectInfo> pList = null;
-		
-		try {
-			ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectData.ser"));
-			
-		    pList=(List<ProjectInfo>) is.readObject();
-		    is.close();
-		    
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
+		pList=proFile.getProjectListFromFile();
+
 		return pList;
 	}
 	
@@ -61,7 +40,7 @@ public class ProjectDataUtil {
 		ProjectInfo projectInfo;
 		String projectURL;
 		String projectJson;
-		List<ProjectInfo> ProjectList=new ArrayList<ProjectInfo>();
+		List<ProjectInfo> projectList=new ArrayList<ProjectInfo>();
 		
 		String reponameList=HttpRequestUtil.httpRequest(projectListUrl);
 		List<String> reponame=stringTool.getStringList(reponameList);
@@ -70,21 +49,18 @@ public class ProjectDataUtil {
 //		for(int i=0;i<reponame.size();i++){
 			projectURL=URLString.getRepositoryApiString()+reponame.get(i);
 			projectJson=HttpRequestUtil.httpRequest(projectURL);
+			if(projectJson==null){
+				continue;
+			}		
 			projectInfo=JsonUtil.jsonToProject(projectJson);
-			ProjectList.add(projectInfo);
+			projectList.add(projectInfo);
 		}
 		
-		try {
-			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("projectData.ser"));
-			oos.writeObject(ProjectList);
-			oos.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(!proFile.setProjectToFile(projectList)){
 			return null;
 		}
 		
-		return ProjectList;
+		return projectList;
 	}
 	
 	/**

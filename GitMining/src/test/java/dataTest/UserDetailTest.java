@@ -2,33 +2,31 @@ package dataTest;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import org.junit.Test;
 
-import Info.UserInfo;
+import Info.ProjectInfo;
+import Info.UserInfoDetail;
 import data.dataImpl.UserDataController;
 import data.dataServer.UserDataServer;
 
-public class UserInfoTest {
+public class UserDetailTest {
 
 	@Test
 	public void test() {
+		String userName="ghtdak";
+		
 		UserDataServer userData=new UserDataController();
-		List<UserInfo> userList = null;
-		UserInfo user = null;
+		UserInfoDetail userDetail = null;
+		ProjectInfo project;
 		try {
-			userList=userData.getAllUsers();
-			System.out.println(userList.size());
-			user=userList.get(2);
-			
+			userDetail=userData.getUserByName(userName);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println(userList.size());
 		}
+		project=userDetail.getProjectCreatInfo().get(0);
+		assertEquals(25,project.getForks());
 		
-		assertEquals(52,user.getProjectCreate());
 	}
 
 }

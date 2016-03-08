@@ -1,11 +1,5 @@
 package data.dataImpl;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,28 +14,13 @@ public class UserDataUtil {
 	
 	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
 	private StringListTool stringTool=new StringListTool();
+	private FileUtil fileUtil=new FileUtil();
 	
-	@SuppressWarnings("unchecked")
-	public List<UserInfo> getAllUsersFromFile(){
+	public List<UserInfo> getAllUsersFromFile() throws Exception{
 		
 		List<UserInfo> userList = null;
 		
-		ObjectInputStream is;
-		try {
-			is = new ObjectInputStream(new FileInputStream("userData.ser"));
-			userList=(List<UserInfo>) is.readObject();
-			is.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		userList=fileUtil.getUserListFromFile();
 		
 		return userList;
 	} 
@@ -68,19 +47,18 @@ public class UserDataUtil {
 				userNameList.add(userName);
 				userURL=URLString.getUserApiString()+userName;
 				userJson=HttpRequestUtil.httpRequest(userURL);
+				
+				if(userJson==null){
+					continue;
+				}
+				
 				userInfo=JsonUtil.jsonToUser(userJson);
 				userList.add(userInfo);
 			}
 				
 		}
 		
-		try {
-			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("userData.ser"));
-			oos.writeObject(userNameList);
-			oos.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(!fileUtil.setUserToFile(userList)){
 			return null;
 		}
 		
@@ -93,7 +71,7 @@ public class UserDataUtil {
 		String userURL;
 		String userJson;
 		
-		userURL=URLString.getRepositoryApiString()+name.toString();
+		userURL=URLString.getUserApiString()+name.toString();
 		userJson=HttpRequestUtil.httpRequest(userURL);
 		userDetail=JsonUtil.jsonToUserDetail(userJson);
 		
