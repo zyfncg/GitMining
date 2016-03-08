@@ -15,7 +15,7 @@ public class StarSort implements DetailSort{
 		Collections.sort(projectInfos,new Comparator<ProjectInfo>(){
 	            @Override
 				public int compare(ProjectInfo arg0, ProjectInfo arg1) {
-	                return (new Integer(arg0.getStars())).compareTo(new Integer(arg1.getStars()));
+	                return (new Integer(arg1.getStars())).compareTo(new Integer(arg0.getStars()));
 	            }
 	        });
 		return projectInfos;

@@ -8,10 +8,8 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.JPanel;
 
-import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.UserInfo;
-import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 
@@ -64,18 +62,13 @@ public class CardsPanel extends JPanel {
 			CardsPanel panel = createCardContainer(lineNum);
 			int j;
 			for(j = 0; j < lineNum && i * lineNum + j < size; ++j) {
-				final ProjectDetail detail = service.getRepositoryByName(
-						projects.get(i * lineNum + j).getProjectName());
+				final int index = i * lineNum + j;
 				ClickHandler handler = () ->{
 					switcher.backableJump(page,
 							new ProjectInfoPage(lineNum, MainFrame.PAGE_WIDTH,
-									MainFrame.PAGE_HEIGHT, switcher, detail,
+									MainFrame.PAGE_HEIGHT, switcher, projects.get(index),
 									service, user),
 							PanelSwitcher.LEFT);
-//					switcher.toFullScreen(page,
-//							new ProjectInfoPage(lineNum, MainFrame.PAGE_WIDTH,
-//									MainFrame.PAGE_HEIGHT, switcher, detail,
-//									service, user));
 					};
 				panel.add(new ProjectCard(handler,
 						CARD_WIDTH, CARD_HEIGHT, projects.get(i * lineNum + j)));
@@ -115,12 +108,12 @@ public class CardsPanel extends JPanel {
 			CardsPanel panel = createCardContainer(lineNum);
 			int j;
 			for(j = 0; j < lineNum && i * lineNum + j < size; ++j) {
-				UserInfoDetail detail = u.getUserByName(
-						users.get(i * lineNum + j).getUserName());
+				final int index = i * lineNum + j;
 				ClickHandler handler = () -> {
 					switcher.backableJump(page,
 							new UserInfoPage(lineNum, MainFrame.PAGE_WIDTH,
-									MainFrame.PAGE_HEIGHT, switcher,detail, repo, u),
+									MainFrame.PAGE_HEIGHT, switcher,users.get(index),
+									repo, u),
 							PanelSwitcher.LEFT);
 				};
 				panel.add(new UserCard(handler,
