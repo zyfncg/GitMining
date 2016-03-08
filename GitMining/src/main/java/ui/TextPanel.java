@@ -14,6 +14,8 @@ import res.Colors;
 @SuppressWarnings("serial")
 public class TextPanel extends JPanel {
 	
+	private static final int LINE_MAX = 40;
+	
 	public TextPanel(String text, int width, int height) {
 		JLabel txt = new JLabel(text,JLabel.CENTER);
 		txt.setForeground(Colors.TEXT_COLOR);

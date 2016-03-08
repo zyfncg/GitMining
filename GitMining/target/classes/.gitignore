@@ -1,0 +1,13 @@
+/Info/
+/LifeIS/
+/META-INF/
+/businessLogic/
+/businessLogicService/
+/businessLogicStub/
+/constant/
+/data/
+/res/
+/stub/
+/ui/
+
+*.class
