@@ -31,7 +31,7 @@ public class ProjectDataUtil {
 	}
 	
 	/**
-	 * 使用URL获得所有的项目信息
+	 * 使用URL获得所有的项目信息并写到文件中
 	 * @author ZhangYF
 	 * @return 项目列表 
 	 * 
