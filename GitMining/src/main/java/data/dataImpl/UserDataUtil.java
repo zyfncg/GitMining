@@ -14,6 +14,16 @@ public class UserDataUtil {
 	
 	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
 	private StringListTool stringTool=new StringListTool();
+	private FileUtil fileUtil=new FileUtil();
+	
+	public List<UserInfo> getAllUsersFromFile() throws Exception{
+		
+		List<UserInfo> userList = null;
+		
+		userList=fileUtil.getUserListFromFile();
+		
+		return userList;
+	} 
 	
 	public List<UserInfo> getAllUsers() throws Exception{
 		
@@ -37,10 +47,19 @@ public class UserDataUtil {
 				userNameList.add(userName);
 				userURL=URLString.getUserApiString()+userName;
 				userJson=HttpRequestUtil.httpRequest(userURL);
+				
+				if(userJson==null){
+					continue;
+				}
+				
 				userInfo=JsonUtil.jsonToUser(userJson);
 				userList.add(userInfo);
 			}
 				
+		}
+		
+		if(!fileUtil.setUserToFile(userList)){
+			return null;
 		}
 		
 		return userList;
@@ -52,7 +71,7 @@ public class UserDataUtil {
 		String userURL;
 		String userJson;
 		
-		userURL=URLString.getRepositoryApiString()+name.toString();
+		userURL=URLString.getUserApiString()+name.toString();
 		userJson=HttpRequestUtil.httpRequest(userURL);
 		userDetail=JsonUtil.jsonToUserDetail(userJson);
 		

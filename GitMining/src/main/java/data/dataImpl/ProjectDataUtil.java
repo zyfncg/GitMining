@@ -14,9 +14,24 @@ import data.connectUtil.URLString;
 public class ProjectDataUtil {
 	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
 	private StringListTool stringTool=new StringListTool();
+	private FileUtil proFile=new FileUtil();
 	
 	/**
-	 * 获得所有的项目信息
+	 *从文件中获取项目数据 
+	 * 
+	 * 
+	 */
+	public List<ProjectInfo> getAllProjectsFromFile() throws Exception{
+		
+		List<ProjectInfo> pList = null;
+
+		pList=proFile.getProjectListFromFile();
+
+		return pList;
+	}
+	
+	/**
+	 * 使用URL获得所有的项目信息
 	 * @author ZhangYF
 	 * @return 项目列表 
 	 * 
@@ -25,7 +40,7 @@ public class ProjectDataUtil {
 		ProjectInfo projectInfo;
 		String projectURL;
 		String projectJson;
-		List<ProjectInfo> ProjectList=new ArrayList<ProjectInfo>();
+		List<ProjectInfo> projectList=new ArrayList<ProjectInfo>();
 		
 		String reponameList=HttpRequestUtil.httpRequest(projectListUrl);
 		List<String> reponame=stringTool.getStringList(reponameList);
@@ -34,11 +49,18 @@ public class ProjectDataUtil {
 //		for(int i=0;i<reponame.size();i++){
 			projectURL=URLString.getRepositoryApiString()+reponame.get(i);
 			projectJson=HttpRequestUtil.httpRequest(projectURL);
+			if(projectJson==null){
+				continue;
+			}		
 			projectInfo=JsonUtil.jsonToProject(projectJson);
-			ProjectList.add(projectInfo);
+			projectList.add(projectInfo);
 		}
 		
-		return ProjectList;
+		if(!proFile.setProjectToFile(projectList)){
+			return null;
+		}
+		
+		return projectList;
 	}
 	
 	/**

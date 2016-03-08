@@ -12,10 +12,12 @@ public class ProjectDataController implements ProjectDataServer{
 	
 	private ProjectDataUtil projectdataUtil=new ProjectDataUtil();
 	
+	
 	@Override
 	public List<ProjectInfo> getAllProjects() throws Exception{
 		
-		return projectdataUtil.getAllProjects();
+		return projectdataUtil.getAllProjectsFromFile();
+//		return projectdataUtil.getAllProjects();
 	}
 
 	@Override

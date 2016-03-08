@@ -13,7 +13,8 @@ public class UserDataController implements UserDataServer{
 	@Override
 	public List<UserInfo> getAllUsers() throws Exception{
 
-		return userDataUtil.getAllUsers();
+//		return userDataUtil.getAllUsers();
+		return userDataUtil.getAllUsersFromFile();
 	}
 
 	@Override
