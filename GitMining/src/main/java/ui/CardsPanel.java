@@ -40,7 +40,7 @@ public class CardsPanel extends JPanel {
 	 */
 	public static final int CARD_HEIGHT = 200;
 
-	private CardsPanel() {}
+	private CardsPanel() {this.setOpaque(false);}
 	
 	/**
 	 *根据项目信息创建信息面板
@@ -58,6 +58,7 @@ public class CardsPanel extends JPanel {
 			int row, int lineNum, List<ProjectInfo> projects,
 			RepositoryBLService service, UserBLService user) throws Exception {
 		Box box = Box.createVerticalBox();
+		box.setOpaque(false);
 		int size = projects.size();
 		for(int i = 0; i < row; ++i) {
 			CardsPanel panel = createCardContainer(lineNum);
@@ -70,7 +71,12 @@ public class CardsPanel extends JPanel {
 							new ProjectInfoPage(lineNum, MainFrame.PAGE_WIDTH,
 									MainFrame.PAGE_HEIGHT, switcher, detail,
 									service, user),
-							PanelSwitcher.LEFT);};
+							PanelSwitcher.LEFT);
+//					switcher.toFullScreen(page,
+//							new ProjectInfoPage(lineNum, MainFrame.PAGE_WIDTH,
+//									MainFrame.PAGE_HEIGHT, switcher, detail,
+//									service, user));
+					};
 				panel.add(new ProjectCard(handler,
 						CARD_WIDTH, CARD_HEIGHT, projects.get(i * lineNum + j)));
 			}
@@ -103,6 +109,7 @@ public class CardsPanel extends JPanel {
 			int row, int lineNum, List<UserInfo> users,
 			RepositoryBLService repo, UserBLService u) throws Exception {
 		Box box = Box.createVerticalBox();
+		box.setOpaque(false);
 		int size = users.size();
 		for(int i = 0; i < row; ++i) {
 			CardsPanel panel = createCardContainer(lineNum);
@@ -168,6 +175,7 @@ public class CardsPanel extends JPanel {
 	 */
 	private static JPanel createPlainCard() {
 		JPanel panel = new JPanel();
+		panel.setOpaque(false);
 		panel.setPreferredSize(new Dimension(CARD_WIDTH, CARD_HEIGHT));
 		return panel;
 	}

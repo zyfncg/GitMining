@@ -9,9 +9,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+
+import res.Colors;
 
 /**
  *信息卡片 
@@ -19,8 +19,7 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class Card extends JPanel {
 	
-	private Color c = Color.GREEN;
-	
+	private Color c = Colors.CARD_AWAY_BG;	
 	/**
 	 *图像面板 
 	 */
@@ -29,7 +28,7 @@ public class Card extends JPanel {
 	/**
 	 *描述面板 
 	 */
-	protected JPanel txtPanel;
+	protected TextPanel txtPanel;
 	
 	/**
 	 *信息项面板 
@@ -44,16 +43,10 @@ public class Card extends JPanel {
 		this.iconPanel = new JPanel();
 		this.iconPanel.setOpaque(false);
 		this.iconPanel.setPreferredSize(new Dimension(width, iconH));
+		this.iconPanel.setOpaque(false);//TODO 可能不设为透明
 		
 		//描述面板
-		JLabel txtLabel = new JLabel(text, SwingConstants.CENTER);
-		txtLabel.setOpaque(false);
-		FlowLayout layout = new FlowLayout();
-		layout.setVgap(0);
-		this.txtPanel = new JPanel(layout);
-		this.txtPanel.setOpaque(false);
-		this.txtPanel.add(txtLabel);
-		this.txtPanel.setPreferredSize(new Dimension(width, iconH));
+		this.txtPanel = new TextPanel(text, width, iconH);
 
 		//信息面板
 		FlowLayout itemLayout = new FlowLayout();
@@ -75,13 +68,13 @@ public class Card extends JPanel {
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				c = Color.BLACK;
+				c = Colors.CARD_ENTER_BG;
 				repaint();
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				c = Color.GREEN;
+				c = Colors.CARD_AWAY_BG;
 				repaint();
 			}
 			

@@ -10,12 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
+import businessLogic.businessLogicController.RepositoryController.RepositoryController;
+import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import constant.Page;
 import constant.SortType;
-import stub.RepositoryController_Stub;
-import stub.UserController_Stub;
+import res.Colors;
+import res.Strings;
 
 /**
  *项目信息主页 
@@ -23,9 +25,9 @@ import stub.UserController_Stub;
 @SuppressWarnings("serial")
 public class ProjectPage extends JPanel {
 	
-	private RepositoryBLService repository = new RepositoryController_Stub();
+	private RepositoryBLService repository = new RepositoryController();
 	
-	private UserBLService user = new UserController_Stub();
+	private UserBLService user = new UserController();
 	
 	/**
 	 *所有的项目信息 
@@ -52,6 +54,7 @@ public class ProjectPage extends JPanel {
 		
 		//信息面板
 		JPanel switchCards = new JPanel(new BorderLayout());	//项目信息面板
+		switchCards.setOpaque(false);
 		allProjects = null;
 		try {
 			allProjects = this.repository.getAllRepositorys();
@@ -63,7 +66,7 @@ public class ProjectPage extends JPanel {
 		try {
 			projectPanel = InfoManager.getProjectInfoPanel(
 					allProjects, switchCards, switcher, lineCardNum,
-					this, CARD_ROW, repository, user);
+					this, CARD_ROW, repository, user, null);//给出项目信息的图片提示
 		} catch (Exception e) {
 			// TODO 异常处理
 		}
@@ -73,7 +76,7 @@ public class ProjectPage extends JPanel {
 		//搜索面板
 		int searchH = height / 6;
 		int searchW = width - (SwitchPanel.SWITCH_WIDTH << 1);
-		String tip = "项目名称";//TODO 字符串统一管理
+		String tip = Strings.PROJECT_SEARCH_TIP;
 		SearchPanel search = new SearchPanel(searchW, searchH, tip);
 		search.setClickHandler(this.getSearchHandler(
 				search, tip, switcher, switchCards, lineCardNum));
@@ -91,40 +94,44 @@ public class ProjectPage extends JPanel {
 		btnW = (btnW > btnH * 3) ? (btnH * 3) : btnW;
 		//四种排序依据
 		SortButton general = new SortButton(btnW, btnH,
-				"general", SortType.General, 
+				Strings.GENERAL_LABEL, SortType.General, 
 				this.getSortHandler(SortType.General, switcher, switchCards, lineCardNum));
 		SortButton star = new SortButton(btnW, btnH,
-				"star", SortType.Star,
+				Strings.STAR_LABEL, SortType.Star,
 				this.getSortHandler(SortType.Star, switcher, switchCards, lineCardNum));
 		SortButton fork = new SortButton(btnW, btnH,
-				"fork", SortType.Fork,
+				Strings.FORK_LABEL, SortType.Fork,
 				this.getSortHandler(SortType.Fork, switcher, switchCards, lineCardNum));
-		SortButton contributor = new SortButton(btnW, btnH,
-				"contributor", SortType.Contributors,
-				this.getSortHandler(SortType.Contributors, switcher, switchCards, lineCardNum));
+//		SortButton contributor = new SortButton(btnW, btnH,
+//				Strings.CONTRIBUTOR_LABEL, SortType.Contributors,
+//				this.getSortHandler(SortType.Contributors, switcher, switchCards, lineCardNum));
 		//四个按钮的按钮面板
 		FlowLayout inLayout = new FlowLayout();
 		inLayout.setHgap(0);
 		inLayout.setVgap(sortH / 3);
 		JPanel btnPanel = new JPanel(inLayout);
+		btnPanel.setOpaque(false);
 		btnPanel.add(general);
 		btnPanel.add(star);
 		btnPanel.add(fork);
-		btnPanel.add(contributor);
+//		btnPanel.add(contributor);
 		//排序面板
 		FlowLayout outLayout = new FlowLayout();
 		outLayout.setHgap((width - sortW) >> 1); 
 		outLayout.setVgap(0);
 		JPanel sort = new JPanel(outLayout);
 		sort.add(btnPanel);
+		sort.setOpaque(false);
 		
 		//组合所有面板
 		Box container = Box.createVerticalBox();
 		container.add(switcherPanel);
 		container.add(sort);
 		container.add(switchCards);
+		container.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(container);
+		this.setBackground(Colors.PAGE_BG);
 	}
 	
 	/**
@@ -187,7 +194,7 @@ public class ProjectPage extends JPanel {
 		try {
 			to = InfoManager.getProjectInfoPanel(
 					projects, parent, switcher,
-					col, this, CARD_ROW, repository, user);
+					col, this, CARD_ROW, repository, user, null);//TODO 给出项目信息的图片
 		} catch (Exception e) {
 			// TODO 异常处理
 		}

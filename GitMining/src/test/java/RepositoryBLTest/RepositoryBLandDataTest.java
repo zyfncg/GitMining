@@ -46,8 +46,8 @@ public class RepositoryBLandDataTest {
 //		List<ProjectInfo> someProject = new ArrayList<ProjectInfo>();
 //		someProject.add(new ProjectInfo("mojombo", "grit", forks, stars, contributors))
 	}
-	public static void main(String[] args) {
-		RepositoryBLandDataTest asasd = new RepositoryBLandDataTest();
-		asasd.test();
-	}
+//	public static void main(String[] args) {
+//		RepositoryBLandDataTest asasd = new RepositoryBLandDataTest();
+//		asasd.test();
+//	}
 }
