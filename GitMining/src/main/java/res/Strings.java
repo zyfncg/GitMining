@@ -11,6 +11,11 @@ public class Strings {
 	public static final String STAR_LABEL = "star";
 	
 	/**
+	 *language标签 
+	 */
+	public static final String LANGUAGE_LABEL = "language";
+	
+	/**
 	 *fork标签 
 	 */
 	public static final String FORK_LABEL = "fork";

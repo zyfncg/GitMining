@@ -34,10 +34,8 @@ public class Card extends JPanel {
 	 *信息项面板 
 	 */
 	protected JPanel itemPanel;
-	
-	protected ClickHandler handler = () -> {};
 
-	public Card(int width, int height, String text) {
+	public Card(ClickHandler handler, int width, int height, String text) {
 		//分成3部分， 图像面板：描述面板：信息面板 = 1 : 1 : 2
 		
 		//图像面板
@@ -82,18 +80,9 @@ public class Card extends JPanel {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					handler.handle();
+				handler.handle();
 			}
 		});
-	}
-	
-	public Card(ClickHandler handler, int width, int height, String text) {
-		this(width, height, text);
-		this.handler = handler;
-	}
-	
-	public void setHandler(ClickHandler handler) {
-		this.handler = handler;
 	}
 	
 	@Override

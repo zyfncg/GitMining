@@ -7,7 +7,6 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
-import Info.UserInfo;
 import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
@@ -26,7 +25,7 @@ public class UserInfoPage extends JPanel {
 	private static final int CREATE_ROW = 2;
 
 	public UserInfoPage(int lineCardNum, int width, int height,
-			PanelSwitcher switcher, UserInfo user,
+			PanelSwitcher switcher, UserInfoDetail user,
 			RepositoryBLService service, UserBLService u) {
 		//分成4部分， 图像面板：信息面板：创建项目面板：参与项目面板 = 1 : 1 : 2 : 2
 
@@ -41,27 +40,21 @@ public class UserInfoPage extends JPanel {
 		Box info = Box.createVerticalBox();
 		info.setOpaque(false);
 		int itemH = iconH >> 2;
-		UserInfoDetail detail = null;
-		try {
-			detail = u.getUserByName(user.getUserName());
-		} catch (Exception e1) {
-			// TODO 异常处理
-		}
 		KVPanel description = new KVPanel(width, itemH,
-				Strings.DESCRIPTION_LABEL, detail.getDescriptionUser(), KVPanel.HORIZONTAL);
+				Strings.DESCRIPTION_LABEL, user.getDescriptionUser(), KVPanel.HORIZONTAL);
 		KVPanel email = new KVPanel(width, itemH,
-				Strings.EMAIL_LABEL, detail.getEmail(), KVPanel.HORIZONTAL);
+				Strings.EMAIL_LABEL, user.getEmail(), KVPanel.HORIZONTAL);
 		KVPanel company = new KVPanel(width, itemH,
-				Strings.COMPANY_LABEL, detail.getCompany(), KVPanel.HORIZONTAL);
+				Strings.COMPANY_LABEL, user.getCompany(), KVPanel.HORIZONTAL);
 		KVPanel address = new KVPanel(width, itemH,
-				Strings.ADDRESS_LABEL, detail.getAddress(), KVPanel.HORIZONTAL);
+				Strings.ADDRESS_LABEL, user.getAddress(), KVPanel.HORIZONTAL);
 		info.add(description);
 		info.add(email);
 		info.add(company);
 		info.add(address);
 
 		//创建项目面板
-		List<ProjectInfo> p1 = detail.getProjectCreatInfo();
+		List<ProjectInfo> p1 = user.getProjectCreatInfo();
 		JPanel switchCards = new JPanel(new BorderLayout());
 		switchCards.setOpaque(false);
 		SwitchPanel create = null;
@@ -72,6 +65,7 @@ public class UserInfoPage extends JPanel {
 			// TODO 异常处理
 		}
 		switchCards.add(create, BorderLayout.CENTER);
+
 
 		//组装所有面板
 		Box all = Box.createVerticalBox();
