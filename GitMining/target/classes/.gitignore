@@ -9,3 +9,5 @@
 /res/
 /stub/
 /ui/
+
+*.class

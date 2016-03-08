@@ -17,6 +17,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import Info.ProjectDetail;
+import Info.ProjectInfo;
 import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
@@ -40,7 +41,7 @@ public class ProjectInfoPage extends JPanel {
 	private static final int COLLABORATOR_ROW = 1;
 	
 	public ProjectInfoPage(int lineCardNum, int width, int height,
-			PanelSwitcher switcher, ProjectDetail project,
+			PanelSwitcher switcher, ProjectInfo project,
 			RepositoryBLService repo, UserBLService user) {
 		//分成5部分， 图像面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
 		//= 1 / 3 : 1 / 6: 1 / 6: 1 / 3 : 1 : 2 : 2
@@ -63,7 +64,13 @@ public class ProjectInfoPage extends JPanel {
 		int urlH = iconH >> 1;
 		//项目地址文本框
 		JTextField url = new JTextField();
-		url.setText(project.getURL());
+		ProjectDetail detail = null;
+		try {
+			detail = repo.getRepositoryByName(project.getProjectName());
+		} catch (Exception e3) {
+			// TODO 异常处理
+		}
+		url.setText(detail.getURL());
 		url.setPreferredSize(new Dimension((int)(urlW * 0.8), urlH));
 		url.setEditable(false);
 		//复制按钮
@@ -110,17 +117,17 @@ public class ProjectInfoPage extends JPanel {
 		int itemH = height >> 3;
 		//各项信息面板
 		KVPanel language = new KVPanel(itemW, itemH,
-				"language", project.getLanguage(), KVPanel.VERTICAL);
+				Strings.LANGUAGE_LABEL, detail.getLanguage(), KVPanel.VERTICAL);
 		KVPanel star = new KVPanel(itemW, itemH,
-				"star", String.valueOf(project.getStars()), KVPanel.VERTICAL);
+				Strings.STAR_LABEL, String.valueOf(detail.getStars()), KVPanel.VERTICAL);
 		KVPanel fork = new KVPanel(itemW, itemH,
-				"fork", String.valueOf(project.getForks()), KVPanel.VERTICAL);
+				Strings.FORK_LABEL, String.valueOf(detail.getForks()), KVPanel.VERTICAL);
 		KVPanel contributor = new KVPanel(itemW, itemH,Strings.CONTRIBUTOR_LABEL,
-				String.valueOf(project.getContributors()), KVPanel.VERTICAL);
+				String.valueOf(detail.getContributors()), KVPanel.VERTICAL);
 		KVPanel collaborator = new KVPanel(itemW, itemH, Strings.COLLABORATOR_LABEL,
-				String.valueOf(project.getCollaborators()), KVPanel.VERTICAL);
+				String.valueOf(detail.getCollaborators()), KVPanel.VERTICAL);
 		KVPanel subscriber = new KVPanel(itemW, itemH, Strings.SUBSCRIBER_LABEL,
-				String.valueOf(project.getSubscribers()), KVPanel.VERTICAL);
+				String.valueOf(detail.getSubscribers()), KVPanel.VERTICAL);
 		//将信息面板组合
 		FlowLayout layout = new FlowLayout();
 		layout.setVgap(itemH >> 3);
@@ -134,7 +141,7 @@ public class ProjectInfoPage extends JPanel {
 		info.add(subscriber);
 		
 		//贡献者面板
-		List<UserInfo> u1 = project.getContributorsInfo();
+		List<UserInfo> u1 = detail.getContributorsInfo();
 		JPanel contri = new JPanel(new BorderLayout());
 		contri.setOpaque(false);
 		SwitchPanel p1 = null;
@@ -147,7 +154,7 @@ public class ProjectInfoPage extends JPanel {
 		contri.add(p1, BorderLayout.CENTER);
 
 		//参与者面板
-		List<UserInfo> u2 = project.getCollaboratorsInfo();
+		List<UserInfo> u2 = detail.getCollaboratorsInfo();
 		JPanel involve = new JPanel(new BorderLayout());
 		involve.setOpaque(false);
 		SwitchPanel p2 = null;

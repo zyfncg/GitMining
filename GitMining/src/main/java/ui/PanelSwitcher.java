@@ -80,18 +80,18 @@ public class PanelSwitcher {
 		}
 	}
 	
-	/**
-	 *使目标按钮铺满全屏 
-	 */
-	public void toFullScreen(JPanel from, JPanel target) {
-		if(from == target) return ;
-		target.setVisible(true);
-		JPanel root = this.frame.getRootPanel();
-		root.add(target, BorderLayout.CENTER);
-		this.slideMap.get(FULL_SCREEN).slide(from, target);
-		this.frame.setCurrentPage(target);
-		root.revalidate();
-	}
+//	/**
+//	 *使目标按钮铺满全屏 
+//	 */
+//	public void toFullScreen(JPanel from, JPanel target) {
+//		if(from == target) return ;
+//		target.setVisible(true);
+//		JPanel root = this.frame.getRootPanel();
+//		root.add(target, BorderLayout.CENTER);
+//		this.slideMap.get(FULL_SCREEN).slide(from, target);
+//		this.frame.setCurrentPage(target);
+//		root.revalidate();
+//	}
 
 	/**
 	 *不同面板的切换 
@@ -221,17 +221,13 @@ public class PanelSwitcher {
 			});
 			startSlide(timer);
 		});
-		//放大至全屏
+		//放大至全屏 TODO 以后有机会就实现
 		this.slideMap.put(FULL_SCREEN, (from, to) -> {
 			from.setVisible(false);
-//			startX = from.getX();
-//			startY = from.getY();
-//			startW = from.getWidth();
-//			startH = from.getHeight();
-			startX = 100;
-			startY = 500;
-			startW = 100;
-			startH = 100;
+			startX = from.getX();
+			startY = from.getY();
+			startW = from.getWidth();
+			startH = from.getHeight();
 			int endX = 0, endY = MainFrame.BUTTON_SIZE;
 			int endW = MainFrame.PAGE_WIDTH;
 			int endH = MainFrame.PAGE_HEIGHT;
