@@ -80,18 +80,18 @@ public class PanelSwitcher {
 		}
 	}
 	
-	/**
-	 *使目标按钮铺满全屏 
-	 */
-	public void toFullScreen(JPanel from, JPanel target) {
-		if(from == target) return ;
-		target.setVisible(true);
-		JPanel root = this.frame.getRootPanel();
-		root.add(target, BorderLayout.CENTER);
-		this.slideMap.get(FULL_SCREEN).slide(from, target);
-		this.frame.setCurrentPage(target);
-		root.revalidate();
-	}
+//	/**
+//	 *使目标按钮铺满全屏 
+//	 */
+//	public void toFullScreen(JPanel from, JPanel target) {
+//		if(from == target) return ;
+//		target.setVisible(true);
+//		JPanel root = this.frame.getRootPanel();
+//		root.add(target, BorderLayout.CENTER);
+//		this.slideMap.get(FULL_SCREEN).slide(from, target);
+//		this.frame.setCurrentPage(target);
+//		root.revalidate();
+//	}
 
 	/**
 	 *不同面板的切换 
@@ -105,6 +105,7 @@ public class PanelSwitcher {
 		to.setVisible(true);
 		parent.add(to);
 		this.panelSlide(from, to, direction);
+		from.setVisible(false);
 		parent.revalidate();
 	}
 	
@@ -162,7 +163,9 @@ public class PanelSwitcher {
 		JPanel root = this.frame.getRootPanel();
 		root.add(to, BorderLayout.CENTER);
 		this.panelSlide(from, to, direction);
+		System.out.println(from.isVisible());
 		this.frame.setCurrentPage(to);
+		from.setVisible(false);
 		root.revalidate();
 	}
 	
@@ -175,7 +178,7 @@ public class PanelSwitcher {
 	private int startW; //面板滑动之前的宽度
 	private int startH; //面板滑动之前的高度
 	private int frequency = 15; //面板位置变化的频率
-	private int distance = 25;  //面板每次移动的距离
+	private int distance = 35;  //面板每次移动的距离
 	private int left; //向左一次放大的距离
 	private int right;//向右一次放大的距离
 	private int up;   //向上一次放大的距离
@@ -191,10 +194,8 @@ public class PanelSwitcher {
 			int endX = from.getX();
 			int endY = startY;
 			Timer timer = new Timer(frequency, e -> {
-				from.setSize(startX - endX, from.getHeight());
 				to.setLocation(startX, startY);
 				if(startX <= endX) {
-					from.setVisible(false);
 					to.setLocation(endX, endY);
 					((Timer)e.getSource()).stop();
 				}
@@ -207,13 +208,9 @@ public class PanelSwitcher {
 			startW = 0;
 			startH = from.getHeight();
 			int endW = from.getWidth();
-			to.setLocation(from.getX(), from.getY());
-			to.setSize(startW, startH);
 			Timer timer = new Timer(frequency, e -> {
-				from.setLocation(startW, from.getY());
-				to.setSize(startW, startH);
+				to.setLocation(startW, startH);
 				if(startW >= endW) {
-					from.setVisible(false);
 					to.setSize(endW, startH);
 					((Timer)e.getSource()).stop();
 				}
@@ -221,17 +218,13 @@ public class PanelSwitcher {
 			});
 			startSlide(timer);
 		});
-		//放大至全屏
+		//放大至全屏 TODO 以后再实现
 		this.slideMap.put(FULL_SCREEN, (from, to) -> {
 			from.setVisible(false);
-//			startX = from.getX();
-//			startY = from.getY();
-//			startW = from.getWidth();
-//			startH = from.getHeight();
-			startX = 100;
-			startY = 500;
-			startW = 100;
-			startH = 100;
+			startX = from.getX();
+			startY = from.getY();
+			startW = from.getWidth();
+			startH = from.getHeight();
 			int endX = 0, endY = MainFrame.BUTTON_SIZE;
 			int endW = MainFrame.PAGE_WIDTH;
 			int endH = MainFrame.PAGE_HEIGHT;

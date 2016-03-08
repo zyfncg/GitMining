@@ -9,6 +9,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -63,7 +64,6 @@ public class SearchPanel extends JPanel {
 			if(handler != null) {
 				handler.handle();
 			}});
-		
 		this.initTextUI(width - btnW, btnH, tip);
 		
 		this.add(text);

@@ -10,14 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
-import businessLogic.businessLogicController.RepositoryController.RepositoryController;
-import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import constant.Page;
 import constant.SortType;
 import res.Colors;
 import res.Strings;
+import stub.RepositoryController_Stub;
+import stub.UserController_Stub;
 
 /**
  *项目信息主页 
@@ -25,9 +25,9 @@ import res.Strings;
 @SuppressWarnings("serial")
 public class ProjectPage extends JPanel {
 	
-	private RepositoryBLService repository = new RepositoryController();
+	private RepositoryBLService repository = new RepositoryController_Stub();
 	
-	private UserBLService user = new UserController();
+	private UserBLService user = new UserController_Stub();
 	
 	/**
 	 *所有的项目信息 
@@ -102,9 +102,9 @@ public class ProjectPage extends JPanel {
 		SortButton fork = new SortButton(btnW, btnH,
 				Strings.FORK_LABEL, SortType.Fork,
 				this.getSortHandler(SortType.Fork, switcher, switchCards, lineCardNum));
-//		SortButton contributor = new SortButton(btnW, btnH,
-//				Strings.CONTRIBUTOR_LABEL, SortType.Contributors,
-//				this.getSortHandler(SortType.Contributors, switcher, switchCards, lineCardNum));
+		SortButton contributor = new SortButton(btnW, btnH,
+				Strings.CONTRIBUTOR_LABEL, SortType.Contributors,
+				this.getSortHandler(SortType.Contributors, switcher, switchCards, lineCardNum));
 		//四个按钮的按钮面板
 		FlowLayout inLayout = new FlowLayout();
 		inLayout.setHgap(0);
@@ -114,7 +114,7 @@ public class ProjectPage extends JPanel {
 		btnPanel.add(general);
 		btnPanel.add(star);
 		btnPanel.add(fork);
-//		btnPanel.add(contributor);
+		btnPanel.add(contributor);
 		//排序面板
 		FlowLayout outLayout = new FlowLayout();
 		outLayout.setHgap((width - sortW) >> 1); 

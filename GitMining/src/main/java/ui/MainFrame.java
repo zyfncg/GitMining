@@ -187,9 +187,9 @@ public class MainFrame extends JFrame {
 	private class FrameButton extends JButton {
 		
 		public FrameButton(ImageIcon icon, ActionListener l) {
-			this.setBackground(Color.BLACK);
 			this.addActionListener(l);
 			this.setPreferredSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));
+			this.setBackground(Color.BLACK);
 		}
 	}
 	
