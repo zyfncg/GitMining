@@ -5,6 +5,7 @@ import java.util.List;
 import Info.ProjectInfo;
 import businessLogic.businessLogicModel.RepositoryModel.AllSort.ContributorSort;
 import businessLogic.businessLogicModel.RepositoryModel.AllSort.ForkSort;
+import businessLogic.businessLogicModel.RepositoryModel.AllSort.GeneralSort;
 import businessLogic.businessLogicModel.RepositoryModel.AllSort.StarSort;
 import constant.SortType;
 
@@ -37,6 +38,10 @@ public class RepositorySort {
 		else if (Type.equals(SortType.Contributors)) {
 			DetailSort conSort = new ContributorSort();
 			return conSort;
+		}
+		else if (Type.equals(SortType.General)) {
+			DetailSort GeneralSort = new GeneralSort();
+			return GeneralSort;
 		}
 		return null;
 	}
