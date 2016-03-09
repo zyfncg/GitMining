@@ -15,8 +15,8 @@ public class RepositoryHandle {
 	ProjectDataServer projectData = new ProjectDataController();
 	//全部项目信息（粗略）列表
 	private static List<ProjectInfo> allprojects = new ArrayList<ProjectInfo>();
-	//最近一次搜索所得的项目信息（粗略）列表
-	private static List<ProjectInfo> searchprojects = new ArrayList<ProjectInfo>();
+//	//最近一次搜索所得的项目信息（粗略）列表
+//	private static List<ProjectInfo> searchprojects = new ArrayList<ProjectInfo>();
 	
 	
 	//Junit test
@@ -43,13 +43,24 @@ public class RepositoryHandle {
 	public List<ProjectInfo> SearchRepositorys(String key)throws Exception {
 		List<ProjectInfo> resultList = new ArrayList<ProjectInfo>();
 		List<ProjectInfo> templist = new ArrayList<ProjectInfo>();
-		templist.addAll(allprojects);
+		try {
+			templist = this.getallProjects();			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
 		for(ProjectInfo proinfo:templist){
-			if ((proinfo.getDescription().contains(key))||(proinfo.getProjectName().getrepository().contains(key))) {
+			if (proinfo.getProjectName().getrepository().contains(key)) {
 				resultList.add(proinfo);
+				templist.remove(proinfo);
 			}
 		}
-		searchprojects.addAll(resultList);
+		for(ProjectInfo projectInfo2:templist){
+			if (projectInfo2.getDescription().contains(key)) {
+				resultList.add(projectInfo2);
+			}
+		}
+//		searchprojects.addAll(resultList);
 		return resultList;
 	}
 	
