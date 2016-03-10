@@ -51,6 +51,7 @@ public class HttpRequestUtil {
     }
     
     /** 
+     * 通过URL获得输入流
      * @param requestUrl 
      * @return InputStream 
      */ 
@@ -67,6 +68,8 @@ public class HttpRequestUtil {
         } 
         try { 
             conn = (HttpURLConnection) url.openConnection(); 
+            conn.setConnectTimeout(2000);
+            conn.setReadTimeout(2000);
             conn.setDoInput(true); 
             conn.setRequestMethod("GET"); 
             conn.connect(); 
