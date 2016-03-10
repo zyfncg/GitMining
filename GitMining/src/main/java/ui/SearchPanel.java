@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import res.Img;
 import res.Strings;
 
 /**
@@ -57,7 +58,7 @@ public class SearchPanel extends JPanel {
 		int btnH = height / 3;
 		int btnW = height << 1;
 		btnW = (btnW > width / 3) ? (width / 3) : btnW;
-		search = new JButton(Strings.SEARCH_LABEL);
+		search = new JButton(Img.SEARCH);
 		search.setPreferredSize(new Dimension(btnW, btnH));
 		search.addActionListener(e -> {
 			if(handler != null) {

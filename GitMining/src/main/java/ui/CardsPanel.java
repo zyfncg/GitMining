@@ -3,6 +3,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.util.List;
 
 import javax.swing.Box;
@@ -12,6 +13,7 @@ import Info.ProjectInfo;
 import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
+import res.Img;
 
 /**
  *卡片信息面板
@@ -50,11 +52,10 @@ public class CardsPanel extends JPanel {
 	 *@param projects 项目信息列表
 	 *@param service 获取项目信息的接口
 	 *@param user 获取用户信息列表的接口
-	 * @throws Exception 
 	 */
 	public static CardsPanel createProjectCards(JPanel page, PanelSwitcher switcher,
 			int row, int lineNum, List<ProjectInfo> projects,
-			RepositoryBLService service, UserBLService user) throws Exception {
+			RepositoryBLService service, UserBLService user){
 		Box box = Box.createVerticalBox();
 		box.setOpaque(false);
 		int size = projects.size();
@@ -96,11 +97,10 @@ public class CardsPanel extends JPanel {
 	 *@param users 用户信息列表
 	 *@param repo 获取项目信息列表的接口
 	 *@param u 获取用户信息列表的接口
-	 * @throws Exception 
 	 */
 	public static CardsPanel createUserCards(JPanel page, PanelSwitcher switcher,
 			int row, int lineNum, List<UserInfo> users,
-			RepositoryBLService repo, UserBLService u) throws Exception {
+			RepositoryBLService repo, UserBLService u){
 		Box box = Box.createVerticalBox();
 		box.setOpaque(false);
 		int size = users.size();
@@ -136,7 +136,17 @@ public class CardsPanel extends JPanel {
 	 *@param column, 卡片的列数，用于确定面板的宽度 
 	 */
 	public static CardsPanel createPlainPanel(int row, int column) {
-		CardsPanel panel = new CardsPanel();
+		CardsPanel panel = new CardsPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Dimension d = this.getPreferredSize();
+				g.drawImage(Img.NULL_MESSAGE,
+						0, 0, d.width, d.height,
+						0, 0, Img.NULL_MESSAGE.getWidth(null), Img.NULL_MESSAGE.getHeight(null),
+						null);
+			}
+		};
 		Box box = Box.createVerticalBox();
 		for(int i = 0; i < row; ++i) {
 			box.add(createCardContainer(column));

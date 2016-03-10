@@ -22,6 +22,7 @@ import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
+import res.Img;
 import res.Strings;
 
 /**
@@ -43,8 +44,8 @@ public class ProjectInfoPage extends JPanel {
 	public ProjectInfoPage(int lineCardNum, int width, int height,
 			PanelSwitcher switcher, ProjectInfo project,
 			RepositoryBLService repo, UserBLService user) {
-		//分成5部分， 图像面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
-		//= 1 / 3 : 1 / 6: 1 / 6: 1 / 3 : 1 : 2 : 2
+		//分成6部分， 图像面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
+		//= 2/3 : 1/2 : 1/6: 1/3 : 1/3 : 2 : 2
 		
 		//图像面板
 		int iconH = height / 9;
@@ -55,7 +56,7 @@ public class ProjectInfoPage extends JPanel {
 		
 		//描述面板
 		TextPanel description = new TextPanel(
-				project.getDescription(), width, iconH >> 1);
+				project.getDescription(), width, height / 12);
 		
 		//项目地址面板
 		JPanel URL = new JPanel();
@@ -74,7 +75,7 @@ public class ProjectInfoPage extends JPanel {
 		url.setPreferredSize(new Dimension((int)(urlW * 0.8), urlH));
 		url.setEditable(false);
 		//复制按钮
-		JButton copy = new JButton(Strings.COPY_LABEL);//TODO字符串资源统一管理
+		JButton copy = new JButton(Img.COPY);
 //		copy.setToolTipText("将地址复制到剪贴板");
 //		ToolTipManager.sharedInstance().setInitialDelay(0);
 //		copy.addActionListener(e -> {
@@ -114,7 +115,7 @@ public class ProjectInfoPage extends JPanel {
 		
 		//信息面板
 		int itemW = width >> 3;
-		int itemH = height >> 3;
+		int itemH = height / 18;
 		//各项信息面板
 		KVPanel language = new KVPanel(itemW, itemH,
 				Strings.LANGUAGE_LABEL, detail.getLanguage(), KVPanel.VERTICAL);
@@ -144,26 +145,16 @@ public class ProjectInfoPage extends JPanel {
 		List<UserInfo> u1 = detail.getContributorsInfo();
 		JPanel contri = new JPanel(new BorderLayout());
 		contri.setOpaque(false);
-		SwitchPanel p1 = null;
-		try {
-			 p1 = InfoManager.getUserInfoPanel(u1, contri, switcher,
-					lineCardNum, CONTRIBUTOR_ROW, this, repo, user, null);//TODO 给出贡献者的图片
-		} catch (Exception e2) {
-			// TODO 异常处理
-		}
+		SwitchPanel p1 = InfoManager.getUserInfoPanel(u1, contri, switcher,
+				lineCardNum, CONTRIBUTOR_ROW, this, repo, user, Img.FOUNDER_TIP);
 		contri.add(p1, BorderLayout.CENTER);
 
 		//参与者面板
 		List<UserInfo> u2 = detail.getCollaboratorsInfo();
 		JPanel involve = new JPanel(new BorderLayout());
 		involve.setOpaque(false);
-		SwitchPanel p2 = null;
-		try {
-			p2 = InfoManager.getUserInfoPanel(u2, involve, switcher,
-					lineCardNum, COLLABORATOR_ROW, this, repo, user, null);//TODO 给出参与者的图片
-		} catch (Exception e1) {
-			// TODO 异常处理
-		}
+		SwitchPanel p2 = InfoManager.getUserInfoPanel(u2, involve, switcher,
+				lineCardNum, COLLABORATOR_ROW, this, repo, user, Img.PARICIPANT_TIP);;
 		involve.add(p2, BorderLayout.CENTER);
 		
 		//组装所有面板

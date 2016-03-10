@@ -21,16 +21,6 @@ public class Strings {
 	public static final String FORK_LABEL = "fork";
 	
 	/**
-	 *general标签 
-	 */
-	public static final String GENERAL_LABEL = "general";
-	
-	/**
-	 *copy标签 
-	 */
-	public static final String COPY_LABEL = "copy";
-	
-	/**
 	 *contributor标签 
 	 */
 	public static final String CONTRIBUTOR_LABEL = "contributor";
@@ -39,11 +29,6 @@ public class Strings {
 	 *collaborator标签 
 	 */
 	public static final String COLLABORATOR_LABEL = "collaborator";
-	
-	/**
-	 *search标签 
-	 */
-	public static final String SEARCH_LABEL = "search";
 	
 	/**
 	 *subscriber标签 
@@ -89,4 +74,25 @@ public class Strings {
 	 *用户搜索框提示信息 
 	 */
 	public static final String USER_SEARCH_TIP = "Enter user name";
+	
+	/**
+	 *网络异常提示信息 
+	 */
+	public static final String URL_EXCEPTION_TIP="网络异常，请稍后再试";
+	
+	/**
+	 *默认bio信息 
+	 */
+	public static final String DEFAULT_BIO="无";
+	
+	/**
+	 *默认company信息 
+	 */
+	public static final String DEFAULT_COMPANY="未知";
+	
+	/**
+	 *默认email信息 
+	 */
+	public static final String DEFAULT_EMAIL="未知";
+	
 }

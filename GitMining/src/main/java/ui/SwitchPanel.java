@@ -1,7 +1,6 @@
 package ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -16,6 +15,7 @@ import Info.ProjectInfo;
 import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
+import res.Img;
 
 /**
  *切换面板
@@ -68,23 +68,22 @@ public class SwitchPanel extends JPanel {
 	 *@param column 项目信息卡片的列数
 	 *@param service 获取项目信息的接口
 	 *@param user 获取用户信息的接口
-	 * @throws Exception 
 	 */
 	public SwitchPanel projectListPanel(List<ProjectInfo> projects,
 			JPanel page, JPanel parent, PanelSwitcher switcher,
 			int row, int column, RepositoryBLService service,
-			UserBLService user, Image image) throws Exception {
+			UserBLService user, Image image){
 		this.initProjectList(projects, page, switcher, row, column, service, user);
 		this.nowIndex = 0;
 		this.size = this.panelList.size();
 		Dimension d = getSize(panelList.get(nowIndex));
-		double width = d.getWidth();
-		double height = d.getHeight();
+		int width = d.width;
+		int height = d.height;
 		
 		SwitchButton previous = new SwitchButton(
-				SWITCH_WIDTH, height, SwitchButton.LEFT);
+				SWITCH_WIDTH, height, true);
 		SwitchButton next = new SwitchButton(
-				SWITCH_WIDTH, height, SwitchButton.RIGHT);
+				SWITCH_WIDTH, height, false);
 		previous.setHandler(
 				this.getPreHandler(previous, next, width,
 						height, switcher, parent, image));
@@ -105,22 +104,21 @@ public class SwitchPanel extends JPanel {
 	 *@param column 用户信息卡片的列数
 	 *@param repo 获取项目信息列表的接口
 	 *@param u 获取用户信息列表的接口
-	 * @throws Exception 
 	 */
 	public SwitchPanel userListPanel(List<UserInfo> users,
 			JPanel page, JPanel parent, PanelSwitcher switcher, int row, int column,
-			RepositoryBLService repo, UserBLService u, Image image) throws Exception {
+			RepositoryBLService repo, UserBLService u, Image image){
 		this.initUserList(users, page, switcher, row, column, repo, u);
 		this.nowIndex = 0;
 		this.size = this.panelList.size();
 		Dimension d = getSize(panelList.get(nowIndex));
-		double width = d.getWidth();
-		double height = d.getHeight();
+		int width = d.width;
+		int height = d.height;
 		
 		SwitchButton previous = new SwitchButton(
-				SWITCH_WIDTH, height, SwitchButton.LEFT);
+				SWITCH_WIDTH, height, true);
 		SwitchButton next = new SwitchButton(
-				SWITCH_WIDTH, height, SwitchButton.RIGHT);
+				SWITCH_WIDTH, height, false);
 		previous.setHandler(
 				this.getPreHandler(previous, next, width,
 						height, switcher, parent, image));
@@ -137,7 +135,7 @@ public class SwitchPanel extends JPanel {
 	 *@param next 去到下一页的按钮
 	 *@param height 信息面板的高度
 	 */
-	private SwitchPanel getFirstPage(SwitchButton next, double height, Image image) {
+	private SwitchPanel getFirstPage(SwitchButton next, int height, Image image) {
 		current = this;
 		JPanel left = createPlainPanel(image, SWITCH_WIDTH, height);
 		if(this.size <= 1) {
@@ -160,7 +158,7 @@ public class SwitchPanel extends JPanel {
 	 * @return 用户点击回到上一个页面时，响应的事件处理 
 	 */
 	private ClickHandler getPreHandler(SwitchButton previous,
-			SwitchButton next, double width, double height,
+			SwitchButton next, int width, int height,
 			PanelSwitcher switcher, JPanel parent, Image image) {
 		ClickHandler pre = () -> {
 			SwitchPanel to = null;
@@ -190,7 +188,7 @@ public class SwitchPanel extends JPanel {
 	 * @return 用户点击去下一个页面时，响应的事件处理 
 	 */
 	private ClickHandler getNextHandler(SwitchButton previous,
-			SwitchButton next, double width, double height,
+			SwitchButton next, int width, int height,
 			PanelSwitcher switcher, JPanel parent, Image image) {
 		ClickHandler h = () -> {
 			SwitchPanel to = null;
@@ -223,7 +221,7 @@ public class SwitchPanel extends JPanel {
 	 */
 	private void initProjectList(List<ProjectInfo> projects,
 			JPanel page, PanelSwitcher switcher, int row, int column,
-			RepositoryBLService service, UserBLService user) throws Exception {
+			RepositoryBLService service, UserBLService user){
 		int size = projects.size();
 		int num = row * column;
 		int i;
@@ -256,11 +254,10 @@ public class SwitchPanel extends JPanel {
 	 *@param column 信息卡片面板中卡片的列数
 	 *@param repo 获取项目信息列表的接口
 	 *@param u 获取用户信息列表的接口
-	 * @throws Exception 
 	 */
 	private void initUserList(List<UserInfo> users,
 			JPanel page, PanelSwitcher switcher, int row, int column,
-			RepositoryBLService repo, UserBLService u) throws Exception {
+			RepositoryBLService repo, UserBLService u){
 		int size = users.size();
 		int num = row * column;
 		int i;
@@ -290,8 +287,8 @@ public class SwitchPanel extends JPanel {
 	 */
 	public static SwitchPanel noSwitch(JPanel center, Image image) {
 		Dimension d = getSize(center);
-		double width = d.getWidth();
-		double height = d.getHeight();
+		int width = d.width;
+		int height = d.height;
 		JPanel previous = createPlainPanel(image, SWITCH_WIDTH, height);
 		JPanel next = createPlainPanel(image, SWITCH_WIDTH, height);		
 		SwitchPanel panel = new SwitchPanel();
@@ -306,15 +303,15 @@ public class SwitchPanel extends JPanel {
 	 */
 	public static SwitchPanel leftOnly(ClickHandler handler, JPanel center, Image image) {
 		Dimension d = getSize(center);
-		double width = d.getWidth();
-		double height = d.getHeight();
-		SwitchButton previous = new SwitchButton(handler, SWITCH_WIDTH, height,
-				SwitchButton.LEFT);
+		int width = d.width;
+		int height = d.height;
+		SwitchButton previous = new SwitchButton(
+				handler, SWITCH_WIDTH, height, true);
 		return leftOnly(previous, center, width, height, image);
 	}
 	
 	private static SwitchPanel leftOnly(SwitchButton previous, JPanel center,
-			double width, double height, Image image) {
+			int width, int height, Image image) {
 		JPanel next = createPlainPanel(image, SWITCH_WIDTH, height);		
 		SwitchPanel panel = new SwitchPanel();
 		combineUI(panel, previous, next, center, width, height);
@@ -329,10 +326,10 @@ public class SwitchPanel extends JPanel {
 	 */
 	public static SwitchPanel rightOnly(Image image, ClickHandler handler, JPanel center) {
 		Dimension d = getSize(center);
-		double width = d.getWidth();
-		double height = d.getHeight();
-		SwitchButton next = new SwitchButton(handler, SWITCH_WIDTH, height,
-				SwitchButton.RIGHT);
+		int width = d.width;
+		int height = d.height;
+		SwitchButton next = new SwitchButton(
+				handler, SWITCH_WIDTH, height, false);
 		return rightOnly(next, center, width, height, image);
 	}
 	
@@ -342,7 +339,7 @@ public class SwitchPanel extends JPanel {
 	 *@param center 切换面板中间的内容
 	 */
 	private static SwitchPanel rightOnly(SwitchButton btn, JPanel center,
-			double width, double height, Image image) {
+			int width, int height, Image image) {
 		JPanel previous = createPlainPanel(image, SWITCH_WIDTH, height);
 		SwitchPanel panel = new SwitchPanel();
 		combineUI(panel, previous, btn, center, width, height);
@@ -357,12 +354,12 @@ public class SwitchPanel extends JPanel {
 	public static SwitchPanel bothSides(ClickHandler left,
 			ClickHandler right, JPanel center) {
 		Dimension d = getSize(center);
-		double width = d.getWidth();
-		double height = d.getHeight();
-		SwitchButton previous = new SwitchButton(left, SWITCH_WIDTH, height,
-				 SwitchButton.LEFT);
-		SwitchButton next = new SwitchButton(right, SWITCH_WIDTH, height,
-				 SwitchButton.RIGHT);
+		int width = d.width;
+		int height = d.height;
+		SwitchButton previous = new SwitchButton(
+				left, SWITCH_WIDTH, height, true);
+		SwitchButton next = new SwitchButton(
+				right, SWITCH_WIDTH, height, false);
 		return bothSides(previous, next, center, width, height);
 	}
 	
@@ -382,25 +379,28 @@ public class SwitchPanel extends JPanel {
 	 */
 	private static Dimension getSize(JPanel panel) {
 		Dimension d = panel.getPreferredSize();
-		double width = d.getWidth() + (SWITCH_WIDTH << 1);
-		double height = d.getHeight();
-		return new Dimension((int)width, (int)height);
+		int width = d.width + (SWITCH_WIDTH << 1);
+		int height = d.height;
+		return new Dimension(width, height);
 	}
 	
 	/**
 	 *创建一个空的面板 
 	 */
-	private static JPanel createPlainPanel(Image img, double width, double height) {
+	private static JPanel createPlainPanel(Image img, int width, int height) {
 		JPanel p = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				if(img == null) return ;
-				
+				g.drawImage(img,
+						0, 0, width, height,
+						0, 0, img.getWidth(null), img.getHeight(null),
+						null);
 			}
 		};
 		//TODO 在面板上贴图
-		p.setPreferredSize(new Dimension((int)width, (int)height));
+		p.setPreferredSize(new Dimension(width, height));
 		p.setOpaque(false);
 		return p;
 	}
@@ -423,29 +423,46 @@ public class SwitchPanel extends JPanel {
 	 */
 	private static class SwitchButton extends JPanel {
 		
-		private Color c = Color.darkGray;
-		
 		private ClickHandler handler;
 		
-		private int side;
-		
-		public static final int LEFT = 0;
-		
-		public static final int RIGHT = 0;
+		/**
+		 *鼠标离开时显示的图片 
+		 */
+		private Image away;
 		
 		/**
-		 * TODO touch 和 untouch代表触摸前后的颜色
-		 * 以后用图片代替
+		 *鼠标移动到上面时显示的图片 
 		 */
-		public SwitchButton(ClickHandler handler, double width,
-				double height,int side) {
-			this(width, height, side);
+		private Image enter;
+		
+		/**
+		 *显示的图片 
+		 */
+		private Image image;
+		
+		private int width;
+		
+		private int height;
+		
+		public SwitchButton(ClickHandler handler, int width,
+				int height,boolean isLeft) {
+			this(width, height, isLeft);
 			this.handler = handler;
 		}
 		
-		public SwitchButton( double width, double height, int side) {
-			this.side = side;
-			this.setPreferredSize(new Dimension((int)width, (int)height));
+		public SwitchButton(int width, int height, boolean isLeft) {
+			if(isLeft) {
+				away = Img.BACK_AWAY;
+				enter = Img.BACK_ENTER;
+			}else {
+				away = Img.NEXT_AWAY;
+				enter = Img.NEXT_ENTER;
+			}
+			image = away;
+			this.width = width;
+			this.height = height;
+			this.setOpaque(false);
+			this.setPreferredSize(new Dimension(width, height));
 			
 			this.addMouseListener(new MouseAdapter() {
 				@Override
@@ -458,13 +475,13 @@ public class SwitchPanel extends JPanel {
 			this.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					c = Color.BLACK;
+					image = enter;
 					repaint();
 				}
 				
 				@Override
 				public void mouseExited(MouseEvent e) {
-					c = Color.darkGray;
+					image = away;
 					repaint();
 				}
 			});
@@ -477,7 +494,11 @@ public class SwitchPanel extends JPanel {
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			this.setBackground(c);
+			int y = (image.getHeight(null) - height) / 2;
+			g.drawImage(image,
+					0, 0, width, height,
+					0, y, width, y + height,
+					null);
 		}
 	}
 }
