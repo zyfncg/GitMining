@@ -13,7 +13,7 @@ public class UserDataController implements UserDataServer{
 	private UserDataUtil userDataUtil=new UserDataUtil();
 	
 	@Override
-	public List<UserInfo> getAllUsers() throws Exception{
+	public List<UserInfo> getAllUsers(){
 
 		List<UserInfo> userList=new ArrayList<UserInfo>();
 		
