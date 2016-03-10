@@ -1,2 +1,5 @@
 
 *.class
+GitMining/target/classes/META-INF/MANIFEST.MF
+GitMining/target/classes/META-INF/maven/LifeIS/GitMining/pom.properties
+GitMining/target/classes/META-INF/maven/LifeIS/GitMining/pom.xml
