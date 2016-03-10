@@ -15,11 +15,13 @@ public class RepositorySort {
 		DetailSort SortWay = this.GetDetailSort(type);
 		RepositoryHandle repositoryHandle = new RepositoryHandle();
 		List<ProjectInfo> allRepositorys = repositoryHandle.getallProjects();
+//		System.out.println(allRepositorys.get(0).getProjectName().getrepository());
 		List<ProjectInfo> sortedRepositorys = SortWay.MakeSort(allRepositorys);
 		return sortedRepositorys;
 	}
 	
 	public List<ProjectInfo> SortSearchRepositorys(SortType type,List<ProjectInfo> someProjects){
+//		System.out.println("123Search");
 		DetailSort SortWay = this.GetDetailSort(type);
 		List<ProjectInfo> sortedSearchRepositorys = SortWay.MakeSort(someProjects);
 		return sortedSearchRepositorys;

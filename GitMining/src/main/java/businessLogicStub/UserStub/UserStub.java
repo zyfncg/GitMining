@@ -13,7 +13,7 @@ import data.dataServer.UserDataServer;
 public class UserStub implements UserDataServer{
 
 	@Override
-	public List<UserInfo> getAllUsers() throws Exception {
+	public List<UserInfo> getAllUsers() {
 		// TODO Auto-generated method stub
 		List<UserInfo> users = new ArrayList<UserInfo>();
 		for(int i = 0; i < 10; i++) {

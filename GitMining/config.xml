@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<CONFIG>   
+     <VALUE>   
+         <!-- API连接设置 -->   
+   		<ProjectURL>http://www.gitmining.net/api/repository/</ProjectURL> 
+        <UserURL>http://www.gitmining.net/api/user/</UserURL>     
+    </VALUE>   
+</CONFIG>   

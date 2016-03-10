@@ -11,7 +11,7 @@ import data.dataServer.ProjectDataServer;
 public class RepositoryStub implements ProjectDataServer {
 
 	@Override
-	public List<ProjectInfo> getAllProjects() throws Exception {
+	public List<ProjectInfo> getAllProjects() {
 		// TODO Auto-generated method stub
 		List<ProjectInfo> someProject = new ArrayList<ProjectInfo>();
 		someProject.add(new ProjectInfo("yes", new ProjectName("rww", "rww1"), 7, 7, 5));

@@ -13,14 +13,13 @@ public class UserDataController implements UserDataServer{
 	private UserDataUtil userDataUtil=new UserDataUtil();
 	
 	@Override
-	public List<UserInfo> getAllUsers() throws Exception{
+	public List<UserInfo> getAllUsers(){
 
 		List<UserInfo> userList=new ArrayList<UserInfo>();
 		
 		try {
 			userList=userDataUtil.getAllUsersFromFile();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return userList;
 		}
@@ -37,7 +36,6 @@ public class UserDataController implements UserDataServer{
 		try {
 			user=userDataUtil.getUserByName(name);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new Exception(Strings.URL_EXCEPTION_TIP);
 		}

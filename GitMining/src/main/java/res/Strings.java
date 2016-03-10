@@ -84,4 +84,23 @@ public class Strings {
 	 *网络异常提示信息 
 	 */
 	public static final String URL_EXCEPTION_TIP="网络异常，请稍后再试";
+<<<<<<< HEAD
+=======
+	
+	/**
+	 *默认bio信息 
+	 */
+	public static final String DEFAULT_BIO="无";
+	
+	/**
+	 *默认company信息 
+	 */
+	public static final String DEFAULT_COMPANY="未知";
+	
+	/**
+	 *默认email信息 
+	 */
+	public static final String DEFAULT_EMAIL="未知";
+	
+>>>>>>> 6e05fcbd647bf77e51b803a869758fcda15b6509
 }
