@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
@@ -25,7 +26,7 @@ import res.Strings;
  *项目信息主页 
  */
 @SuppressWarnings("serial")
-public class ProjectPage extends JPanel {
+public class ProjectPage extends JPanel implements Refreshable {
 	
 	private RepositoryBLService repository = new RepositoryController();
 	
@@ -47,28 +48,49 @@ public class ProjectPage extends JPanel {
 	private SwitchPanel currentPanel;
 	
 	/**
+	 *页面切换器 
+	 */
+	private PanelSwitcher switcher;
+	
+	/**
+	 *展现项目信息的面板 
+	 */
+	private JPanel infoPanel;
+	
+	/**
+	 *一行显示的信息卡片数量 
+	 */
+	private int lineCard;
+	
+	/**
 	 *显示的信息卡片的行数 
 	 */
 	private static final int CARD_ROW = 2;
 	
 	public ProjectPage(int lineCardNum, int width, int height, PanelSwitcher switcher) {
+		this.switcher = switcher;
+		this.lineCard = lineCardNum;
 		//分为三个部分，搜索面板：排序面板：信息面板 = 1 : 1 : 4
 		
 		//信息面板
-		JPanel switchCards = new JPanel(new BorderLayout());	//项目信息面板
-		switchCards.setOpaque(false);
+		this.infoPanel = new JPanel(new BorderLayout());	//项目信息面板
+		infoPanel.setOpaque(false);
 		allProjects = null;
 		try {
 			allProjects = this.repository.getAllRepositorys();
 		} catch (Exception e) {
 			//TODO 异常处理
+			allProjects = new ArrayList<>();
+			JOptionPane.showMessageDialog(null, e.getMessage(),
+					Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 		}
 		currentProjects = allProjects;
 		SwitchPanel projectPanel = InfoManager.getProjectInfoPanel(
-				allProjects, switchCards, switcher, lineCardNum,
-				this, CARD_ROW, repository, user, Img.PROJECT_LIST_TIP);
+				allProjects, infoPanel, switcher, lineCard,
+				this, CARD_ROW, repository, user,
+				Img.PROJECT_LIST_TIP, Img.LARGE_NULL_TIP);
 		currentPanel = projectPanel;
-		switchCards.add(currentPanel, BorderLayout.CENTER);
+		infoPanel.add(currentPanel, BorderLayout.CENTER);
 		
 		//搜索面板
 		int searchH = height / 6;
@@ -76,7 +98,7 @@ public class ProjectPage extends JPanel {
 		String tip = Strings.PROJECT_SEARCH_TIP;
 		SearchPanel search = new SearchPanel(searchW, searchH, tip);
 		search.setClickHandler(this.getSearchHandler(
-				search, tip, switcher, switchCards, lineCardNum));
+				search, tip));
 //		ClickHandler left =
 //				() -> switcher.jump(Page.PROJECT, Page.START, PanelSwitcher.RIGHT);
 //		ClickHandler right =
@@ -94,20 +116,18 @@ public class ProjectPage extends JPanel {
 		ButtonManager m = new ButtonManager();
 		SortButton general = new SortButton(btnW, btnH,
 				Img.GENERAL_SELECT, Img.GENERAL_NOT_SELECT, SortType.General);
-		general.setHandler(this.getSortHandler(SortType.General, m, general,
-						switcher, switchCards, lineCardNum));
+		general.setHandler(this.getSortHandler(SortType.General, m, general));
 		SortButton star = new SortButton(btnW, btnH,
 				Img.STAR_SELECT, Img.STAR_NOT_SELECT, SortType.Star);
-		star.setHandler(this.getSortHandler(SortType.Star, m, star,
-				switcher, switchCards, lineCardNum));
+		star.setHandler(this.getSortHandler(SortType.Star, m, star));
 		SortButton fork = new SortButton(btnW, btnH,
 				Img.FORK_SELECT, Img.FORK_NOT_SELECT, SortType.Fork);
 		fork.setHandler(this.getSortHandler(SortType.Fork, m,
-				fork, switcher, switchCards, lineCardNum));
+				fork));
 		SortButton contributor = new SortButton(btnW, btnH,
 				Img.CONTRIBUTOR_SELECT, Img.CONTRIBUTOR_NOT_SELECT, SortType.Contributors);
 		contributor.setHandler(this.getSortHandler(SortType.Contributors,
-				m, contributor, switcher, switchCards, lineCardNum));
+				m, contributor));
 		m.add(general);
 		m.add(star);
 		m.add(fork);
@@ -134,7 +154,7 @@ public class ProjectPage extends JPanel {
 		Box container = Box.createVerticalBox();
 		container.add(switcherPanel);
 		container.add(sort);
-		container.add(switchCards);
+		container.add(infoPanel);
 		container.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(container);
@@ -145,24 +165,23 @@ public class ProjectPage extends JPanel {
 	 *点击搜索按钮后的事件处理 
 	 *@param search 搜索面板
 	 *@param tip 搜索框的提示信息
-	 *@param switcher 页面跳转器
-	 *@param parent 信息面板的父容器
-	 *@param col 信息面板一行的信息卡片数量
 	 */
 	private ClickHandler getSearchHandler(SearchPanel search,
-			String tip, PanelSwitcher switcher,
-			JPanel parent, int col) {
+			String tip) {
 		ClickHandler handler = () -> {
 			List<ProjectInfo> result = null;
 			try {
 				result = repository.searchRepositorys(search.getText());
 			} catch (Exception e1) {
 				// TODO 异常处理
+				result = new ArrayList<>();
+				JOptionPane.showMessageDialog(null, e1.getMessage(),
+						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 			}
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
-				this.jump(allProjects, switcher, parent, col, PanelSwitcher.RIGHT);
+				this.jump(allProjects, PanelSwitcher.RIGHT);
 			}else {
-				this.jump(result, switcher, parent, col, PanelSwitcher.LEFT);
+				this.jump(result, PanelSwitcher.LEFT);
 			}
 		};
 		return handler;
@@ -173,17 +192,14 @@ public class ProjectPage extends JPanel {
 	 *@param type 排序类型
 	 *@param manager 按钮管理器
 	 *@param button 被点击的按钮
-	 *@param switcher 页面切换器
-	 *@param parent 项目信息面板的父容器
-	 *@param col 信息面板显示的信息卡片的列数
 	 *@param direction 面板切换的方向
 	 */
 	private ClickHandler getSortHandler(SortType type, ButtonManager manager,
-			SortButton button, PanelSwitcher switcher, JPanel parent, int col) {
+			SortButton button) {
 		ClickHandler handler = () -> {
 			currentProjects = repository.SortSearchRepositorys(type, currentProjects);
 			manager.setSelect(button);
-			jump(currentProjects, switcher, parent, col, PanelSwitcher.LEFT);
+			jump(currentProjects, PanelSwitcher.LEFT);
 		};
 		return handler;
 	}
@@ -192,18 +208,16 @@ public class ProjectPage extends JPanel {
 	 *从当前项目信息面板跳转到
 	 *根据新的项目信息创建的面板
 	 *@param projects 项目信息 
-	 *@param switcher 页面切换器
-	 *@param parent 面板的父容器
-	 *@param col 面板显示的信息卡片列数
 	 *@param direction 面板切换的方向
 	 */
-	private void jump(List<ProjectInfo> projects, PanelSwitcher switcher,
-			JPanel parent, int col, int direction) {
+	private void jump(List<ProjectInfo> projects,
+			int direction) {
 		JPanel from = currentPanel.getCurrentPanel();
 		SwitchPanel to = InfoManager.getProjectInfoPanel(
-				projects, parent, switcher,
-				col, this, CARD_ROW, repository, user, null);//TODO 给出项目信息的图片
-		switcher.jump(parent, from, to, direction);
+				projects, infoPanel, switcher,
+				lineCard, this, CARD_ROW, repository, user,
+				Img.PROJECT_LIST_TIP, Img.LARGE_NULL_TIP);
+		switcher.jump(infoPanel, from, to, direction);
 		currentPanel = to;
 		currentProjects = projects;
 	}
@@ -263,5 +277,22 @@ public class ProjectPage extends JPanel {
 			}
 			repaint();
 		}
+	}
+
+	@Override
+	public void refresh() {
+		SwitchPanel current = this.currentPanel.getCurrentPanel();
+		try {
+			if(allProjects == null || allProjects.isEmpty()) {
+				allProjects = repository.getAllRepositorys();
+			}
+		} catch (Exception e) {
+			allProjects = new ArrayList<>();
+		}
+		SwitchPanel to = InfoManager.getProjectInfoPanel(allProjects,
+				infoPanel, switcher, lineCard, this, CARD_ROW,
+				repository, user, Img.PROJECT_LIST_TIP, Img.LARGE_NULL_TIP);
+		switcher.jump(infoPanel, current, to, PanelSwitcher.LEFT);
+		currentPanel = to;
 	}
 }

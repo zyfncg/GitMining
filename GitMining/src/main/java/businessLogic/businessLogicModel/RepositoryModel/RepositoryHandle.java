@@ -43,20 +43,26 @@ public class RepositoryHandle {
 	public List<ProjectInfo> SearchRepositorys(String key)throws Exception {
 		List<ProjectInfo> resultList = new ArrayList<ProjectInfo>();
 		List<ProjectInfo> templist = new ArrayList<ProjectInfo>();
-		try {
-			templist = this.getallProjects();			
-		} catch (Exception e) {
-			// TODO: handle exception
-			throw e;
-		}
+		List<ProjectInfo> templist2 = new ArrayList<ProjectInfo>();
+//		try {
+			templist = this.GetAllRepositorys();			
+			templist2.addAll(templist);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			throw e;
+//		}
 		for(ProjectInfo proinfo:templist){
 			if (proinfo.getProjectName().getrepository().contains(key)) {
+//				System.out.println("12311");
 				resultList.add(proinfo);
-				templist.remove(proinfo);
+//				System.out.println("12312");
+				templist2.remove(proinfo);
+//				System.out.println("12313");
 			}
 		}
-		for(ProjectInfo projectInfo2:templist){
+		for(ProjectInfo projectInfo2:templist2){
 			if (projectInfo2.getDescription().contains(key)) {
+//				System.out.println("123");
 				resultList.add(projectInfo2);
 			}
 		}

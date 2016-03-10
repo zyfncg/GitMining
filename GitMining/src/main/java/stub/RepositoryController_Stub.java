@@ -36,6 +36,7 @@ public class RepositoryController_Stub implements RepositoryBLService {
 			u.add(new UserInfo("Linus", "father of Linux kernel", 100 + i, 200 + i));
 		}
 		d.setContributorsInfo(u);
+//		throw new Exception("test");
 		return d;
 	}
 
@@ -46,6 +47,7 @@ public class RepositoryController_Stub implements RepositoryBLService {
 			projects.add(new ProjectInfo("OS kernel",
 					new ProjectName("Linus", "Linux"), 10 * i, 20 * i, 30 * i));
 		}
+//		throw new Exception("test");
 		return projects;
 	}
 

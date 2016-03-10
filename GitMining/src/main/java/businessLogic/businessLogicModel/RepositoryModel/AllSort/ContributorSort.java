@@ -11,7 +11,6 @@ public class ContributorSort implements DetailSort{
 
 	@Override
 	public List<ProjectInfo> MakeSort(List<ProjectInfo> projectInfos) {
-		// TODO Auto-generated method stub
 		
 		 Collections.sort(projectInfos,new Comparator<ProjectInfo>(){
 	            @Override

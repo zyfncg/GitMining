@@ -11,7 +11,7 @@ import constant.Page;
  *开始界面 
  */
 @SuppressWarnings("serial")
-public class StartPage extends JPanel {
+public class StartPage extends JPanel implements Refreshable {
 
 	public StartPage(int width, int height, PanelSwitcher switcher) {
 		JPanel center = new JPanel();
@@ -24,5 +24,10 @@ public class StartPage extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add(panel, BorderLayout.CENTER);
 		this.setOpaque(false);
+	}
+
+	@Override
+	public void refresh() {
+		// TODO 暂时无事可做
 	}
 }

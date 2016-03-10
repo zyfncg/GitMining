@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import res.Img;
-import res.Strings;
 
 /**
  *搜索框面板

@@ -16,31 +16,31 @@ public class RepositoryController implements RepositoryBLService {
 	RepositorySort repositorySort = new RepositorySort();
 	@Override
 	public List<ProjectInfo> getAllRepositorys()throws Exception {
-		// TODO Auto-generated method stub
+
 		return repositoryHandle.GetAllRepositorys();
 	}
 
 	@Override
 	public ProjectDetail getRepositoryByName(ProjectName name)throws Exception {
-		// TODO Auto-generated method stub
+
 		return repositoryHandle.GetRepositoryByName(name);
 	}
 
 	@Override
 	public List<ProjectInfo> searchRepositorys(String key)throws Exception {
-		// TODO Auto-generated method stub
+
 		return repositoryHandle.SearchRepositorys(key);
 	}
 
 	@Override
 	public List<ProjectInfo> getSortedRepositorys(SortType type)throws Exception {
-		// TODO Auto-generated method stub
+
 		return repositorySort.GetSortedRepositorys(type);
 	}
 
 	@Override
 	public List<ProjectInfo> SortSearchRepositorys(SortType type, List<ProjectInfo> SomeProjects){
-		// TODO Auto-generated method stub
+
 		return repositorySort.SortSearchRepositorys(type, SomeProjects);
 	}
 	

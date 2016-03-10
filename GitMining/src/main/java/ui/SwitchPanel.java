@@ -292,6 +292,7 @@ public class SwitchPanel extends JPanel {
 		JPanel previous = createPlainPanel(image, SWITCH_WIDTH, height);
 		JPanel next = createPlainPanel(image, SWITCH_WIDTH, height);		
 		SwitchPanel panel = new SwitchPanel();
+		panel.current = panel;
 		combineUI(panel, previous, next, center, width, height);
 		return panel;
 	}
@@ -314,6 +315,7 @@ public class SwitchPanel extends JPanel {
 			int width, int height, Image image) {
 		JPanel next = createPlainPanel(image, SWITCH_WIDTH, height);		
 		SwitchPanel panel = new SwitchPanel();
+		panel.current = panel;
 		combineUI(panel, previous, next, center, width, height);
 		return panel;
 
@@ -342,6 +344,7 @@ public class SwitchPanel extends JPanel {
 			int width, int height, Image image) {
 		JPanel previous = createPlainPanel(image, SWITCH_WIDTH, height);
 		SwitchPanel panel = new SwitchPanel();
+		panel.current = panel;
 		combineUI(panel, previous, btn, center, width, height);
 		return panel;
 	}
@@ -366,6 +369,7 @@ public class SwitchPanel extends JPanel {
 	private static SwitchPanel bothSides(SwitchButton left,
 			SwitchButton right, JPanel center, double width, double height) {
 		SwitchPanel panel = new SwitchPanel();
+		panel.current = panel;
 		combineUI(panel, left, right, center, width, height);
 		return panel;
 	}
@@ -399,7 +403,6 @@ public class SwitchPanel extends JPanel {
 						null);
 			}
 		};
-		//TODO 在面板上贴图
 		p.setPreferredSize(new Dimension(width, height));
 		p.setOpaque(false);
 		return p;

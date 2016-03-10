@@ -58,6 +58,11 @@ public class MainFrame extends JFrame {
 	private JPanel currentPage;
 	
 	/**
+	 *当前的可刷新页面 
+	 */
+	private Refreshable refreshPage;
+	
+	/**
 	 *窗口顶级面板 
 	 */
 	private JPanel root = new JPanel() {
@@ -114,6 +119,7 @@ public class MainFrame extends JFrame {
 		this.project = new ProjectPage(CARD_NUM, PAGE_WIDTH, PAGE_HEIGHT, switcher);
 		this.user = new UserPage(CARD_NUM, PAGE_WIDTH, PAGE_HEIGHT, switcher);
 		this.currentPage = this.start;
+		this.refreshPage = this.start;
 		
 		this.mapPage();
 		this.switcher.setPageMap(this.pageMap);
@@ -148,6 +154,9 @@ public class MainFrame extends JFrame {
 		//用户主页按钮
 		TitleButton user = new TitleButton(Img.USER_BUTTON,
 				e -> switcher.jump(currentPage, Page.USER, PanelSwitcher.LEFT));
+		//刷新按钮
+		TitleButton refresh = new TitleButton(Img.REFRESH_BUTTON,
+				e -> refreshPage.refresh());
 		//最小化按钮
 		TitleButton min = new TitleButton(Img.MIN_BUTTON,
 				e -> setExtendedState(Frame.ICONIFIED));
@@ -159,6 +168,7 @@ public class MainFrame extends JFrame {
 		this.btnPanel.add(home);
 		this.btnPanel.add(project);
 		this.btnPanel.add(user);
+		this.btnPanel.add(refresh);
 		this.btnPanel.add(min);
 		this.btnPanel.add(exit);
 		this.btnPanel.setOpaque(false);
@@ -225,6 +235,9 @@ public class MainFrame extends JFrame {
 	
 	public void setCurrentPage(JPanel page) {
 		this.currentPage = page;
+		if(page instanceof Refreshable) {
+			this.refreshPage = (Refreshable) page;
+		}
 	}
 	
 	public JPanel getRootPanel() {

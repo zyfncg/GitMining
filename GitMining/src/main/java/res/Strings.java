@@ -76,6 +76,11 @@ public class Strings {
 	public static final String USER_SEARCH_TIP = "Enter user name";
 	
 	/**
+	 *发生错误时，提示框的标题字符串
+	 */
+	public static final String ERROR_DIALOG_TITLE = "Error";
+	
+	/**
 	 *网络异常提示信息 
 	 */
 	public static final String URL_EXCEPTION_TIP="网络异常，请稍后再试";
