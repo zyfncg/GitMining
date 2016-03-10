@@ -21,8 +21,9 @@ public class HttpRequestUtil {
         InputStream ips = getInputStream(requestUrl); 
         InputStreamReader isreader = null; 
         
-        if(ips==null){
-    		return null;
+        if(ips==null){	
+    		System.out.println("Connnet Wrong");
+    		throw new Exception();
     	}
         
         try { 
@@ -68,8 +69,8 @@ public class HttpRequestUtil {
         } 
         try { 
             conn = (HttpURLConnection) url.openConnection(); 
-            conn.setConnectTimeout(2000);
-            conn.setReadTimeout(2000);
+            conn.setConnectTimeout(100);
+            conn.setReadTimeout(100);
             conn.setDoInput(true); 
             conn.setRequestMethod("GET"); 
             conn.connect(); 
