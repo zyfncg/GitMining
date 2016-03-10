@@ -1,4 +1,4 @@
-package ui;
+package ui.page;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -6,6 +6,10 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 import constant.Page;
+import ui.ClickHandler;
+import ui.PanelSwitcher;
+import ui.Refreshable;
+import ui.component.SwitchPanel;
 
 /**
  *开始界面 

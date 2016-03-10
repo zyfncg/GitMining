@@ -22,6 +22,11 @@ import javax.swing.ToolTipManager;
 import constant.Page;
 import res.Img;
 import res.Strings;
+import ui.component.CardsPanel;
+import ui.component.SwitchPanel;
+import ui.page.ProjectPage;
+import ui.page.StartPage;
+import ui.page.UserPage;
 
 /**
  *主窗体 

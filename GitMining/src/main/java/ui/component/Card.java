@@ -1,4 +1,4 @@
-package ui;
+package ui.component;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,6 +12,7 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 import res.Colors;
+import ui.ClickHandler;
 
 /**
  *信息卡片 

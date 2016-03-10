@@ -1,7 +1,8 @@
-package ui;
+package ui.component;
 
 import Info.ProjectInfo;
 import res.Strings;
+import ui.ClickHandler;
 
 
 /**

@@ -1,4 +1,4 @@
-package ui;
+package ui.component;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -18,6 +18,11 @@ import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Strings;
+import ui.ClickHandler;
+import ui.MainFrame;
+import ui.PanelSwitcher;
+import ui.page.ProjectInfoPage;
+import ui.page.UserInfoPage;
 
 /**
  *卡片信息面板

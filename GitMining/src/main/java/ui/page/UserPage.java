@@ -1,4 +1,4 @@
-package ui;
+package ui.page;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -19,6 +19,12 @@ import res.Img;
 import res.Strings;
 import stub.RepositoryController_Stub;
 import stub.UserController_Stub;
+import ui.ClickHandler;
+import ui.InfoManager;
+import ui.PanelSwitcher;
+import ui.Refreshable;
+import ui.component.SearchPanel;
+import ui.component.SwitchPanel;
 
 /**
  *用户信息主页 

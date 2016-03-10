@@ -9,6 +9,8 @@ import Info.ProjectInfo;
 import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
+import ui.component.CardsPanel;
+import ui.component.SwitchPanel;
 
 /**
  *信息管理器 

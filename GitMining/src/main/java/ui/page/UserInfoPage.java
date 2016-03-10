@@ -1,4 +1,4 @@
-package ui;
+package ui.page;
 
 import java.awt.BorderLayout;
 import java.util.List;
@@ -13,6 +13,13 @@ import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import ui.ClickHandler;
+import ui.InfoManager;
+import ui.PanelSwitcher;
+import ui.Refreshable;
+import ui.component.BackPanel;
+import ui.component.KVPanel;
+import ui.component.SwitchPanel;
 
 /**
  *用户详细信息页面 
