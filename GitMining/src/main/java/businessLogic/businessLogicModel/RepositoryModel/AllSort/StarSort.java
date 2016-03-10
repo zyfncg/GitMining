@@ -11,7 +11,7 @@ public class StarSort implements DetailSort{
 
 	@Override
 	public List<ProjectInfo> MakeSort(List<ProjectInfo> projectInfos) {
-		// TODO Auto-generated method stub
+
 		Collections.sort(projectInfos,new Comparator<ProjectInfo>(){
 	            @Override
 				public int compare(ProjectInfo arg0, ProjectInfo arg1) {

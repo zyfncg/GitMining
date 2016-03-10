@@ -24,7 +24,12 @@ public class UserDataController implements UserDataServer{
 			return userList;
 		}
 		
-//		return userDataUtil.getAllUsers();
+//		try {
+//			return userDataUtil.getAllUsers();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return userList;
 	}
 

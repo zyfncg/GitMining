@@ -3,6 +3,7 @@ package ui;
 import Info.ProjectInfo;
 import res.Strings;
 
+
 /**
  *项目信息的简介
  *以卡片的形式展现 

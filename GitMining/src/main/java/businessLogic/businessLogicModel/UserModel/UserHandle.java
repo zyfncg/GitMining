@@ -14,7 +14,7 @@ public class UserHandle {
 	//全部用户信息列表
 	private static List<UserInfo> alluser = new ArrayList<UserInfo>();
 	//最近一次搜索的用户信息列表
-	private static List<UserInfo> searchuser = new ArrayList<UserInfo>();
+//	private static List<UserInfo> searchuser = new ArrayList<UserInfo>();
 	public List<UserInfo> GetAllUsers()throws Exception {
 		List<UserInfo> allUsers = userData.getAllUsers();
 		alluser.addAll(allUsers);
@@ -29,13 +29,13 @@ public class UserHandle {
 	public List<UserInfo> SearchUsers(String key)throws Exception {
 		List<UserInfo> resultList = new ArrayList<UserInfo>();
 		List<UserInfo> templist = new ArrayList<UserInfo>();
-		templist.addAll(alluser);
+		templist = this.GetAllUsers();
 		for(UserInfo userInfo:templist){
-			if (userInfo.getUserName().contains(key)||userInfo.getDescriptionUser().contains(key)) {
+			if (userInfo.getUserName().contains(key)) {
 				resultList.add(userInfo);
 			}
 		}
-		searchuser.addAll(resultList);
+//		searchuser.addAll(resultList);
 		return resultList;
 	}
 }

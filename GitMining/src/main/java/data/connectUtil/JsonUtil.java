@@ -57,7 +57,7 @@ public class JsonUtil {
 		    try {
 				description=json.getString("description");
 			} catch (Exception e) {
-				description="";
+				description=Strings.DEFAULT_DESCRIPTION;
 				return new ProjectInfo(description,proname,forks,stars,contributors);
 			}
 		    
@@ -193,6 +193,14 @@ public class JsonUtil {
 		userName=json.getString("login");
 		projectInvolved=json.getInt("following");
 		projectCreate=json.getInt("public_repos");
+		
+		try {
+			descriptionUser = json.getString("bio");
+		} catch (Exception e) {
+			e.printStackTrace();
+			descriptionUser=Strings.DEFAULT_BIO;
+			return new UserInfo(userName, descriptionUser, projectInvolved, projectCreate);
+		}
 		
 		return new UserInfo(userName, descriptionUser, projectInvolved, projectCreate);	
 	}

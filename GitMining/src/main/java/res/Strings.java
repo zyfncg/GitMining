@@ -86,7 +86,12 @@ public class Strings {
 	public static final String URL_EXCEPTION_TIP="网络异常，请稍后再试";
 	
 	/**
-	 *默认bio信息 
+	 *默认项目description信息 
+	 */
+	public static final String DEFAULT_DESCRIPTION="无";
+	
+	/**
+	 *默认用户bio信息 
 	 */
 	public static final String DEFAULT_BIO="无";
 	
