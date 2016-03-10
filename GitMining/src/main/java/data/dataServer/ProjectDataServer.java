@@ -11,7 +11,7 @@ public interface ProjectDataServer {
 	/**
 	 * @return 返回所有项目信息 
 	 */
-	public List<ProjectInfo> getAllProjects()throws Exception;
+	public List<ProjectInfo> getAllProjects();
 	
 	/**
 	 * 

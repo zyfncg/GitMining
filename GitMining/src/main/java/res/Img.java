@@ -27,6 +27,9 @@ public class Img {
 	public static final ImageIcon HOME_BUTTON =
 			new ImageIcon(BUTTON_ROOT_PATH + "/home.png");
 	
+	/**
+	 *项目主页按钮图标 
+	 */
 	public static final ImageIcon PROJECT_BUTTON =
 			new ImageIcon(BUTTON_ROOT_PATH + "/repository.png");
 	/**
@@ -34,6 +37,12 @@ public class Img {
 	 */
 	public static final ImageIcon USER_BUTTON =
 			new ImageIcon(BUTTON_ROOT_PATH + "/user.png");
+	
+	/**
+	 *刷新按钮图标 
+	 */
+	public static final ImageIcon REFRESH_BUTTON =
+			new ImageIcon(BUTTON_ROOT_PATH + "/refresh.png");
 	
 	/**
 	 *退出按钮图标 
@@ -169,4 +178,16 @@ public class Img {
 	 */
 	public static final Image USER_LIST_TIP =
 			new ImageIcon(TIP_ROOT_PATH + "/user_list.png").getImage();
+	
+	/**
+	 *提示没有信息的图片(小) 
+	 */
+	public static final Image SAMLL_NULL_TIP =
+			new ImageIcon(TIP_ROOT_PATH + "/small_null.png").getImage();
+	
+	/**
+	 *提示没有信息的图片(大) 
+	 */
+	public static final Image LARGE_NULL_TIP =
+			new ImageIcon(TIP_ROOT_PATH + "/large_null.png").getImage();
 }

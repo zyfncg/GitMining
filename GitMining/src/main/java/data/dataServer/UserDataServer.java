@@ -10,7 +10,7 @@ public interface UserDataServer {
 	/**
 	 * @return 返回所有用户信息 
 	 */
-	public List<UserInfo> getAllUsers()throws Exception;
+	public List<UserInfo> getAllUsers();
 	/**
 	 * 
 	 * @return 返回单个用户的详细信息 

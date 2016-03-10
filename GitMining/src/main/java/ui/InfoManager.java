@@ -25,18 +25,20 @@ public class InfoManager {
 	 *@param row 信息面板显示的信息卡片的行数
 	 *@param repository 获取项目信息的接口
 	 *@param user 获取用户信息的接口
+	 *@param side 面板侧边提示信息
+	 *@param center 面板中间提示信息
 	 */
 	public static SwitchPanel getProjectInfoPanel(List<ProjectInfo> projects,
 			JPanel parent, PanelSwitcher switcher, int lineCardNum,
 			JPanel page, int row, RepositoryBLService repository,
-			UserBLService user, Image image){
+			UserBLService user, Image side, Image center){
 		if(projects.size() == 0) {
-			CardsPanel panel = CardsPanel.createPlainPanel(row, lineCardNum);
-			return SwitchPanel.noSwitch(panel, image);
+			CardsPanel panel = CardsPanel.createPlainPanel(center, row, lineCardNum);
+			return SwitchPanel.noSwitch(panel, side);
 		}else{
 			SwitchPanel p = new SwitchPanel();
 				return p.projectListPanel(projects, page, parent,
-						switcher, row, lineCardNum, repository, user, image);
+						switcher, row, lineCardNum, repository, user, side);
 		}
 	}
 	
@@ -50,18 +52,20 @@ public class InfoManager {
 	 *@param row 信息面板显示的信息卡片的行数
 	 *@param repository 获取项目信息的接口
 	 *@param user 获取用户信息的接口
+	 *@param side 面板侧边提示信息
+	 *@param center 面板中间提示信息
 	 */
 	public static SwitchPanel getUserInfoPanel(List<UserInfo> users,
 			JPanel parent, PanelSwitcher switcher, int lineCardNum,
 			int row, JPanel page, RepositoryBLService repository,
-			UserBLService user, Image image){
+			UserBLService user, Image side, Image center){
 		if(users.size() == 0) {
-			CardsPanel panel = CardsPanel.createPlainPanel(row, lineCardNum);
-			return SwitchPanel.noSwitch(panel, image);
+			CardsPanel panel = CardsPanel.createPlainPanel(center, row, lineCardNum);
+			return SwitchPanel.noSwitch(panel, side);
 		}else{
 			SwitchPanel p = new SwitchPanel();
 			return p.userListPanel(users, page, parent, switcher,
-					row, lineCardNum, repository, user, image);
+					row, lineCardNum, repository, user, side);
 		}
 	}
 }

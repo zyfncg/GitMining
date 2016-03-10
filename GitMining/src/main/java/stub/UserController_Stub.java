@@ -18,6 +18,7 @@ public class UserController_Stub implements UserBLService{
 		for(int i = 0; i < 10; i++) {
 			users.add(new UserInfo("linus", "a programmer", i * 2, i * 3));
 		}
+//		throw new Exception("test");
 		return users;
 	}
 
@@ -31,6 +32,7 @@ public class UserController_Stub implements UserBLService{
 					i + 20, i + 20, i + 40));
 		}
 		d.setProjectCreatInfo(p);
+//		throw new Exception("test");
 		return d;
 	}
 

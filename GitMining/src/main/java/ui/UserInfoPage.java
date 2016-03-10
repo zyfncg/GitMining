@@ -7,7 +7,6 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
-import Info.UserInfo;
 import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
@@ -19,7 +18,7 @@ import res.Strings;
  *用户详细信息页面 
  */
 @SuppressWarnings("serial")
-public class UserInfoPage extends JPanel {
+public class UserInfoPage extends JPanel implements Refreshable {
 
 	/**
 	 *显示的创建项目信息卡片的行数 
@@ -27,7 +26,7 @@ public class UserInfoPage extends JPanel {
 	private static final int CREATE_ROW = 2;
 
 	public UserInfoPage(int lineCardNum, int width, int height,
-			PanelSwitcher switcher, UserInfo user,
+			PanelSwitcher switcher, UserInfoDetail detail,
 			RepositoryBLService service, UserBLService u) {
 		//分成4部分， 图像面板：信息面板：创建项目面板：参与项目面板 = 1 : 1 : 2 : 2
 
@@ -42,12 +41,6 @@ public class UserInfoPage extends JPanel {
 		Box info = Box.createVerticalBox();
 		info.setOpaque(false);
 		int itemH = iconH >> 2;
-		UserInfoDetail detail = null;
-		try {
-			detail = u.getUserByName(user.getUserName());
-		} catch (Exception e1) {
-			// TODO 异常处理
-		}
 		KVPanel description = new KVPanel(width, itemH,
 				Strings.DESCRIPTION_LABEL, detail.getDescriptionUser(), KVPanel.HORIZONTAL);
 		KVPanel email = new KVPanel(width, itemH,
@@ -67,7 +60,8 @@ public class UserInfoPage extends JPanel {
 		switchCards.setOpaque(false);
 		SwitchPanel create = InfoManager.getProjectInfoPanel(
 				p1, switchCards, switcher, lineCardNum,
-				this, CREATE_ROW, service, u, Img.PROJECT_CREATED_TIP);//TODO 给出创建项目的图片;
+				this, CREATE_ROW, service, u,
+				Img.PROJECT_CREATED_TIP, Img.LARGE_NULL_TIP);
 		switchCards.add(create, BorderLayout.CENTER);
 
 
@@ -80,5 +74,10 @@ public class UserInfoPage extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
 		this.setBackground(Colors.PAGE_BG);
+	}
+
+	@Override
+	public void refresh() {
+		// TODO 暂时无事可做
 	}
 }
