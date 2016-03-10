@@ -12,6 +12,7 @@ import Info.UserInfoDetail;
 import data.dataImpl.FileUtil;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
+import res.Strings;
 
 /**
  *@author ZhangYF 
@@ -207,7 +208,7 @@ public class JsonUtil {
 		
 		String userName;
 		String descriptionUser = "";
-		String email;
+		String email="";
 		Date joinDate;
 		String company = "";
 		String address;
@@ -220,7 +221,6 @@ public class JsonUtil {
 		json = JSONObject.fromObject(jsonString);
 		
 		userName=json.getString("login");
-		email=json.getString("email");
 		String dateString=json.getString("created_at");
 		joinDate=Date.stringToDate(dateString);
 		address=json.getString("location");
@@ -238,12 +238,14 @@ public class JsonUtil {
 		
 		
 		try {
+			email=json.getString("email");
 			descriptionUser = json.getString("bio");
 		    company = json.getString("company");
 		} catch (Exception e) {
 			e.printStackTrace();
-			descriptionUser="无";
-		    company="未知";
+			email=Strings.DEFAULT_EMAIL;
+			descriptionUser=Strings.DEFAULT_BIO;
+		    company=Strings.DEFAULT_COMPANY;
 		    System.out.println(userName);
 		    return new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
 					address, projectInvolved, projectCreate, ProjectCreatList);
