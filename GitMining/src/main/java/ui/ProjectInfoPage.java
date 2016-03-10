@@ -43,9 +43,61 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 	 */
 	private static final int COLLABORATOR_ROW = 1;
 	
+	/**
+	 *项目参与者信息面板容器
+	 */
+	private JPanel involveContainer;
+	
+	/**
+	 *参与者信息面板 
+	 */
+	private SwitchPanel involve;
+	
+	/**
+	 *参与者信息 
+	 */
+	private List<UserInfo> involvers;
+	
+	/**
+	 *用户参与者信息面板容器
+	 */
+	private JPanel contriContainer;
+	
+	/**
+	 *贡献者信息面板 
+	 */
+	private SwitchPanel contri;
+	
+	/**
+	 *贡献者信息 
+	 */
+	private List<UserInfo> contributors;
+	
+	/**
+	 *一行显示的信息卡片数目 
+	 */
+	private int lineCard;
+	
+	/**
+	 *页面切换器 
+	 */
+	private PanelSwitcher switcher;
+	
+	/**
+	 *获取项目信息的接口 
+	 */
+	private RepositoryBLService repo;
+	
+	/**
+	 *获取用户信息的接口 
+	 */
+	private UserBLService user;
+	
 	public ProjectInfoPage(int lineCardNum, int width, int height,
 			PanelSwitcher switcher, ProjectDetail detail,
 			RepositoryBLService repo, UserBLService user) {
+		this.lineCard = lineCardNum;
+		this.switcher = switcher;
 		//分成6部分， 回退面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
 		//= 2/3 : 1/2 : 1/6: 1/3 : 1/3 : 2 : 2
 		
@@ -140,22 +192,22 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		info.add(subscriber);
 		
 		//贡献者面板
-		List<UserInfo> u1 = detail.getContributorsInfo();
-		JPanel contri = new JPanel(new BorderLayout());
-		contri.setOpaque(false);
-		SwitchPanel p1 = InfoManager.getUserInfoPanel(u1, contri, switcher,
-				lineCardNum, CONTRIBUTOR_ROW, this, repo, user,
+		contributors = detail.getContributorsInfo();
+		contriContainer = new JPanel(new BorderLayout());
+		contriContainer.setOpaque(false);
+		contri = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
+				lineCard, CONTRIBUTOR_ROW, this, repo, user,
 				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
-		contri.add(p1, BorderLayout.CENTER);
+		contriContainer.add(contri, BorderLayout.CENTER);
 
 		//参与者面板
-		List<UserInfo> u2 = detail.getCollaboratorsInfo();
-		JPanel involve = new JPanel(new BorderLayout());
-		involve.setOpaque(false);
-		SwitchPanel p2 = InfoManager.getUserInfoPanel(u2, involve, switcher,
-				lineCardNum, COLLABORATOR_ROW, this, repo, user,
+		involvers = detail.getCollaboratorsInfo();
+		involveContainer = new JPanel(new BorderLayout());
+		involveContainer.setOpaque(false);
+		involve = InfoManager.getUserInfoPanel(involvers, involveContainer, switcher,
+				lineCard, COLLABORATOR_ROW, this, repo, user,
 				Img.PARICIPANT_TIP, Img.SAMLL_NULL_TIP);
-		involve.add(p2, BorderLayout.CENTER);
+		involveContainer.add(involve, BorderLayout.CENTER);
 		
 		//组装所有面板
 		Box all = Box.createVerticalBox();
@@ -164,8 +216,8 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		all.add(description);
 		all.add(URL);
 		all.add(info);
-		all.add(contri);
-		all.add(involve);
+		all.add(contriContainer);
+		all.add(involveContainer);
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
 		this.setBackground(Colors.PAGE_BG);
@@ -200,6 +252,18 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 
 	@Override
 	public void refresh() {
-		// TODO 暂时无事可做
+		SwitchPanel from1 = involve.getCurrentPanel();
+		SwitchPanel to1 = InfoManager.getUserInfoPanel(involvers, involveContainer, switcher,
+				lineCard, CONTRIBUTOR_ROW, this, repo, user,
+				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
+		switcher.jump(involveContainer, from1, to1, PanelSwitcher.LEFT);
+		involve = to1;
+		
+		SwitchPanel from2 = contri.getCurrentPanel();
+		SwitchPanel to2 = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
+				lineCard, CONTRIBUTOR_ROW, this, repo, user,
+				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
+		switcher.jump(contriContainer, from2, to2, PanelSwitcher.LEFT);
+		contri = to2;
 	}
 }

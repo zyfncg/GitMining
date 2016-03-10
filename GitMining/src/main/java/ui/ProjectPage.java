@@ -13,8 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
-import businessLogic.businessLogicController.RepositoryController.RepositoryController;
-import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import constant.SortType;
@@ -30,14 +28,14 @@ import stub.UserController_Stub;
 @SuppressWarnings("serial")
 public class ProjectPage extends JPanel implements Refreshable {
 	
-//	private RepositoryBLService repository = new RepositoryController_Stub();
+	private RepositoryBLService repository = new RepositoryController_Stub();
+	
+	private UserBLService user = new UserController_Stub();
+	
+//	private RepositoryBLService repository = new RepositoryController();
 //	
-//	private UserBLService user = new UserController_Stub();
-	
-	private RepositoryBLService repository = new RepositoryController();
-	
-	private UserBLService user = new UserController();
-	
+//	private UserBLService user = new UserController();
+//	
 	/**
 	 *所有的项目信息 
 	 */

@@ -76,6 +76,36 @@ public class Strings {
 	public static final String USER_SEARCH_TIP = "Enter user name";
 	
 	/**
+	 *主页按钮提示 
+	 */
+	public static final String HOME_BUTTON_TIP = "Home";
+	
+	/**
+	 *用户主页按钮提示 
+	 */
+	public static final String PROJECT_BUTTON_TIP = "Project Page";
+	
+	/**
+	 *用户主页按钮提示 
+	 */
+	public static final String USER_BUTTON_TIP = "User Page";
+	
+	/**
+	 *刷新按钮提示 
+	 */
+	public static final String REFRESH_BUTTON_TIP = "Refresh";
+	
+	/**
+	 *最小化按钮提示 
+	 */
+	public static final String MIN_BUTTON_TIP = "Minimum";
+	
+	/**
+	 *退出按钮提示 
+	 */
+	public static final String EXIT_BUTTON_TIP = "Exit";
+	
+	/**
 	 *发生错误时，提示框的标题字符串
 	 */
 	public static final String ERROR_DIALOG_TITLE = "Error";
@@ -83,26 +113,27 @@ public class Strings {
 	/**
 	 *网络异常提示信息 
 	 */
-	public static final String URL_EXCEPTION_TIP="网络异常，请稍后再试";
+	public static final String URL_EXCEPTION_TIP="Something wrong with the network\n"
+			+ "Check the network connection and\n" + "press the refresh button above";
 	
 	/**
 	 *默认项目description信息 
 	 */
-	public static final String DEFAULT_DESCRIPTION="无";
+	public static final String DEFAULT_DESCRIPTION="unkown";
 	
 	/**
 	 *默认用户bio信息 
 	 */
-	public static final String DEFAULT_BIO="无";
+	public static final String DEFAULT_BIO="unknown";
 	
 	/**
 	 *默认company信息 
 	 */
-	public static final String DEFAULT_COMPANY="未知";
+	public static final String DEFAULT_COMPANY="unknown";
 	
 	/**
 	 *默认email信息 
 	 */
-	public static final String DEFAULT_EMAIL="未知";
+	public static final String DEFAULT_EMAIL="unknown";
 	
 }
