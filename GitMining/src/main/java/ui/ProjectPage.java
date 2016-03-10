@@ -21,12 +21,18 @@ import constant.SortType;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import stub.RepositoryController_Stub;
+import stub.UserController_Stub;
 
 /**
  *项目信息主页 
  */
 @SuppressWarnings("serial")
 public class ProjectPage extends JPanel implements Refreshable {
+	
+//	private RepositoryBLService repository = new RepositoryController_Stub();
+//	
+//	private UserBLService user = new UserController_Stub();
 	
 	private RepositoryBLService repository = new RepositoryController();
 	

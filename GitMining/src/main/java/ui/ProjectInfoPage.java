@@ -1,10 +1,13 @@
 package ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -51,7 +54,8 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		int btnH = backH >> 1;
 		int btnW = btnH << 1;
 		ClickHandler handler = () -> switcher.back(this, PanelSwitcher.RIGHT);
-		BackPanel icon = new BackPanel(handler, width, backH, btnW, btnH);
+		BackPanel icon = new BackPanel(
+				handler, width, backH, btnW, btnH, Img.USER_ICON);
 		
 		//描述面板
 		TextPanel description = new TextPanel(
@@ -69,31 +73,27 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		url.setEditable(false);
 		//复制按钮
 		JButton copy = new JButton(Img.COPY);
-//		copy.setToolTipText("将地址复制到剪贴板");
-//		ToolTipManager.sharedInstance().setInitialDelay(0);
-//		copy.addActionListener(e -> {
-//			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
-//			StringSelection content = new StringSelection(url.getText());
-//			board.setContents(content, null);
-//			copy.setToolTipText("已复制到剪贴板");
-//		});
+		copy.addActionListener(e -> {
+			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
+			StringSelection content = new StringSelection(url.getText());
+			board.setContents(content, null);
+			copy.setToolTipText("已复制到剪贴板");
+		});
 		JPopupMenu popup = new JPopupMenu();
-//		popup.setOpaque(false);
-		Dimension d = copy.getPreferredSize();          
+		Dimension d = copy.getPreferredSize();
 		TipText tip = new TipText(d.width, (int)(d.height * 0.75));
 		final int x = -d.width / 3;
 		final int y = -d.height;
-		tip.setOpaque(false);
 		tip.setEnabled(false);
 		popup.add(tip);
 		copy.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
-//				tip.setText(Color.BLACK);               
+				tip.setText(Img.COPY_CLIPBOARD_TIP);               
 				popup.show(copy, x, y);
 			};
 			
 			public void mouseReleased(MouseEvent e) {
-//				tip.setText(Color.WHITE);
+				tip.setText(Img.COPY_TIP);
 				popup.show(copy, x, y);
 			};
 			
@@ -172,20 +172,29 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 	}
 	
 	private class TipText extends JMenuItem {
-		private Color c;
+		
+		private Image img;
+		
+		private int width;
+		
+		private int height;
 		
 		public TipText(int width, int height) {
+			this.width = width;
+			this.height = height;
 			this.setPreferredSize(new Dimension(width, height));
 		}
 		
-		public void setText(Color c) {//TOOD 以后用图片代替
-			this.c = c;
+		public void setText(Image img) {
+			this.img = img;
 			this.repaint();
 		};
 		
 		protected void paintComponent(Graphics g) {
-			g.setColor(c);
-			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			g.drawImage(img,
+					0, 0, width, height, 0, 0,
+					img.getWidth(null), img.getHeight(null),
+					null);
 		};
 	}
 

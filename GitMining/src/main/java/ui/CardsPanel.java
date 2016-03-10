@@ -17,7 +17,6 @@ import Info.UserInfo;
 import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
-import res.Img;
 import res.Strings;
 
 /**
@@ -140,7 +139,7 @@ public class CardsPanel extends JPanel {
 				Dimension d = this.getPreferredSize();
 				g.drawImage(img,
 						0, 0, d.width, d.height,
-						0, 0, Img.NULL_MESSAGE.getWidth(null), Img.NULL_MESSAGE.getHeight(null),
+						0, 0, img.getWidth(null), img.getHeight(null),
 						null);
 			}
 		};

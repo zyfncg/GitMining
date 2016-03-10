@@ -44,14 +44,14 @@ public class Card extends JPanel {
 	protected JPanel itemPanel;
 
 	public Card(ClickHandler handler, int width, int height, String text) {
-		//分成3部分， 图像面板：描述面板：信息面板 = 1 : 1 : 2
+		//分成3部分， 空白面板：描述面板：信息面板 = 1 : 1 : 2
 		
-		//图像面板
+		//空白面板,为了布局美观
 		int iconH = height >> 2;
 		this.iconPanel = new JPanel();
 		this.iconPanel.setOpaque(false);
 		this.iconPanel.setPreferredSize(new Dimension(width, iconH));
-		this.iconPanel.setOpaque(false);//TODO 可能不设为透明
+		this.iconPanel.setOpaque(false);
 		
 		//描述面板
 		if(text.length() >= LINE_MAX) {

@@ -35,7 +35,8 @@ public class UserInfoPage extends JPanel implements Refreshable {
 		int btnH = iconH / 3;
 		int btnW = btnH << 1;
 		ClickHandler handler = () -> switcher.back(this, PanelSwitcher.RIGHT);
-		BackPanel icon = new BackPanel(handler, width, iconH, btnW, btnH);
+		BackPanel icon = new BackPanel(
+				handler, width, iconH, btnW, btnH, Img.USER_ICON);
 
 		//信息面板
 		Box info = Box.createVerticalBox();
