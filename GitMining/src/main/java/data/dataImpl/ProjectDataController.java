@@ -16,12 +16,11 @@ public class ProjectDataController implements ProjectDataServer{
 	
 	
 	@Override
-	public List<ProjectInfo> getAllProjects() throws Exception{
+	public List<ProjectInfo> getAllProjects(){
 		List<ProjectInfo> pList=new ArrayList<ProjectInfo>();
 		try {
 			pList=projectdataUtil.getAllProjectsFromFile();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return pList;
 		}
@@ -36,7 +35,6 @@ public class ProjectDataController implements ProjectDataServer{
 		try {
 			proDetail=projectdataUtil.getProjectByName(name);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new Exception(Strings.URL_EXCEPTION_TIP);
 		}
