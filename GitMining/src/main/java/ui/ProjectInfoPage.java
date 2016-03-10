@@ -17,7 +17,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import Info.ProjectDetail;
-import Info.ProjectInfo;
 import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
@@ -29,7 +28,7 @@ import res.Strings;
  *项目详细信息面板 
  */
 @SuppressWarnings("serial")
-public class ProjectInfoPage extends JPanel {
+public class ProjectInfoPage extends JPanel implements Refreshable {
 	
 	/**
 	 *显示的贡献者信息卡片的行数
@@ -42,35 +41,29 @@ public class ProjectInfoPage extends JPanel {
 	private static final int COLLABORATOR_ROW = 1;
 	
 	public ProjectInfoPage(int lineCardNum, int width, int height,
-			PanelSwitcher switcher, ProjectInfo project,
+			PanelSwitcher switcher, ProjectDetail detail,
 			RepositoryBLService repo, UserBLService user) {
-		//分成6部分， 图像面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
+		//分成6部分， 回退面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
 		//= 2/3 : 1/2 : 1/6: 1/3 : 1/3 : 2 : 2
 		
-		//图像面板
-		int iconH = height / 9;
-		int btnH = iconH >> 1;
+		//回退面板
+		int backH = height / 9;
+		int btnH = backH >> 1;
 		int btnW = btnH << 1;
 		ClickHandler handler = () -> switcher.back(this, PanelSwitcher.RIGHT);
-		BackPanel icon = new BackPanel(handler, width, iconH, btnW, btnH);
+		BackPanel icon = new BackPanel(handler, width, backH, btnW, btnH);
 		
 		//描述面板
 		TextPanel description = new TextPanel(
-				project.getDescription(), width, height / 12);
+				detail.getDescription(), width, height / 12);
 		
 		//项目地址面板
 		JPanel URL = new JPanel();
 		URL.setOpaque(false);
 		int urlW = width >> 1;
-		int urlH = iconH >> 1;
+		int urlH = backH >> 1;
 		//项目地址文本框
 		JTextField url = new JTextField();
-		ProjectDetail detail = null;
-		try {
-			detail = repo.getRepositoryByName(project.getProjectName());
-		} catch (Exception e3) {
-			// TODO 异常处理
-		}
 		url.setText(detail.getURL());
 		url.setPreferredSize(new Dimension((int)(urlW * 0.8), urlH));
 		url.setEditable(false);
@@ -85,18 +78,23 @@ public class ProjectInfoPage extends JPanel {
 //			copy.setToolTipText("已复制到剪贴板");
 //		});
 		JPopupMenu popup = new JPopupMenu();
-		TipText tip = new TipText();
+//		popup.setOpaque(false);
+		Dimension d = copy.getPreferredSize();          
+		TipText tip = new TipText(d.width, (int)(d.height * 0.75));
+		final int x = -d.width / 3;
+		final int y = -d.height;
+		tip.setOpaque(false);
 		tip.setEnabled(false);
 		popup.add(tip);
 		copy.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
-				tip.setText(Color.BLACK);
-				popup.show(copy, -20, -20);
+//				tip.setText(Color.BLACK);               
+				popup.show(copy, x, y);
 			};
 			
 			public void mouseReleased(MouseEvent e) {
-				tip.setText(Color.WHITE);
-				popup.show(copy,-20, -20);
+//				tip.setText(Color.WHITE);
+				popup.show(copy, x, y);
 			};
 			
 			public void mouseExited(MouseEvent e) {
@@ -146,7 +144,8 @@ public class ProjectInfoPage extends JPanel {
 		JPanel contri = new JPanel(new BorderLayout());
 		contri.setOpaque(false);
 		SwitchPanel p1 = InfoManager.getUserInfoPanel(u1, contri, switcher,
-				lineCardNum, CONTRIBUTOR_ROW, this, repo, user, Img.FOUNDER_TIP);
+				lineCardNum, CONTRIBUTOR_ROW, this, repo, user,
+				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
 		contri.add(p1, BorderLayout.CENTER);
 
 		//参与者面板
@@ -154,7 +153,8 @@ public class ProjectInfoPage extends JPanel {
 		JPanel involve = new JPanel(new BorderLayout());
 		involve.setOpaque(false);
 		SwitchPanel p2 = InfoManager.getUserInfoPanel(u2, involve, switcher,
-				lineCardNum, COLLABORATOR_ROW, this, repo, user, Img.PARICIPANT_TIP);;
+				lineCardNum, COLLABORATOR_ROW, this, repo, user,
+				Img.PARICIPANT_TIP, Img.SAMLL_NULL_TIP);
 		involve.add(p2, BorderLayout.CENTER);
 		
 		//组装所有面板
@@ -174,8 +174,8 @@ public class ProjectInfoPage extends JPanel {
 	private class TipText extends JMenuItem {
 		private Color c;
 		
-		public TipText() {
-			this.setPreferredSize(new Dimension(40, 26));
+		public TipText(int width, int height) {
+			this.setPreferredSize(new Dimension(width, height));
 		}
 		
 		public void setText(Color c) {//TOOD 以后用图片代替
@@ -187,5 +187,10 @@ public class ProjectInfoPage extends JPanel {
 			g.setColor(c);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		};
+	}
+
+	@Override
+	public void refresh() {
+		// TODO 暂时无事可做
 	}
 }

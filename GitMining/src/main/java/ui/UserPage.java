@@ -3,9 +3,11 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.UserInfo;
@@ -21,7 +23,7 @@ import res.Strings;
  *用户信息主页 
  */
 @SuppressWarnings("serial")
-public class UserPage extends JPanel{
+public class UserPage extends JPanel implements Refreshable {
 	
 	private UserBLService user = new UserController();
 	
@@ -38,11 +40,28 @@ public class UserPage extends JPanel{
 	private SwitchPanel currentPanel;
 	
 	/**
+	 *展现用户信息的面板
+	 */
+	private JPanel infoPanel;
+	
+	/**
+	 *页面转换器 
+	 */
+	private PanelSwitcher switcher;
+	
+	/**
+	 *一行显示的用户信息卡片数目 
+	 */
+	private int lineCard;
+	
+	/**
 	 *显示的信息卡片的行数 
 	 */
 	private static final int CARD_ROW = 2;
 	
 	public UserPage(int lineCardNum, int width, int height, PanelSwitcher switcher) {
+		this.switcher = switcher;
+		this.lineCard = lineCardNum;
 		//分为3部分，图像面板：搜索面板：信息面板 = 1 : 1 : 4;
 		
 		//信息面板
@@ -51,15 +70,18 @@ public class UserPage extends JPanel{
 			allUsers = this.user.getAllUsers();
 		} catch (Exception e) {
 			//TODO 处理异常
-			//					String msg = e.getMessage();
+			allUsers = new ArrayList<>();
+			JOptionPane.showMessageDialog(null, e.getMessage(),
+					Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 		}	
-		JPanel switchCards = new JPanel(new BorderLayout());
-		switchCards.setOpaque(false);
+		infoPanel = new JPanel(new BorderLayout());
+		infoPanel.setOpaque(false);
 		SwitchPanel userPanel = InfoManager.getUserInfoPanel(
-				allUsers, switchCards, switcher, lineCardNum,
-				CARD_ROW, this, repository, user, Img.USER_LIST_TIP);//TODO 给出用户信息的图片;
+				allUsers, infoPanel, switcher, lineCardNum,
+				CARD_ROW, this, repository, user,
+				Img.USER_LIST_TIP, Img.LARGE_NULL_TIP);
 		currentPanel = userPanel;
-		switchCards.add(currentPanel, BorderLayout.CENTER);
+		infoPanel.add(currentPanel, BorderLayout.CENTER);
 		
 		//图像面板
 		int iconW = width - (SwitchPanel.SWITCH_WIDTH << 1);
@@ -77,8 +99,7 @@ public class UserPage extends JPanel{
 		int searchH = iconH;
 		String tip = Strings.USER_SEARCH_TIP;
 		SearchPanel s = new SearchPanel(searchW, searchH, tip);
-		s.setClickHandler(this.getSearchHandler(
-				s, tip, switcher, switchCards, lineCardNum));
+		s.setClickHandler(this.getSearchHandler(s, tip));
 		FlowLayout layout = new FlowLayout();
 		layout.setHgap(SwitchPanel.SWITCH_WIDTH);
 		layout.setVgap(0);
@@ -91,7 +112,7 @@ public class UserPage extends JPanel{
 		container.setOpaque(false);
 		container.add(switcherPanel);
 		container.add(search);
-		container.add(switchCards);
+		container.add(infoPanel);
 		this.setLayout(new BorderLayout());
 		this.add(container);
 		this.setBackground(Colors.PAGE_BG);
@@ -101,24 +122,22 @@ public class UserPage extends JPanel{
 	 *点击搜索按钮后的事件处理 
 	 *@param search 搜索面板
 	 *@param tip 搜索框的提示信息
-	 *@param switcher 页面跳转器
-	 *@param parent 信息面板的父容器
-	 *@param col 信息面板一行的信息卡片数量
 	 */
-	private ClickHandler getSearchHandler(SearchPanel search,
-			String tip, PanelSwitcher switcher,
-			JPanel parent, int col) {
+	private ClickHandler getSearchHandler(SearchPanel search, String tip) {
 		ClickHandler handler = () -> {
 			List<UserInfo> users = null;
 			try {
 				users = user.searchUsers(search.getText());
 			} catch (Exception e1) {
 				// TODO 异常处理
+				users = new ArrayList<>();
+				JOptionPane.showMessageDialog(null, e1.getMessage(),
+						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 			}
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
-				this.jump(allUsers, switcher, parent, col, PanelSwitcher.RIGHT);
+				this.jump(allUsers, PanelSwitcher.RIGHT);
 			}else {
-				this.jump(users, switcher, parent, col, PanelSwitcher.LEFT);
+				this.jump(users, PanelSwitcher.LEFT);
 			}
 		};
 		return handler;
@@ -128,35 +147,34 @@ public class UserPage extends JPanel{
 	 *从当前用户信息面板跳转到
 	 *根据新的用户信息创建的面板
 	 *@param projects 用户信息 
-	 *@param switcher 页面切换器
-	 *@param parent 面板的父容器
-	 *@param col 面板显示的信息卡片列数
 	 *@param direction 面板切换的方向
+	 *@param image 切换面板的
 	 */
-	private void jump(List<UserInfo> users, PanelSwitcher switcher,
-			JPanel parent, int col, int direction) {
+	private void jump(List<UserInfo> users, int direction) {
 		JPanel from = currentPanel.getCurrentPanel();
 		SwitchPanel to = InfoManager.getUserInfoPanel(
-				users, parent, switcher, col,
-				CARD_ROW, this, repository, user, null);//TODO 给出用户信息的提示;
-		switcher.jump(parent, from, to, direction);
+				users, infoPanel, switcher, lineCard,
+				CARD_ROW, this, repository, user,
+				Img.USER_LIST_TIP, Img.LARGE_NULL_TIP);
+		switcher.jump(infoPanel, from, to, direction);
+		currentPanel = to;
+	}
+
+	@Override
+	public void refresh() {
+		SwitchPanel current = this.currentPanel.getCurrentPanel();
+		try {
+			if(allUsers == null || allUsers.isEmpty()) {
+				allUsers = this.user.getAllUsers();
+			}
+		} catch (Exception e) {
+			allUsers = new ArrayList<>();
+		}
+		SwitchPanel to = InfoManager.getUserInfoPanel(allUsers, infoPanel,
+				switcher, lineCard, CARD_ROW, this, repository, user,
+				Img.USER_LIST_TIP, Img.LARGE_NULL_TIP);
+		switcher.jump(infoPanel, current, to, PanelSwitcher.LEFT);
 		currentPanel = to;
 	}
 	
-//	private SwitchPanel getUserInfoPanel(List<UserInfo> users,
-//			JPanel parent, PanelSwitcher switcher, int lineCardNum) {
-//		if(users.size() == 0) {
-//			CardsPanel panel = CardsPanel.createPlainPanel(CARD_ROW, lineCardNum);
-//			return SwitchPanel.noSwitch(panel);
-//		}else{
-//			SwitchPanel p = new SwitchPanel();
-//			try {
-//				return p.userListPanel(users, this, parent, switcher,
-//						CARD_ROW, lineCardNum, repository, user);
-//			} catch (Exception e) {
-//				// TODO 处理异常
-//			}
-//			return null;
-//		}
-//	}
 }
