@@ -10,7 +10,6 @@ import res.Strings;
 @SuppressWarnings("serial")
 public class ProjectCard extends Card {
 	
-	//TODO, 以后用具体的信息填充
 	public ProjectCard(ClickHandler handler, int width, int height, ProjectInfo info) {
 		super(handler, width, height,
 				info.getProjectName().toString() + "," +
@@ -24,9 +23,11 @@ public class ProjectCard extends Card {
 		KVPanel fork = new KVPanel(itemW, height,
 				Strings.FORK_LABEL, String.valueOf(info.getForks()),
 				KVPanel.VERTICAL);
-//		ItemPanel contributor = new ItemPanel(itemW, height, "contributor", "30");
+		KVPanel contributor = new KVPanel(itemW, height,
+				Strings.CONTRIBUTOR_LABEL, String.valueOf(info.getContributors()),
+				KVPanel.VERTICAL);
 		this.itemPanel.add(star);
 		this.itemPanel.add(fork);
-//		this.itemPanel.add(contributor);
+		this.itemPanel.add(contributor);
 	}
 }

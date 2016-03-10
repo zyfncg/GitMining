@@ -25,12 +25,11 @@ public class InfoManager {
 	 *@param row 信息面板显示的信息卡片的行数
 	 *@param repository 获取项目信息的接口
 	 *@param user 获取用户信息的接口
-	 * @throws Exception 
 	 */
 	public static SwitchPanel getProjectInfoPanel(List<ProjectInfo> projects,
 			JPanel parent, PanelSwitcher switcher, int lineCardNum,
 			JPanel page, int row, RepositoryBLService repository,
-			UserBLService user, Image image) throws Exception {
+			UserBLService user, Image image){
 		if(projects.size() == 0) {
 			CardsPanel panel = CardsPanel.createPlainPanel(row, lineCardNum);
 			return SwitchPanel.noSwitch(panel, image);
@@ -51,12 +50,11 @@ public class InfoManager {
 	 *@param row 信息面板显示的信息卡片的行数
 	 *@param repository 获取项目信息的接口
 	 *@param user 获取用户信息的接口
-	 * @throws Exception 
 	 */
 	public static SwitchPanel getUserInfoPanel(List<UserInfo> users,
 			JPanel parent, PanelSwitcher switcher, int lineCardNum,
 			int row, JPanel page, RepositoryBLService repository,
-			UserBLService user, Image image) throws Exception {
+			UserBLService user, Image image){
 		if(users.size() == 0) {
 			CardsPanel panel = CardsPanel.createPlainPanel(row, lineCardNum);
 			return SwitchPanel.noSwitch(panel, image);

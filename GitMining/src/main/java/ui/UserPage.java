@@ -13,8 +13,8 @@ import businessLogic.businessLogicController.RepositoryController.RepositoryCont
 import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
-import constant.Page;
 import res.Colors;
+import res.Img;
 import res.Strings;
 
 /**
@@ -55,14 +55,9 @@ public class UserPage extends JPanel{
 		}	
 		JPanel switchCards = new JPanel(new BorderLayout());
 		switchCards.setOpaque(false);
-		SwitchPanel userPanel = null;
-		try {
-			userPanel = InfoManager.getUserInfoPanel(
-					allUsers, switchCards, switcher, lineCardNum,
-					CARD_ROW, this, repository, user, null);//TODO 给出用户信息的图片
-		} catch (Exception e) {
-			// TODO 异常处理
-		}
+		SwitchPanel userPanel = InfoManager.getUserInfoPanel(
+				allUsers, switchCards, switcher, lineCardNum,
+				CARD_ROW, this, repository, user, Img.USER_LIST_TIP);//TODO 给出用户信息的图片;
 		currentPanel = userPanel;
 		switchCards.add(currentPanel, BorderLayout.CENTER);
 		
@@ -72,9 +67,10 @@ public class UserPage extends JPanel{
 		JPanel icon = new JPanel();
 		icon.setOpaque(false);
 		icon.setPreferredSize(new Dimension(iconW, iconH));
-		ClickHandler handler =
-				() -> switcher.jump(Page.USER, Page.PROJECT, PanelSwitcher.RIGHT);
-		SwitchPanel switcherPanel = SwitchPanel.leftOnly(handler, icon, null);
+//		ClickHandler handler = 
+//				() -> switcher.jump(Page.USER, Page.PROJECT, PanelSwitcher.RIGHT);
+		SwitchPanel switcherPanel = SwitchPanel.noSwitch(icon, null);
+//				.leftOnly(handler, icon, null);
 		
 		//搜索面板
 		int searchW = iconW;
@@ -140,14 +136,9 @@ public class UserPage extends JPanel{
 	private void jump(List<UserInfo> users, PanelSwitcher switcher,
 			JPanel parent, int col, int direction) {
 		JPanel from = currentPanel.getCurrentPanel();
-		SwitchPanel to = null;
-		try {
-			to = InfoManager.getUserInfoPanel(
-					users, parent, switcher, col,
-					CARD_ROW, this, repository, user, null);//TODO 给出用户信息的提示
-		} catch (Exception e) {
-			// TODO 异常处理
-		}
+		SwitchPanel to = InfoManager.getUserInfoPanel(
+				users, parent, switcher, col,
+				CARD_ROW, this, repository, user, null);//TODO 给出用户信息的提示;
 		switcher.jump(parent, from, to, direction);
 		currentPanel = to;
 	}

@@ -21,16 +21,6 @@ public class Strings {
 	public static final String FORK_LABEL = "fork";
 	
 	/**
-	 *general标签 
-	 */
-	public static final String GENERAL_LABEL = "general";
-	
-	/**
-	 *copy标签 
-	 */
-	public static final String COPY_LABEL = "copy";
-	
-	/**
 	 *contributor标签 
 	 */
 	public static final String CONTRIBUTOR_LABEL = "contributor";
@@ -39,11 +29,6 @@ public class Strings {
 	 *collaborator标签 
 	 */
 	public static final String COLLABORATOR_LABEL = "collaborator";
-	
-	/**
-	 *search标签 
-	 */
-	public static final String SEARCH_LABEL = "search";
 	
 	/**
 	 *subscriber标签 

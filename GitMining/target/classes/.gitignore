@@ -1,6 +1,5 @@
 /Info/
 /LifeIS/
-/META-INF/
 /businessLogic/
 /businessLogicService/
 /businessLogicStub/
@@ -9,5 +8,4 @@
 /res/
 /stub/
 /ui/
-
-*.class
+/META-INF/

@@ -12,6 +12,7 @@ import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
+import res.Img;
 import res.Strings;
 
 /**
@@ -64,13 +65,9 @@ public class UserInfoPage extends JPanel {
 		List<ProjectInfo> p1 = detail.getProjectCreatInfo();
 		JPanel switchCards = new JPanel(new BorderLayout());
 		switchCards.setOpaque(false);
-		SwitchPanel create = null;
-		try {
-			create = InfoManager.getProjectInfoPanel(
-					p1, switchCards, switcher, lineCardNum, this, CREATE_ROW, service, u, null);//TODO 给出创建项目的图片
-		} catch (Exception e) {
-			// TODO 异常处理
-		}
+		SwitchPanel create = InfoManager.getProjectInfoPanel(
+				p1, switchCards, switcher, lineCardNum,
+				this, CREATE_ROW, service, u, Img.PROJECT_CREATED_TIP);//TODO 给出创建项目的图片;
 		switchCards.add(create, BorderLayout.CENTER);
 
 

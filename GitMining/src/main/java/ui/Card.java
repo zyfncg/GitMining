@@ -18,8 +18,16 @@ import res.Colors;
  */
 @SuppressWarnings("serial")
 public class Card extends JPanel {
+	/**
+	 *卡片背景颜色 
+	 */
+	private Color bg = Colors.CARD_AWAY_BG;	
 	
-	private Color c = Colors.CARD_AWAY_BG;	
+	/**
+	 *一行文本最多显示的字符个数 
+	 */
+	private static final int LINE_MAX = 40;
+	
 	/**
 	 *图像面板 
 	 */
@@ -46,6 +54,9 @@ public class Card extends JPanel {
 		this.iconPanel.setOpaque(false);//TODO 可能不设为透明
 		
 		//描述面板
+		if(text.length() >= LINE_MAX) {
+			text = text.substring(0, LINE_MAX) + "...";
+		}
 		this.txtPanel = new TextPanel(text, width, iconH);
 
 		//信息面板
@@ -64,17 +75,17 @@ public class Card extends JPanel {
 		all.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
-		this.setBackground(c);
+		this.setBackground(bg);
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				c = Colors.CARD_ENTER_BG;
+				bg = Colors.CARD_ENTER_BG;
 				repaint();
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				c = Colors.CARD_AWAY_BG;
+				bg = Colors.CARD_AWAY_BG;
 				repaint();
 			}
 			
@@ -88,6 +99,6 @@ public class Card extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		this.setBackground(c);
+		this.setBackground(bg);
 	}
 }

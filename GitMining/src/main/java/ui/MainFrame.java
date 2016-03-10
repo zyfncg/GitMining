@@ -140,19 +140,19 @@ public class MainFrame extends JFrame {
 	 */
 	private void initButtonPannel() {
 		//开始主页按钮
-		FrameButton home = new FrameButton(null,
+		TitleButton home = new TitleButton(Img.HOME_BUTTON,
 				e -> switcher.jump(currentPage, Page.START, PanelSwitcher.RIGHT));
 		//项目主页按钮
-		FrameButton project = new FrameButton(null,
+		TitleButton project = new TitleButton(Img.PROJECT_BUTTON,
 				e -> switcher.jump(currentPage, Page.PROJECT, PanelSwitcher.LEFT));
 		//用户主页按钮
-		FrameButton user = new FrameButton(null,
+		TitleButton user = new TitleButton(Img.USER_BUTTON,
 				e -> switcher.jump(currentPage, Page.USER, PanelSwitcher.LEFT));
 		//最小化按钮
-		FrameButton min = new FrameButton(null,
+		TitleButton min = new TitleButton(Img.MIN_BUTTON,
 				e -> setExtendedState(Frame.ICONIFIED));
 		//退出按钮
-		FrameButton exit = new FrameButton(null, e -> System.exit(0));
+		TitleButton exit = new TitleButton(Img.EXIT_BUTTON, e -> System.exit(0));
 		
 		FlowLayout layout = new FlowLayout(FlowLayout.RIGHT, 0, 0);
 		this.btnPanel = new JPanel(layout);
@@ -184,12 +184,16 @@ public class MainFrame extends JFrame {
 		frame.setLocation(x, y);
 	}
 	
-	private class FrameButton extends JButton {
+	/**
+	 * 标题栏按钮
+	 */
+	private class TitleButton extends JButton {
 		
-		public FrameButton(ImageIcon icon, ActionListener l) {
+		public TitleButton(ImageIcon icon, ActionListener l) {
 			this.setBackground(Color.BLACK);
 			this.addActionListener(l);
 			this.setPreferredSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));
+			this.setIcon(icon);
 		}
 	}
 	
