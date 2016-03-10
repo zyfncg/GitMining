@@ -74,4 +74,11 @@ public class Strings {
 	 *用户搜索框提示信息 
 	 */
 	public static final String USER_SEARCH_TIP = "Enter user name";
+	
+	/**
+	 *网络异常提示信息 
+	 */
+	public static final String URL_EXCEPTION_TIP="网络异常，请稍后再试";
+	
+	
 }

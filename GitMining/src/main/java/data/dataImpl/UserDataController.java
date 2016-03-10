@@ -6,6 +6,7 @@ import java.util.List;
 import Info.UserInfo;
 import Info.UserInfoDetail;
 import data.dataServer.UserDataServer;
+import res.Strings;
 
 public class UserDataController implements UserDataServer{
 
@@ -38,7 +39,7 @@ public class UserDataController implements UserDataServer{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new Exception("网络异常，请稍后再试");
+			throw new Exception(Strings.URL_EXCEPTION_TIP);
 		}
 		
 		return user;

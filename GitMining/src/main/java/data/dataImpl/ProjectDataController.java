@@ -7,6 +7,7 @@ import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
 import data.dataServer.ProjectDataServer;
+import res.Strings;
 
 public class ProjectDataController implements ProjectDataServer{
 
@@ -37,7 +38,7 @@ public class ProjectDataController implements ProjectDataServer{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new Exception("网络异常，请稍后再试");
+			throw new Exception(Strings.URL_EXCEPTION_TIP);
 		}
 		
 		return proDetail;
