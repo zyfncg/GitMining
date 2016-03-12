@@ -69,8 +69,8 @@ public class HttpRequestUtil {
         } 
         try { 
             conn = (HttpURLConnection) url.openConnection(); 
-            conn.setConnectTimeout(100);
-            conn.setReadTimeout(100);
+            conn.setConnectTimeout(2000);
+            conn.setReadTimeout(2000);
             conn.setDoInput(true); 
             conn.setRequestMethod("GET"); 
             conn.connect(); 
