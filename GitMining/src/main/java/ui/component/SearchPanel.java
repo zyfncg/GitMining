@@ -1,4 +1,4 @@
-package ui;
+package ui.component;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import res.Img;
+import ui.ClickHandler;
 
 /**
  *搜索框面板

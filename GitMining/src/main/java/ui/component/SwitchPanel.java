@@ -1,4 +1,4 @@
-package ui;
+package ui.component;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,6 +16,8 @@ import Info.UserInfo;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Img;
+import ui.ClickHandler;
+import ui.PanelSwitcher;
 
 /**
  *切换面板

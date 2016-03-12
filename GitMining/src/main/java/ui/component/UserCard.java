@@ -1,7 +1,8 @@
-package ui;
+package ui.component;
 
 import Info.UserInfo;
 import res.Strings;
+import ui.ClickHandler;
 
 /**
  *用户信息的简介

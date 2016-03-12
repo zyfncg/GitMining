@@ -1,4 +1,4 @@
-package ui;
+package ui.component;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -17,8 +17,12 @@ import Info.UserInfo;
 import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
-import res.Img;
 import res.Strings;
+import ui.ClickHandler;
+import ui.MainFrame;
+import ui.PanelSwitcher;
+import ui.page.ProjectInfoPage;
+import ui.page.UserInfoPage;
 
 /**
  *卡片信息面板
@@ -140,7 +144,7 @@ public class CardsPanel extends JPanel {
 				Dimension d = this.getPreferredSize();
 				g.drawImage(img,
 						0, 0, d.width, d.height,
-						0, 0, Img.NULL_MESSAGE.getWidth(null), Img.NULL_MESSAGE.getHeight(null),
+						0, 0, img.getWidth(null), img.getHeight(null),
 						null);
 			}
 		};

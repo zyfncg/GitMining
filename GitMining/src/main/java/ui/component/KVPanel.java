@@ -1,4 +1,4 @@
-package ui;
+package ui.component;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

@@ -1,8 +1,9 @@
-package ui;
+package ui.page;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +12,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.UserInfo;
-import businessLogic.businessLogicController.RepositoryController.RepositoryController;
-import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import stub.RepositoryController_Stub;
+import stub.UserController_Stub;
+import ui.ClickHandler;
+import ui.InfoManager;
+import ui.PanelSwitcher;
+import ui.Refreshable;
+import ui.component.SearchPanel;
+import ui.component.SwitchPanel;
 
 /**
  *用户信息主页 
@@ -25,9 +32,13 @@ import res.Strings;
 @SuppressWarnings("serial")
 public class UserPage extends JPanel implements Refreshable {
 	
-	private UserBLService user = new UserController();
+	private UserBLService user = new UserController_Stub();
 	
-	private RepositoryBLService repository = new RepositoryController();
+	private RepositoryBLService repository = new RepositoryController_Stub();
+	
+//	private UserBLService user = new UserController();
+//	
+//	private RepositoryBLService repository = new RepositoryController();
 	
 	/**
 	 *所有的用户信息 
@@ -86,7 +97,16 @@ public class UserPage extends JPanel implements Refreshable {
 		//图像面板
 		int iconW = width - (SwitchPanel.SWITCH_WIDTH << 1);
 		int iconH = height / 6;
-		JPanel icon = new JPanel();
+		JPanel icon = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(Img.USER_ICON,
+						0, 0, iconW, iconH,
+						0, 0, Img.USER_ICON.getWidth(null), Img.USER_ICON.getHeight(null),
+						null);
+			}
+		};
 		icon.setOpaque(false);
 		icon.setPreferredSize(new Dimension(iconW, iconH));
 //		ClickHandler handler = 

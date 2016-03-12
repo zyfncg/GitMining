@@ -1,4 +1,4 @@
-package ui;
+package ui.page;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,14 +13,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
-import businessLogic.businessLogicController.RepositoryController.RepositoryController;
-import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import constant.SortType;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import stub.RepositoryController_Stub;
+import stub.UserController_Stub;
+import ui.ClickHandler;
+import ui.InfoManager;
+import ui.PanelSwitcher;
+import ui.Refreshable;
+import ui.component.SearchPanel;
+import ui.component.SwitchPanel;
 
 /**
  *项目信息主页 
@@ -28,10 +34,14 @@ import res.Strings;
 @SuppressWarnings("serial")
 public class ProjectPage extends JPanel implements Refreshable {
 	
-	private RepositoryBLService repository = new RepositoryController();
+	private RepositoryBLService repository = new RepositoryController_Stub();
 	
-	private UserBLService user = new UserController();
+	private UserBLService user = new UserController_Stub();
 	
+//	private RepositoryBLService repository = new RepositoryController();
+//	
+//	private UserBLService user = new UserController();
+//	
 	/**
 	 *所有的项目信息 
 	 */

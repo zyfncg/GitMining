@@ -1,10 +1,13 @@
-package ui;
+package ui.page;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -23,6 +26,14 @@ import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import ui.ClickHandler;
+import ui.InfoManager;
+import ui.PanelSwitcher;
+import ui.Refreshable;
+import ui.component.BackPanel;
+import ui.component.KVPanel;
+import ui.component.SwitchPanel;
+import ui.component.TextPanel;
 
 /**
  *项目详细信息面板 
@@ -40,9 +51,61 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 	 */
 	private static final int COLLABORATOR_ROW = 1;
 	
+	/**
+	 *项目参与者信息面板容器
+	 */
+	private JPanel involveContainer;
+	
+	/**
+	 *参与者信息面板 
+	 */
+	private SwitchPanel involve;
+	
+	/**
+	 *参与者信息 
+	 */
+	private List<UserInfo> involvers;
+	
+	/**
+	 *用户参与者信息面板容器
+	 */
+	private JPanel contriContainer;
+	
+	/**
+	 *贡献者信息面板 
+	 */
+	private SwitchPanel contri;
+	
+	/**
+	 *贡献者信息 
+	 */
+	private List<UserInfo> contributors;
+	
+	/**
+	 *一行显示的信息卡片数目 
+	 */
+	private int lineCard;
+	
+	/**
+	 *页面切换器 
+	 */
+	private PanelSwitcher switcher;
+	
+	/**
+	 *获取项目信息的接口 
+	 */
+	private RepositoryBLService repo;
+	
+	/**
+	 *获取用户信息的接口 
+	 */
+	private UserBLService user;
+	
 	public ProjectInfoPage(int lineCardNum, int width, int height,
 			PanelSwitcher switcher, ProjectDetail detail,
 			RepositoryBLService repo, UserBLService user) {
+		this.lineCard = lineCardNum;
+		this.switcher = switcher;
 		//分成6部分， 回退面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
 		//= 2/3 : 1/2 : 1/6: 1/3 : 1/3 : 2 : 2
 		
@@ -51,7 +114,8 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		int btnH = backH >> 1;
 		int btnW = btnH << 1;
 		ClickHandler handler = () -> switcher.back(this, PanelSwitcher.RIGHT);
-		BackPanel icon = new BackPanel(handler, width, backH, btnW, btnH);
+		BackPanel icon = new BackPanel(
+				handler, width, backH, btnW, btnH, Img.USER_ICON);
 		
 		//描述面板
 		TextPanel description = new TextPanel(
@@ -69,31 +133,27 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		url.setEditable(false);
 		//复制按钮
 		JButton copy = new JButton(Img.COPY);
-//		copy.setToolTipText("将地址复制到剪贴板");
-//		ToolTipManager.sharedInstance().setInitialDelay(0);
-//		copy.addActionListener(e -> {
-//			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
-//			StringSelection content = new StringSelection(url.getText());
-//			board.setContents(content, null);
-//			copy.setToolTipText("已复制到剪贴板");
-//		});
+		copy.addActionListener(e -> {
+			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
+			StringSelection content = new StringSelection(url.getText());
+			board.setContents(content, null);
+			copy.setToolTipText("已复制到剪贴板");
+		});
 		JPopupMenu popup = new JPopupMenu();
-//		popup.setOpaque(false);
-		Dimension d = copy.getPreferredSize();          
+		Dimension d = copy.getPreferredSize();
 		TipText tip = new TipText(d.width, (int)(d.height * 0.75));
 		final int x = -d.width / 3;
 		final int y = -d.height;
-		tip.setOpaque(false);
 		tip.setEnabled(false);
 		popup.add(tip);
 		copy.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
-//				tip.setText(Color.BLACK);               
+				tip.setText(Img.COPY_CLIPBOARD_TIP);               
 				popup.show(copy, x, y);
 			};
 			
 			public void mouseReleased(MouseEvent e) {
-//				tip.setText(Color.WHITE);
+				tip.setText(Img.COPY_TIP);
 				popup.show(copy, x, y);
 			};
 			
@@ -140,22 +200,22 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		info.add(subscriber);
 		
 		//贡献者面板
-		List<UserInfo> u1 = detail.getContributorsInfo();
-		JPanel contri = new JPanel(new BorderLayout());
-		contri.setOpaque(false);
-		SwitchPanel p1 = InfoManager.getUserInfoPanel(u1, contri, switcher,
-				lineCardNum, CONTRIBUTOR_ROW, this, repo, user,
+		contributors = detail.getContributorsInfo();
+		contriContainer = new JPanel(new BorderLayout());
+		contriContainer.setOpaque(false);
+		contri = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
+				lineCard, CONTRIBUTOR_ROW, this, repo, user,
 				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
-		contri.add(p1, BorderLayout.CENTER);
+		contriContainer.add(contri, BorderLayout.CENTER);
 
 		//参与者面板
-		List<UserInfo> u2 = detail.getCollaboratorsInfo();
-		JPanel involve = new JPanel(new BorderLayout());
-		involve.setOpaque(false);
-		SwitchPanel p2 = InfoManager.getUserInfoPanel(u2, involve, switcher,
-				lineCardNum, COLLABORATOR_ROW, this, repo, user,
+		involvers = detail.getCollaboratorsInfo();
+		involveContainer = new JPanel(new BorderLayout());
+		involveContainer.setOpaque(false);
+		involve = InfoManager.getUserInfoPanel(involvers, involveContainer, switcher,
+				lineCard, COLLABORATOR_ROW, this, repo, user,
 				Img.PARICIPANT_TIP, Img.SAMLL_NULL_TIP);
-		involve.add(p2, BorderLayout.CENTER);
+		involveContainer.add(involve, BorderLayout.CENTER);
 		
 		//组装所有面板
 		Box all = Box.createVerticalBox();
@@ -164,33 +224,54 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		all.add(description);
 		all.add(URL);
 		all.add(info);
-		all.add(contri);
-		all.add(involve);
+		all.add(contriContainer);
+		all.add(involveContainer);
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
 		this.setBackground(Colors.PAGE_BG);
 	}
 	
 	private class TipText extends JMenuItem {
-		private Color c;
+		
+		private Image img;
+		
+		private int width;
+		
+		private int height;
 		
 		public TipText(int width, int height) {
+			this.width = width;
+			this.height = height;
 			this.setPreferredSize(new Dimension(width, height));
 		}
 		
-		public void setText(Color c) {//TOOD 以后用图片代替
-			this.c = c;
+		public void setText(Image img) {
+			this.img = img;
 			this.repaint();
 		};
 		
 		protected void paintComponent(Graphics g) {
-			g.setColor(c);
-			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			g.drawImage(img,
+					0, 0, width, height, 0, 0,
+					img.getWidth(null), img.getHeight(null),
+					null);
 		};
 	}
 
 	@Override
 	public void refresh() {
-		// TODO 暂时无事可做
+		SwitchPanel from1 = involve.getCurrentPanel();
+		SwitchPanel to1 = InfoManager.getUserInfoPanel(involvers, involveContainer, switcher,
+				lineCard, CONTRIBUTOR_ROW, this, repo, user,
+				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
+		switcher.jump(involveContainer, from1, to1, PanelSwitcher.LEFT);
+		involve = to1;
+		
+		SwitchPanel from2 = contri.getCurrentPanel();
+		SwitchPanel to2 = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
+				lineCard, CONTRIBUTOR_ROW, this, repo, user,
+				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
+		switcher.jump(contriContainer, from2, to2, PanelSwitcher.LEFT);
+		contri = to2;
 	}
 }

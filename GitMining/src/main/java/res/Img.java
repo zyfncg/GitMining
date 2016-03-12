@@ -190,4 +190,22 @@ public class Img {
 	 */
 	public static final Image LARGE_NULL_TIP =
 			new ImageIcon(TIP_ROOT_PATH + "/large_null.png").getImage();
+	
+	/**
+	 *图标 
+	 */
+	public static final Image USER_ICON =
+			new ImageIcon("graphics/icon.png").getImage();
+	
+	/**
+	 *已经复制项目URL提示图片
+	 */
+	public static final Image COPY_TIP =
+			new ImageIcon(TIP_ROOT_PATH + "/copied.png").getImage();
+	
+	/**
+	 *提示复制项目URL到剪贴板提示图片
+	 */
+	public static final Image COPY_CLIPBOARD_TIP =
+			new ImageIcon(TIP_ROOT_PATH + "/copy_to.png").getImage();
 }
