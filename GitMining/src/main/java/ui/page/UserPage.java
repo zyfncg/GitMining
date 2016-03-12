@@ -12,13 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.UserInfo;
+import businessLogic.businessLogicController.RepositoryController.RepositoryController;
+import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
 import res.Img;
 import res.Strings;
-import stub.RepositoryController_Stub;
-import stub.UserController_Stub;
 import ui.ClickHandler;
 import ui.InfoManager;
 import ui.PanelSwitcher;
@@ -32,13 +32,13 @@ import ui.component.SwitchPanel;
 @SuppressWarnings("serial")
 public class UserPage extends JPanel implements Refreshable {
 	
-	private UserBLService user = new UserController_Stub();
-	
-	private RepositoryBLService repository = new RepositoryController_Stub();
-	
-//	private UserBLService user = new UserController();
+//	private UserBLService user = new UserController_Stub();
 //	
-//	private RepositoryBLService repository = new RepositoryController();
+//	private RepositoryBLService repository = new RepositoryController_Stub();
+	
+	private UserBLService user = new UserController();
+	
+	private RepositoryBLService repository = new RepositoryController();
 	
 	/**
 	 *所有的用户信息 
