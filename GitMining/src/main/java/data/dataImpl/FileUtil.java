@@ -40,7 +40,6 @@ public class FileUtil {
 			oos.writeObject(pList);
 			oos.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -76,7 +75,6 @@ public class FileUtil {
 			oos.writeObject(userList);
 			oos.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

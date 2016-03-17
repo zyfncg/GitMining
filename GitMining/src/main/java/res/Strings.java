@@ -136,4 +136,9 @@ public class Strings {
 	 */
 	public static final String DEFAULT_EMAIL="unknown";
 	
+	/**
+	 *默认language信息 
+	 */
+	public static final String DEFAULT_LAUNGUAGE="unknown";
+	
 }
