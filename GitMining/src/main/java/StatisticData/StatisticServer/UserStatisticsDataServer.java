@@ -8,10 +8,10 @@ import Info.UsrStatisticInfo.SaveUserStatisticInfo;
 public interface UserStatisticsDataServer {
 
 	//设置统计数据
-	public List<UserInfoDetail> getStatisticInfo();
+	public List<UserInfoDetail> getStatisticInfo() throws Exception;
 	
 	public boolean setStatisticInfo(SaveUserStatisticInfo saveUser);
 	
 	//取得统计好的数据
-	public SaveUserStatisticInfo GetStatisticedInfo();
+	public SaveUserStatisticInfo GetStatisticedInfo() throws Exception;
 }
