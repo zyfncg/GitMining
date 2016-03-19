@@ -3,13 +3,12 @@ package StatisticData.StatisticServer;
 import java.util.List;
 
 import Info.ProjectDetail;
-import Info.RepStatisticInfo.RepositoryStatisticInfo;
 import Info.RepStatisticInfo.SaveRepositoryStatisticInfo;
 
 public interface RepositoryStatisticsDataServer {
 
 	//设置统计数据
-	public List<RepositoryStatisticInfo> getStatisticInfo();
+	public List<ProjectDetail> getStatisticInfo();
 	
 	public boolean setStatisticInfo(SaveRepositoryStatisticInfo saveRepository);
 	

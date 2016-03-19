@@ -37,6 +37,11 @@ public class ProjectDetail implements Serializable{
 	private ProjectName projectName;
 	
 	/**
+	 * 项目创建时间
+	 */
+	private Date CreatDate;
+	
+	/**
 	 * 项目的fork数量
 	 */
 	private int forks;
@@ -174,6 +179,14 @@ public class ProjectDetail implements Serializable{
 		CollaboratorsInfo = collaboratorsInfo;
 	}
 	
+	public Date getCreatDate() {
+		return CreatDate;
+	}
+
+	public void setCreatDate(Date creatDate) {
+		CreatDate = creatDate;
+	}
+
 	/**
 	 * 将项目详细信息转为项目粗略信息
 	 */

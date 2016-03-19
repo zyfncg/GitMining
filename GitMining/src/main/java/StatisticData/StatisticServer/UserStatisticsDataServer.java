@@ -2,13 +2,13 @@ package StatisticData.StatisticServer;
 
 import java.util.List;
 
+import Info.UserInfoDetail;
 import Info.UsrStatisticInfo.SaveUserStatisticInfo;
-import Info.UsrStatisticInfo.UserStatisticInfo;
 
 public interface UserStatisticsDataServer {
 
 	//设置统计数据
-	public List<UserStatisticInfo> getStatisticInfo();
+	public List<UserInfoDetail> getStatisticInfo();
 	
 	public boolean setStatisticInfo(SaveUserStatisticInfo saveUser);
 	
