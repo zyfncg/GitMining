@@ -52,22 +52,22 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 	private static final int COLLABORATOR_ROW = 1;
 	
 	/**
-	 *项目参与者信息面板容器
+	 *项目协作者信息面板容器
 	 */
-	private JPanel involveContainer;
+	private JPanel collabContainer;
 	
 	/**
-	 *参与者信息面板 
+	 *协作者信息面板 
 	 */
-	private SwitchPanel involve;
+	private SwitchPanel collab;
 	
 	/**
-	 *参与者信息 
+	 *协作者信息 
 	 */
-	private List<UserInfo> involvers;
+	private List<UserInfo> collaborators;
 	
 	/**
-	 *用户参与者信息面板容器
+	 *用户贡献者信息面板容器
 	 */
 	private JPanel contriContainer;
 	
@@ -205,17 +205,17 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		contriContainer.setOpaque(false);
 		contri = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
 				lineCard, CONTRIBUTOR_ROW, this, repo, user,
-				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
+				Img.CONTRIBUTOR_TIP, Img.SAMLL_NULL_TIP);
 		contriContainer.add(contri, BorderLayout.CENTER);
 
-		//参与者面板
-		involvers = detail.getCollaboratorsInfo();
-		involveContainer = new JPanel(new BorderLayout());
-		involveContainer.setOpaque(false);
-		involve = InfoManager.getUserInfoPanel(involvers, involveContainer, switcher,
+		//协作者面板
+		collaborators = detail.getCollaboratorsInfo();
+		collabContainer = new JPanel(new BorderLayout());
+		collabContainer.setOpaque(false);
+		collab = InfoManager.getUserInfoPanel(collaborators, collabContainer, switcher,
 				lineCard, COLLABORATOR_ROW, this, repo, user,
-				Img.PARICIPANT_TIP, Img.SAMLL_NULL_TIP);
-		involveContainer.add(involve, BorderLayout.CENTER);
+				Img.COLLABOROTOR_TIP, Img.SAMLL_NULL_TIP);
+		collabContainer.add(collab, BorderLayout.CENTER);
 		
 		//组装所有面板
 		Box all = Box.createVerticalBox();
@@ -225,7 +225,7 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		all.add(URL);
 		all.add(info);
 		all.add(contriContainer);
-		all.add(involveContainer);
+		all.add(collabContainer);
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
 		this.setBackground(Colors.PAGE_BG);
@@ -260,17 +260,17 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 
 	@Override
 	public void refresh() {
-		SwitchPanel from1 = involve.getCurrentPanel();
-		SwitchPanel to1 = InfoManager.getUserInfoPanel(involvers, involveContainer, switcher,
+		SwitchPanel from1 = collab.getCurrentPanel();
+		SwitchPanel to1 = InfoManager.getUserInfoPanel(collaborators, collabContainer, switcher,
 				lineCard, CONTRIBUTOR_ROW, this, repo, user,
-				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
-		switcher.jump(involveContainer, from1, to1, PanelSwitcher.LEFT);
-		involve = to1;
+				Img.COLLABOROTOR_TIP, Img.SAMLL_NULL_TIP);
+		switcher.jump(collabContainer, from1, to1, PanelSwitcher.LEFT);
+		collab = to1;
 		
 		SwitchPanel from2 = contri.getCurrentPanel();
 		SwitchPanel to2 = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
 				lineCard, CONTRIBUTOR_ROW, this, repo, user,
-				Img.FOUNDER_TIP, Img.SAMLL_NULL_TIP);
+				Img.COLLABOROTOR_TIP, Img.SAMLL_NULL_TIP);
 		switcher.jump(contriContainer, from2, to2, PanelSwitcher.LEFT);
 		contri = to2;
 	}
