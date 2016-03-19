@@ -1,21 +1,18 @@
 package data.dataImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Info.UserInfo;
 import Info.UserInfoDetail;
-import data.connectUtil.HttpRequestUtil;
-import data.connectUtil.JsonUtil;
-import data.connectUtil.StringListTool;
-import data.connectUtil.URLString;
 
 public class UserDataUtil {
 	
-	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
-	private StringListTool stringTool=new StringListTool();
 	private FileUtil fileUtil=new FileUtil();
 	
+	/**
+	 *从文件中获取用户数据 
+	 * 
+	 */
 	public List<UserInfo> getAllUsersFromFile() throws Exception{
 		
 		List<UserInfo> userList = null;
@@ -25,55 +22,26 @@ public class UserDataUtil {
 		return userList;
 	} 
 	
-	public List<UserInfo> getAllUsers() throws Exception{
-		
-		List<UserInfo> userList=new ArrayList<UserInfo>();
-		UserInfo userInfo;
-		String userURL;
-		String userJson;
-		String userName;
-		
-		
-		String reponameList=HttpRequestUtil.httpRequest(projectListUrl);
-		List<String> reponame=stringTool.getStringList(reponameList);
-		List<String> userNameList=new ArrayList<String>();
-		
-		for(int i=0;i<reponame.size();i++){
-			String ownerRepo[]=reponame.get(i).split("/");
-			userName=ownerRepo[0];
-			if(userNameList.contains(userName)){
-				continue;
-			}else{
-				userNameList.add(userName);
-				userURL=URLString.getUserApiString()+userName;
-				userJson=HttpRequestUtil.httpRequest(userURL);
-				
-				if(userJson==null){
-					continue;
-				}
-				
-				userInfo=JsonUtil.jsonToUser(userJson);
-				userList.add(userInfo);
-			}
-				
-		}
-		
-		if(!fileUtil.setUserToFile(userList)){
-			return null;
-		}
-		
-		return userList;
-	}
-	
+	/**
+	 *获得单个用户的具体信息
+	 *@author ZhangYF
+	 *@param 用户姓名
+	 *@return 具体用户信息
+	 *
+	 */
 	public UserInfoDetail getUserByName(String name) throws Exception{
 		
-		UserInfoDetail userDetail;
-		String userURL;
-		String userJson;
+		List<UserInfoDetail> userDetailList=fileUtil.getUserDetailFromFile();
+		UserInfoDetail userDetail = null;
+		String userName;
 		
-		userURL=URLString.getUserApiString()+name.toString();
-		userJson=HttpRequestUtil.httpRequest(userURL);
-		userDetail=JsonUtil.jsonToUserDetail(userJson);
+		for(UserInfoDetail ud:userDetailList){
+			userName=ud.getUserName();
+			if(userName.equals(name)){
+				userDetail=ud;
+				break;
+			}
+		}
 		
 		return userDetail;
 	}

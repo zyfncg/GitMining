@@ -150,16 +150,16 @@ public class Img {
 			new ImageIcon(TIP_ROOT_PATH + "/null.png").getImage();
 	
 	/**
-	 *显示参与者字符串的图片 
+	 *显示贡献者字符串的图片 
 	 */
-	public static final Image PARICIPANT_TIP =
-			new ImageIcon(TIP_ROOT_PATH + "/participant.png").getImage();
+	public static final Image CONTRIBUTOR_TIP =
+			new ImageIcon(TIP_ROOT_PATH + "/contributor.png").getImage();
 	
 	/**
-	 *显示创建者字符串的图片 
+	 *显示协作者字符串的图片 
 	 */
-	public static final Image FOUNDER_TIP =
-			new ImageIcon(TIP_ROOT_PATH + "/founder.png").getImage();
+	public static final Image COLLABOROTOR_TIP =
+			new ImageIcon(TIP_ROOT_PATH + "/collaborator.png").getImage();
 	
 	/**
 	 *显示创建项目字符串的图片 

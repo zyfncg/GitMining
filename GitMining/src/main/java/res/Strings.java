@@ -36,14 +36,14 @@ public class Strings {
 	public static final String SUBSCRIBER_LABEL = "subscriber";
 	
 	/**
-	 *participant标签 
+	 *involve projects标签 
 	 */
-	public static final String PARTICIPANT_LABEL = "participant";
+	public static final String INVOLVE_PROJECTS = "ProjectInvolve";
 	
 	/**
-	 *founder标签 
+	 *create projects标签 
 	 */
-	public static final String FOUNDER_LABEL = "founder";
+	public static final String CREATE_PROJECTS = "ProjectCreate";
 	
 	/**
 	 *description标签 
@@ -135,5 +135,15 @@ public class Strings {
 	 *默认email信息 
 	 */
 	public static final String DEFAULT_EMAIL="unknown";
+	
+	/**
+	 *默认language信息 
+	 */
+	public static final String DEFAULT_LAUNGUAGE="unknown";
+	
+	/**
+	 *默认location信息 
+	 */
+	public static final String DEFAULT_LOCATION="unknown";
 	
 }
