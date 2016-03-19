@@ -1,5 +1,6 @@
 package Info;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,8 +9,13 @@ import java.util.List;
  * @author 张仁知
  *
  */
-public class ProjectDetail {
+public class ProjectDetail implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3985898918660943741L;
+
 	/** 
 	 * 对项目的简要描述
 	 */

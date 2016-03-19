@@ -52,4 +52,8 @@ public class ProjectName implements Serializable{
 	public String getowner() {
 		return this.owner;
 	}
+	
+	public boolean isSame(ProjectName pn){
+		return toString().equals(pn.toString());
+	}
 }

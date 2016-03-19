@@ -141,4 +141,9 @@ public class Strings {
 	 */
 	public static final String DEFAULT_LAUNGUAGE="unknown";
 	
+	/**
+	 *默认location信息 
+	 */
+	public static final String DEFAULT_LOCATION="unknown";
+	
 }

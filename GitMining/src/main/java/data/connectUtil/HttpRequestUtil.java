@@ -23,7 +23,8 @@ public class HttpRequestUtil {
         
         if(ips==null){	
     		System.out.println("Connnet Wrong");
-    		throw new Exception();
+    		return null;
+//    		throw new Exception();
     	}
         
         try { 
