@@ -38,6 +38,11 @@ public class UserInfoDetail implements Serializable{
 	private Date joinDate;
 	
 	/**
+	 * 用户类型
+	 */
+	private String UserType;
+	
+	/**
 	 * 用户所在公司
 	 */
 	private String company;
@@ -148,6 +153,14 @@ public class UserInfoDetail implements Serializable{
 		ProjectCreatInfo = projectCreatInfo;
 	}
 	
+	public String getUserType() {
+		return UserType;
+	}
+
+	public void setUserType(String userType) {
+		UserType = userType;
+	}
+
 	/**
 	 * 将用户详细信息转为用户粗略信息
 	 */
