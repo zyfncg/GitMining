@@ -38,12 +38,6 @@ public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 	}
 
 	@Override
-	public List<ProjectDetail> getDetailRepositoryInfo() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean setDetailStatisticInfo(List<ProjectDetail> list) {
 		
 		FileUtil proFile=new FileUtil();
