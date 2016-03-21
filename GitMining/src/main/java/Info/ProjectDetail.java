@@ -74,6 +74,12 @@ public class ProjectDetail implements Serializable{
 	 * 用户订阅
 	 */
 	private int subscribers;
+	
+	/**
+	 * 雷达图详细数据
+	 */
+	private StatisticDetail statisticDetail;
+	
 
 	public ProjectDetail(String description, String language, String uRL,
 			ProjectName projectName, int forks, int stars, int contributors,
@@ -185,6 +191,14 @@ public class ProjectDetail implements Serializable{
 
 	public void setCreatDate(Date creatDate) {
 		CreatDate = creatDate;
+	}
+
+	public StatisticDetail getStatisticDetail() {
+		return statisticDetail;
+	}
+
+	public void setStatisticDetail(StatisticDetail statisticDetail) {
+		this.statisticDetail = statisticDetail;
 	}
 
 	/**
