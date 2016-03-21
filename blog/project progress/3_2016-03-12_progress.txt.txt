@@ -1,11 +1,17 @@
-who�����Ʒ�
-when��������
-what����ɵ���һ�����ݲ�Ŀ���
-problem�����ݲ����չ�Բ���
-todo���������ڼ�����ݲ�ṹ�����Ż�����
+who：张云飞
+when：第三周
+what：完成迭代一的数据层的开发
+problem：数据层可拓展性不好
+todo：迭代二期间对数据层结构进行优化改良
 
-who: Ф����
-when: ������
-what: ��ɵ���һ�Ľ��濪��
-problem: ����������Ƶ�ʵĽ�����תʱ�������
-todo: ���е������Ľ��濪��
+who: 肖安祥
+when: 第三周
+what: 完成迭代一的界面开发
+problem: 界面遭遇高频率的界面跳转时会出问题
+todo: 进行迭代二的界面开发
+
+who: 阮威威
+when: 第三周
+what: 完成迭代一的逻辑层开发
+problem: 逻辑层出现小bug
+todo: 进行迭代二的逻辑层开发
