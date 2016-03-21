@@ -1,4 +1,4 @@
-package StatisticData.StatisticServer;
+package data.statisticServer;
 
 import java.util.List;
 
