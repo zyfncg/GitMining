@@ -3,3 +3,9 @@ when：第四周
 what：完成迭代二的数据层架构设计
 problem：无
 todo：完成迭代二数据层的开发
+
+who: 肖安祥
+when:第四周
+what:选择统计结果用何种图表进行展示
+problem:无
+todo:完成统计界面的布局
