@@ -11,7 +11,6 @@ public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 
 	@Override
 	public List<ProjectDetail> getStatisticRepositoryInfo() throws Exception {
-		// TODO Auto-generated method stub
 		FileUtil proFile=new FileUtil();
 		
 		List<ProjectDetail> proList = null;
@@ -27,14 +26,22 @@ public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 
 	@Override
 	public boolean setStatisticInfo(SaveRepositoryStatisticInfo saveRepository) {
-		// TODO Auto-generated method stub
-		return false;
+		StatisticFile statisticFile=new StatisticFile();
+		return statisticFile.saveProjectStatisticData(saveRepository);
 	}
 
 	@Override
-	public SaveRepositoryStatisticInfo GetStatisticedInfo() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public SaveRepositoryStatisticInfo GetStatisticedInfo() throws Exception{
+		StatisticFile statisticFile=new StatisticFile();
+		SaveRepositoryStatisticInfo repoStatistic;
+		
+		try {
+			repoStatistic=statisticFile.getProjectStatisticData();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}	
+		return repoStatistic;
 	}
 
 	@Override
@@ -45,7 +52,7 @@ public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 		if(!proFile.setProjectDetailToFile(list)){
 			return false;
 		}
-		return false;
+		return true;
 	}
 
 }
