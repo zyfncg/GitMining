@@ -1,11 +1,23 @@
-who�����Ʒ�
-when��������
-what����ɵ����������ݲ�ܹ����
-problem����
-todo����ɵ��������ݲ�Ŀ���
+﻿who：张云飞
+when：第四周
+what：完成迭代二的数据层架构设计
+problem：无
+todo：完成迭代二数据层的开发
 
-who: Ф����
-when:������
-what:ѡ��ͳ�ƽ���ú���ͼ������չʾ
-problem:��
-todo:���ͳ�ƽ���Ĳ���
+who: 肖安祥
+when:第四周
+what:选择统计结果用何种图表进行展示
+problem:无
+todo:完成统计界面的布局
+
+who: 阮威威
+when: 第四周
+what: 完成逻辑层的架构设计与搭建
+problem: 无
+todo: 继续完成迭代二的逻辑层开发
+
+who: 张仁知
+when: 第四周
+what: 完成图表的Demo
+problem: Twaver架包无法实现两种图表一起显示
+todo: 继续寻找其他架包完成图表Demo

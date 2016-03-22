@@ -8,23 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.UserInfo;
-import businessLogic.businessLogicController.RepositoryController.RepositoryController;
-import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import stub.RepositoryController_Stub;
+import stub.UserController_Stub;
 import ui.ClickHandler;
 import ui.InfoManager;
 import ui.PanelSwitcher;
 import ui.Refreshable;
 import ui.component.SearchPanel;
 import ui.component.SwitchPanel;
+import ui.statistics.UserStatPage;
 
 /**
  *用户信息主页 
@@ -32,13 +34,13 @@ import ui.component.SwitchPanel;
 @SuppressWarnings("serial")
 public class UserPage extends JPanel implements Refreshable {
 	
-//	private UserBLService user = new UserController_Stub();
+	private UserBLService user = new UserController_Stub();
+	
+	private RepositoryBLService repository = new RepositoryController_Stub();
+	
+//	private UserBLService user = new UserController();
 //	
-//	private RepositoryBLService repository = new RepositoryController_Stub();
-	
-	private UserBLService user = new UserController();
-	
-	private RepositoryBLService repository = new RepositoryController();
+//	private RepositoryBLService repository = new RepositoryController();
 	
 	/**
 	 *所有的用户信息 
@@ -80,7 +82,6 @@ public class UserPage extends JPanel implements Refreshable {
 		try {
 			allUsers = this.user.getAllUsers();
 		} catch (Exception e) {
-			//TODO 处理异常
 			allUsers = new ArrayList<>();
 			JOptionPane.showMessageDialog(null, e.getMessage(),
 					Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
@@ -115,23 +116,36 @@ public class UserPage extends JPanel implements Refreshable {
 //				.leftOnly(handler, icon, null);
 		
 		//搜索面板
-		int searchW = iconW;
-		int searchH = iconH;
-		String tip = Strings.USER_SEARCH_TIP;
-		SearchPanel s = new SearchPanel(searchW, searchH, tip);
-		s.setClickHandler(this.getSearchHandler(s, tip));
 		FlowLayout layout = new FlowLayout();
+		int centerW = width - (SwitchPanel.SWITCH_WIDTH << 1);
+		int centerH = iconH;
+		int searchW = width - (SwitchPanel.SWITCH_WIDTH << 3);
+		int searchH = centerH / 3;
 		layout.setHgap(SwitchPanel.SWITCH_WIDTH);
-		layout.setVgap(0);
-		JPanel search = new JPanel(layout);
-		search.setOpaque(false);
-		search.add(s);
+		layout.setVgap(searchH);
+		JPanel center = new JPanel(layout);
+		center.setPreferredSize(new Dimension(centerW, centerH));
+		center.setOpaque(false);
+		//搜索框和搜索按钮
+		String tip = Strings.USER_SEARCH_TIP;
+		SearchPanel search = new SearchPanel(searchW, searchH, tip);
+		search.setClickHandler(this.getSearchHandler(search, tip));
+		//统计按钮
+		JButton statistics = new JButton();
+		int btnW = SwitchPanel.SWITCH_WIDTH << 1;
+		int btnH = searchH;
+		statistics.setPreferredSize(new Dimension(btnW, btnH));
+		statistics.addActionListener(e -> switcher.jump(
+				this, new UserStatPage(), PanelSwitcher.LEFT));
+		//将搜索框、搜索按钮和统计按钮添加到搜索面板
+		center.add(search);
+		center.add(statistics);
 		
 		//组合所有面板
 		Box container = Box.createVerticalBox();
 		container.setOpaque(false);
 		container.add(switcherPanel);
-		container.add(search);
+		container.add(center);
 		container.add(infoPanel);
 		this.setLayout(new BorderLayout());
 		this.add(container);
@@ -149,7 +163,6 @@ public class UserPage extends JPanel implements Refreshable {
 			try {
 				users = user.searchUsers(search.getText());
 			} catch (Exception e1) {
-				// TODO 异常处理
 				users = new ArrayList<>();
 				JOptionPane.showMessageDialog(null, e1.getMessage(),
 						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
