@@ -1,5 +1,5 @@
 package Info.RepStatisticInfo;
 
-public class timeStatistics {
+public class TimeStatistics {
 
 }

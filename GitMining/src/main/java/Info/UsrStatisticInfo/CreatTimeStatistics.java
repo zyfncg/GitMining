@@ -1,5 +1,5 @@
 package Info.UsrStatisticInfo;
 
-public class creatTimeStatistics {
+public class CreatTimeStatistics {
 
 }

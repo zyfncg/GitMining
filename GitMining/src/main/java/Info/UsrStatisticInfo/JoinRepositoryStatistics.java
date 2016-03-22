@@ -1,5 +1,5 @@
 package Info.UsrStatisticInfo;
 
-public class joinRepositoryStatistics {
+public class JoinRepositoryStatistics {
 
 }
