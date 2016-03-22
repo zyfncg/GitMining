@@ -13,20 +13,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.ProjectInfo;
-import businessLogic.businessLogicController.RepositoryController.RepositoryController;
-import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import constant.SortType;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import stub.RepositoryController_Stub;
+import stub.UserController_Stub;
 import ui.ClickHandler;
 import ui.InfoManager;
 import ui.PanelSwitcher;
 import ui.Refreshable;
 import ui.component.SearchPanel;
 import ui.component.SwitchPanel;
+import ui.statistics.ProjectStatPage;
 
 /**
  *项目信息主页 
@@ -34,13 +35,13 @@ import ui.component.SwitchPanel;
 @SuppressWarnings("serial")
 public class ProjectPage extends JPanel implements Refreshable {
 	
-//	private RepositoryBLService repository = new RepositoryController_Stub();
+	private RepositoryBLService repository = new RepositoryController_Stub();
+	
+	private UserBLService user = new UserController_Stub();
+	
+//	private RepositoryBLService repository = new RepositoryController();
 //	
-//	private UserBLService user = new UserController_Stub();
-	
-	private RepositoryBLService repository = new RepositoryController();
-	
-	private UserBLService user = new UserController();
+//	private UserBLService user = new UserController();
 
 	/**
 	 *所有的项目信息 
@@ -89,7 +90,6 @@ public class ProjectPage extends JPanel implements Refreshable {
 		try {
 			allProjects = this.repository.getAllRepositorys();
 		} catch (Exception e) {
-			//TODO 异常处理
 			allProjects = new ArrayList<>();
 			JOptionPane.showMessageDialog(null, e.getMessage(),
 					Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
@@ -103,45 +103,63 @@ public class ProjectPage extends JPanel implements Refreshable {
 		infoPanel.add(currentPanel, BorderLayout.CENTER);
 		
 		//搜索面板
-		int searchH = height / 6;
-		int searchW = width - (SwitchPanel.SWITCH_WIDTH << 1);
+		FlowLayout searchFL = new FlowLayout();
+		int searchH = height / 18;	//搜索面板高度占总高度的1/6，搜索框高度占搜索面板高度的1/3
+		int searchW = width - (SwitchPanel.SWITCH_WIDTH << 3);
+		searchFL.setVgap(searchH);
+		searchFL.setHgap(SwitchPanel.SWITCH_WIDTH);
+		JPanel center = new JPanel(searchFL);
+		int centerW = width - (SwitchPanel.SWITCH_WIDTH << 1);
+		int centerH = height / 6;
+		center.setPreferredSize(new Dimension(centerW, centerH));
+		center.setOpaque(false);
+		//搜索框与搜索按钮
 		String tip = Strings.PROJECT_SEARCH_TIP;
 		SearchPanel search = new SearchPanel(searchW, searchH, tip);
 		search.setClickHandler(this.getSearchHandler(
 				search, tip));
+		//统计按钮
+		JButton statistics = new JButton();
+		statistics.setPreferredSize(new Dimension(
+				SwitchPanel.SWITCH_WIDTH << 1, searchH));
+		statistics.addActionListener(e -> switcher.jump(
+				this, new ProjectStatPage(), PanelSwitcher.LEFT));
+		//将搜索框、搜索按钮和统计按钮添加到搜索面板
+		center.add(search);
+		center.add(statistics);
 //		ClickHandler left =
 //				() -> switcher.jump(Page.PROJECT, Page.START, PanelSwitcher.RIGHT);
 //		ClickHandler right =
 //				() -> switcher.jump(Page.PROJECT, Page.USER, PanelSwitcher.LEFT);
-		SwitchPanel switcherPanel = SwitchPanel.noSwitch(search, null);
-//				bothSides(left, right, search);
+		SwitchPanel switcherPanel = SwitchPanel.noSwitch(center, null);
+//		SwitchPanel switcherPanel = SwitchPanel.bothSides(left, right, search);
 		
 		//排序面板
-		int sortH = searchH;
+		int sortH = centerH;
 		int sortW = searchW;
 		int btnH = sortH / 3;
 		int btnW = sortW >> 2;
 		btnW = (btnW > btnH * 3) ? (btnH * 3) : btnW;
 		//四种排序依据
-		ButtonManager m = new ButtonManager();
+		ButtonManager manager = new ButtonManager();
 		SortButton general = new SortButton(btnW, btnH,
 				Img.GENERAL_SELECT, Img.GENERAL_NOT_SELECT, SortType.General);
-		general.setHandler(this.getSortHandler(SortType.General, m, general));
+		general.setHandler(this.getSortHandler(SortType.General, manager, general));
 		SortButton star = new SortButton(btnW, btnH,
 				Img.STAR_SELECT, Img.STAR_NOT_SELECT, SortType.Star);
-		star.setHandler(this.getSortHandler(SortType.Star, m, star));
+		star.setHandler(this.getSortHandler(SortType.Star, manager, star));
 		SortButton fork = new SortButton(btnW, btnH,
 				Img.FORK_SELECT, Img.FORK_NOT_SELECT, SortType.Fork);
-		fork.setHandler(this.getSortHandler(SortType.Fork, m,
+		fork.setHandler(this.getSortHandler(SortType.Fork, manager,
 				fork));
 		SortButton contributor = new SortButton(btnW, btnH,
 				Img.CONTRIBUTOR_SELECT, Img.CONTRIBUTOR_NOT_SELECT, SortType.Contributors);
 		contributor.setHandler(this.getSortHandler(SortType.Contributors,
-				m, contributor));
-		m.add(general);
-		m.add(star);
-		m.add(fork);
-		m.add(contributor);
+				manager, contributor));
+		manager.add(general);
+		manager.add(star);
+		manager.add(fork);
+		manager.add(contributor);
 		//四个按钮的按钮面板
 		FlowLayout inLayout = new FlowLayout();
 		inLayout.setHgap(0);
@@ -183,7 +201,6 @@ public class ProjectPage extends JPanel implements Refreshable {
 			try {
 				result = repository.searchRepositorys(search.getText());
 			} catch (Exception e1) {
-				// TODO 异常处理
 				result = new ArrayList<>();
 				JOptionPane.showMessageDialog(null, e1.getMessage(),
 						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);

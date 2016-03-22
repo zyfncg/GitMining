@@ -1,5 +1,12 @@
 package RepositoryStatistic.GetRepositoryStatistic;
 
-public class RepositoryStatisticFactory {
+import RepositoryStatistic.SetRepositoryStatistic.DetailAnalyze.SetTimeStatistic;
 
+public class RepositoryStatisticFactory {
+	
+//	public TimeStatistic GetCreatTime(){
+//		return new TimeStatistic();
+//	}
+//	
+//	public 
 }

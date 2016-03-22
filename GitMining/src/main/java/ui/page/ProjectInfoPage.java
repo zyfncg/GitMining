@@ -34,6 +34,7 @@ import ui.component.BackPanel;
 import ui.component.KVPanel;
 import ui.component.SwitchPanel;
 import ui.component.TextPanel;
+import ui.statistics.SingleProjectStatPage;
 
 /**
  *项目详细信息面板 
@@ -107,11 +108,11 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		this.lineCard = lineCardNum;
 		this.switcher = switcher;
 		//分成6部分， 回退面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
-		//= 2/3 : 1/2 : 1/6: 1/3 : 1/3 : 2 : 2
+		//= 1/2 : 1/2 : 1/2: 1/2 : 2 : 2
 		
 		//回退面板
-		int backH = height / 9;
-		int btnH = backH >> 1;
+		int backH = height / 12;
+		int btnH = (int) (backH / 3 * 2);
 		int btnW = btnH << 1;
 		ClickHandler handler = () -> switcher.back(this, PanelSwitcher.RIGHT);
 		BackPanel icon = new BackPanel(
@@ -119,26 +120,29 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		
 		//描述面板
 		TextPanel description = new TextPanel(
-				detail.getDescription(), width, height / 12);
+				detail.getDescription(), width, backH);
 		
 		//项目地址面板
 		JPanel URL = new JPanel();
 		URL.setOpaque(false);
-		int urlW = width >> 1;
-		int urlH = backH >> 1;
+		int urlW = width;
+		int urlH = backH;
+		URL.setPreferredSize(new Dimension(urlW, urlH));
 		//项目地址文本框
 		JTextField url = new JTextField();
 		url.setText(detail.getURL());
-		url.setPreferredSize(new Dimension((int)(urlW * 0.8), urlH));
+		int textW = width - (SwitchPanel.SWITCH_WIDTH * 10);
+		int textH = urlH / 3 * 2;
+		url.setPreferredSize(new Dimension(textW, textH));
 		url.setEditable(false);
 		//复制按钮
 		JButton copy = new JButton(Img.COPY);
-		copy.addActionListener(e -> {
+		copy.addActionListener(e -> {//为复制按钮添加将项目地址复制到剪贴板的监听操作
 			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
 			StringSelection content = new StringSelection(url.getText());
 			board.setContents(content, null);
-			copy.setToolTipText("已复制到剪贴板");
 		});
+		//为复制按钮添加ToolTip(用JPopupMenu模拟)
 		JPopupMenu popup = new JPopupMenu();
 		Dimension d = copy.getPreferredSize();
 		TipText tip = new TipText(d.width, (int)(d.height * 0.75));
@@ -161,19 +165,36 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 				popup.setVisible(false);
 			};
 		});
-		copy.setPreferredSize(new Dimension(urlW / 5, urlH));
-		
-		//将文本框和按钮加到面板
+		int copyW = textW >> 2;
+		int copyH = textH;
+		copy.setPreferredSize(new Dimension(copyW, copyH));
+		//将文本框和复制按钮组合成一个新面板
+		FlowLayout fl = new FlowLayout();
+		fl.setVgap(0);
+		fl.setHgap(0);
+		JPanel panel = new JPanel(fl);
+		panel.setOpaque(false);
+		panel.setPreferredSize(new Dimension(
+				textW + copyW, textH));
+		panel.add(url);
+		panel.add(copy);
+		//统计按钮
+		JButton statistics = new JButton();
+		statistics.setPreferredSize(new Dimension(
+				SwitchPanel.SWITCH_WIDTH << 1, copyH));
+		statistics.addActionListener(e -> switcher.jump(
+				this, new SingleProjectStatPage(), PanelSwitcher.LEFT));
+		//将文本框、复制按钮和统计按钮加到面板
 		FlowLayout urlLayout = new FlowLayout();
-		urlLayout.setVgap(urlH >> 3);
-		urlLayout.setHgap(0);
+		urlLayout.setVgap(urlH / 6);
+		urlLayout.setHgap(SwitchPanel.SWITCH_WIDTH);
 		URL.setLayout(urlLayout);
-		URL.add(url);
-		URL.add(copy);
+		URL.add(panel);
+		URL.add(statistics);
 		
 		//信息面板
 		int itemW = width >> 3;
-		int itemH = height / 18;
+		int itemH = backH;
 		//各项信息面板
 		KVPanel language = new KVPanel(itemW, itemH,
 				Strings.LANGUAGE_LABEL, detail.getLanguage(), KVPanel.VERTICAL);

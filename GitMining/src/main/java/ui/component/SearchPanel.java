@@ -55,8 +55,10 @@ public class SearchPanel extends JPanel {
 	 *			  如果没有显示信息，传入"",不接受null值 
 	 */
 	public SearchPanel(int width, int height, String tip) {
-		int btnH = height / 3;
-		int btnW = height << 1;
+//		int btnH = height / 3;
+//		int btnW = height << 1;
+		int btnH = height;
+		int btnW = width / 5;
 		btnW = (btnW > width / 3) ? (width / 3) : btnW;
 		search = new JButton(Img.SEARCH);
 		search.setPreferredSize(new Dimension(btnW, btnH));
@@ -71,7 +73,8 @@ public class SearchPanel extends JPanel {
 		this.add(search);
 		FlowLayout layout = new FlowLayout();
 		layout.setHgap(0);
-		layout.setVgap(height / 3);
+//		layout.setVgap(height / 3);
+		layout.setVgap(0);
 		this.setLayout(layout);
 		this.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
