@@ -35,14 +35,6 @@ public interface RepositoryStatisticsDataServer {
 	public SaveRepositoryStatisticInfo GetStatisticedInfo() throws Exception;
 	
 //设置雷达图相关数据
-	/**
-	 *description: 取得全部项目详细信息列表
-	 * 前置条件：无
-	 * 后置条件：返回全部项目详细信息列表
-	 * @return 返回全部项目详细信息列表，若无，返回null
-	 * @throws Exception 
-	 */
-	public List<ProjectDetail> getDetailRepositoryInfo() throws Exception;
 	
 	/**
 	 *description: 保存项目统计后数据（雷达图）
