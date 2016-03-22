@@ -1,5 +1,15 @@
 package RepositoryStatistic.GetRepositoryStatistic.DetailGet;
 
-public class GetContributorStatistic {
+import java.util.List;
 
+import Info.RepStatisticInfo.ContributorStatistics;
+
+public class GetContributorStatistic {
+	
+	public List<ContributorStatistics> getContributorStatistic(){
+		RepPartStatistics part = new RepPartStatistics();
+//		List<ContributorStatistics> = 
+		return null;
+	}
+		
 }
