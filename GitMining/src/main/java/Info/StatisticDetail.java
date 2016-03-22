@@ -14,13 +14,16 @@ public class StatisticDetail {
 	
 	private Double sizeStatistic;
 	
-	public StatisticDetail(double Star,double Contributor,double Commit,double issue,double PullRequest,double Size){
+	private Double totalStatistic;
+	
+	public StatisticDetail(double Star,double Contributor,double Commit,double issue,double PullRequest,double Size,double total){
 		this.StarStatistic = Star;
 		this.ContributorStatistic = Contributor;
 		this.CommitStatistic = Commit;
 		this.issueStatistic = issue;
 		this.PullRequestStatistic = PullRequest;
 		this.sizeStatistic = Size;
+		this.totalStatistic = total;
 	}
 
 	public Double getStarStatistic() {
@@ -69,6 +72,14 @@ public class StatisticDetail {
 
 	public void setSizeStatistic(Double sizeStatistic) {
 		this.sizeStatistic = sizeStatistic;
+	}
+
+	public Double getTotalStatistic() {
+		return totalStatistic;
+	}
+
+	public void setTotalStatistic(Double totalStatistic) {
+		this.totalStatistic = totalStatistic;
 	}
 	
 	

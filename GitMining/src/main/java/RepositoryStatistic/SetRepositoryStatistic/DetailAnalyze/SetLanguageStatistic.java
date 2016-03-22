@@ -1,5 +1,5 @@
 package RepositoryStatistic.SetRepositoryStatistic.DetailAnalyze;
 
-public class LanguageStatistic {
+public class SetLanguageStatistic {
 
 }

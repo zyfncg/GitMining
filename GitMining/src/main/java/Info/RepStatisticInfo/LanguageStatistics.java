@@ -1,5 +1,5 @@
 package Info.RepStatisticInfo;
 
-public class LanguageStatistics {
+public class languageStatistics {
 
 }
