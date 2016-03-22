@@ -1,4 +1,4 @@
-who：张云飞
+﻿who：张云飞
 when：第四周
 what：完成迭代二的数据层架构设计
 problem：无
@@ -15,3 +15,9 @@ when: 第四周
 what: 完成逻辑层的架构设计与搭建
 problem: 无
 todo: 继续完成迭代二的逻辑层开发
+
+who: 张仁知
+when: 第四周
+what: 完成图表的Demo
+problem: Twaver架包无法实现两种图表一起显示
+todo: 继续寻找其他架包完成图表Demo

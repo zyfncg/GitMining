@@ -1,4 +1,4 @@
-who：张云飞
+﻿who：张云飞
 when：第三周
 what：完成迭代一的数据层的开发
 problem：数据层可拓展性不好
@@ -15,3 +15,9 @@ when: 第三周
 what: 完成迭代一的逻辑层开发
 problem: 逻辑层出现小bug
 todo: 进行迭代二的逻辑层开发
+
+who: 张仁知
+when: 第三周
+what: 完成迭代一界面层图片处理
+problem:无
+todo: 进行迭代二的图表开发
