@@ -57,6 +57,11 @@ public class ProjectDetail implements Serializable{
 	private int contributors;
 	
 	/**
+	 * 项目的issue数量
+	 */
+	private int issue;
+	
+	/**
 	 * 项目提取情况
 	 */
 	private int pullRequest;
@@ -238,6 +243,14 @@ public class ProjectDetail implements Serializable{
 
 	public void setStatisticDetail(StatisticDetail statisticDetail) {
 		this.statisticDetail = statisticDetail;
+	}
+
+	public int getIssue() {
+		return issue;
+	}
+
+	public void setIssue(int issue) {
+		this.issue = issue;
 	}
 
 	/**

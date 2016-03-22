@@ -1,5 +1,5 @@
 package UserStatistic.SetUserStatistic;
 
-public class UsrStatistics {
+public interface UsrStatistics {
 
 }

@@ -1,5 +1,5 @@
 package UserStatistic.SetUserStatistic.DetailAnalyze;
 
-public class CatalogStatistic {
+public class SetCatalogStatistic {
 
 }

@@ -1,5 +1,5 @@
 package UserStatistic.SetUserStatistic.DetailAnalyze;
 
-public class CreatRepositoryStatistic {
+public class SetCreatRepositoryStatistic {
 
 }
