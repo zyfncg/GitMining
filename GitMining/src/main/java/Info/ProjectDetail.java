@@ -55,6 +55,21 @@ public class ProjectDetail implements Serializable{
 	 * 项目贡献者
 	 */
 	private int contributors;
+	
+	/**
+	 * 项目提取情况
+	 */
+	private int pullRequest;
+	
+	/**
+	 * 项目大小
+	 */
+	private int size;
+	
+	/**
+	 * 项目提交
+	 */
+	private int commit;
 	/**
 	 * 项目贡献者相关信息列表
 	 */
@@ -191,6 +206,30 @@ public class ProjectDetail implements Serializable{
 
 	public void setCreatDate(Date creatDate) {
 		CreatDate = creatDate;
+	}
+
+	public int getPullRequest() {
+		return pullRequest;
+	}
+
+	public void setPullRequest(int pullRequest) {
+		this.pullRequest = pullRequest;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public int getCommit() {
+		return commit;
+	}
+
+	public void setCommit(int commit) {
+		this.commit = commit;
 	}
 
 	public StatisticDetail getStatisticDetail() {
