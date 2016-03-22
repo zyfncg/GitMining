@@ -1,7 +1,14 @@
 package Info;
 
-public class StatisticDetail {
+import java.io.Serializable;
+
+public class StatisticDetail implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3612953034453238123L;
+
 	private Double StarStatistic;
 	
 	private Double ContributorStatistic;
