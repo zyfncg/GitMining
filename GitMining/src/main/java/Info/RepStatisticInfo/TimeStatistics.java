@@ -6,8 +6,9 @@ public class TimeStatistics {
 	
 	private int num;
 	
-	public TimeStatistics(){
-		
+	public TimeStatistics(String Year,int Num){
+		this.year = Year;
+		this.num = Num;
 	}
 
 	public String getYear() {

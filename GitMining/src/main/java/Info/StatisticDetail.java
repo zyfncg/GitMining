@@ -9,19 +9,19 @@ public class StatisticDetail implements Serializable{
 	 */
 	private static final long serialVersionUID = -3612953034453238123L;
 
-	private Double StarStatistic;
+	private double StarStatistic;
 	
-	private Double ContributorStatistic;
+	private double ContributorStatistic;
 	
-	private Double CommitStatistic;
+	private double CommitStatistic;
 	
-	private Double issueStatistic;
+	private double issueStatistic;
 	
-	private Double PullRequestStatistic;
+	private double PullRequestStatistic;
 	
-	private Double sizeStatistic;
+	private double sizeStatistic;
 	
-	private Double totalStatistic;
+	private double totalStatistic;
 	
 	public StatisticDetail(double Star,double Contributor,double Commit,double issue,double PullRequest,double Size,double total){
 		this.StarStatistic = Star;
@@ -33,59 +33,59 @@ public class StatisticDetail implements Serializable{
 		this.totalStatistic = total;
 	}
 
-	public Double getStarStatistic() {
+	public double getStarStatistic() {
 		return StarStatistic;
 	}
 
-	public void setStarStatistic(Double starStatistic) {
+	public void setStarStatistic(double starStatistic) {
 		StarStatistic = starStatistic;
 	}
 
-	public Double getContributorStatistic() {
+	public double getContributorStatistic() {
 		return ContributorStatistic;
 	}
 
-	public void setContributorStatistic(Double contributorStatistic) {
+	public void setContributorStatistic(double contributorStatistic) {
 		ContributorStatistic = contributorStatistic;
 	}
 
-	public Double getCommitStatistic() {
+	public double getCommitStatistic() {
 		return CommitStatistic;
 	}
 
-	public void setCommitStatistic(Double commitStatistic) {
+	public void setCommitStatistic(double commitStatistic) {
 		CommitStatistic = commitStatistic;
 	}
 
-	public Double getIssueStatistic() {
+	public double getIssueStatistic() {
 		return issueStatistic;
 	}
 
-	public void setIssueStatistic(Double issueStatistic) {
+	public void setIssueStatistic(double issueStatistic) {
 		this.issueStatistic = issueStatistic;
 	}
 
-	public Double getPullRequestStatistic() {
+	public double getPullRequestStatistic() {
 		return PullRequestStatistic;
 	}
 
-	public void setPullRequestStatistic(Double pullRequestStatistic) {
+	public void setPullRequestStatistic(double pullRequestStatistic) {
 		PullRequestStatistic = pullRequestStatistic;
 	}
 
-	public Double getSizeStatistic() {
+	public double getSizeStatistic() {
 		return sizeStatistic;
 	}
 
-	public void setSizeStatistic(Double sizeStatistic) {
+	public void setSizeStatistic(double sizeStatistic) {
 		this.sizeStatistic = sizeStatistic;
 	}
 
-	public Double getTotalStatistic() {
+	public double getTotalStatistic() {
 		return totalStatistic;
 	}
 
-	public void setTotalStatistic(Double totalStatistic) {
+	public void setTotalStatistic(double totalStatistic) {
 		this.totalStatistic = totalStatistic;
 	}
 	

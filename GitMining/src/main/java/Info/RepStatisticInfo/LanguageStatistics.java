@@ -8,7 +8,7 @@ public class LanguageStatistics {
 	
 	private double pareto;
 	
-	public LanguageStatistics(String languages,int nums,int paretos){
+	public LanguageStatistics(String languages,int nums,Double paretos){
 		this.Language = languages;
 		this.num = nums;
 		this.pareto = paretos;
