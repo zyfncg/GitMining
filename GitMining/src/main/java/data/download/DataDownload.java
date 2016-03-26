@@ -51,7 +51,9 @@ public class DataDownload {
 				e.printStackTrace();
 				return false;
 			}
-			
+			if(i%100==0){
+				System.out.println(i);
+			}
 			projectList.add(projectInfo);
 		}
 		
@@ -155,6 +157,10 @@ public class DataDownload {
 					e.printStackTrace();
 					return false;
 				}
+				
+				if(i%100==0){
+					System.out.println(i);
+				}
 				userList.add(userInfo);
 			}
 				
@@ -211,6 +217,10 @@ public class DataDownload {
 				} catch (Exception e) {
 					e.printStackTrace();
 					return false;
+				}
+				
+				if(i%100==0){
+					System.out.println(i);
 				}
 				userList.add(userInfo);
 			}

@@ -14,6 +14,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import res.Strings;
+import ui.chart.UserType;
 
 /**
  *@author ZhangYF 
@@ -248,6 +249,7 @@ public class JsonUtil {
 		String descriptionUser = "";
 		String email="";
 		Date joinDate;
+		String type;
 		String company = "";
 		String address;
 		int projectInvolved;
@@ -259,6 +261,7 @@ public class JsonUtil {
 		json = JSONObject.fromObject(jsonString);
 		
 		userName=json.getString("login");
+		type=json.getString("type");
 		String dateString=json.getString("created_at");
 		joinDate=Date.stringToDate(dateString);
 		projectInvolved=json.getInt("following");

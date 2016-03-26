@@ -22,17 +22,17 @@ public class LoadDriver {
 //		}else{
 //			System.out.println("项目详细信息下载失败！");
 //		}
-//		if(dataload.getAllUserDetail()){
-//			System.out.println("用户详细信息下载成功！");
-//		}else{
-//			System.out.println("用户详细信息下载失败！");
-//		}
-		
-		if(pdm.setProjectDate()){
-			System.out.println("项目时间信息下载成功！");
+		if(dataload.getAllUserDetail()){
+			System.out.println("用户详细信息下载成功！");
 		}else{
-			System.out.println("项目时间信息下载失败！");
+			System.out.println("用户详细信息下载失败！");
 		}
+		
+//		if(pdm.setProjectDate()){
+//			System.out.println("项目时间信息下载成功！");
+//		}else{
+//			System.out.println("项目时间信息下载失败！");
+//		}
 		
 	
 	}

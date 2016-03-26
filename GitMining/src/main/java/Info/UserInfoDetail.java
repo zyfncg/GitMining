@@ -40,7 +40,7 @@ public class UserInfoDetail implements Serializable{
 	/**
 	 * 用户类型
 	 */
-	private String UserType;
+	private String userType;
 	
 	/**
 	 * 用户所在公司
@@ -154,11 +154,11 @@ public class UserInfoDetail implements Serializable{
 	}
 	
 	public String getUserType() {
-		return UserType;
+		return userType;
 	}
 
 	public void setUserType(String userType) {
-		UserType = userType;
+		this.userType = userType;
 	}
 
 	/**
