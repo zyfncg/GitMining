@@ -292,9 +292,10 @@ public class JsonUtil {
 		if(descriptionUser==null){
 			descriptionUser=Strings.DEFAULT_BIO;
 		}
-			
-		return new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
+		UserInfoDetail userDetail=new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
 				address, projectInvolved, projectCreate, ProjectCreatList);
+		userDetail.setUserType(type);
+		return userDetail;
 			
 	}
 	

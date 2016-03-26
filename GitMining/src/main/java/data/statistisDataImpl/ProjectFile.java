@@ -15,10 +15,10 @@ public class ProjectFile {
 	 * @return 项目时间信息
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Date> getProjectDate() throws Exception {
+	public List<Date> getProjectCommit() throws Exception {
 		List<Date> pdlist = null;	
 		
-		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectDate.ser"));
+		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectCommitData.ser"));
 			
 		pdlist=(List<Date>) is.readObject();
 		is.close();
@@ -34,7 +34,7 @@ public class ProjectFile {
 	 */
 	public boolean saveProjectDate(List<Date> pdlist) {
 		try {
-			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("projectDate.ser"));
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("projectCommitData.ser"));
 			oos.writeObject(pdlist);
 			oos.close();
 		} catch (IOException e) {
