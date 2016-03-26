@@ -1,6 +1,13 @@
 package Info.UsrStatisticInfo;
 
-public class CreatRepositoryStatistics {
+import java.io.Serializable;
+
+public class CreatRepositoryStatistics implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3990384251110965449L;
 
 	private String Year;
 	

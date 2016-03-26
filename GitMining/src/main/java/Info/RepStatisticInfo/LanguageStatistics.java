@@ -1,6 +1,13 @@
 package Info.RepStatisticInfo;
 
-public class LanguageStatistics {
+import java.io.Serializable;
+
+public class LanguageStatistics implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4864366735639931659L;
 
 	private String Language;
 	

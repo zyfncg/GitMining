@@ -1,6 +1,13 @@
 package Info.RepStatisticInfo;
 
-public class StarStatistics {
+import java.io.Serializable;
+
+public class StarStatistics implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 485695421264085138L;
 
 	private String Star;
 	

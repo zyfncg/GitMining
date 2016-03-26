@@ -48,6 +48,9 @@ public class AllRepositoryStatistic {
 		if (!SaveResult) {
 			repositoryStatisticsDataServer.setStatisticInfo(saveRepositoryStatisticInfo);
 		}
+		else{
+			System.out.println("Repositorysuccess");
+		}
 	}
 
 	public List<ProjectDetail> getStatisticRepositoryInfo() {
