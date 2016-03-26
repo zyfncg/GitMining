@@ -8,8 +8,8 @@ public class GetContributorStatistic {
 	
 	public List<ContributorStatistics> getContributorStatistic(){
 		RepPartStatistics part = new RepPartStatistics();
-//		List<ContributorStatistics> = 
-		return null;
+		
+		return part.getContributor();
 	}
 		
 }
