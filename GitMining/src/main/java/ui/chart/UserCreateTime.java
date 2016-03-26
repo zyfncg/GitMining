@@ -3,10 +3,14 @@ package ui.chart;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Info.RepStatisticInfo.TimeStatistics;
+import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
+import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
@@ -15,7 +19,9 @@ import twaver.chart.BarChart;
 
 public class UserCreateTime extends JPanel{
 
-	public UserCreateTime(int width, int height) {
+	public UserCreateTime(UserStatisticFactory userStatisticFactory, int width, int height) {
+		GetTimeStatistic userCreateTime = userStatisticFactory.GetCreatTime();
+		List<TimeStatistics> userCreateList = userCreateTime.getTimeStatistic();
 		TDataBox box = new TDataBox();
 		BarChart barChart = new BarChart(box);
 		//设置Y的尺度值是否可见，默认是不可见的
@@ -32,10 +38,14 @@ public class UserCreateTime extends JPanel{
 		//设置chart的颜色
 		A.putChartColor(Color.RED);
 		//添加X轴上组的名称
-		for (int i = 2007; i < 2016; i++) {
-			barChart.addXScaleText(i + "");
-			A.addChartValue(Math.random() * 10000);
+		for (int i = 0; i < userCreateList.size(); i++) {
+			barChart.addXScaleText(userCreateList.get(i).getYear());
+			A.addChartValue(userCreateList.get(i).getNum());
 		}
+//		for (int i = 2007; i < 2016; i++) {
+//			barChart.addXScaleText(i + "");
+//			A.addChartValue(Math.random() * 10000);
+//		}
 		//TODO 添加chart value的值
 //		A.addChartValue(20);
 //		A.addChartValue(32);

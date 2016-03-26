@@ -3,8 +3,8 @@ package ui.chart;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -21,9 +21,16 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import twaver.chart.LineChart;
+import Info.RepStatisticInfo.LanguageStatistics;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
+import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetLanguageStatistic;
+
 public class LanguageChart extends JPanel{
 
-	public LanguageChart(int width, int height) {
+	public LanguageChart(RepositoryStatisticFactory repositoryFactory, int width, int height) {
+		GetLanguageStatistic getLanguage = repositoryFactory.GetLanguage();
+		List<LanguageStatistics> languageList = getLanguage.getLanguageStatistic();
 		// 设置主题
 		StandardChartTheme standardChartTheme = new StandardChartTheme("name");//这里的"name"参数；是什么意思我也不知道，反正这样可以用
 		standardChartTheme.setLargeFont(new Font("楷体",Font.BOLD, 12));//可以改变轴向的字体
@@ -33,31 +40,34 @@ public class LanguageChart extends JPanel{
 		// 构造数据
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();//柱状图数据
 		DefaultCategoryDataset lineDataset = new DefaultCategoryDataset();//折线图数据
-		//TODO 使用语言数量
-		dataset.addValue(100, "Language", "Ruby");
-		dataset.addValue(700, "Language", "Python");
-		dataset.addValue(300, "Language", "JavaScript");
-		dataset.addValue(400, "Language", "C");
-		dataset.addValue(500, "Language", "Perl");
-		dataset.addValue(600, "Language", "PHP");
-		dataset.addValue(600, "Language", "Java");
-		dataset.addValue(600, "Language", "C++");
-		dataset.addValue(600, "Language", "HTML");
-		dataset.addValue(600, "Language", "Shell");
-		dataset.addValue(600, "Language", "others");
+		// 使用语言数量
+		for (int i = 0; i < languageList.size(); i++) {
+			dataset.addValue(languageList.get(i).getNum(), "Language", languageList.get(i).getLanguage());
+			lineDataset.addValue(languageList.get(i).getPareto(), "累计比率", languageList.get(i).getLanguage());
+		}
+//		dataset.addValue(100, "Language", "Ruby");
+//		dataset.addValue(700, "Language", "Python");
+//		dataset.addValue(300, "Language", "JavaScript");
+//		dataset.addValue(400, "Language", "C");
+//		dataset.addValue(500, "Language", "Perl");
+//		dataset.addValue(600, "Language", "PHP");
+//		dataset.addValue(600, "Language", "Java");
+//		dataset.addValue(600, "Language", "C++");
+//		dataset.addValue(600, "Language", "HTML");
+//		dataset.addValue(600, "Language", "Shell");
+//		dataset.addValue(600, "Language", "others");
 		
-
-		lineDataset.addValue(100, "累计比率", "Ruby");
-		lineDataset.addValue(200, "累计比率", "Python");
-		lineDataset.addValue(600, "累计比率", "JavaScript");
-		lineDataset.addValue(400, "累计比率", "C");
-		lineDataset.addValue(700, "累计比率", "Perl");
-		lineDataset.addValue(600, "累计比率", "PHP");
-		lineDataset.addValue(100, "累计比率", "Java");
-		lineDataset.addValue(200, "累计比率", "C++");
-		lineDataset.addValue(600, "累计比率", "HTML");
-		lineDataset.addValue(400, "累计比率", "Shell");
-		lineDataset.addValue(700, "累计比率", "others");
+//		lineDataset.addValue(100, "累计比率", "Ruby");
+//		lineDataset.addValue(200, "累计比率", "Python");
+//		lineDataset.addValue(600, "累计比率", "JavaScript");
+//		lineDataset.addValue(400, "累计比率", "C");
+//		lineDataset.addValue(700, "累计比率", "Perl");
+//		lineDataset.addValue(600, "累计比率", "PHP");
+//		lineDataset.addValue(100, "累计比率", "Java");
+//		lineDataset.addValue(200, "累计比率", "C++");
+//		lineDataset.addValue(600, "累计比率", "HTML");
+//		lineDataset.addValue(400, "累计比率", "Shell");
+//		lineDataset.addValue(700, "累计比率", "others");
 
 		JFreeChart chart = ChartFactory.createBarChart("Numbers of Repository in Different Languages",
 				"Language",// 目录轴的显示标签
