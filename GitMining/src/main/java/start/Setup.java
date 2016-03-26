@@ -7,7 +7,7 @@ import ui.MainFrame;
  */
 public class Setup {
 
-	public static void main(String[] args) {
-		new MainFrame();
-	}
+//	public static void main(String[] args) {
+//		new MainFrame();
+//	}
 }

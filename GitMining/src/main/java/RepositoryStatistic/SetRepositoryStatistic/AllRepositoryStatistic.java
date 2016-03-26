@@ -25,6 +25,7 @@ public class AllRepositoryStatistic {
 		// 取得所有的项目List
 		List<ProjectDetail> allList = this.getStatisticRepositoryInfo();
 
+//		System.out.println(allList.get(0).getStars());
 		// 进行Fork排序
 		SetForkStatistic forkStatistic = repStatisticsFactory.getForkObject();
 		List<ForkStatistics> forkResult = forkStatistic.makeForkStatistic(allList);

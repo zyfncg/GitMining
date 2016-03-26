@@ -31,7 +31,7 @@ public class HttpRequestUtil {
         	
             isreader = new InputStreamReader(ips, "utf-8"); 
         } catch (UnsupportedEncodingException e) { 
-            e.printStackTrace();
+//            e.printStackTrace();
             throw e;
         } 
         BufferedReader bufferedReader = new BufferedReader(isreader); 
@@ -78,7 +78,7 @@ public class HttpRequestUtil {
 
             in = conn.getInputStream(); 
         } catch (IOException e) { 
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         } 
         return in; 
