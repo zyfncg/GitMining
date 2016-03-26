@@ -44,18 +44,18 @@ public class UsrPartStatistic {
 	
 	public SaveUserStatisticInfo getsaveUserStatisticInfo() {
 		SaveUserStatisticInfo Save1 = null;
-//		try {
-//			Save1 = statisticsDataServer.GetStatisticedInfo();
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//		}
-		
 		try {
-			Save1 = userStub.GetStatisticedInfo();
+			Save1 = statisticsDataServer.GetStatisticedInfo();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
+//		
+//		try {
+//			Save1 = userStub.GetStatisticedInfo();
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 		return Save1;
 	}
 }

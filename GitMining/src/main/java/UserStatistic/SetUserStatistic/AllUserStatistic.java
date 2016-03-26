@@ -54,6 +54,9 @@ public class AllUserStatistic {
 		if (!SaveResult) {
 			userStatisticsDataServer.setStatisticInfo(saveUserStatisticInfo);
 		}
+		else{
+			System.out.println("Usersuccess");
+		}
 
 	}
 

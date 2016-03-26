@@ -1,6 +1,13 @@
 package Info.UsrStatisticInfo;
 
-public class CatalogStatistics {
+import java.io.Serializable;
+
+public class CatalogStatistics implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6947463850205809417L;
 
 	private String Catalog;
 	
