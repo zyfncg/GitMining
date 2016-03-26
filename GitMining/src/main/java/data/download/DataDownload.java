@@ -96,6 +96,10 @@ public class DataDownload {
 				e.printStackTrace();
 				return false;
 			}
+			if(i%100==0){
+				System.out.println(i);
+			}
+			
 			projectList.add(projectDetail);
 		}
 		

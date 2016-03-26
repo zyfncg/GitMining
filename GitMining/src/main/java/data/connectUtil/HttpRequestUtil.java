@@ -47,7 +47,7 @@ public class HttpRequestUtil {
             ips = null; 
         } catch (IOException e) { 
             e.printStackTrace();
-            throw e;
+            return null;
         } 
         return sb.toString(); 
     }
@@ -70,8 +70,8 @@ public class HttpRequestUtil {
         } 
         try { 
             conn = (HttpURLConnection) url.openConnection(); 
-            conn.setConnectTimeout(2000);
-            conn.setReadTimeout(2000);
+            conn.setConnectTimeout(1000);
+            conn.setReadTimeout(1000);
             conn.setDoInput(true); 
             conn.setRequestMethod("GET"); 
             conn.connect(); 

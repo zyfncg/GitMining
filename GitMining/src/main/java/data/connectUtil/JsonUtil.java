@@ -10,6 +10,7 @@ import Info.ProjectName;
 import Info.UserInfo;
 import Info.UserInfoDetail;
 import data.dataImpl.FileUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import res.Strings;
@@ -84,6 +85,7 @@ public class JsonUtil {
 		
 		StringListTool stringTool=new StringListTool();
 		FileUtil userFile=new FileUtil();
+		ProjectDetail proDetail;
 		
 		JSONObject json;
 		
@@ -101,6 +103,11 @@ public class JsonUtil {
 		int contributors;
 		int collaborators;
 		int subscribers;
+		
+		int pullRequest;
+		int size;
+		int commit;
+		int issue;
 //		UserInfo userInfo;
 		
 		ProjectInfo projectInfo=jsonToProject(jsonString);
@@ -118,6 +125,19 @@ public class JsonUtil {
 		
 		URL=json.getString("html_url");
 		subscribers=json.getInt("subscribers_count");
+		size=json.getInt("size");
+		
+		//获取commit的数量
+		String commitURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/commits/shas";
+		commit=getCommitNumber(commitURL);
+		
+		//获取pullRequest数量
+		String pullURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/pulls";
+		pullRequest=getPullAndIssueNumber(pullURL);
+		
+		//获取issue数量
+		String issueURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/issues";
+		issue=getPullAndIssueNumber(issueURL);
 		
 		List<UserInfo> allUser = null;
 		try {
@@ -177,9 +197,14 @@ public class JsonUtil {
 	    if(language==null){
 	    	language=Strings.DEFAULT_LAUNGUAGE;
 	    }
-		
-		return new ProjectDetail(description, language, URL, proname, 
-			forks, stars, contributors, collaborators,subscribers, contributorsInfo, collaboratorsInfo);
+	    proDetail=new ProjectDetail(description, language, URL, proname, forks,
+	    		stars, contributors, collaborators,subscribers, contributorsInfo, collaboratorsInfo);
+	    proDetail.setSize(size);
+	    proDetail.setCommit(commit);
+	    proDetail.setPullRequest(pullRequest);
+	    proDetail.setIssue(issue);
+	    
+		return proDetail;
 
 	}
 	
@@ -285,4 +310,48 @@ public class JsonUtil {
 		return result;
 	}
 	
+    private static int getCommitNumber(String url){
+    	
+    	StringListTool stringTool=new StringListTool();
+    	String page="?page=";
+    	String retStr="";
+    	List<String> list;
+    	int i=1;
+    	int num=0;
+//    	try {
+//			retStr=HttpRequestUtil.httpRequest(url+page+i);
+//			while(retStr.length()>2){
+//	    		list=stringTool.getStringList(retStr);
+//	    		num=num+list.size();
+//	    		i++;
+//	    		try {
+//					retStr=HttpRequestUtil.httpRequest(url+page+i);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					return num;
+//				}
+//	    	}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return 0;
+//		}
+    	
+    	return num;
+    }
+
+    private static int getPullAndIssueNumber(String url){
+    	JSONArray pullJSONList;
+    	int num=0;
+    	try {
+			String retStr=HttpRequestUtil.httpRequest(url);
+			pullJSONList=JSONArray.fromObject(retStr);
+			JSONObject jb=pullJSONList.getJSONObject(0);
+			num=jb.getInt("number");
+		} catch (Exception e) {
+//			e.printStackTrace();
+			return 0;
+		}
+    	
+    	return num;
+    }
 }
