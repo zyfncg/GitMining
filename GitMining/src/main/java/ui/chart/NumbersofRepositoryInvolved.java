@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import twaver.Element;
@@ -42,14 +43,19 @@ public class NumbersofRepositoryInvolved extends JPanel{
 			lineChart.addXScaleText(joinRepositoryList.get(i).getYear());
 			A.addChartValue(joinRepositoryList.get(i).getNum());
 		}
-//		for (int i = 2007; i < 2016; i++) {
-//			lineChart.addXScaleText(" " + i);
-//			A.addChartValue(Math.random() * 50);
-//		}
 		
 		lineChart.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(lineChart, BorderLayout.CENTER);
+	}
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		UserStatisticFactory userStatisticFactory = new UserStatisticFactory();
+		NumbersofRepositoryInvolved userChart = new NumbersofRepositoryInvolved(userStatisticFactory, 800, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.add(userChart);
+		frame.pack();
 	}
 }

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -45,29 +46,6 @@ public class LanguageChart extends JPanel{
 			dataset.addValue(languageList.get(i).getNum(), "Language", languageList.get(i).getLanguage());
 			lineDataset.addValue(languageList.get(i).getPareto(), "累计比率", languageList.get(i).getLanguage());
 		}
-//		dataset.addValue(100, "Language", "Ruby");
-//		dataset.addValue(700, "Language", "Python");
-//		dataset.addValue(300, "Language", "JavaScript");
-//		dataset.addValue(400, "Language", "C");
-//		dataset.addValue(500, "Language", "Perl");
-//		dataset.addValue(600, "Language", "PHP");
-//		dataset.addValue(600, "Language", "Java");
-//		dataset.addValue(600, "Language", "C++");
-//		dataset.addValue(600, "Language", "HTML");
-//		dataset.addValue(600, "Language", "Shell");
-//		dataset.addValue(600, "Language", "others");
-		
-//		lineDataset.addValue(100, "累计比率", "Ruby");
-//		lineDataset.addValue(200, "累计比率", "Python");
-//		lineDataset.addValue(600, "累计比率", "JavaScript");
-//		lineDataset.addValue(400, "累计比率", "C");
-//		lineDataset.addValue(700, "累计比率", "Perl");
-//		lineDataset.addValue(600, "累计比率", "PHP");
-//		lineDataset.addValue(100, "累计比率", "Java");
-//		lineDataset.addValue(200, "累计比率", "C++");
-//		lineDataset.addValue(600, "累计比率", "HTML");
-//		lineDataset.addValue(400, "累计比率", "Shell");
-//		lineDataset.addValue(700, "累计比率", "others");
 
 		JFreeChart chart = ChartFactory.createBarChart("Numbers of Repository in Different Languages",
 				"Language",// 目录轴的显示标签
@@ -101,5 +79,14 @@ public class LanguageChart extends JPanel{
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(panel,BorderLayout.CENTER);
+	}
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
+		LanguageChart company = new LanguageChart(repositoryStatisticFactory, 800, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(company);
+		frame.pack();
+		frame.setVisible(true);
 	}
 }

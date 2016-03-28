@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import twaver.Element;
@@ -15,6 +16,7 @@ import twaver.chart.BarChart;
 import Info.RepStatisticInfo.TimeStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
+import UserStatistic.GetUserStatistic.UserStatisticFactory;
 
 public class CreateTimeofRepository extends JPanel{
 
@@ -39,14 +41,9 @@ public class CreateTimeofRepository extends JPanel{
 		//添加X轴上组的名称
 		for (int i = 0; i < timeList.size(); i++) {
 			barChart.addXScaleText(timeList.get(i).getYear());
+			//获取数据
 			A.addChartValue(timeList.get(i).getNum());
 		}
-//		for (int i = 2007; i < 2016; i++) {
-//			barChart.addXScaleText(i + "");
-//		}
-//		//TODO 添加chart value的值
-//		A.addChartValue(20);
-//		A.addChartValue(32);
 		box.addElement(A);
 		//设置柱状图的显示样式
 		barChart.setBarType(TWaverConst.BAR_TYPE_GROUP);
@@ -56,4 +53,14 @@ public class CreateTimeofRepository extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(barChart, BorderLayout.CENTER);
 	}
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
+		CreateTimeofRepository company = new CreateTimeofRepository(repositoryStatisticFactory, 800, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(company);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
 }

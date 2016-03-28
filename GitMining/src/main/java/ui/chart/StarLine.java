@@ -5,11 +5,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Info.RepStatisticInfo.StarStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetStarStatistic;
+import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
@@ -32,8 +34,8 @@ public class StarLine extends JPanel{
 		lineChart.setInflexionVisible(true);
 		
 		Element A = new Node();
-		A.setName("Fork");
-		A.putChartColor(Color.GREEN);
+		A.setName("Star");
+		A.putChartColor(Color.BLUE);
 		//设置标记的显示样式
 		A.putChartInflexionStyle(TWaverConst.INFLEXION_STYLE_TRIANGLE);
 		box.addElement(A);
@@ -42,14 +44,19 @@ public class StarLine extends JPanel{
 			lineChart.addXScaleText(starList.get(i).getStar());
 			A.addChartValue(starList.get(i).getNums());
 		}
-//		for (int i = 2007; i < 2016; i++) {
-//			lineChart.addXScaleText(" " + i);
-//			A.addChartValue(Math.random() * 50);
-//		}
 		
 		lineChart.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(lineChart, BorderLayout.CENTER);
+	}
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		RepositoryStatisticFactory repositoryFactory = new RepositoryStatisticFactory();
+		StarLine userChart = new StarLine(repositoryFactory, 800, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.add(userChart);
+		frame.pack();
 	}
 }

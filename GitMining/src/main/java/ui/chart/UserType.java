@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Info.UsrStatisticInfo.CatalogStatistics;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import UserStatistic.GetUserStatistic.DetailGet.GetCatalogStatistic;
 import twaver.Element;
@@ -36,18 +37,19 @@ public class UserType extends JPanel{
 			element.putChartColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
 			box.addElement(element);
 		}
-//		Random random = new Random();
-//		for (int i = 0; i < 6; i++) {
-//			Element element = new Node();
-//			element.setName("E" + i);
-//			element.putChartValue(10 * (i + 1));
-//			element.putChartColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
-//			box.addElement(element);
-//		}
 		
 		pieChart.setPreferredSize(new Dimension(width,height));
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(pieChart, BorderLayout.CENTER);
+	}
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		UserStatisticFactory userStatisticFactory = new UserStatisticFactory();
+		UserType company = new UserType(userStatisticFactory, 800, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(company);
+		frame.pack();
+		frame.setVisible(true);
 	}
 }

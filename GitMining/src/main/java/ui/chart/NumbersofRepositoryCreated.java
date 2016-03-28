@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import twaver.Element;
@@ -13,6 +14,7 @@ import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.LineChart;
 import Info.UsrStatisticInfo.CreatRepositoryStatistics;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import UserStatistic.GetUserStatistic.DetailGet.GetCreatRepositoryStatistic;
 
@@ -42,22 +44,19 @@ public class NumbersofRepositoryCreated extends JPanel{
 			lineChart.addXScaleText(createRepositoryList.get(i).getYear());
 			A.addChartValue(createRepositoryList.get(i).getNum());
 		}
-//		for (int i = 2007; i < 2016; i++) {
-//			lineChart.addXScaleText(" " + i);
-//			A.addChartValue(Math.random() * 2000);
-//		}
 		
 		lineChart.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(lineChart, BorderLayout.CENTER);
 	}
-//	public static void main(String[] args) {
-//		JFrame frame = new JFrame();
-//		NumbersofRepositoryCreated userChart = new NumbersofRepositoryCreated(800, 500);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setVisible(true);
-//		frame.add(userChart);
-//		frame.pack();
-//	}
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		UserStatisticFactory userStatisticFactory = new UserStatisticFactory();
+		NumbersofRepositoryCreated userChart = new NumbersofRepositoryCreated(userStatisticFactory, 800, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.add(userChart);
+		frame.pack();
+	}
 }

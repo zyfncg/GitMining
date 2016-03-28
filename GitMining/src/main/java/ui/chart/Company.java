@@ -31,9 +31,9 @@ public class Company extends JPanel{
 		//设置Y最小的尺度值是否可见，默认是不可见的
 		barChart.setYScaleMinTextVisible(true);
 		//设置Y的最大尺度值
-		barChart.setUpperLimit(400);
+		barChart.setUpperLimit(50);
 		//设置Y坐标的间距
-		barChart.setYScaleValueGap(100);
+		barChart.setYScaleValueGap(2);
 		//添加一个节点
 		Element A = new Node("A");
 		A.setName("User");
@@ -44,25 +44,6 @@ public class Company extends JPanel{
 			barChart.addXScaleText(companyList.get(i).getCompany());
 			A.addChartValue(companyList.get(i).getNum());
 		}
-//		barChart.addXScaleText("Shopify");
-//		barChart.addXScaleText("GitHub");
-//		barChart.addXScaleText("Google");
-//		barChart.addXScaleText("Twitter");
-//		barChart.addXScaleText("Facebook");
-//		barChart.addXScaleText("Xamarln");
-//		barChart.addXScaleText("Red Hat");
-//		barChart.addXScaleText("Heroku");
-//		barChart.addXScaleText("Microsoft");
-//		barChart.addXScaleText("Mozilla");
-//		barChart.addXScaleText("Chef");
-//		barChart.addXScaleText("thoughtbot");
-//		barChart.addXScaleText("Freelance");
-//		for (int i = 0; i < 13; i++) {
-//			A.addChartValue(Math.random() * 400);
-//		}
-		//TODO 添加chart value的值
-//		A.addChartValue(20);
-//		A.addChartValue(32);
 		box.addElement(A);
 		//设置柱状图的显示样式
 		barChart.setBarType(TWaverConst.BAR_TYPE_GROUP);
@@ -76,7 +57,7 @@ public class Company extends JPanel{
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		UserStatisticFactory repositoryStatisticFactory = new UserStatisticFactory();
-		Company company = new Company(repositoryStatisticFactory, 800, 500);
+		Company company = new Company(repositoryStatisticFactory, 1200, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(company);
 		frame.pack();
