@@ -8,20 +8,20 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Info.RepStatisticInfo.TimeStatistics;
-import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.BarChart;
+import Info.UsrStatisticInfo.CreatTimeStatistics;
+import UserStatistic.GetUserStatistic.UserStatisticFactory;
+import UserStatistic.GetUserStatistic.DetailGet.GetCreatTimeStatistic;
 
 public class UserCreateTime extends JPanel{
 
 	public UserCreateTime(UserStatisticFactory userStatisticFactory, int width, int height) {
-		GetTimeStatistic userCreateTime = userStatisticFactory.GetCreatTime();
-		List<TimeStatistics> userCreateList = userCreateTime.getTimeStatistic();
+		GetCreatTimeStatistic userCreateTime = userStatisticFactory.GetCreatTime();
+		List<CreatTimeStatistics> userCreateList = userCreateTime.getCreatTimeStatistic();
 		TDataBox box = new TDataBox();
 		BarChart barChart = new BarChart(box);
 		//设置Y的尺度值是否可见，默认是不可见的
