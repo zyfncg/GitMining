@@ -183,7 +183,8 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		statistics.setPreferredSize(new Dimension(
 				SwitchPanel.SWITCH_WIDTH << 1, copyH));
 		statistics.addActionListener(e -> switcher.jump(
-				this, new SingleProjectStatPage(), PanelSwitcher.LEFT));
+				this, new SingleProjectStatPage(detail.getStatisticDetail()),
+				PanelSwitcher.LEFT));
 		//将文本框、复制按钮和统计按钮加到面板
 		FlowLayout urlLayout = new FlowLayout();
 		urlLayout.setVgap(urlH / 6);
