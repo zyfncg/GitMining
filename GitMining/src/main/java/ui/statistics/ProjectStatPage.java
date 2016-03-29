@@ -1,6 +1,7 @@
 package ui.statistics;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import ui.Refreshable;
 
@@ -9,6 +10,8 @@ import ui.Refreshable;
  */
 @SuppressWarnings("serial")
 public class ProjectStatPage extends JPanel implements Refreshable{
+	
+	private JScrollPane container;
 
 	@Override
 	public void refresh() {
