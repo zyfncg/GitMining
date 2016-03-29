@@ -1,6 +1,13 @@
 package Info.UsrStatisticInfo;
 
-public class CreatTimeStatistics {
+import java.io.Serializable;
+
+public class CreatTimeStatistics implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8453611165714024761L;
 
 	private String time;
 	

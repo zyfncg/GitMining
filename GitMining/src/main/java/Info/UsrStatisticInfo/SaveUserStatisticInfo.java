@@ -1,8 +1,14 @@
 package Info.UsrStatisticInfo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SaveUserStatisticInfo {
+public class SaveUserStatisticInfo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3213619873365568092L;
 
 	private List<CatalogStatistics> theCatalog;
 

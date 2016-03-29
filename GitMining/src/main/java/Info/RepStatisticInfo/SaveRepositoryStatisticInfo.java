@@ -1,8 +1,14 @@
 package Info.RepStatisticInfo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SaveRepositoryStatisticInfo {
+public class SaveRepositoryStatisticInfo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5660515531645287861L;
 
 	private List<TimeStatistics> theTime;
 

@@ -1,6 +1,13 @@
 package Info.RepStatisticInfo;
 
-public class ForkStatistics {
+import java.io.Serializable;
+
+public class ForkStatistics implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1086352120425575063L;
 
 	private String Fork;
 	

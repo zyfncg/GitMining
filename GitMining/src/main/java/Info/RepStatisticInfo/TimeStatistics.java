@@ -1,6 +1,13 @@
 package Info.RepStatisticInfo;
 
-public class TimeStatistics {
+import java.io.Serializable;
+
+public class TimeStatistics implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4903074375700194204L;
 
 	private String year;
 	
