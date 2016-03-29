@@ -34,13 +34,21 @@ public class SetCompanyStatistic {
 			allCompanyResult.add(companyStatisticsResult);
 		}
 		
+		//排序
 		Collections.sort(allCompanyResult,new Comparator<CompanyStatistics>() {
 			@Override
 			public int compare(CompanyStatistics arg0, CompanyStatistics arg1){
 				return (new Integer(arg1.getNum())).compareTo(new Integer(arg0.getNum()));
 			}
 		});
-
+		
+		List<CompanyStatistics> CompanyResult = new ArrayList<>();
+		
+		//其余小公司数据统计
+		int otherCompanyNum = 0;
+		for(int i=10;i<allCompanyResult.size();i++){
+			otherCompanyNum = otherCompanyNum + allCompanyResult.get(i).getNum();
+		}
 		return allCompanyResult;
 	}
 }
