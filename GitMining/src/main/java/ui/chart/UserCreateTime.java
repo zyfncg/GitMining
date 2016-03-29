@@ -39,7 +39,7 @@ public class UserCreateTime extends JPanel{
 		A.putChartColor(Color.RED);
 		//添加X轴上组的名称
 		for (int i = 0; i < userCreateList.size(); i++) {
-			barChart.addXScaleText(userCreateList.get(i).getYear());
+			barChart.addXScaleText(userCreateList.get(i).getTime());
 			A.addChartValue(userCreateList.get(i).getNum());
 		}
 		box.addElement(A);
