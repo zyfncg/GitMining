@@ -50,6 +50,7 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		
 		this.scrollPane = new JScrollPane();
 		this.scrollPane.getVerticalScrollBar().setUI(new MyScrollBar());
+		this.scrollPane.getHorizontalScrollBar().setUI(new MyScrollBar());
 		this.scrollPane.setOpaque(false);
 		this.scrollPane.setViewportView(box);
 		
