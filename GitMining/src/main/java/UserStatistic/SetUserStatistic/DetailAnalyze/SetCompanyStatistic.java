@@ -1,6 +1,8 @@
 package UserStatistic.SetUserStatistic.DetailAnalyze;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import Info.UserInfoDetail;
@@ -31,6 +33,13 @@ public class SetCompanyStatistic {
 			CompanyStatistics companyStatisticsResult = new CompanyStatistics(allCompany.get(i), CompantNumber);
 			allCompanyResult.add(companyStatisticsResult);
 		}
+		
+		Collections.sort(allCompanyResult,new Comparator<CompanyStatistics>() {
+			@Override
+			public int compare(CompanyStatistics arg0, CompanyStatistics arg1){
+				return (new Integer(arg1.getNum())).compareTo(new Integer(arg0.getNum()));
+			}
+		});
 
 		return allCompanyResult;
 	}
