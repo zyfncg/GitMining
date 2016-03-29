@@ -42,13 +42,18 @@ public class SetCompanyStatistic {
 			}
 		});
 		
-		List<CompanyStatistics> CompanyResult = new ArrayList<>();
 		
 		//其余小公司数据统计
 		int otherCompanyNum = 0;
 		for(int i=10;i<allCompanyResult.size();i++){
 			otherCompanyNum = otherCompanyNum + allCompanyResult.get(i).getNum();
 		}
+		
+		for(int allSize = (allCompanyResult.size()-1);allSize>9;allSize--){
+			allCompanyResult.remove(allSize);
+		}
+		allCompanyResult.add(new CompanyStatistics("other", otherCompanyNum));
+		
 		return allCompanyResult;
 	}
 }
