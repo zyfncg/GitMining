@@ -36,4 +36,8 @@ public class Date implements Serializable{
 		
 		return new Date(toYear,toMonth,toDay);
 	}
+	
+	public int getYear(){
+		return year;
+	}
 }
