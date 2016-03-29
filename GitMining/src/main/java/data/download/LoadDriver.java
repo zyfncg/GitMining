@@ -28,7 +28,12 @@ public class LoadDriver {
 //			System.out.println("用户详细信息下载失败！");
 //		}
 		
+<<<<<<< HEAD
 		if(pdm.setCommitData(4)){
+=======
+
+		if(pdm.setCommitData(2)){
+>>>>>>> 3be99c2cef3e674fa73139b5c79d05094a26603f
 			System.out.println("项目commit信息下载成功！");
 		}else{
 			System.out.println("项目commit信息下载失败！");

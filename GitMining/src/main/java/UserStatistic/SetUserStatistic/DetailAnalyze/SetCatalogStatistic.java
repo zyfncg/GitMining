@@ -28,7 +28,7 @@ public class SetCatalogStatistic {
 					CatalogNumber++;
 				}
 			}
-			double CataloNum = CatalogNumber / UserSize;
+			double CataloNum = ((double)CatalogNumber) / ((double)UserSize);
 			CatalogStatistics catalogStatistics = new CatalogStatistics(allCatalog.get(i), CataloNum);
 			allcatalogResult.add(catalogStatistics);
 		}
