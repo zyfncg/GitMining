@@ -7,35 +7,34 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-import Info.Date;
-
 public class ProjectFile {
 	/**
-	 * 从文件中获取所有项目时间信息
+	 * 从文件中获取所有项目commit信息
 	 * @return 项目时间信息
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Date> getProjectCommit() throws Exception {
-		List<Date> pdlist = null;	
-		
-		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectCommitData.ser"));
+	public List<Integer> getProjectCommit(int i) throws Exception {
+		List<Integer> pcommit = null;	
+		String fileName="projectCommitData"+i+".ser";
+		ObjectInputStream is=new ObjectInputStream(new FileInputStream(fileName));
 			
-		pdlist=(List<Date>) is.readObject();
+		pcommit=(List<Integer>) is.readObject();
 		is.close();
 		 	
-		return pdlist;
+		return pcommit;
 	}
 	
 	
 	/**
-	 * 所有项目时间信息放入文件中
+	 * 所有项目commit信息放入文件中
 	 * @param 项目时间信息
 	 * @return 是否存入成功
 	 */
-	public boolean saveProjectDate(List<Date> pdlist) {
+	public boolean saveProjectCommit(List<Integer> pcommit,int i) {
+		String fileName="projectCommitData"+i+".ser";
 		try {
-			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("projectCommitData.ser"));
-			oos.writeObject(pdlist);
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(fileName));
+			oos.writeObject(pcommit);
 			oos.close();
 		} catch (IOException e) {
 			e.printStackTrace();

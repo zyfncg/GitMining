@@ -105,7 +105,7 @@ public class JsonUtil {
 		int collaborators;
 		int subscribers;
 		
-		Date CreatDate;
+		Date creatDate;
 		
 		int pullRequest;
 		int size;
@@ -129,6 +129,8 @@ public class JsonUtil {
 		URL=json.getString("html_url");
 		subscribers=json.getInt("subscribers_count");
 		size=json.getInt("size");
+		String dateString=json.getString("created_at");
+		creatDate=Date.stringToDate(dateString);
 		
 		//获取commit的数量
 		String commitURL=URLString.getRepositoryApiString()+owner+"/"+reponame+"/commits/shas";
@@ -206,6 +208,7 @@ public class JsonUtil {
 	    proDetail.setCommit(commit);
 	    proDetail.setPullRequest(pullRequest);
 	    proDetail.setIssue(issue);
+	    proDetail.setCreatDate(creatDate);
 	    
 		return proDetail;
 

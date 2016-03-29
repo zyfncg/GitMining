@@ -1,5 +1,6 @@
 package data.download;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Info.Date;
@@ -9,18 +10,17 @@ import data.connectUtil.HttpRequestUtil;
 import data.connectUtil.StringListTool;
 import data.connectUtil.URLString;
 import data.dataImpl.FileUtil;
+import data.statistisDataImpl.ProjectFile;
 import net.sf.json.JSONObject;
 
 public class ProjectDataMerge {
 	/**
-	 * 使用URL获得所有的项目的时间信息并写到文件中
+	 * 使用URL获得所有的项目的日期信息并写到文件中
 	 * @author ZhangYF
 	 * @return 是否下载成功 
 	 * 
 	 */
 	public boolean setProjectDate(){
-		String projectListUrl=URLString.getRepositoryApiString()+"names";
-		StringListTool stringTool=new StringListTool();
 		FileUtil fileUtil=new FileUtil();
 		
 		ProjectDetail projectDetail;
@@ -35,36 +35,23 @@ public class ProjectDataMerge {
 			return false;
 		}
 		
-		String reponameList;
-		try {
-			reponameList = HttpRequestUtil.httpRequest(projectListUrl);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		List<String> reponame=stringTool.getStringList(reponameList);
-		
 		Date creatDate;
 		ProjectName pn;
-		int k=0;
-		for(int i=0;i<reponame.size();i++){
-			projectURL=URLString.getRepositoryApiString()+reponame.get(i);
+		for(int i=0;i<projectList.size();i++){
+			projectDetail=projectList.get(i);
+			pn=projectDetail.getProjectName();
+			projectURL=URLString.getRepositoryApiString()+pn.toString();
 			try {
 				projectJson=HttpRequestUtil.httpRequest(projectURL);
 				if(projectJson==null){
+					System.out.println("null "+i);
 					continue;
 				}
 			
-				projectDetail=projectList.get(i-k);
 				creatDate=getDateFromJSON(projectJson);
-				pn=getProjectNameFromJSON(projectJson);
-				if(pn.isSame(projectDetail.getProjectName())){
-					projectDetail.setCreatDate(creatDate);
-					projectList.set(i-k, projectDetail);
-				}else{
-					k++;
-					System.out.println("NOT CORRESPOND:"+k);
-				}
+				projectDetail.setCreatDate(creatDate);
+				projectList.set(i, projectDetail);
+	
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -83,6 +70,102 @@ public class ProjectDataMerge {
 		return true;
 	}
 	
+	/**
+	 * 从文件获得项目的commit信息并写到项目文件中
+	 * @author ZhangYF
+	 * @return 是否合并成功 
+	 * 
+	 */
+	public boolean setCommitMerge(){
+		FileUtil fileUtil=new FileUtil();
+		ProjectFile pf=new ProjectFile();
+		ProjectDetail projectDetail;
+		List<ProjectDetail> projectList;
+		List<Integer> commitList=new ArrayList<Integer>();
+		List<Integer> tempList;
+		try {
+			projectList = fileUtil.getProjectDetailListFromFile();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return false;
+		}
+		
+		for(int i=1;i<=4;i++){
+			try {
+				tempList=pf.getProjectCommit(i);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			commitList.addAll(tempList);
+		}
+
+		int commit;
+		for(int i=0;i<projectList.size();i++){
+			commit=commitList.get(i);
+			projectDetail=projectList.get(i);
+			projectDetail.setCommit(commit);
+			
+		}
+		
+		if(!fileUtil.setProjectDetailToFile(projectList)){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	/**
+	 * 使用URL获得项目的commit信息并写到文件中
+	 * @author ZhangYF
+	 * @return 是否下载成功 
+	 * 
+	 */
+	public boolean setCommitData(int fileid){
+		FileUtil fileUtil=new FileUtil();
+		ProjectFile pf=new ProjectFile();
+		ProjectDetail projectDetail;
+		String projectURL;
+		List<ProjectDetail> projectList;
+		List<Integer> commitList=new ArrayList<Integer>();
+		try {
+			projectList = fileUtil.getProjectDetailListFromFile();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return false;
+		}
+		
+		int commit;
+		ProjectName pn;
+		for(int i=projectList.size()*(fileid-1)/4;i<projectList.size()*fileid/4;i++){
+			projectDetail=projectList.get(i);
+			pn=projectDetail.getProjectName();
+			projectURL=URLString.getRepositoryApiString()+pn.toString();
+			try {
+			
+				commit=getCommitNumber(projectURL);
+//				projectDetail.setCommit(commit);
+//				projectList.set(i, projectDetail);
+				commitList.add(commit);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+			System.out.println(i);
+			
+		}
+		
+		if(!pf.saveProjectCommit(commitList,fileid)){
+			return false;
+		}
+		
+		return true;
+	}
 	
 	private Date getDateFromJSON(String jsonString){
 		Date creatDate;
@@ -94,19 +177,32 @@ public class ProjectDataMerge {
 		return creatDate;
 	}
 	
-	private ProjectName getProjectNameFromJSON(String jsonString){
-		ProjectName pn;
-		JSONObject json;
-		String owner;
-		String reponame;
-		
-		json = JSONObject.fromObject(jsonString);
-		JSONObject ownerJson=json.getJSONObject("owner");
-		reponame=json.getString("name");
-	    owner=ownerJson.getString("login");
-		
-	    pn=new ProjectName(owner,reponame);
-		
-	    return pn;
-	}
+	
+	 private int getCommitNumber(String url){
+	    	
+	    	StringListTool stringTool=new StringListTool();
+	    	String page="/commits/shas?page=";
+	    	String retStr="";
+	    	List<String> list;
+	    	int i=1;
+	    	int num=0;
+	    	try {
+				retStr=HttpRequestUtil.httpRequest(url+page+i);
+				while(retStr.length()>2){
+		    		list=stringTool.getStringList(retStr);
+		    		num=num+list.size();
+		    		i++;
+		    		try {
+						retStr=HttpRequestUtil.httpRequest(url+page+i);
+					} catch (Exception e) {
+						return num;
+					}
+		    	}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return 0;
+			}
+	    	
+	    	return num;
+	    }
 }
