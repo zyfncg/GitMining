@@ -17,22 +17,12 @@ public class SetRaderStatistic {
 
 		DecimalFormat df = new DecimalFormat("######0.00");
 		// 每个项目的最大值
-<<<<<<< HEAD
 		double maxContributor = 1.0;
 		double maxStar = 1.0;
 		double maxCommit = 1.0;
 		double maxIssue = 1.0;
 		double maxPullRequest = 1.0;
 		double maxSize = 1.0;
-=======
-
-		double maxContributor = 1;
-		double maxStar = 1;
-		double maxCommit = 1;
-		double maxIssue = 1;
-		double maxPullRequest = 1;
-		double maxSize = 1;
->>>>>>> ecdf5cefbf6223c23813dba7062740ba7c8f6311
 
 		// 统计之后的各个项目的统计数据
 
