@@ -1,9 +1,9 @@
 package UserStatistic.GetUserStatistic;
 
-import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
 import UserStatistic.GetUserStatistic.DetailGet.GetCatalogStatistic;
 import UserStatistic.GetUserStatistic.DetailGet.GetCompanyStatistic;
 import UserStatistic.GetUserStatistic.DetailGet.GetCreatRepositoryStatistic;
+import UserStatistic.GetUserStatistic.DetailGet.GetCreatTimeStatistic;
 import UserStatistic.GetUserStatistic.DetailGet.GetJoinRepositoryStatistic;
 
 public class UserStatisticFactory {
@@ -20,7 +20,7 @@ public class UserStatisticFactory {
 	public GetJoinRepositoryStatistic GetJoinRepository(){
 		return new GetJoinRepositoryStatistic();
 	}
-	public GetTimeStatistic GetCreatTime(){
-		return new GetTimeStatistic();
+	public GetCreatTimeStatistic GetCreatTime(){
+		return new GetCreatTimeStatistic();
 	}
 }

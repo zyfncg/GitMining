@@ -17,42 +17,43 @@ public class SetRaderStatistic {
 
 		DecimalFormat df = new DecimalFormat("######0.00");
 		// 每个项目的最大值
-		int maxContributor = 1;
-		int maxStar = 1;
-		long maxCommit = 1;
-		int maxIssue = 1;
-		int maxPullRequest = 1;
-		int maxSize = 1;
+
+		double maxContributor = 1;
+		double maxStar = 1;
+		double maxCommit = 1;
+		double maxIssue = 1;
+		double maxPullRequest = 1;
+		double maxSize = 1;
 
 		// 统计之后的各个项目的统计数据
 
 		for (ProjectDetail oneProject : allProjectsDetailInfo) {
 			if (oneProject.getContributors() > maxContributor) {
-				maxContributor = oneProject.getContributors();
+				maxContributor = (double)oneProject.getContributors();
 			}
 			if (oneProject.getStars() > maxStar) {
-				maxStar = oneProject.getStars();
+				maxStar = (double)oneProject.getStars();
 			}
 			if (oneProject.getCommit() > maxCommit) {
-				maxCommit = oneProject.getCommit();
+				maxCommit = (double)oneProject.getCommit();
 			}
 			if (oneProject.getIssue() > maxIssue) {
-				maxIssue = oneProject.getIssue();
+				maxIssue = (double)oneProject.getIssue();
 			}
 			if (oneProject.getPullRequest() > maxPullRequest) {
-				maxPullRequest = oneProject.getPullRequest();
+				maxPullRequest = (double)oneProject.getPullRequest();
 			}
 			if (oneProject.getSize() > maxSize) {
-				maxSize = oneProject.getSize();
+				maxSize = (double)oneProject.getSize();
 			}
 		}
 		for (ProjectDetail anProject : allProjectsDetailInfo) {
-			double ContributorStatistic = Double.parseDouble(df.format((anProject.getContributors()) / maxContributor));
-			double StarStatistic = Double.parseDouble(df.format((anProject.getStars()) / maxStar));
-			double CommitStatistic = Double.parseDouble(df.format((anProject.getCommit()) / maxCommit));
-			double IssueStatistic = Double.parseDouble(df.format((anProject.getIssue()) / maxIssue));
-			double PullRequestStatistic = Double.parseDouble(df.format((anProject.getPullRequest()) / maxPullRequest));
-			double SizeStatistic = Double.parseDouble(df.format((anProject.getSize()) / maxSize));
+			double ContributorStatistic = Double.parseDouble(df.format( ((double)(anProject.getContributors())) / maxContributor));
+			double StarStatistic = Double.parseDouble(df.format( ((double)(anProject.getStars())) / maxStar));
+			double CommitStatistic = Double.parseDouble(df.format( ((double)(anProject.getCommit())) / maxCommit));
+			double IssueStatistic = Double.parseDouble(df.format( ((double)(anProject.getIssue())) / maxIssue));
+			double PullRequestStatistic = Double.parseDouble(df.format( ((double)(anProject.getPullRequest())) / maxPullRequest));
+			double SizeStatistic = Double.parseDouble(df.format( ((double)(anProject.getSize())) / maxSize));
 			double TotalStatistic = ContributorStatistic + StarStatistic + CommitStatistic + IssueStatistic
 					+ PullRequestStatistic + SizeStatistic;
 			StatisticDetail detail = new StatisticDetail(StarStatistic, ContributorStatistic, CommitStatistic,
