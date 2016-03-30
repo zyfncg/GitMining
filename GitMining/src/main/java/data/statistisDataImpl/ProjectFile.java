@@ -13,9 +13,9 @@ public class ProjectFile {
 	 * @return 项目时间信息
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Integer> getProjectCommit(int i) throws Exception {
+	public List<Integer> getProjectCommit() throws Exception {
 		List<Integer> pcommit = null;	
-		String fileName="projectCommitData"+i+".ser";
+		String fileName="projectCommitData.ser";
 		ObjectInputStream is=new ObjectInputStream(new FileInputStream(fileName));
 			
 		pcommit=(List<Integer>) is.readObject();
@@ -30,8 +30,8 @@ public class ProjectFile {
 	 * @param 项目时间信息
 	 * @return 是否存入成功
 	 */
-	public boolean saveProjectCommit(List<Integer> pcommit,int i) {
-		String fileName="projectCommitData"+i+".ser";
+	public boolean saveProjectCommit(List<Integer> pcommit) {
+		String fileName="projectCommitData.ser";
 		try {
 			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(fileName));
 			oos.writeObject(pcommit);

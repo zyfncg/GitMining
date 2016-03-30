@@ -19,7 +19,7 @@ public class SetRaderStatistic {
 		// 每个项目的最大值
 		int maxContributor = 1;
 		int maxStar = 1;
-		int maxCommit = 1;
+		long maxCommit = 1;
 		int maxIssue = 1;
 		int maxPullRequest = 1;
 		int maxSize = 1;

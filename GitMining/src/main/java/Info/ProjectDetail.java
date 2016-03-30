@@ -229,12 +229,12 @@ public class ProjectDetail implements Serializable{
 		this.size = size;
 	}
 
-	public int getCommit() {
+	public long getCommit() {
 		return commit;
 	}
 
-	public void setCommit(int commit) {
-		this.commit = commit;
+	public void setCommit(int commit2) {
+		this.commit = commit2;
 	}
 
 	public StatisticDetail getStatisticDetail() {
