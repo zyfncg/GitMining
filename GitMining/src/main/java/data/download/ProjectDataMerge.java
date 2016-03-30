@@ -81,8 +81,8 @@ public class ProjectDataMerge {
 		ProjectFile pf=new ProjectFile();
 		ProjectDetail projectDetail;
 		List<ProjectDetail> projectList;
-		List<Integer> commitList=new ArrayList<Integer>();
-		List<Integer> tempList;
+		List<Integer> commitList;
+		
 		try {
 			projectList = fileUtil.getProjectDetailListFromFile();
 		} catch (Exception e1) {
@@ -91,17 +91,14 @@ public class ProjectDataMerge {
 			return false;
 		}
 		
-		for(int i=1;i<=4;i++){
+		
 			try {
-				tempList=pf.getProjectCommit(i);
+				commitList=pf.getProjectCommit();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return false;
 			}
-			commitList.addAll(tempList);
-		}
-
 		int commit;
 		for(int i=0;i<projectList.size();i++){
 			commit=commitList.get(i);
@@ -124,7 +121,7 @@ public class ProjectDataMerge {
 	 * @return 是否下载成功 
 	 * 
 	 */
-	public boolean setCommitData(int fileid){
+	public boolean setCommitData(){
 		FileUtil fileUtil=new FileUtil();
 		ProjectFile pf=new ProjectFile();
 		ProjectDetail projectDetail;
@@ -141,26 +138,35 @@ public class ProjectDataMerge {
 		
 		int commit;
 		ProjectName pn;
-		for(int i=projectList.size()*(fileid-1)/4;i<projectList.size()*fileid/4;i++){
+		for(int i=0;i<projectList.size();i++){
 			projectDetail=projectList.get(i);
 			pn=projectDetail.getProjectName();
-			projectURL=URLString.getRepositoryApiString()+pn.toString();
+			String pname=pn.toString().replace(".", "+");
+			projectURL=URLString.getRepositoryApiString()+pname;
 			try {
 			
 				commit=getCommitNumber(projectURL);
 //				projectDetail.setCommit(commit);
 //				projectList.set(i, projectDetail);
-				commitList.add(commit);
+//				commitList.add(commit);
+				projectDetail.setCommit(commit);
+				projectList.set(i, projectDetail);
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 				return false;
 			}
-			System.out.println(i);
+			if(commit>5000||i==185){
+				System.out.println(i+":"+commit);
+			}
+		
+			if(i%10==0){
+				System.out.println(i+":"+commit);
+			}
 			
 		}
 		
-		if(!pf.saveProjectCommit(commitList,fileid)){
+		if(!fileUtil.setProjectDetailToFile(projectList)){
 			return false;
 		}
 		
@@ -184,25 +190,43 @@ public class ProjectDataMerge {
 	    	String page="/commits/shas?page=";
 	    	String retStr="";
 	    	List<String> list;
+	    	int seg=32;
 	    	int i=1;
 	    	int num=0;
+	    	boolean isRange=false; //是否找到大小区间
 	    	try {
 				retStr=HttpRequestUtil.httpRequest(url+page+i);
-				while(retStr.length()>2){
-		    		list=stringTool.getStringList(retStr);
-		    		num=num+list.size();
-		    		i++;
-		    		try {
-						retStr=HttpRequestUtil.httpRequest(url+page+i);
-					} catch (Exception e) {
-						return num;
+				if(retStr==null||retStr.length()<3){
+//					System.out.println(retStr);
+					return 0;
+				}
+				while(seg>0){
+		    		i=i+seg;
+		    		
+					retStr=HttpRequestUtil.httpRequest(url+page+i);
+//					System.out.print(i+" ");
+					if(retStr==null||retStr.length()<3){
+						i=i-seg;
+						seg=seg>>1;
+					    isRange=true;
+						continue;
+					}else{
+						list=stringTool.getStringList(retStr);
+						num=50*(i-1)+list.size();
+						if(!isRange){
+							seg=seg<<1;
+						}
+						
 					}
+					 	
 		    	}
 			} catch (Exception e) {
-				e.printStackTrace();
-				return 0;
+//				e.printStackTrace();
+				return num;
 			}
-	    	
+	    	if(num<0){
+	    		System.out.println(i+":"+num);
+	    	}
 	    	return num;
 	    }
 }

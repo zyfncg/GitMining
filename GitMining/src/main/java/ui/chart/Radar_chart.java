@@ -70,7 +70,7 @@ public class Radar_chart extends JPanel{
 	
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
-		StatisticDetail d = new StatisticDetail(0.1, 0.2, 0.2, 0.3, 0.4, 0.5, 0.6);
+		StatisticDetail d = new StatisticDetail(0.01, 0.02, 0.02, 0.03, 0.04, 0.05, 0.06);
 		f.add(new Radar_chart(d, 600, 600));
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.pack();

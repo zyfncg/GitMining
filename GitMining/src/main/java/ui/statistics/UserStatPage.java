@@ -52,6 +52,7 @@ public class UserStatPage extends JPanel implements Refreshable {
 		
 		this.scrollPane = new JScrollPane(box);
 		this.scrollPane.getVerticalScrollBar().setUI(new MyScrollBar());
+		this.scrollPane.getHorizontalScrollBar().setUI(new MyScrollBar());
 		this.scrollPane.setOpaque(false);
 		
 		this.setLayout(new BorderLayout());
