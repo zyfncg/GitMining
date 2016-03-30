@@ -8,3 +8,8 @@ when：第五周
 what：迭代二图表绘制完成初步封装
 problem：所获得的数据在图表中的显示并不是很美观
 todo：解决图表绘制中数据显示问题，使其更加美观
+who: 肖安祥
+when: 第五周
+what: 无
+problem: 无
+todo: 美化界面
