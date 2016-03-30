@@ -29,6 +29,7 @@ public class LoadDriver {
 //		}
 		
 		if(pdm.setCommitData()){
+
 			System.out.println("项目commit信息下载成功！");
 		}else{
 			System.out.println("项目commit信息下载失败！");
