@@ -21,6 +21,9 @@ public class SetCompanyStatistic {
 			}
 		}
 		
+		//因为数据问题；删去unknown这个类型
+		allCompany.remove("unknown");
+		
 		//对用户所属公司进行统计
 		for(int i=0;i<allCompany.size();i++){
 			int CompantNumber =0;
@@ -45,14 +48,14 @@ public class SetCompanyStatistic {
 		
 		//其余小公司数据统计
 		int otherCompanyNum = 0;
-		for(int i=19;i<allCompanyResult.size();i++){
+		for(int i=24;i<allCompanyResult.size();i++){
 			otherCompanyNum = otherCompanyNum + allCompanyResult.get(i).getNum();
 		}
 		
-		for(int allSize = (allCompanyResult.size()-1);allSize>19;allSize--){
+		for(int allSize = (allCompanyResult.size()-1);allSize>24;allSize--){
 			allCompanyResult.remove(allSize);
 		}
-		allCompanyResult.add(new CompanyStatistics("other", otherCompanyNum));
+//		allCompanyResult.add(new CompanyStatistics("other", otherCompanyNum));
 		
 		return allCompanyResult;
 	}
