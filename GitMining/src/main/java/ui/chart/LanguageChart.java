@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.text.NumberFormat;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -106,13 +105,13 @@ public class LanguageChart extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(panel,BorderLayout.CENTER);
 	}
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
-		LanguageChart company = new LanguageChart(repositoryStatisticFactory, 800, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(company);
-		frame.pack();
-		frame.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
+//		LanguageChart company = new LanguageChart(repositoryStatisticFactory, 800, 500);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.add(company);
+//		frame.pack();
+//		frame.setVisible(true);
+//	}
 }

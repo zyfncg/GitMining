@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import res.Colors;
@@ -17,7 +16,7 @@ import ui.chart.NumbersofRepositoryInvolved;
 import ui.chart.UserCreateTime;
 import ui.chart.UserType;
 import ui.component.BackPanel;
-import ui.component.MyScrollBar;
+import ui.component.ChartScrollPane;
 import ui.component.TitlePanel;
 
 /**
@@ -26,7 +25,7 @@ import ui.component.TitlePanel;
 @SuppressWarnings("serial")
 public class UserStatPage extends JPanel implements Refreshable {
 	
-	private JScrollPane scrollPane;
+	private ChartScrollPane scrollPane;
 	
 	public UserStatPage(PanelSwitcher switcher) {
 		//获取统计数据
@@ -92,12 +91,7 @@ public class UserStatPage extends JPanel implements Refreshable {
 		box.add(new ChartPanel(company,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		
-		this.scrollPane = new JScrollPane(box);
-		this.scrollPane.getVerticalScrollBar().setUI(new MyScrollBar());
-		this.scrollPane.getHorizontalScrollBar().setUI(new MyScrollBar());
-		this.scrollPane.setOpaque(false);
-		this.scrollPane.getViewport().setOpaque(false);
-		
+		this.scrollPane = new ChartScrollPane(box);
 		this.setLayout(new BorderLayout());
 		this.add(this.scrollPane, BorderLayout.CENTER);
 		this.setBackground(Colors.STAT_BG);

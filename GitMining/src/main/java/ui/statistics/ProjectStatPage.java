@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import res.Colors;
@@ -16,7 +15,7 @@ import ui.chart.ForkLine;
 import ui.chart.LanguageChart;
 import ui.chart.StarLine;
 import ui.component.BackPanel;
-import ui.component.MyScrollBar;
+import ui.component.ChartScrollPane;
 import ui.component.TitlePanel;
 
 /**
@@ -28,7 +27,7 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 	/**
 	 *页面顶层面板 
 	 */
-	private JScrollPane scrollPane;
+	private ChartScrollPane scrollPane;
 	
 	public ProjectStatPage(PanelSwitcher switcher) {
 		//获取统计数据
@@ -78,13 +77,7 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		box.add(new ChartPanel(fork,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		
-		this.scrollPane = new JScrollPane();
-		this.scrollPane.getVerticalScrollBar().setUI(new MyScrollBar());
-		this.scrollPane.getHorizontalScrollBar().setUI(new MyScrollBar());
-		this.scrollPane.setOpaque(false);
-		this.scrollPane.setViewportView(box);
-		this.scrollPane.getViewport().setOpaque(false);
-		
+		this.scrollPane = new ChartScrollPane(box);
 		this.setLayout(new BorderLayout());
 		this.setBackground(Colors.STAT_BG);
 		this.add(this.scrollPane, BorderLayout.CENTER);
