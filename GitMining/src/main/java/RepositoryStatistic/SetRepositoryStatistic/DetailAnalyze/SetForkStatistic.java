@@ -60,7 +60,7 @@ public class SetForkStatistic{
 				}
 			}
 			ForkStatistics forkStatistic = new ForkStatistics(i+"年", ForkNumber);
-			System.out.println(ForkNumber);
+//			System.out.println(ForkNumber);
 			forkStatisticsResult.add(forkStatistic);
 		}
 		
