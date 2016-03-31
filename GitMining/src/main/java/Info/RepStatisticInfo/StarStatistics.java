@@ -11,9 +11,9 @@ public class StarStatistics implements Serializable{
 
 	private String Star;
 	
-	private double nums;
+	private int nums;
 	
-	public StarStatistics(String star,double num){
+	public StarStatistics(String star,int num){
 		this.Star = star;
 		this.nums = num;
 	}
@@ -26,11 +26,11 @@ public class StarStatistics implements Serializable{
 		Star = star;
 	}
 
-	public double getNums() {
+	public int getNums() {
 		return nums;
 	}
 
-	public void setNums(double nums) {
+	public void setNums(int nums) {
 		this.nums = nums;
 	}
 	

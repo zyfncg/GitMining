@@ -355,9 +355,11 @@ public class JsonUtil {
 			String retStr=HttpRequestUtil.httpRequest(url);
 			pullJSONList=JSONArray.fromObject(retStr);
 			JSONObject jb=pullJSONList.getJSONObject(0);
-			num=jb.getInt("number");
+			if(jb!=null){
+				num=jb.getInt("number");
+			}			
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			return 0;
 		}
     	

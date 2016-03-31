@@ -11,9 +11,9 @@ public class ForkStatistics implements Serializable{
 
 	private String Fork;
 	
-	private double nums;
+	private int nums;
 	
-	public ForkStatistics(String fork,double num){
+	public ForkStatistics(String fork,int num){
 		this.Fork = fork;
 		this.nums = num;
 	}
@@ -26,11 +26,11 @@ public class ForkStatistics implements Serializable{
 		Fork = fork;
 	}
 
-	public double getNums() {
+	public int getNums() {
 		return nums;
 	}
 
-	public void setNums(double nums) {
+	public void setNums(int nums) {
 		this.nums = nums;
 	}
 	

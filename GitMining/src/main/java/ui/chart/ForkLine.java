@@ -26,12 +26,19 @@ public class ForkLine extends JPanel{
 		TDataBox box = new TDataBox();		
 		LineChart lineChart = new LineChart(box);
 		
+		lineChart.setTitle("Fork line");
 		lineChart.setYAxisVisible(true);
 		lineChart.setYScaleTextVisible(true);
 		lineChart.setXAxisVisible(true);
 		lineChart.setXScaleTextVisible(true);
 		//每个点上是否需要显示标记
 		lineChart.setInflexionVisible(true);
+		//设置不可拖动
+		lineChart.setEnableXTranslate(false);
+		lineChart.setEnableYTranslate(false);
+		//设置不可缩放
+		lineChart.setEnableXZoom(false);
+		lineChart.setEnableYZoom(false);
 		
 		Element A = new Node();
 		A.setName(Strings.Project.FORK_LABEL);

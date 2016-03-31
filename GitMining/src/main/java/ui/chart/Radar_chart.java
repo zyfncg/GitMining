@@ -42,6 +42,12 @@ public class Radar_chart extends JPanel{
 		chart.addAxisText("hot");
 		chart.addAxisText("size");
 		chart.addAxisText("famous");
+		//设置不可拖动
+		chart.setEnableXTranslate(false);
+		chart.setEnableYTranslate(false);
+		//设置不可缩放
+		chart.setEnableXZoom(false);
+		chart.setEnableYZoom(false);
 		
 		chart.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
