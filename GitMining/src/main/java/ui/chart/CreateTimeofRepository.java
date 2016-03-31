@@ -3,14 +3,20 @@ package ui.chart;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import twaver.Element;
 import twaver.Node;
+import twaver.PopupMenuGenerator;
 import twaver.TDataBox;
+import twaver.TView;
 import twaver.TWaverConst;
 import twaver.chart.BarChart;
 import Info.RepStatisticInfo.TimeStatistics;
