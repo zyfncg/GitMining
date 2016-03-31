@@ -13,6 +13,11 @@ public class Colors {
 	public static final Color PAGE_BG = Color.darkGray;
 	
 	/**
+	 *统计页面背景颜色 
+	 */
+	public static final Color STAT_BG = Color.WHITE;
+	
+	/**
 	 *信息卡片在鼠标进入前的背景颜色 
 	 */
 	public static final Color CARD_AWAY_BG = new Color(72, 125, 232);

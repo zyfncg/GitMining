@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
+import res.Colors;
 import ui.Refreshable;
 import ui.chart.Company;
 import ui.chart.NumbersofRepositoryCreated;
@@ -43,21 +44,25 @@ public class UserStatPage extends JPanel implements Refreshable {
 				factory, StatConst.STAT_WIDTH, StatConst.STAT_HEIGHT);
 		//组装统计面板
 		Box box = Box.createVerticalBox();
-		box.setOpaque(false);
 		box.add(type);
+		box.add(new BoxStrut());
 		box.add(registry);
+		box.add(new BoxStrut());
 		box.add(involve);
+		box.add(new BoxStrut());
 		box.add(create);
+		box.add(new BoxStrut());
 		box.add(company);
 		
 		this.scrollPane = new JScrollPane(box);
 		this.scrollPane.getVerticalScrollBar().setUI(new MyScrollBar());
 		this.scrollPane.getHorizontalScrollBar().setUI(new MyScrollBar());
 		this.scrollPane.setOpaque(false);
+		this.scrollPane.getViewport().setOpaque(false);
 		
 		this.setLayout(new BorderLayout());
 		this.add(this.scrollPane, BorderLayout.CENTER);
-		this.setOpaque(false);
+		this.setBackground(Colors.STAT_BG);
 	}
 
 	@Override

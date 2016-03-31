@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
+import res.Colors;
 import ui.Refreshable;
 import ui.chart.CreateTimeofRepository;
 import ui.chart.ForkLine;
@@ -43,22 +44,25 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		//组装统计面板
 		Box box = Box.createVerticalBox();
 		box.add(time);
+		box.add(new BoxStrut());
 		box.add(language);
+		box.add(new BoxStrut());
 		box.add(star);
+		box.add(new BoxStrut());
 		box.add(fork);
-		box.setOpaque(false);
 		
 		this.scrollPane = new JScrollPane();
 		this.scrollPane.getVerticalScrollBar().setUI(new MyScrollBar());
 		this.scrollPane.getHorizontalScrollBar().setUI(new MyScrollBar());
 		this.scrollPane.setOpaque(false);
 		this.scrollPane.setViewportView(box);
+		this.scrollPane.getViewport().setOpaque(false);
 		
 		this.setLayout(new BorderLayout());
-		this.setOpaque(false);
+		this.setBackground(Colors.STAT_BG);
 		this.add(this.scrollPane, BorderLayout.CENTER);
 	}
-
+	
 	@Override
 	public void refresh() {
 		// TODO 暂时无事可做
