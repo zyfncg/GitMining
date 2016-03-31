@@ -17,6 +17,7 @@ import twaver.Node;
 import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.PieChart;
+import ui.component.EmptyPanel;
 
 /**
  *用户类型统计面板 
@@ -48,13 +49,6 @@ public class UserType extends JPanel{
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(b, BorderLayout.CENTER);
-	}
-	
-	private class EmptyPanel extends JPanel {
-		public EmptyPanel(int width, int height) {
-			this.setPreferredSize(new Dimension(width, height));
-			this.setOpaque(false);
-		}
 	}
 //	public static void main(String[] args) {
 //		JFrame frame = new JFrame();

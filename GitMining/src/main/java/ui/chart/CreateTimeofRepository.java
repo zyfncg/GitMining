@@ -23,6 +23,7 @@ import Info.RepStatisticInfo.TimeStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
+import res.Strings;
 
 public class CreateTimeofRepository extends JPanel{
 
@@ -41,7 +42,7 @@ public class CreateTimeofRepository extends JPanel{
 		barChart.setYScaleValueGap(500);
 		//添加一个节点
 		Element A = new Node("A");
-		A.setName("Repository");
+		A.setName(Strings.Project.REPOSITORY_LABEL);
 		//设置chart的颜色
 		A.putChartColor(Color.RED);
 		//添加X轴上组的名称
@@ -59,14 +60,14 @@ public class CreateTimeofRepository extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(barChart, BorderLayout.CENTER);
 	}
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
-		CreateTimeofRepository company = new CreateTimeofRepository(repositoryStatisticFactory, 800, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(company);
-		frame.pack();
-		frame.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
+//		CreateTimeofRepository company = new CreateTimeofRepository(repositoryStatisticFactory, 800, 500);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.add(company);
+//		frame.pack();
+//		frame.setVisible(true);
+//	}
 	
 }

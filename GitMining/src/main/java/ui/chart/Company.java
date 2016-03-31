@@ -18,6 +18,7 @@ import Info.UsrStatisticInfo.CompanyStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import UserStatistic.GetUserStatistic.DetailGet.GetCompanyStatistic;
+import res.Strings;
 
 public class Company extends JPanel{
 
@@ -36,7 +37,7 @@ public class Company extends JPanel{
 		barChart.setYScaleValueGap(2);
 		//添加一个节点
 		Element A = new Node("A");
-		A.setName("User");
+		A.setName(Strings.User.COMPANY_LABEL);
 		//设置chart的颜色
 		A.putChartColor(Color.RED);
 		//添加X轴上组的名称和数据
@@ -54,13 +55,13 @@ public class Company extends JPanel{
 		this.add(barChart, BorderLayout.CENTER);
 	}
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		UserStatisticFactory repositoryStatisticFactory = new UserStatisticFactory();
-		Company company = new Company(repositoryStatisticFactory, 1200, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(company);
-		frame.pack();
-		frame.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		UserStatisticFactory repositoryStatisticFactory = new UserStatisticFactory();
+//		Company company = new Company(repositoryStatisticFactory, 1200, 500);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.add(company);
+//		frame.pack();
+//		frame.setVisible(true);
+//	}
 }

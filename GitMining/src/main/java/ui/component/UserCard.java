@@ -17,10 +17,10 @@ public class UserCard extends Card {
 		
 		int itemW = width / 3;
 		KVPanel projectInvolve = new KVPanel(itemW, height,
-				Strings.INVOLVE_PROJECTS, String.valueOf(user.getProjectInvolved()),
+				Strings.User.INVOLVE_PROJECTS, String.valueOf(user.getProjectInvolved()),
 				KVPanel.VERTICAL);
 		KVPanel projectCreate = new KVPanel(itemW, height,
-				Strings.CREATE_PROJECTS, String.valueOf(user.getProjectCreate()),
+				Strings.User.CREATE_PROJECTS, String.valueOf(user.getProjectCreate()),
 				KVPanel.VERTICAL);
 		this.itemPanel.add(projectInvolve);
 		this.itemPanel.add(projectCreate);

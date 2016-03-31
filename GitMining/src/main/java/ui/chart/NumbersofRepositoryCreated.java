@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import Info.UsrStatisticInfo.CreatRepositoryStatistics;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import UserStatistic.GetUserStatistic.DetailGet.GetCreatRepositoryStatistic;
+import res.Strings;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
@@ -29,7 +30,7 @@ public class NumbersofRepositoryCreated extends JPanel{
 		LineChart lineChart = new LineChart(box);
 		
 		Element A = new Node();
-		A.setName("Repository");
+		A.setName(Strings.Project.REPOSITORY_LABEL);
 		A.putChartColor(Color.RED);
 		//设置标记的显示样式
 		A.putChartInflexionStyle(TWaverConst.INFLEXION_STYLE_TRIANGLE);

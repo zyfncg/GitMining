@@ -16,6 +16,7 @@ import twaver.chart.LineChart;
 import Info.RepStatisticInfo.ForkStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetForkStatistic;
+import res.Strings;
 
 public class ForkLine extends JPanel{
 
@@ -33,7 +34,7 @@ public class ForkLine extends JPanel{
 		lineChart.setInflexionVisible(true);
 		
 		Element A = new Node();
-		A.setName("Fork");
+		A.setName(Strings.Project.FORK_LABEL);
 		A.putChartColor(Color.GREEN);
 		//设置标记的显示样式
 		A.putChartInflexionStyle(TWaverConst.INFLEXION_STYLE_TRIANGLE);

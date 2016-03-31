@@ -154,22 +154,22 @@ public class MainFrame extends JFrame {
 	private void initButtonPannel() {
 		ToolTipManager.sharedInstance().setInitialDelay(0);
 		//开始主页按钮
-		TitleButton home = new TitleButton(Strings.HOME_BUTTON_TIP, Img.HOME_BUTTON,
+		TitleButton home = new TitleButton(Strings.ButtonTip.HOME_BUTTON_TIP, Img.HOME_BUTTON,
 				e -> switcher.jump(currentPage, Page.START, PanelSwitcher.RIGHT));
 		//项目主页按钮
-		TitleButton project = new TitleButton(Strings.PROJECT_BUTTON_TIP, Img.PROJECT_BUTTON,
+		TitleButton project = new TitleButton(Strings.ButtonTip.PROJECT_BUTTON_TIP, Img.PROJECT_BUTTON,
 				e -> switcher.jump(currentPage, Page.PROJECT, PanelSwitcher.LEFT));
 		//用户主页按钮
-		TitleButton user = new TitleButton(Strings.USER_BUTTON_TIP, Img.USER_BUTTON,
+		TitleButton user = new TitleButton(Strings.ButtonTip.USER_BUTTON_TIP, Img.USER_BUTTON,
 				e -> switcher.jump(currentPage, Page.USER, PanelSwitcher.LEFT));
 		//刷新按钮
-		TitleButton refresh = new TitleButton(Strings.REFRESH_BUTTON_TIP, 
+		TitleButton refresh = new TitleButton(Strings.ButtonTip.REFRESH_BUTTON_TIP, 
 				Img.REFRESH_BUTTON, e -> refreshPage.refresh());
 		//最小化按钮
-		TitleButton min = new TitleButton(Strings.MIN_BUTTON_TIP, 
+		TitleButton min = new TitleButton(Strings.ButtonTip.MIN_BUTTON_TIP, 
 				Img.MIN_BUTTON, e -> setExtendedState(Frame.ICONIFIED));
 		//退出按钮
-		TitleButton exit = new TitleButton(Strings.EXIT_BUTTON_TIP,
+		TitleButton exit = new TitleButton(Strings.ButtonTip.EXIT_BUTTON_TIP,
 				Img.EXIT_BUTTON, e -> System.exit(0));
 		
 		FlowLayout layout = new FlowLayout(FlowLayout.RIGHT, 0, 0);

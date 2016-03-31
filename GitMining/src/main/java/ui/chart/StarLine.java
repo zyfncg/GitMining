@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import Info.RepStatisticInfo.StarStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetStarStatistic;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
+import res.Strings;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
@@ -34,7 +34,7 @@ public class StarLine extends JPanel{
 		lineChart.setInflexionVisible(true);
 		
 		Element A = new Node();
-		A.setName("Star");
+		A.setName(Strings.Project.STAR_LABEL);
 		A.putChartColor(Color.BLUE);
 		//设置标记的显示样式
 		A.putChartInflexionStyle(TWaverConst.INFLEXION_STYLE_TRIANGLE);

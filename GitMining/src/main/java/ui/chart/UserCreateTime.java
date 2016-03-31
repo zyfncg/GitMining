@@ -16,6 +16,7 @@ import twaver.chart.BarChart;
 import Info.UsrStatisticInfo.CreatTimeStatistics;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import UserStatistic.GetUserStatistic.DetailGet.GetCreatTimeStatistic;
+import res.Strings;
 
 public class UserCreateTime extends JPanel{
 
@@ -33,8 +34,8 @@ public class UserCreateTime extends JPanel{
 		//设置Y坐标的间距
 		barChart.setYScaleValueGap(500);
 		//添加一个节点
-		Element A = new Node("A");
-		A.setName("User");
+		Element A = new Node();
+		A.setName(Strings.User.USER_ENROLLMENT_LABEL);
 		//设置chart的颜色
 		A.putChartColor(Color.RED);
 		//添加X轴上组的名称
@@ -52,13 +53,13 @@ public class UserCreateTime extends JPanel{
 		this.add(barChart, BorderLayout.CENTER);
 	}
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		UserStatisticFactory userStatisticFactory = new UserStatisticFactory();
-		UserCreateTime userChart = new UserCreateTime(userStatisticFactory, 800, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.add(userChart);
-		frame.pack();
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		UserStatisticFactory userStatisticFactory = new UserStatisticFactory();
+//		UserCreateTime userChart = new UserCreateTime(userStatisticFactory, 800, 500);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setVisible(true);
+//		frame.add(userChart);
+//		frame.pack();
+//	}
 }

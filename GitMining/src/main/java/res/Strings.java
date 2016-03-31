@@ -4,106 +4,195 @@ package res;
  *字符串集合 
  */
 public class Strings {
+	
+	/**
+	 *有关项目的字符串 
+	 */
+	public static class Project {
+		/**
+		 *star标签 
+		 */
+		public static final String STAR_LABEL = "star";
+		
+		/**
+		 *language标签 
+		 */
+		public static final String LANGUAGE_LABEL = "language";
+		
+		/**
+		 *repository标签 
+		 */
+		public static final String REPOSITORY_LABEL = "repository";
+		
+		/**
+		 *cumulative 
+		 */
+		public static final String CUMULATIVE_LABEL = "cumulative";
+		
+		/**
+		 *fork标签 
+		 */
+		public static final String FORK_LABEL = "fork";
+		
+		/**
+		 *contributor标签 
+		 */
+		public static final String CONTRIBUTOR_LABEL = "contributor";
+		
+		/**
+		 *collaborator标签 
+		 */
+		public static final String COLLABORATOR_LABEL = "collaborator";
+		
+		/**
+		 *subscriber标签 
+		 */
+		public static final String SUBSCRIBER_LABEL = "subscriber";
+		
+		/**
+		 *项目搜索框提示信息 
+		 */
+		public static final String PROJECT_SEARCH_TIP = "Enter project name";
+		
+		/**
+		 *star分布直方图的标题 
+		 */
+		public static final String STAR_HISTOGRAM_TILE = "Distribution of star";
+		
+		/**
+		 *start分布折线图的标题 
+		 */
+		public static final String STAR_LINE_TILE = "Tendency of star";
+		
+		/**
+		 *fork分布直方图的标题 
+		 */
+		public static final String FORK_HISTOGRAM_TILE = "Distribution of fork";
+		
+		/**
+		 *fork分布折线图的标题 
+		 */
+		public static final String FORK_LINE_TILE = "Tendency of fork";
+
+		/**
+		 *项目创建时间柱状图的标题 
+		 */
+		public static final String PROJECT_TIME_BAR_TITLE =
+				"Quantities of repository in years";
+		
+		/**
+		 *项目语言pareto图的标题 
+		 */
+		public static final String LANGUAGE_PARETO_TITLE =
+				"Numbers of Repository in Different Languages";
+	}
 
 	/**
-	 *star标签 
+	 *有关用户的字符串 
 	 */
-	public static final String STAR_LABEL = "star";
+	public static class User {
+		
+		/**
+		 *User Enrollment标签
+		 */
+		public static final String USER_ENROLLMENT_LABEL = "User Enrollment";
+		
+		/**
+		 *involve projects标签 
+		 */
+		public static final String INVOLVE_PROJECTS = "ProjectInvolve";
+		
+		/**
+		 *create projects标签 
+		 */
+		public static final String CREATE_PROJECTS = "ProjectCreate";
+		
+		/**
+		 *description标签 
+		 */
+		public static final String DESCRIPTION_LABEL = "description ";
+		
+		/**
+		 *email标签 
+		 */
+		public static final String EMAIL_LABEL = "email ";
+		
+		/**
+		 *company标签 
+		 */
+		public static final String COMPANY_LABEL = "company ";
+		
+		/**
+		 *address标签 
+		 */
+		public static final String ADDRESS_LABEL = "address ";
+		
+		/**
+		 *用户搜索框提示信息 
+		 */
+		public static final String USER_SEARCH_TIP = "Enter user name";
+		
+		/**
+		 *用户注册统计面板标题
+		 */
+		public static final String REGISTRY_TITLE = "Enrollment in years";
+		
+		/**
+		 *用户类型统计面板标题
+		 */
+		public static final String USER_TYPE_TITLE = "User Type";
+		
+		/**
+		 *用户参与项目统计面板标题 
+		 */
+		public static final String INVOLVE_TITLE = "Quantities of involving repositories";
+		
+		/**
+		 *用户创建项目统计面板 标题
+		 */
+		public static final String CREATE_TITLE = "Quantities of creating repositories";
+		
+		/**
+		 *参与公司统计面板标题 
+		 */
+		public static final String COMPANY_TITLE = "Quantities of companies";
+		
+	}
 	
 	/**
-	 *language标签 
+	 *按钮提示信息字符串 
 	 */
-	public static final String LANGUAGE_LABEL = "language";
-	
-	/**
-	 *fork标签 
-	 */
-	public static final String FORK_LABEL = "fork";
-	
-	/**
-	 *contributor标签 
-	 */
-	public static final String CONTRIBUTOR_LABEL = "contributor";
-	
-	/**
-	 *collaborator标签 
-	 */
-	public static final String COLLABORATOR_LABEL = "collaborator";
-	
-	/**
-	 *subscriber标签 
-	 */
-	public static final String SUBSCRIBER_LABEL = "subscriber";
-	
-	/**
-	 *involve projects标签 
-	 */
-	public static final String INVOLVE_PROJECTS = "ProjectInvolve";
-	
-	/**
-	 *create projects标签 
-	 */
-	public static final String CREATE_PROJECTS = "ProjectCreate";
-	
-	/**
-	 *description标签 
-	 */
-	public static final String DESCRIPTION_LABEL = "description:";
-	
-	/**
-	 *email标签 
-	 */
-	public static final String EMAIL_LABEL = "email:";
-	
-	/**
-	 *company标签 
-	 */
-	public static final String COMPANY_LABEL = "company:";
-	
-	/**
-	 *address标签 
-	 */
-	public static final String ADDRESS_LABEL = "address:";
-	
-	/**
-	 *项目搜索框提示信息 
-	 */
-	public static final String PROJECT_SEARCH_TIP = "Enter project name";
-	
-	/**
-	 *用户搜索框提示信息 
-	 */
-	public static final String USER_SEARCH_TIP = "Enter user name";
-	
-	/**
-	 *主页按钮提示 
-	 */
-	public static final String HOME_BUTTON_TIP = "Home";
-	
-	/**
-	 *用户主页按钮提示 
-	 */
-	public static final String PROJECT_BUTTON_TIP = "Project Page";
-	
-	/**
-	 *用户主页按钮提示 
-	 */
-	public static final String USER_BUTTON_TIP = "User Page";
-	
-	/**
-	 *刷新按钮提示 
-	 */
-	public static final String REFRESH_BUTTON_TIP = "Refresh";
-	
-	/**
-	 *最小化按钮提示 
-	 */
-	public static final String MIN_BUTTON_TIP = "Minimum";
-	
-	/**
-	 *退出按钮提示 
-	 */
-	public static final String EXIT_BUTTON_TIP = "Exit";
+	public static class ButtonTip {
+		/**
+		 *主页按钮提示 
+		 */
+		public static final String HOME_BUTTON_TIP = "Home";
+		
+		/**
+		 *用户主页按钮提示 
+		 */
+		public static final String PROJECT_BUTTON_TIP = "Project Page";
+		
+		/**
+		 *用户主页按钮提示 
+		 */
+		public static final String USER_BUTTON_TIP = "User Page";
+		
+		/**
+		 *刷新按钮提示 
+		 */
+		public static final String REFRESH_BUTTON_TIP = "Refresh";
+		
+		/**
+		 *最小化按钮提示 
+		 */
+		public static final String MIN_BUTTON_TIP = "Minimum";
+		
+		/**
+		 *退出按钮提示 
+		 */
+		public static final String EXIT_BUTTON_TIP = "Exit";
+	}
 	
 	/**
 	 *发生错误时，提示框的标题字符串

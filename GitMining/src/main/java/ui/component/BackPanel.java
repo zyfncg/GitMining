@@ -48,6 +48,8 @@ public class BackPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		if(img == null) return;
+		
 		g.drawImage(img,
 				0, 0, width, height,
 				0, 0, img.getWidth(null), img.getHeight(null),

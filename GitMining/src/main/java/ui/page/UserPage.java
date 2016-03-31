@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Info.UserInfo;
+import businessLogic.businessLogicController.RepositoryController.RepositoryController;
+import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
 import res.Img;
 import res.Strings;
-import stub.RepositoryController_Stub;
-import stub.UserController_Stub;
 import ui.ClickHandler;
 import ui.InfoManager;
 import ui.PanelSwitcher;
@@ -34,13 +34,13 @@ import ui.statistics.UserStatPage;
 @SuppressWarnings("serial")
 public class UserPage extends JPanel implements Refreshable {
 	
-	private UserBLService user = new UserController_Stub();
-	
-	private RepositoryBLService repository = new RepositoryController_Stub();
-	
-//	private UserBLService user = new UserController();
+//	private UserBLService user = new UserController_Stub();
 //	
-//	private RepositoryBLService repository = new RepositoryController();
+//	private RepositoryBLService repository = new RepositoryController_Stub();
+	
+	private UserBLService user = new UserController();
+	
+	private RepositoryBLService repository = new RepositoryController();
 	
 	/**
 	 *所有的用户信息 
@@ -127,7 +127,7 @@ public class UserPage extends JPanel implements Refreshable {
 		center.setPreferredSize(new Dimension(centerW, centerH));
 		center.setOpaque(false);
 		//搜索框和搜索按钮
-		String tip = Strings.USER_SEARCH_TIP;
+		String tip = Strings.User.USER_SEARCH_TIP;
 		SearchPanel search = new SearchPanel(searchW, searchH, tip);
 		search.setClickHandler(this.getSearchHandler(search, tip));
 		//统计按钮
@@ -135,8 +135,8 @@ public class UserPage extends JPanel implements Refreshable {
 		int btnW = SwitchPanel.SWITCH_WIDTH << 1;
 		int btnH = searchH;
 		statistics.setPreferredSize(new Dimension(btnW, btnH));
-		statistics.addActionListener(e -> switcher.jump(
-				this, new UserStatPage(), PanelSwitcher.LEFT));
+		statistics.addActionListener(e -> switcher.backableJump(
+				this, new UserStatPage(switcher), PanelSwitcher.LEFT));
 		//将搜索框、搜索按钮和统计按钮添加到搜索面板
 		center.add(search);
 		center.add(statistics);

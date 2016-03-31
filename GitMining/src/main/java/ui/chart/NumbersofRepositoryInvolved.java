@@ -16,6 +16,7 @@ import twaver.chart.LineChart;
 import Info.UsrStatisticInfo.JoinRepositoryStatistics;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import UserStatistic.GetUserStatistic.DetailGet.GetJoinRepositoryStatistic;
+import res.Strings;
 
 public class NumbersofRepositoryInvolved extends JPanel{
 
@@ -33,7 +34,7 @@ public class NumbersofRepositoryInvolved extends JPanel{
 		lineChart.setInflexionVisible(true);
 		
 		Element A = new Node();
-		A.setName("Repository");
+		A.setName(Strings.Project.REPOSITORY_LABEL);
 		A.putChartColor(Color.GREEN);
 		//设置标记的显示样式
 		A.putChartInflexionStyle(TWaverConst.INFLEXION_STYLE_TRIANGLE);
