@@ -29,7 +29,14 @@ public class UserType extends JPanel{
 		List<CatalogStatistics> userTypeList = userType.getCatalogStatistic();
 		TDataBox box = new TDataBox();
 		PieChart pieChart = new PieChart(box);
+		pieChart.setTitle("User-Organization Counts");
 		pieChart.setLegendOrientation(TWaverConst.LABEL_ORIENTATION_RIGHT);
+		//设置不可拖动
+		pieChart.setEnableXTranslate(false);
+		pieChart.setEnableYTranslate(false);
+		//设置不可缩放
+		pieChart.setEnableXZoom(false);
+		pieChart.setEnableYZoom(false);
 		
 		Random random = new Random();
 		for (int i = 0; i < userTypeList.size(); i++) {

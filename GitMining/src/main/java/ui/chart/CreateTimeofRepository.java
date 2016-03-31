@@ -31,6 +31,8 @@ public class CreateTimeofRepository extends JPanel{
 		List<TimeStatistics> timeList = getTimeStatistic.getTimeStatistic();
 		TDataBox box = new TDataBox();
 		BarChart barChart = new BarChart(box);
+		
+		barChart.setTitle("Repository Create Time");
 		//设置Y的尺度值是否可见，默认是不可见的
 		barChart.setYScaleTextVisible(true);
 		//设置Y最小的尺度值是否可见，默认是不可见的
@@ -39,6 +41,12 @@ public class CreateTimeofRepository extends JPanel{
 		barChart.setUpperLimit(2000);
 		//设置Y坐标的间距
 		barChart.setYScaleValueGap(500);
+		//设置不可拖动
+		barChart.setEnableXTranslate(false);
+		barChart.setEnableYTranslate(false);
+		//设置不可缩放
+		barChart.setEnableXZoom(false);
+		barChart.setEnableYZoom(false);
 		//添加一个节点
 		Element A = new Node("A");
 		A.setName("Repository");
