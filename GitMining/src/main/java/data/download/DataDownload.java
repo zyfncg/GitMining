@@ -98,7 +98,7 @@ public class DataDownload {
 				e.printStackTrace();
 				return false;
 			}
-			if(i%100==0){
+			if(i%10==0){
 				System.out.println(i);
 			}
 			

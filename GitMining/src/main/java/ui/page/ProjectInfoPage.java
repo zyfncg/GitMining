@@ -182,9 +182,9 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		JButton statistics = new JButton();
 		statistics.setPreferredSize(new Dimension(
 				SwitchPanel.SWITCH_WIDTH << 1, copyH));
-		statistics.addActionListener(e -> switcher.jump(
-				this, new SingleProjectStatPage(detail.getStatisticDetail()),
-				PanelSwitcher.LEFT));
+		statistics.addActionListener(e -> switcher.backableJump(this,
+				new SingleProjectStatPage(switcher, detail.getStatisticDetail()),
+						PanelSwitcher.LEFT));
 		//将文本框、复制按钮和统计按钮加到面板
 		FlowLayout urlLayout = new FlowLayout();
 		urlLayout.setVgap(urlH / 6);
@@ -198,16 +198,16 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		int itemH = backH;
 		//各项信息面板
 		KVPanel language = new KVPanel(itemW, itemH,
-				Strings.LANGUAGE_LABEL, detail.getLanguage(), KVPanel.VERTICAL);
+				Strings.Project.LANGUAGE_LABEL, detail.getLanguage(), KVPanel.VERTICAL);
 		KVPanel star = new KVPanel(itemW, itemH,
-				Strings.STAR_LABEL, String.valueOf(detail.getStars()), KVPanel.VERTICAL);
+				Strings.Project.STAR_LABEL, String.valueOf(detail.getStars()), KVPanel.VERTICAL);
 		KVPanel fork = new KVPanel(itemW, itemH,
-				Strings.FORK_LABEL, String.valueOf(detail.getForks()), KVPanel.VERTICAL);
-		KVPanel contributor = new KVPanel(itemW, itemH,Strings.CONTRIBUTOR_LABEL,
+				Strings.Project.FORK_LABEL, String.valueOf(detail.getForks()), KVPanel.VERTICAL);
+		KVPanel contributor = new KVPanel(itemW, itemH,Strings.Project.CONTRIBUTOR_LABEL,
 				String.valueOf(detail.getContributors()), KVPanel.VERTICAL);
-		KVPanel collaborator = new KVPanel(itemW, itemH, Strings.COLLABORATOR_LABEL,
+		KVPanel collaborator = new KVPanel(itemW, itemH, Strings.Project.COLLABORATOR_LABEL,
 				String.valueOf(detail.getCollaborators()), KVPanel.VERTICAL);
-		KVPanel subscriber = new KVPanel(itemW, itemH, Strings.SUBSCRIBER_LABEL,
+		KVPanel subscriber = new KVPanel(itemW, itemH, Strings.Project.SUBSCRIBER_LABEL,
 				String.valueOf(detail.getSubscribers()), KVPanel.VERTICAL);
 		//将信息面板组合
 		FlowLayout layout = new FlowLayout();

@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class BoxStrut extends JPanel {
 
-	public BoxStrut() {
-		this.setPreferredSize(new Dimension(StatConst.STAT_WIDTH, StatConst.STAT_GAP));
+	BoxStrut() {
+		this.setPreferredSize(new Dimension(StatConst.CHART_WIDTH, StatConst.GAP));
 		this.setOpaque(false);
 	}
 }

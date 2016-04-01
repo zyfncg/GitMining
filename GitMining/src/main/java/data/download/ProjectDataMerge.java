@@ -141,6 +141,9 @@ public class ProjectDataMerge {
 		for(int i=0;i<projectList.size();i++){
 			projectDetail=projectList.get(i);
 			pn=projectDetail.getProjectName();
+			if(pn.toString().contains(".")){
+				System.out.println(pn.toString());
+			}
 			String pname=pn.toString().replace(".", "+");
 			projectURL=URLString.getRepositoryApiString()+pname;
 			try {
@@ -224,9 +227,7 @@ public class ProjectDataMerge {
 //				e.printStackTrace();
 				return num;
 			}
-	    	if(num<0){
-	    		System.out.println(i+":"+num);
-	    	}
+	    	
 	    	return num;
 	    }
 }

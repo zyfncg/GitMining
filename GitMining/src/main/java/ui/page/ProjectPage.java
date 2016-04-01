@@ -114,7 +114,7 @@ public class ProjectPage extends JPanel implements Refreshable {
 		center.setPreferredSize(new Dimension(centerW, centerH));
 		center.setOpaque(false);
 		//搜索框与搜索按钮
-		String tip = Strings.PROJECT_SEARCH_TIP;
+		String tip = Strings.Project.PROJECT_SEARCH_TIP;
 		SearchPanel search = new SearchPanel(searchW, searchH, tip);
 		search.setClickHandler(this.getSearchHandler(
 				search, tip));
@@ -122,8 +122,8 @@ public class ProjectPage extends JPanel implements Refreshable {
 		JButton statistics = new JButton();
 		statistics.setPreferredSize(new Dimension(
 				SwitchPanel.SWITCH_WIDTH << 1, searchH));
-		statistics.addActionListener(e -> switcher.jump(
-				this, new ProjectStatPage(), PanelSwitcher.LEFT));
+		statistics.addActionListener(e -> switcher.backableJump(this,
+				new ProjectStatPage(switcher), PanelSwitcher.LEFT));
 		//将搜索框、搜索按钮和统计按钮添加到搜索面板
 		center.add(search);
 		center.add(statistics);

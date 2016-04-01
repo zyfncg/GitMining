@@ -23,6 +23,7 @@ import Info.RepStatisticInfo.TimeStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
+import res.Strings;
 
 public class CreateTimeofRepository extends JPanel{
 
@@ -31,6 +32,8 @@ public class CreateTimeofRepository extends JPanel{
 		List<TimeStatistics> timeList = getTimeStatistic.getTimeStatistic();
 		TDataBox box = new TDataBox();
 		BarChart barChart = new BarChart(box);
+		
+		barChart.setTitle("Repository Create Time");
 		//设置Y的尺度值是否可见，默认是不可见的
 		barChart.setYScaleTextVisible(true);
 		//设置Y最小的尺度值是否可见，默认是不可见的
@@ -39,9 +42,15 @@ public class CreateTimeofRepository extends JPanel{
 		barChart.setUpperLimit(2000);
 		//设置Y坐标的间距
 		barChart.setYScaleValueGap(500);
+		//设置不可拖动
+		barChart.setEnableXTranslate(false);
+		barChart.setEnableYTranslate(false);
+		//设置不可缩放
+		barChart.setEnableXZoom(false);
+		barChart.setEnableYZoom(false);
 		//添加一个节点
 		Element A = new Node("A");
-		A.setName("Repository");
+		A.setName(Strings.Project.REPOSITORY_LABEL);
 		//设置chart的颜色
 		A.putChartColor(Color.RED);
 		//添加X轴上组的名称
@@ -59,14 +68,14 @@ public class CreateTimeofRepository extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(barChart, BorderLayout.CENTER);
 	}
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
-		CreateTimeofRepository company = new CreateTimeofRepository(repositoryStatisticFactory, 800, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(company);
-		frame.pack();
-		frame.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
+//		CreateTimeofRepository company = new CreateTimeofRepository(repositoryStatisticFactory, 800, 500);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.add(company);
+//		frame.pack();
+//		frame.setVisible(true);
+//	}
 	
 }
