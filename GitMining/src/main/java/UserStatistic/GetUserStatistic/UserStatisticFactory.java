@@ -5,6 +5,8 @@ import UserStatistic.GetUserStatistic.DetailGet.GetCompanyStatistic;
 import UserStatistic.GetUserStatistic.DetailGet.GetCreatRepositoryStatistic;
 import UserStatistic.GetUserStatistic.DetailGet.GetCreatTimeStatistic;
 import UserStatistic.GetUserStatistic.DetailGet.GetJoinRepositoryStatistic;
+import UserStatistic.GetUserStatistic.HistogramDetail.HistogramStatisticCreat;
+import UserStatistic.GetUserStatistic.HistogramDetail.HistogramStatisticJoin;
 
 public class UserStatisticFactory {
 
@@ -22,5 +24,11 @@ public class UserStatisticFactory {
 	}
 	public GetCreatTimeStatistic GetCreatTime(){
 		return new GetCreatTimeStatistic();
+	}
+	public HistogramStatisticCreat GetHistogramCreat(){
+		return new HistogramStatisticCreat();
+	}
+	public HistogramStatisticJoin GetHistogramJoin(){
+		return new HistogramStatisticJoin();
 	}
 }
