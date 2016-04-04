@@ -146,16 +146,28 @@ public class Strings {
 		public static final String USER_TYPE_TITLE = "User Type";
 		
 		/**
-		 *用户参与项目统计面板标题 
+		 *用户参与项目数目折线图面板标题 
 		 */
-		public static final String INVOLVE_TITLE =
-				"Total quantities of repositories involved by users in recent years";
+		public static final String INVOLVE_LINE_TITLE =
+				"Total quantity of repositories involved by users in recent years";
 		
 		/**
-		 *用户创建项目统计面板 标题
+		 *用户参与项目数目直方图面板标题 
 		 */
-		public static final String CREATE_TITLE =
-				"Total quantities of repositories created by users in recent years";
+		public static final String INVOLVE_HISTOGRAM_TITLE =
+				"Distribution of the quantity of repositories involved by users";
+		
+		/**
+		 *用户创建项目数目折线图面板标题
+		 */
+		public static final String CREATE_LINE_TITLE =
+				"Total quantity of repositories created by users in recent years";
+		
+		/**
+		 *用户创建项目数目直方图面板标题 
+		 */
+		public static final String CREATE_HISTOGRAM_TITLE =
+				"Distribution of the quantity of repositories created by users";
 		
 		/**
 		 *参与公司统计面板标题 
