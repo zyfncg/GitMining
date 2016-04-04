@@ -5,27 +5,25 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Info.UsrStatisticInfo.JoinRepositoryStatistics;
+import res.Strings;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.LineChart;
-import Info.UsrStatisticInfo.JoinRepositoryStatistics;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
-import UserStatistic.GetUserStatistic.DetailGet.GetJoinRepositoryStatistic;
-import res.Strings;
 
+/**
+ *用户参与项目数量统计面板 
+ */
+@SuppressWarnings("serial")
 public class NumbersofRepositoryInvolved extends JPanel{
 
-	public NumbersofRepositoryInvolved (UserStatisticFactory userStatisticFactory, int width, int height) {
-		GetJoinRepositoryStatistic joinRepositoryStatistic = userStatisticFactory.GetJoinRepository();
-		List<JoinRepositoryStatistics> joinRepositoryList = joinRepositoryStatistic.getJoinRepositoryStatistic();
+	public NumbersofRepositoryInvolved (List<JoinRepositoryStatistics> joinRepositoryList, int width, int height) {
 		TDataBox box = new TDataBox();		
 		LineChart lineChart = new LineChart(box);
-		lineChart.setTitle("Numbers of Repository Involved By Users in each Year");
 		
 		lineChart.setYAxisVisible(true);
 		lineChart.setYScaleTextVisible(true);
@@ -57,13 +55,13 @@ public class NumbersofRepositoryInvolved extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(lineChart, BorderLayout.CENTER);
 	}
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		UserStatisticFactory userStatisticFactory = new UserStatisticFactory();
-		NumbersofRepositoryInvolved userChart = new NumbersofRepositoryInvolved(userStatisticFactory, 800, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.add(userChart);
-		frame.pack();
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		UserStatisticFactory userStatisticFactory = new UserStatisticFactory();
+//		NumbersofRepositoryInvolved userChart = new NumbersofRepositoryInvolved(userStatisticFactory, 800, 500);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setVisible(true);
+//		frame.add(userChart);
+//		frame.pack();
+//	}
 }

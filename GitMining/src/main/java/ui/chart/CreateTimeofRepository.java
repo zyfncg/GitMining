@@ -3,37 +3,28 @@ package ui.chart;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 
+import Info.RepStatisticInfo.TimeStatistics;
+import res.Strings;
 import twaver.Element;
 import twaver.Node;
-import twaver.PopupMenuGenerator;
 import twaver.TDataBox;
-import twaver.TView;
 import twaver.TWaverConst;
 import twaver.chart.BarChart;
-import Info.RepStatisticInfo.TimeStatistics;
-import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
-import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
-import res.Strings;
 
+/**
+ *项目创建时间统计面板 
+ */
+@SuppressWarnings("serial")
 public class CreateTimeofRepository extends JPanel{
 
-	public CreateTimeofRepository(RepositoryStatisticFactory repositoryFactory, int width,int height) {
-		GetTimeStatistic getTimeStatistic = repositoryFactory.GetTime();
-		List<TimeStatistics> timeList = getTimeStatistic.getTimeStatistic();
+	public CreateTimeofRepository(List<TimeStatistics> timeList, int width,int height) {
 		TDataBox box = new TDataBox();
 		BarChart barChart = new BarChart(box);
 		
-		barChart.setTitle("Repository Create Time");
 		//设置Y的尺度值是否可见，默认是不可见的
 		barChart.setYScaleTextVisible(true);
 		//设置Y最小的尺度值是否可见，默认是不可见的

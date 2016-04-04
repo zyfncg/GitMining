@@ -3,33 +3,28 @@ package ui.chart;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.text.Utilities;
 
+import Info.UsrStatisticInfo.CompanyStatistics;
+import res.Strings;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.BarChart;
-import Info.UsrStatisticInfo.CompanyStatistics;
-import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
-import UserStatistic.GetUserStatistic.DetailGet.GetCompanyStatistic;
-import res.Strings;
 
+/**
+ *用户所属公司统计面板 
+ */
+@SuppressWarnings("serial")
 public class Company extends JPanel{
 
-	public Company(UserStatisticFactory userStatisticFactory, int width, int height) {
-		GetCompanyStatistic getCompanyStatistic = userStatisticFactory.GetCompany();
-		List<CompanyStatistics> companyList = getCompanyStatistic.getCompanyStatistic();
+	public Company(List<CompanyStatistics> companyList, int width, int height) {
 		TDataBox box = new TDataBox();
 		BarChart barChart = new BarChart(box);
 		
-		barChart.setTitle("Numbers of Users in each Company");
 		//设置Y的尺度值是否可见，默认是不可见的
 		barChart.setYScaleTextVisible(true);
 		//设置Y最小的尺度值是否可见，默认是不可见的
@@ -39,8 +34,10 @@ public class Company extends JPanel{
 		//设置Y坐标的间距
 		barChart.setYScaleValueGap(2);
 		barChart.setFocusable(false);
+		
+		barChart.setXScaleTextOrientation(TWaverConst.ORIENTATION_SOUTH_EAST);
 		//添加一个节点
-		Element A = new Node("A");
+		Element A = new Node();
 		A.setName(Strings.User.COMPANY_LABEL);
 		//设置chart的颜色
 		A.putChartColor(Color.RED);

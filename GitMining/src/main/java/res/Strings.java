@@ -62,7 +62,8 @@ public class Strings {
 		/**
 		 *start分布折线图的标题 
 		 */
-		public static final String STAR_LINE_TILE = "Tendency of star";
+		public static final String STAR_LINE_TILE =
+				"Tendency of total star quantities in recent years";
 		
 		/**
 		 *fork分布直方图的标题 
@@ -72,13 +73,14 @@ public class Strings {
 		/**
 		 *fork分布折线图的标题 
 		 */
-		public static final String FORK_LINE_TILE = "Tendency of fork";
+		public static final String FORK_LINE_TILE =
+				"Tendency of total fork quantities in recent years";
 
 		/**
 		 *项目创建时间柱状图的标题 
 		 */
 		public static final String PROJECT_TIME_BAR_TITLE =
-				"Quantities of repository in years";
+				"Quantities of created repository in recent years";
 		
 		/**
 		 *项目语言pareto图的标题 
@@ -135,7 +137,8 @@ public class Strings {
 		/**
 		 *用户注册统计面板标题
 		 */
-		public static final String REGISTRY_TITLE = "Enrollment in years";
+		public static final String REGISTRY_TITLE =
+				"Total Enrollment of users in recent years";
 		
 		/**
 		 *用户类型统计面板标题
@@ -145,17 +148,19 @@ public class Strings {
 		/**
 		 *用户参与项目统计面板标题 
 		 */
-		public static final String INVOLVE_TITLE = "Quantities of involving repositories";
+		public static final String INVOLVE_TITLE =
+				"Total quantities of repositories involved by users in recent years";
 		
 		/**
 		 *用户创建项目统计面板 标题
 		 */
-		public static final String CREATE_TITLE = "Quantities of creating repositories";
+		public static final String CREATE_TITLE =
+				"Total quantities of repositories created by users in recent years";
 		
 		/**
 		 *参与公司统计面板标题 
 		 */
-		public static final String COMPANY_TITLE = "Quantities of companies";
+		public static final String COMPANY_TITLE = "Contribution of companies";
 		
 	}
 	

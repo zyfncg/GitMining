@@ -28,8 +28,6 @@ import org.jfree.data.general.DatasetUtilities;
 import org.jfree.util.SortOrder;
 
 import Info.RepStatisticInfo.LanguageStatistics;
-import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
-import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetLanguageStatistic;
 import res.Colors;
 import res.Strings;
 
@@ -39,11 +37,9 @@ import res.Strings;
 @SuppressWarnings("serial")
 public class LanguageChart extends JPanel{
 	
-	private Font font = new Font("斜体", Font.ITALIC, 12);
+	private Font font = ChartConst.LABEL_FONT;
 
-	public LanguageChart(RepositoryStatisticFactory repositoryFactory, int width, int height) {
-		GetLanguageStatistic getLanguage = repositoryFactory.GetLanguage();
-		List<LanguageStatistics> languageList = getLanguage.getLanguageStatistic();
+	public LanguageChart(List<LanguageStatistics> languageList, int width, int height) {
 		// 构造数据
 		DefaultKeyedValues defaultkeydvalues = new DefaultKeyedValues();//柱状图数据
 		// 使用语言数量
@@ -65,7 +61,7 @@ public class LanguageChart extends JPanel{
 				true,// 是否显示图例(对于简单的柱状图必须是false)
 				true,//是否生成工具
 				false);// 是否生成URL链接
-		chart.getTitle().setFont(new Font("黑体", Font.BOLD, 20));
+		chart.getTitle().setFont(ChartConst.TITLE_FONT);
 		chart.setBackgroundPaint(Colors.STAT_BG);
 		chart.getLegend().setItemFont(font);
 

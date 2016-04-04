@@ -5,27 +5,25 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Info.UsrStatisticInfo.CreatTimeStatistics;
+import res.Strings;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.BarChart;
-import Info.UsrStatisticInfo.CreatTimeStatistics;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
-import UserStatistic.GetUserStatistic.DetailGet.GetCreatTimeStatistic;
-import res.Strings;
 
+/**
+ *用户注册时间统计面板 
+ */
+@SuppressWarnings("serial")
 public class UserCreateTime extends JPanel{
 
-	public UserCreateTime(UserStatisticFactory userStatisticFactory, int width, int height) {
-		GetCreatTimeStatistic userCreateTime = userStatisticFactory.GetCreatTime();
-		List<CreatTimeStatistics> userCreateList = userCreateTime.getCreatTimeStatistic();
+	public UserCreateTime(List<CreatTimeStatistics> userCreateList, int width, int height) {
 		TDataBox box = new TDataBox();
 		BarChart barChart = new BarChart(box);
-		barChart.setTitle("User Create Time");
 		
 		//设置Y的尺度值是否可见，默认是不可见的
 		barChart.setYScaleTextVisible(true);

@@ -1,10 +1,15 @@
 package ui.statistics;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
 
+import Info.RepStatisticInfo.ForkStatistics;
+import Info.RepStatisticInfo.LanguageStatistics;
+import Info.RepStatisticInfo.StarStatistics;
+import Info.RepStatisticInfo.TimeStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import res.Colors;
 import res.Strings;
@@ -29,32 +34,59 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 	 */
 	private ChartScrollPane scrollPane;
 	
+	/**
+	 *统计数据 
+	 */
+	private static final RepositoryStatisticFactory DATA_FACTORY = new RepositoryStatisticFactory();
+	
+	/**
+	 *项目创建时间统计数据 
+	 */
+	private static final List<TimeStatistics> TIME_STAT =
+			DATA_FACTORY.GetTime().getTimeStatistic();
+	
+	/**
+	 *项目使用语言统计数据 
+	 */
+	private static final List<LanguageStatistics> LANG_STAT =
+			DATA_FACTORY.GetLanguage().getLanguageStatistic();
+	
+	/**
+	 *项目star统计数据 
+	 */
+	private static final List<StarStatistics> STAR_STAT =
+			DATA_FACTORY.GetStar().getStarStatistic();
+	
+	/**
+	 *项目fork统计数据 
+	 */
+	private static final List<ForkStatistics> FORK_STAT =
+			DATA_FACTORY.GetFork().getForkStatistic();
+	
 	public ProjectStatPage(PanelSwitcher switcher) {
-		//获取统计数据
-		RepositoryStatisticFactory factory = new RepositoryStatisticFactory();
 		//项目创建时间统计标题
 		TitlePanel timeTitle = new TitlePanel(
 				Strings.Project.PROJECT_TIME_BAR_TITLE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//项目创建时间统计
 		CreateTimeofRepository time = new CreateTimeofRepository(
-				factory, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+				TIME_STAT, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//使用语言统计
 		LanguageChart language = new LanguageChart(
-				factory, StatConst.CHART_WIDTH, (int)(StatConst.CHART_HEIGHT * 1.5));
+				LANG_STAT, StatConst.CHART_WIDTH, (int)(StatConst.CHART_HEIGHT * 1.5));
 		//star折线图标题
 		TitlePanel starLine = new TitlePanel(
 				Strings.Project.STAR_LINE_TILE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//star折线图统计
-		StarLine star = new StarLine(factory,
+		StarLine star = new StarLine(STAR_STAT,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//fork折线图标题
 		TitlePanel forkLine = new TitlePanel(
 				Strings.Project.FORK_LINE_TILE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//fork折线图统计
-		ForkLine fork = new ForkLine(factory,
+		ForkLine fork = new ForkLine(FORK_STAT,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//组装统计面板
 		Box box = Box.createVerticalBox();

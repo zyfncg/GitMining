@@ -1,6 +1,14 @@
-/META-INF/
-/data/
 /Info/
+/LifeIS/
 /RepositoryStatistic/
 /UserStatistic/
+/businessLogic/
+/businessLogicService/
+/businessLogicStub/
+/constant/
+/data/
+/res/
+/start/
+/stub/
 /ui/
+/META-INF/

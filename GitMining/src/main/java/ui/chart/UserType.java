@@ -10,8 +10,6 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 import Info.UsrStatisticInfo.CatalogStatistics;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
-import UserStatistic.GetUserStatistic.DetailGet.GetCatalogStatistic;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
@@ -25,12 +23,9 @@ import ui.component.EmptyPanel;
 @SuppressWarnings("serial")
 public class UserType extends JPanel{
 
-	public UserType(UserStatisticFactory userStatisticFactory, int width, int height) {
-		GetCatalogStatistic userType = userStatisticFactory.GetCatalog();
-		List<CatalogStatistics> userTypeList = userType.getCatalogStatistic();
+	public UserType(List<CatalogStatistics> userTypeList, int width, int height) {
 		TDataBox box = new TDataBox();
 		PieChart pieChart = new PieChart(box);
-		pieChart.setTitle("User-Organization Counts");
 		pieChart.setLegendOrientation(TWaverConst.LABEL_ORIENTATION_RIGHT);
 		//设置不可拖动
 		pieChart.setEnableXTranslate(false);

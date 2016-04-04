@@ -1,10 +1,16 @@
 package ui.statistics;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
 
+import Info.UsrStatisticInfo.CatalogStatistics;
+import Info.UsrStatisticInfo.CompanyStatistics;
+import Info.UsrStatisticInfo.CreatRepositoryStatistics;
+import Info.UsrStatisticInfo.CreatTimeStatistics;
+import Info.UsrStatisticInfo.JoinRepositoryStatistics;
 import UserStatistic.GetUserStatistic.UserStatisticFactory;
 import res.Colors;
 import res.Strings;
@@ -27,15 +33,48 @@ public class UserStatPage extends JPanel implements Refreshable {
 	
 	private ChartScrollPane scrollPane;
 	
+	/**
+	 *统计数据 
+	 */
+	private static final UserStatisticFactory DATA_FACTORY = new UserStatisticFactory();
+	
+	/**
+	 *用户类型统计数据 
+	 */
+	private static final List<CatalogStatistics> TYPE_STAT =
+			DATA_FACTORY.GetCatalog().getCatalogStatistic();
+	
+	/**
+	 *用户注册时间统计数据 
+	 */
+	private static final List<CreatTimeStatistics> TIME_STAT =
+			DATA_FACTORY.GetCreatTime().getCreatTimeStatistic();
+	
+	/**
+	 *用户参与项目数目统计数据 
+	 */
+	private static final List<JoinRepositoryStatistics> INVOLVE_STAT =
+			DATA_FACTORY.GetJoinRepository().getJoinRepositoryStatistic();
+	
+	/**
+	 *用户创建项目数目统计数据 
+	 */
+	private static final List<CreatRepositoryStatistics> CREATE_STAT =
+			DATA_FACTORY.GetCreatRepository().getCreatRepositoryStatistic();
+	
+	/**
+	 *用户所属公司统计数据 
+	 */
+	private static final List<CompanyStatistics> COM_STAT =
+			DATA_FACTORY.GetCompany().getCompanyStatistic();
+	
 	public UserStatPage(PanelSwitcher switcher) {
-		//获取统计数据
-		UserStatisticFactory factory = new UserStatisticFactory();
 		//用户类型统计面板标题
 		TitlePanel typeTitle = new TitlePanel(
 				Strings.User.USER_TYPE_TITLE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//用户类型统计面板
-		UserType type = new UserType(factory,
+		UserType type = new UserType(TYPE_STAT,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户注册时间统计面板标题
 		TitlePanel regTitle = new TitlePanel(
@@ -43,28 +82,28 @@ public class UserStatPage extends JPanel implements Refreshable {
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//用户注册时间统计面板
 		UserCreateTime registry = new UserCreateTime(
-				factory, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+				TIME_STAT, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户参加项目数目统计面板标题
 		TitlePanel involveTitle = new TitlePanel(
 				Strings.User.INVOLVE_TITLE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//用户参加项目数目统计面板
 		NumbersofRepositoryInvolved involve = new NumbersofRepositoryInvolved(
-				factory, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+				INVOLVE_STAT, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户创建项目数目统计面板标题
 		TitlePanel createTitle = new TitlePanel(
 				Strings.User.CREATE_TITLE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//用户创建项目数目统计面板
 		NumbersofRepositoryCreated create = new NumbersofRepositoryCreated(
-				factory, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+				CREATE_STAT, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户所属公司统计面板标题
 		TitlePanel comTitle = new TitlePanel(
 				Strings.User.COMPANY_TITLE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//用户所属公司统计面板
 		Company company = new Company(
-				factory, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+				COM_STAT, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//组装统计面板
 		Box box = Box.createVerticalBox();
 		box.add(new BackPanel(() -> switcher.back(this, PanelSwitcher.RIGHT),
