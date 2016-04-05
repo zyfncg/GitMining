@@ -79,6 +79,12 @@ public class SetRaderStatistic {
 			StatisticDetail detail = new StatisticDetail(0, 0.1, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
+	//计算平均值
+		double ContributorAll=0;
+		for(int i=0;i<allProjectsDetailInfo.size();i++){
+			ContributorAll+=allProjectsDetailInfo.get(i).getContributors();
+		}
+		double ContributoraAve = Double.parseDouble(df.format(ContributorAll / (double)SizeNum));
 		// 2.
 		// Star统计
 		Collections.sort(allProjectsDetailInfo, new Comparator<ProjectDetail>() {
@@ -127,6 +133,12 @@ public class SetRaderStatistic {
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
 			detail.setStarStatistic(0.1);
 		}
+	//计算平均值
+		double StarAll=0.0;
+			for(int i=0;i<allProjectsDetailInfo.size();i++){
+				StarAll+=allProjectsDetailInfo.get(i).getStars();
+			}
+		double StarAve = Double.parseDouble(df.format(StarAll / (double)SizeNum));
 		// 3.
 		// Commit统计
 		Collections.sort(allProjectsDetailInfo, new Comparator<ProjectDetail>() {
@@ -175,6 +187,13 @@ public class SetRaderStatistic {
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
 			detail.setCommitStatistic(0.1);
 		}
+	//计算平均值
+		double CommitAll=0.0;
+			for(int i=0;i<allProjectsDetailInfo.size();i++){
+				CommitAll+=allProjectsDetailInfo.get(i).getCommit();
+			}
+		double CommitAve = Double.parseDouble(df.format(CommitAll / (double)SizeNum));
+
 		// 4.
 		// Issue统计
 		Collections.sort(allProjectsDetailInfo, new Comparator<ProjectDetail>() {
@@ -223,6 +242,13 @@ public class SetRaderStatistic {
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
 			detail.setIssueStatistic(0.1);
 		}
+	//计算平均值
+		double IssueAll=0.0;
+			for(int i=0;i<allProjectsDetailInfo.size();i++){
+				IssueAll+=allProjectsDetailInfo.get(i).getIssue();
+			}
+		double IssueAve = Double.parseDouble(df.format(IssueAll / (double)SizeNum));
+
 		// 5.
 		// PullRequest的统计
 		Collections.sort(allProjectsDetailInfo, new Comparator<ProjectDetail>() {
@@ -271,6 +297,13 @@ public class SetRaderStatistic {
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
 			detail.setPullRequestStatistic(0.1);
 		}
+	//计算平均值
+		double PullRequestAll=0.0;
+			for(int i=0;i<allProjectsDetailInfo.size();i++){
+				PullRequestAll+=allProjectsDetailInfo.get(i).getPullRequest();
+			}
+		double PullRequestAve = Double.parseDouble(df.format(PullRequestAll / (double)SizeNum));
+
 		// 6.
 		// Size的统计
 		Collections.sort(allProjectsDetailInfo, new Comparator<ProjectDetail>() {
@@ -319,6 +352,13 @@ public class SetRaderStatistic {
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
 			detail.setSizeStatistic(0.1);
 		}
+	//计算平均值
+		double SizeAll=0.0;
+			for(int i=0;i<allProjectsDetailInfo.size();i++){
+				StarAll+=allProjectsDetailInfo.get(i).getSize();
+			}
+		double SizeAve = Double.parseDouble(df.format(SizeAll / (double)SizeNum));
+
 
 		// 设置total
 		for (int i = 0; i < allProjectsDetailInfo.size(); i++) {
@@ -326,6 +366,12 @@ public class SetRaderStatistic {
 			detail.setTotalStatistic(
 					detail.getCommitStatistic() + detail.getContributorStatistic() + detail.getIssueStatistic()
 							+ detail.getPullRequestStatistic() + detail.getSizeStatistic() + detail.getStarStatistic());
+			detail.setCommitAverage(CommitAve);
+			detail.setStarAverage(StarAve);
+			detail.setPullRequestAverage(PullRequestAve);
+			detail.setContibutorAverage(ContributoraAve);
+			detail.setSizeAverage(SizeAve);
+			detail.setIssueAverage(IssueAve);
 		}
 
 		// 保存
