@@ -70,10 +70,14 @@ public class Radar_chart extends JPanel{
 		element.putChartStroke(stroke);
 		element.getChartValue();
 		//给网元设置数值
-		if(IsAve)
+		if(IsAve) {
 			setElementAveValue(element, statisticDetail);
-		else
+			element.setName("Average");
+		}
+		else {
 			setElementValue(element, statisticDetail);
+			element.setName("This");
+		}
 		
 		box.addElement(element);
 	}

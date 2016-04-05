@@ -36,11 +36,11 @@ public class Company extends JPanel{
 	                       "", // 图表标题
                            "", // 目录轴的显示标签
                            "", // 数值轴的显示标签
-                            dataset, // 数据集
-                            PlotOrientation.VERTICAL, // 图表方向：水平、垂直
-                            true,  // 是否显示图例(对于简单的柱状图必须是 false)
-                            false, // 是否生成工具
-                            false  // 是否生成 URL 链接
+	                        dataset, // 数据集
+	                        PlotOrientation.VERTICAL, // 图表方向：水平、垂直
+	                        true,  // 是否显示图例(对于简单的柱状图必须是 false)
+	                        false, // 是否生成工具
+	                        false  // 是否生成 URL 链接
                             ); 
 	        //中文乱码
 	        CategoryPlot categoryplot = (CategoryPlot) chart.getPlot();
