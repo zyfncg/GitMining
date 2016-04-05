@@ -79,6 +79,9 @@ public class DataDownload {
 		String reponameList;
 		try {
 			reponameList = HttpRequestUtil.httpRequest(projectListUrl);
+			if(reponameList==null){
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
