@@ -27,7 +27,8 @@ public class Radar_chart extends JPanel{
 		chart.setTitle("Score of Repository(total:" + (statisticDetail.getTotalStatistic() * 10 )+ ")");
 		
 		//添加数据
-		addElement(box,statisticDetail,new Color(0, 100, 255, 100),TWaverConst.STROKE_SOLID_1);
+		addElement(box,statisticDetail,false,new Color(0, 100, 255, 100),TWaverConst.STROKE_SOLID_1);
+		addElement(box,statisticDetail,true,new Color(255, 0, 0, 200),TWaverConst.STROKE_SOLID_1);
 		
 		//设置主要刻度的数量
 		chart.setScaleMajorCount(5);
@@ -59,7 +60,7 @@ public class Radar_chart extends JPanel{
 		this.add(chart, BorderLayout.CENTER);
 	}
 
-	private void addElement(TDataBox box, StatisticDetail statisticDetail, Color color, String stroke) {
+	private void addElement(TDataBox box, StatisticDetail statisticDetail, boolean IsAve, Color color, String stroke) {
 		Element element = new Node();
 		//设置网元的显示颜色
 		element.putChartColor(color);
@@ -69,14 +70,37 @@ public class Radar_chart extends JPanel{
 		element.putChartStroke(stroke);
 		element.getChartValue();
 		//给网元设置数值
+		if(IsAve)
+			setElementAveValue(element, statisticDetail);
+		else
+			setElementValue(element, statisticDetail);
+		
+		box.addElement(element);
+	}
+	
+	private Element setElementValue(Element element, StatisticDetail statisticDetail) {
+		//给网元设置数值
 		element.addChartValue(statisticDetail.getContributorStatistic() * 10);
 		element.addChartValue(statisticDetail.getCommitStatistic() * 10);
 		element.addChartValue(statisticDetail.getStarStatistic() * 10);
 		element.addChartValue(statisticDetail.getPullRequestStatistic() * 10);
 		element.addChartValue(statisticDetail.getSizeStatistic() * 10);
 		element.addChartValue(statisticDetail.getIssueStatistic() * 10);
-		box.addElement(element);
+		return element;
 	}
+	
+	private Element setElementAveValue(Element element, StatisticDetail statisticDetail) {
+		//给网元设置数值
+		element.addChartValue(statisticDetail.getAveContributorStatistic() * 10);
+		element.addChartValue(statisticDetail.getAveCommitStatistic() * 10);
+		element.addChartValue(statisticDetail.getAveStarStatistic() * 10);
+		element.addChartValue(statisticDetail.getAvePullRequestStatistic() * 10);
+		element.addChartValue(statisticDetail.getAveSizeStatistic() * 10);
+		element.addChartValue(statisticDetail.getAveIssueStatistic() * 10);
+		return element;
+	}
+	
+	
 	
 //	public static void main(String[] args) {
 //		JFrame f = new JFrame();

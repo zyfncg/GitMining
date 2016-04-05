@@ -1,0 +1,11 @@
+who：张云飞
+when：第六周
+what：迭代二数据层数据完成获取
+problem：无
+todo：对数据层进行测试
+
+who：张仁知
+when：第六周
+what：迭代二图表绘制完善
+problem：数据过多，无法全部清晰显示
+todo：解决x轴文字显示问题

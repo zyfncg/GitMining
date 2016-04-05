@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 who£ºÕÅÔÆ·É
 when£ºµÚÎåÖÜ
 what£ºµü´ú¶þÊý¾Ý²ãÊý¾ÝÍê³É³õ²½»ñÈ¡
@@ -14,6 +13,7 @@ when: µÚÎåÖÜ
 what: ÎÞ
 problem: ÎÞ
 todo: ÃÀ»¯½çÃæ
+<<<<<<< HEAD
 =======
 whoï¼šå¼ äº‘é
 whenï¼šç¬¬äº”å‘¨
@@ -33,3 +33,5 @@ what: è¿­ä»£äºŒå®Œæˆé€»è¾‘å±‚æ•°æ®å¤„ç†ã€ç»Ÿè®¡ï¼Œæ•°æ®ä¼ é€?
 problem: æ•°æ®é‡å¤§ï¼Œæœ‰è¾ƒå¤šé—®é¢˜
 todo: å®Œå–„ç»Ÿè®¡æ–¹æ³•ï¼Œä¿è¯ç•Œé¢å±‚å›¾åƒæ˜¾ç¤ºçš„ç¾Žè§?
 >>>>>>> e15fd0da04ec3e9b469893ce32bc5719e4b61d9e
+=======
+>>>>>>> refs/remotes/origin/master
