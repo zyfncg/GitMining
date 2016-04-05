@@ -320,6 +320,14 @@ public class SetRaderStatistic {
 			detail.setSizeStatistic(0.1);
 		}
 
+		// 设置total
+		for (int i = 0; i < allProjectsDetailInfo.size(); i++) {
+			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
+			detail.setTotalStatistic(
+					detail.getCommitStatistic() + detail.getContributorStatistic() + detail.getIssueStatistic()
+							+ detail.getPullRequestStatistic() + detail.getSizeStatistic() + detail.getStarStatistic());
+		}
+
 		// 保存
 		boolean result = RepStatisticsDataServer.setDetailStatisticInfo(allProjectsDetailInfo);
 		if (!result) {
