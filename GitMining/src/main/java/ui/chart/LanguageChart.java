@@ -2,6 +2,7 @@ package ui.chart;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.text.NumberFormat;
 import java.util.List;
@@ -27,9 +28,8 @@ import org.jfree.data.general.DatasetUtilities;
 import org.jfree.util.SortOrder;
 
 import Info.RepStatisticInfo.LanguageStatistics;
-import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
-import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetLanguageStatistic;
 import res.Colors;
+import res.Strings;
 
 /**
  *项目使用语言统计面板 
@@ -37,11 +37,9 @@ import res.Colors;
 @SuppressWarnings("serial")
 public class LanguageChart extends JPanel{
 	
-	private Font font = new Font("斜体", Font.ITALIC, 12);
+	private Font font = ChartConst.LABEL_FONT;
 
-	public LanguageChart(RepositoryStatisticFactory repositoryFactory, int width, int height) {
-		GetLanguageStatistic getLanguage = repositoryFactory.GetLanguage();
-		List<LanguageStatistics> languageList = getLanguage.getLanguageStatistic();
+	public LanguageChart(List<LanguageStatistics> languageList, int width, int height) {
 		// 构造数据
 		DefaultKeyedValues defaultkeydvalues = new DefaultKeyedValues();//柱状图数据
 		// 使用语言数量
@@ -50,10 +48,12 @@ public class LanguageChart extends JPanel{
 		}
 		defaultkeydvalues.sortByValues(SortOrder.DESCENDING);
 		KeyedValues keydvalues = DataUtilities.getCumulativePercentages(defaultkeydvalues);
-		CategoryDataset dataset = DatasetUtilities.createCategoryDataset("Language", defaultkeydvalues);
-		CategoryDataset lineDataset = DatasetUtilities.createCategoryDataset("Cumulative", keydvalues);
+		CategoryDataset dataset = DatasetUtilities.createCategoryDataset(
+				Strings.Project.LANGUAGE_LABEL, defaultkeydvalues);
+		CategoryDataset lineDataset = DatasetUtilities.createCategoryDataset(
+				Strings.Project.CUMULATIVE_LABEL, keydvalues);
 		
-		JFreeChart chart = ChartFactory.createBarChart("Numbers of Repository in Different Languages",
+		JFreeChart chart = ChartFactory.createBarChart3D(Strings.Project.LANGUAGE_PARETO_TITLE,
 				"",// 目录轴的显示标签
 				"", // 数值轴的显示标签
 				dataset,// 数据集
@@ -61,13 +61,13 @@ public class LanguageChart extends JPanel{
 				true,// 是否显示图例(对于简单的柱状图必须是false)
 				true,//是否生成工具
 				false);// 是否生成URL链接
-		chart.getTitle().setFont(new Font("黑体", Font.BOLD, 20));
+		chart.getTitle().setFont(ChartConst.TITLE_FONT);
 		chart.setBackgroundPaint(Colors.STAT_BG);
 		chart.getLegend().setItemFont(font);
 
 		//设置图的样式
 		CategoryPlot categoryplot = (CategoryPlot) chart.getPlot();//图本身
-		categoryplot.getRenderer().setSeriesPaint(0, Color.BLACK);
+		categoryplot.getRenderer().setSeriesPaint(0, Color.GREEN);
 		categoryplot.setBackgroundPaint(null);
 		categoryplot.setRangeGridlinePaint(Color.ORANGE);
 		CategoryAxis categoryaxis = categoryplot.getDomainAxis();
@@ -96,7 +96,7 @@ public class LanguageChart extends JPanel{
 		categoryplot.setDatasetRenderingOrder(DatasetRenderingOrder.FORWARD);//折线在柱面前面显示
 
 		ChartPanel panel = new ChartPanel(chart);
-		panel.setSize(width, height);
+		panel.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(panel,BorderLayout.CENTER);

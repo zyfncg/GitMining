@@ -15,6 +15,10 @@ import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.RadarChart;
 
+/**
+ *单个项目特征描述面板 
+ */
+@SuppressWarnings("serial")
 public class Radar_chart extends JPanel{
 
 	public Radar_chart(StatisticDetail statisticDetail, int width, int height) {
@@ -42,6 +46,12 @@ public class Radar_chart extends JPanel{
 		chart.addAxisText("hot");
 		chart.addAxisText("size");
 		chart.addAxisText("famous");
+		//设置不可拖动
+		chart.setEnableXTranslate(false);
+		chart.setEnableYTranslate(false);
+		//设置不可缩放
+		chart.setEnableXZoom(false);
+		chart.setEnableYZoom(false);
 		
 		chart.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
@@ -68,12 +78,12 @@ public class Radar_chart extends JPanel{
 		box.addElement(element);
 	}
 	
-	public static void main(String[] args) {
-		JFrame f = new JFrame();
-		StatisticDetail d = new StatisticDetail(0.01, 0.02, 0.02, 0.03, 0.04, 0.05, 0.06);
-		f.add(new Radar_chart(d, 600, 600));
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.pack();
-		f.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame f = new JFrame();
+//		StatisticDetail d = new StatisticDetail(0.01, 0.02, 0.02, 0.03, 0.04, 0.05, 0.06);
+//		f.add(new Radar_chart(d, 600, 600));
+//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		f.pack();
+//		f.setVisible(true);
+//	}
 }
