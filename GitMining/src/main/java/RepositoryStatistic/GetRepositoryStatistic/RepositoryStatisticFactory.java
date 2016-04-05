@@ -5,6 +5,8 @@ import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetForkStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetLanguageStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetStarStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
+import RepositoryStatistic.GetRepositoryStatistic.HistogramDetail.HistogramStatisticFork;
+import RepositoryStatistic.GetRepositoryStatistic.HistogramDetail.HistogramStatisticStar;
 
 public class RepositoryStatisticFactory {
 	
@@ -26,5 +28,13 @@ public class RepositoryStatisticFactory {
 	
 	public GetTimeStatistic GetTime() {
 		return new GetTimeStatistic();
+	}
+	
+	public HistogramStatisticStar GetHistogramStar() {
+		return new HistogramStatisticStar();
+	}
+	
+	public HistogramStatisticFork GetHistogramFork() {
+		return new HistogramStatisticFork();
 	}
 }

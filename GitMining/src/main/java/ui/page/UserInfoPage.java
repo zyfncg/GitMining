@@ -77,13 +77,13 @@ public class UserInfoPage extends JPanel implements Refreshable {
 		info.setOpaque(false);
 		int itemH = iconH >> 2;
 		KVPanel description = new KVPanel(width, itemH,
-				Strings.DESCRIPTION_LABEL, detail.getDescriptionUser(), KVPanel.HORIZONTAL);
+				Strings.User.DESCRIPTION_LABEL, detail.getDescriptionUser(), KVPanel.HORIZONTAL);
 		KVPanel email = new KVPanel(width, itemH,
-				Strings.EMAIL_LABEL, detail.getEmail(), KVPanel.HORIZONTAL);
+				Strings.User.EMAIL_LABEL, detail.getEmail(), KVPanel.HORIZONTAL);
 		KVPanel company = new KVPanel(width, itemH,
-				Strings.COMPANY_LABEL, detail.getCompany(), KVPanel.HORIZONTAL);
+				Strings.User.COMPANY_LABEL, detail.getCompany(), KVPanel.HORIZONTAL);
 		KVPanel address = new KVPanel(width, itemH,
-				Strings.ADDRESS_LABEL, detail.getAddress(), KVPanel.HORIZONTAL);
+				Strings.User.ADDRESS_LABEL, detail.getAddress(), KVPanel.HORIZONTAL);
 		info.add(description);
 		info.add(email);
 		info.add(company);

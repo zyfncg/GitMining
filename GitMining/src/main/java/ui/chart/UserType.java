@@ -10,13 +10,12 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 import Info.UsrStatisticInfo.CatalogStatistics;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
-import UserStatistic.GetUserStatistic.DetailGet.GetCatalogStatistic;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.PieChart;
+import ui.component.EmptyPanel;
 
 /**
  *用户类型统计面板 
@@ -24,12 +23,9 @@ import twaver.chart.PieChart;
 @SuppressWarnings("serial")
 public class UserType extends JPanel{
 
-	public UserType(UserStatisticFactory userStatisticFactory, int width, int height) {
-		GetCatalogStatistic userType = userStatisticFactory.GetCatalog();
-		List<CatalogStatistics> userTypeList = userType.getCatalogStatistic();
+	public UserType(List<CatalogStatistics> userTypeList, int width, int height) {
 		TDataBox box = new TDataBox();
 		PieChart pieChart = new PieChart(box);
-		pieChart.setTitle("User-Organization Counts");
 		pieChart.setLegendOrientation(TWaverConst.LABEL_ORIENTATION_RIGHT);
 		//设置不可拖动
 		pieChart.setEnableXTranslate(false);
@@ -55,13 +51,6 @@ public class UserType extends JPanel{
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(b, BorderLayout.CENTER);
-	}
-	
-	private class EmptyPanel extends JPanel {
-		public EmptyPanel(int width, int height) {
-			this.setPreferredSize(new Dimension(width, height));
-			this.setOpaque(false);
-		}
 	}
 //	public static void main(String[] args) {
 //		JFrame frame = new JFrame();

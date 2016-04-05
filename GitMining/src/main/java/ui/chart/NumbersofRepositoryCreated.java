@@ -8,8 +8,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import Info.UsrStatisticInfo.CreatRepositoryStatistics;
-import UserStatistic.GetUserStatistic.UserStatisticFactory;
-import UserStatistic.GetUserStatistic.DetailGet.GetCreatRepositoryStatistic;
+import res.Strings;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
@@ -17,17 +16,14 @@ import twaver.TWaverConst;
 import twaver.chart.LineChart;
 
 /**
- *项目创建时间统计面板 
+ *项目创建数目统计面板 
  */
 @SuppressWarnings("serial")
 public class NumbersofRepositoryCreated extends JPanel{
 
-	public NumbersofRepositoryCreated(UserStatisticFactory userStatisticFactory, int width, int height) {
-		GetCreatRepositoryStatistic createRepositoryStatistic = userStatisticFactory.GetCreatRepository();
-		List<CreatRepositoryStatistics> createRepositoryList = createRepositoryStatistic.getCreatRepositoryStatistic();
+	public NumbersofRepositoryCreated(List<CreatRepositoryStatistics> createRepositoryList, int width, int height) {
 		TDataBox box = new TDataBox();		
 		LineChart lineChart = new LineChart(box);
-		lineChart.setTitle("Numbers of Repository Created By Users in each Year");
 		
 		lineChart.setYAxisVisible(true);
 		lineChart.setYScaleTextVisible(true);
@@ -42,7 +38,7 @@ public class NumbersofRepositoryCreated extends JPanel{
 		//每个点上是否需要显示标记
 		lineChart.setInflexionVisible(true);
 		Element A = new Node();
-		A.setName("Repository");
+		A.setName(Strings.Project.REPOSITORY_LABEL);
 		A.putChartColor(Color.RED);
 		//设置标记的显示样式
 		A.putChartInflexionStyle(TWaverConst.INFLEXION_STYLE_TRIANGLE);
