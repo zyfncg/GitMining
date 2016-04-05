@@ -21,6 +21,18 @@ public class StatisticDetail implements Serializable{
 	
 	private double sizeStatistic;
 	
+	private double StarAverage;
+	
+	private double ContibutorAverage;
+	
+	private double CommitAverage;
+	
+	private double issueAverage;
+	
+	private double PullRequestAverage;
+	
+	private double sizeAverage;
+	
 	private double totalStatistic;
 	
 	public StatisticDetail(double Star,double Contributor,double Commit,double issue,double PullRequest,double Size,double total){
@@ -87,6 +99,54 @@ public class StatisticDetail implements Serializable{
 
 	public void setTotalStatistic(double totalStatistic) {
 		this.totalStatistic = totalStatistic;
+	}
+
+	public double getStarAverage() {
+		return StarAverage;
+	}
+
+	public void setStarAverage(double starAverage) {
+		StarAverage = starAverage;
+	}
+
+	public double getContibutorAverage() {
+		return ContibutorAverage;
+	}
+
+	public void setContibutorAverage(double contibutorAverage) {
+		ContibutorAverage = contibutorAverage;
+	}
+
+	public double getCommitAverage() {
+		return CommitAverage;
+	}
+
+	public void setCommitAverage(double commitAverage) {
+		CommitAverage = commitAverage;
+	}
+
+	public double getIssueAverage() {
+		return issueAverage;
+	}
+
+	public void setIssueAverage(double issueAverage) {
+		this.issueAverage = issueAverage;
+	}
+
+	public double getPullRequestAverage() {
+		return PullRequestAverage;
+	}
+
+	public void setPullRequestAverage(double pullRequestAverage) {
+		PullRequestAverage = pullRequestAverage;
+	}
+
+	public double getSizeAverage() {
+		return sizeAverage;
+	}
+
+	public void setSizeAverage(double sizeAverage) {
+		this.sizeAverage = sizeAverage;
 	}
 	
 	
