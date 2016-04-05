@@ -15,3 +15,9 @@ when:第六周
 what:完善界面
 problem:无
 todo：测试，debug
+
+who:阮威威
+when:第六周
+what:迭代二完善逻辑层统计方法
+problem:无
+todo:对逻辑层进行测试
