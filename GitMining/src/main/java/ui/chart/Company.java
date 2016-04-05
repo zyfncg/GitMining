@@ -57,6 +57,8 @@ public class Company extends JPanel{
 		//设置不可缩放
 		barChart.setEnableYZoom(false);
 		barChart.setEnableXZoom(false);
+		//设置x轴显示为斜体
+		barChart.setXScaleTextOrientation(TWaverConst.LABEL_ORIENTATION_RIGHT);
 		barChart.setPreferredSize(new Dimension(width, height));
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
