@@ -106,7 +106,7 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 				Strings.Project.STAR_LINE_TILE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
 		//star折线图统计
-		StarLine star = new StarLine(STAR_LINE, FORK_LINE,
+		StarLine star = new StarLine(STAR_LINE,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//star直方图统计
 		Histogram starHistogram = new Histogram(STAR_HISTOGRAM, STAR_LABEL,
