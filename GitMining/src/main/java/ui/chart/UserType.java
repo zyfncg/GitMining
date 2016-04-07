@@ -3,8 +3,8 @@ package ui.chart;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.List;
-import java.util.Random;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
@@ -26,7 +26,6 @@ public class UserType extends JPanel{
 	public UserType(List<CatalogStatistics> userTypeList, int width, int height) {
 		TDataBox box = new TDataBox();
 		PieChart pieChart = new PieChart(box);
-		pieChart.setLegendOrientation(TWaverConst.LABEL_ORIENTATION_RIGHT);
 		//设置不可拖动
 		pieChart.setEnableXTranslate(false);
 		pieChart.setEnableYTranslate(false);
@@ -44,7 +43,7 @@ public class UserType extends JPanel{
 				element.putChartColor(Color.RED);
 			box.addElement(element);
 		}
-		
+		pieChart.setLegendOrientation(TWaverConst.LABEL_ORIENTATION_HORIZONTAL);
 		pieChart.setPreferredSize(new Dimension(width >> 1,height));
 		Box b = Box.createHorizontalBox();
 		b.add(new EmptyPanel(width >> 2, height));
