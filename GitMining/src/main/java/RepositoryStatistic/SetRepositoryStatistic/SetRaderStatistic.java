@@ -82,9 +82,10 @@ public class SetRaderStatistic {
 	//计算平均值
 		double ContributorAll=0;
 		for(int i=0;i<allProjectsDetailInfo.size();i++){
-			ContributorAll+=allProjectsDetailInfo.get(i).getContributors();
+			ContributorAll=ContributorAll+allProjectsDetailInfo.get(i).getContributors();
 		}
 		double ContributoraAve = Double.parseDouble(df.format(ContributorAll / (double)SizeNum));
+		System.out.println(ContributoraAve);
 		// 2.
 		// Star统计
 		Collections.sort(allProjectsDetailInfo, new Comparator<ProjectDetail>() {
