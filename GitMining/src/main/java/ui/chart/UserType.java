@@ -34,12 +34,14 @@ public class UserType extends JPanel{
 		pieChart.setEnableXZoom(false);
 		pieChart.setEnableYZoom(false);
 		
-		Random random = new Random();
 		for (int i = 0; i < userTypeList.size(); i++) {
 			Element element = new Node();
 			element.setName(userTypeList.get(i).getCatalog());
 			element.putChartValue(userTypeList.get(i).getNum());
-			element.putChartColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+			if(i==1)
+				element.putChartColor(Color.BLUE);
+			else
+				element.putChartColor(Color.RED);
 			box.addElement(element);
 		}
 		
@@ -50,6 +52,8 @@ public class UserType extends JPanel{
 		b.add(new EmptyPanel(width >> 2, height));
 		this.setOpaque(false);
 		this.setLayout(new BorderLayout());
+		pieChart.setHollow(true);
+		pieChart.setHollowPercent(0.2);
 		this.add(b, BorderLayout.CENTER);
 	}
 //	public static void main(String[] args) {

@@ -70,10 +70,14 @@ public class Radar_chart extends JPanel{
 		element.putChartStroke(stroke);
 		element.getChartValue();
 		//给网元设置数值
-		if(IsAve)
+		if(IsAve) {
 			setElementAveValue(element, statisticDetail);
-		else
+			element.setName("Average");
+		}
+		else {
 			setElementValue(element, statisticDetail);
+			element.setName("This");
+		}
 		
 		box.addElement(element);
 	}
@@ -91,12 +95,12 @@ public class Radar_chart extends JPanel{
 	
 	private Element setElementAveValue(Element element, StatisticDetail statisticDetail) {
 		//给网元设置数值
-		element.addChartValue(statisticDetail.getAveContributorStatistic() * 10);
-		element.addChartValue(statisticDetail.getAveCommitStatistic() * 10);
-		element.addChartValue(statisticDetail.getAveStarStatistic() * 10);
-		element.addChartValue(statisticDetail.getAvePullRequestStatistic() * 10);
-		element.addChartValue(statisticDetail.getAveSizeStatistic() * 10);
-		element.addChartValue(statisticDetail.getAveIssueStatistic() * 10);
+		element.addChartValue(statisticDetail.getContibutorAverage() * 10);
+		element.addChartValue(statisticDetail.getCommitAverage() * 10);
+		element.addChartValue(statisticDetail.getStarAverage() * 10);
+		element.addChartValue(statisticDetail.getPullRequestAverage() * 10);
+		element.addChartValue(statisticDetail.getSizeAverage() * 10);
+		element.addChartValue(statisticDetail.getIssueAverage() * 10);
 		return element;
 	}
 	
