@@ -12,8 +12,14 @@ public class HistogramStatisticStar implements HistogramStatisticRep{
 	public HistogramInfo getRepHistogramInfo() {
 		//取得全部项目粗略信息列表
 		RepositoryHandle repositoryHandle = new RepositoryHandle();
-		List<ProjectInfo> projectInfoList = repositoryHandle.getallProjects();
-		
+		List<ProjectInfo> projectInfoList = null;
+
+		try {
+			projectInfoList = repositoryHandle.GetAllRepositorys();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		//从全部的项目中搜索出最大Star与最小Star
 		int maxStar = projectInfoList.get(0).getStars();
 		int minStar = projectInfoList.get(0).getStars();

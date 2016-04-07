@@ -1,16 +1,19 @@
 package RepositoryStatistic.SetRepositoryStatistic;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import Info.ProjectDetail;
+import Info.ProjectInfo;
 import Info.StatisticDetail;
 import data.statisticServer.RepositoryStatisticsDataServer;
 import data.statistisDataImpl.ProjectStatisticData;
 
 public class SetRaderStatistic {
+	DecimalFormat df = new DecimalFormat("######0.00");
 
 	public void DetailRaderStatistic() {
 		RepositoryStatisticsDataServer RepStatisticsDataServer = new ProjectStatisticData();
@@ -30,7 +33,7 @@ public class SetRaderStatistic {
 		int third = (int) (SizeNum * 0.85);
 		int second = (int) (SizeNum * 0.95);
 
-		DecimalFormat df = new DecimalFormat("######0.00");
+//		DecimalFormat df = new DecimalFormat("######0.00");
 		// 1.
 		// Contributor统计
 		Collections.sort(allProjectsDetailInfo, new Comparator<ProjectDetail>() {
@@ -40,43 +43,53 @@ public class SetRaderStatistic {
 			}
 		});
 		for (int i = 0; i < tenth; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 1, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",0,tenth,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.9+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = tenth; i < ninth; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.9, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",tenth,ninth,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.8+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = ninth; i < eighth; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.8, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",ninth,eighth,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.7+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = eighth; i < seventh; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.7, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",eighth,seventh,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.6+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = seventh; i < sixth; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.6, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",seventh,sixth,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.5+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = sixth; i < fifth; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.5, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",sixth,fifth,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.4+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = fifth; i < forth; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.4, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",fifth,forth,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.3+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = forth; i < third; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.3, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",forth,third,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.2+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = third; i < second; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.2, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",third,second,i);
+			StatisticDetail detail = new StatisticDetail(0, 0.1+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 		for (int i = second; i < SizeNum; i++) {
-			StatisticDetail detail = new StatisticDetail(0, 0.1, 0, 0, 0, 0, 0);
+			double calNum = this.getdetailInfoNum(allProjectsDetailInfo,"Contributor",second,SizeNum,i);
+			StatisticDetail detail = new StatisticDetail(0, 0+calNum, 0, 0, 0, 0, 0);
 			allProjectsDetailInfo.get(i).setStatisticDetail(detail);
 		}
 	//计算平均值
@@ -86,6 +99,7 @@ public class SetRaderStatistic {
 		}
 		double ContributoraAve = Double.parseDouble(df.format(ContributorAll / (double)SizeNum));
 		System.out.println(ContributoraAve);
+		System.out.println(allProjectsDetailInfo.get(seventh).getContributors());
 		// 2.
 		// Star统计
 		Collections.sort(allProjectsDetailInfo, new Comparator<ProjectDetail>() {
@@ -95,28 +109,52 @@ public class SetRaderStatistic {
 			}
 		});
 		for (int i = 0; i < tenth; i++) {
+			int cha = allProjectsDetailInfo.get(0).getStars()-allProjectsDetailInfo.get(tenth).getStars();
+			int temp = allProjectsDetailInfo.get(i).getStars();
+			int below = allProjectsDetailInfo.get(tenth).getStars();
+			double calNum = this.getdetailInfoNum(cha, temp,below);
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
-			detail.setStarStatistic(1);
+			detail.setStarStatistic(0.9+calNum);
 		}
 		for (int i = tenth; i < ninth; i++) {
+			int cha = allProjectsDetailInfo.get(0).getStars()-allProjectsDetailInfo.get(ninth).getStars();
+			int temp = allProjectsDetailInfo.get(i).getStars();
+			int below = allProjectsDetailInfo.get(ninth).getStars();
+			double calNum = this.getdetailInfoNum(cha, temp,below);
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
-			detail.setStarStatistic(0.9);
+			detail.setStarStatistic(0.8+calNum);
 		}
 		for (int i = ninth; i < eighth; i++) {
+			int cha = allProjectsDetailInfo.get(0).getStars()-allProjectsDetailInfo.get(eighth).getStars();
+			int temp = allProjectsDetailInfo.get(i).getStars();
+			int below = allProjectsDetailInfo.get(eighth).getStars();
+			double calNum = this.getdetailInfoNum(cha, temp,below);
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
-			detail.setStarStatistic(0.8);
+			detail.setStarStatistic(0.7+calNum);
 		}
 		for (int i = eighth; i < seventh; i++) {
+			int cha = allProjectsDetailInfo.get(0).getStars()-allProjectsDetailInfo.get(seventh).getStars();
+			int temp = allProjectsDetailInfo.get(i).getStars();
+			int below = allProjectsDetailInfo.get(seventh).getStars();
+			double calNum = this.getdetailInfoNum(cha, temp,below);
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
-			detail.setStarStatistic(0.7);
+			detail.setStarStatistic(0.6+calNum);
 		}
 		for (int i = seventh; i < sixth; i++) {
+			int cha = allProjectsDetailInfo.get(0).getStars()-allProjectsDetailInfo.get(sixth).getStars();
+			int temp = allProjectsDetailInfo.get(i).getStars();
+			int below = allProjectsDetailInfo.get(sixth).getStars();
+			double calNum = this.getdetailInfoNum(cha, temp,below);
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
-			detail.setStarStatistic(0.6);
+			detail.setStarStatistic(0.5+calNum);
 		}
 		for (int i = sixth; i < fifth; i++) {
+			int cha = allProjectsDetailInfo.get(0).getStars()-allProjectsDetailInfo.get(fifth).getStars();
+			int temp = allProjectsDetailInfo.get(i).getStars();
+			int below = allProjectsDetailInfo.get(fifth).getStars();
+			double calNum = this.getdetailInfoNum(cha, temp,below);
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
-			detail.setStarStatistic(0.5);
+			detail.setStarStatistic(0.4+calNum);
 		}
 		for (int i = fifth; i < forth; i++) {
 			StatisticDetail detail = allProjectsDetailInfo.get(i).getStatisticDetail();
@@ -383,6 +421,8 @@ public class SetRaderStatistic {
 			System.out.println("Radersuccess");
 		}
 
+		
+
 		// // 每个项目的最大值
 		// double maxContributor = 1.0;
 		// double maxStar = 1.0;
@@ -444,5 +484,55 @@ public class SetRaderStatistic {
 		// System.out.println("Radersuccess");
 		// }
 
+	}
+	
+	//求出详细分数
+//	public double getdetailInfoNum(int distance,int num, int below){
+//		double smallDistance = Double.parseDouble(df.format(((double)num-(double)below)/((double) distance)));
+//		
+//		return smallDistance;
+//	}
+	public double getdetailInfoNum(List<ProjectDetail> allProjectsDetailInfo,String sign,int high,int below,int now ){
+		long Cha=0;
+		long Temp=0;
+		long Below=0;
+		
+		switch (sign){
+			case "Contributor":
+				Cha = allProjectsDetailInfo.get(high).getContributors()-allProjectsDetailInfo.get(below).getContributors();
+				Temp = allProjectsDetailInfo.get(now).getContributors();
+				Below = allProjectsDetailInfo.get(below).getContributors();
+				break;
+			case "Star":
+				Cha = allProjectsDetailInfo.get(high).getStars()-allProjectsDetailInfo.get(below).getStars();
+				Temp = allProjectsDetailInfo.get(now).getStars();
+				Below = allProjectsDetailInfo.get(below).getStars();
+				break;
+			case "Commit":
+				Cha = allProjectsDetailInfo.get(high).getCommit()-allProjectsDetailInfo.get(below).getCommit();
+				Temp = allProjectsDetailInfo.get(now).getCommit();
+				Below = allProjectsDetailInfo.get(below).getCommit();
+				break;
+			case "Issue":
+				Cha = allProjectsDetailInfo.get(high).getIssue()-allProjectsDetailInfo.get(below).getIssue();
+				Temp = allProjectsDetailInfo.get(now).getIssue();
+				Below = allProjectsDetailInfo.get(below).getIssue();
+				break;
+			case "PullRequest":
+				Cha = allProjectsDetailInfo.get(high).getPullRequest()-allProjectsDetailInfo.get(below).getPullRequest();
+				Temp = allProjectsDetailInfo.get(now).getPullRequest();
+				Below = allProjectsDetailInfo.get(below).getPullRequest();
+				break;
+			case "Size":
+				Cha = allProjectsDetailInfo.get(high).getSize()-allProjectsDetailInfo.get(below).getSize();
+				Temp = allProjectsDetailInfo.get(now).getSize();
+				Below = allProjectsDetailInfo.get(below).getSize();
+				break;
+		
+		}
+		
+		double smallDistance = Double.parseDouble(df.format(((double)Temp-(double)Below)/((double) Cha)));
+		
+		return smallDistance;
 	}
 }
