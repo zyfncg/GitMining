@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -79,6 +80,7 @@ public class NumbersOfRepositoryByUsers extends JPanel{
 	        //设置提示折点数据形状
 	        renderer.setSeriesItemLabelFont(0, new Font("Dialog", 3, 18));
 	        renderer.setSeriesItemLabelPaint(0, Color.RED);
+	        renderer.setSeriesItemLabelsVisible(1, false);
 	        plot.setRenderer(renderer);
 	        
 	    	ChartPanel panel = new ChartPanel(chart);
