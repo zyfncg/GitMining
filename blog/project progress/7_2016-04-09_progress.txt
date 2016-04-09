@@ -1,0 +1,11 @@
+who：张云飞
+when：第七周
+what：完善统计图表
+problem：无
+todo：完成对项目的测试
+
+who:肖安祥
+when:第七周
+what:增加图表
+problem:无
+todo:完善散点图
