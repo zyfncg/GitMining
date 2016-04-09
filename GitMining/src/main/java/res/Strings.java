@@ -87,6 +87,12 @@ public class Strings {
 		 */
 		public static final String LANGUAGE_PARETO_TITLE =
 				"Numbers of Repository in Different Languages";
+		
+		/**
+		 *star和fork的散点图的标题 
+		 */
+		public static final String STAR_FORK_SCATTER =
+				"Relation between star and fork";
 	}
 
 	/**

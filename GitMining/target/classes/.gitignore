@@ -1,4 +1,5 @@
-/META-INF/
+/Info/
+/RepositoryStatistic/
 /UserStatistic/
 /businessLogic/
 /businessLogicService/
@@ -9,5 +10,4 @@
 /start/
 /stub/
 /ui/
-/RepositoryStatistic/
-/LifeIS/
+/META-INF/
