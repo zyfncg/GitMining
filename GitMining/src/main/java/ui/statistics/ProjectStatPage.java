@@ -17,13 +17,12 @@ import res.Strings;
 import ui.PanelSwitcher;
 import ui.Refreshable;
 import ui.chart.CreateTimeofRepository;
-import ui.chart.ForkLine;
 import ui.chart.Histogram;
 import ui.chart.HistogramLabel;
 import ui.chart.LanguageChart;
 import ui.chart.ScatterChart;
 import ui.chart.ScatterLabel;
-import ui.chart.StarLine;
+import ui.chart.StarAndForkLine;
 import ui.component.BackPanel;
 import ui.component.ChartScrollPane;
 import ui.component.TitlePanel;
@@ -104,23 +103,23 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		//使用语言统计
 		LanguageChart language = new LanguageChart(
 				LANG_STAT, StatConst.CHART_WIDTH, (int)(StatConst.CHART_HEIGHT * 1.5));
-		//star折线图标题
+		//star折线图和fork折线图标题
 		TitlePanel starTitle = new TitlePanel(
-				Strings.Project.STAR_LINE_TILE,
+				Strings.Project.STAR_FORK_LINE_TITLE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
-		//star折线图统计
-		StarLine star = new StarLine(STAR_LINE,
+		//star折线图和fork折线图
+		StarAndForkLine star_fork = new StarAndForkLine(STAR_LINE, FORK_LINE,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//star直方图统计
 		Histogram starHistogram = new Histogram(STAR_HISTOGRAM, STAR_LABEL,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		//fork折线图标题
-		TitlePanel forkTitle = new TitlePanel(
-				Strings.Project.FORK_LINE_TILE,
-				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
-		//fork折线图统计
-		ForkLine fork = new ForkLine(FORK_LINE,
-				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+//		//fork折线图标题
+//		TitlePanel forkTitle = new TitlePanel(
+//				Strings.Project.FORK_LINE_TILE,
+//				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
+//		//fork折线图统计
+//		ForkLine fork = new ForkLine(FORK_LINE,
+//				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//fork直方图统计
 		Histogram forkHistogram = new Histogram(FORK_HISTOGRAM, FORK_LABEL,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
@@ -149,20 +148,20 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		box.add(new ChartPanel(language,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
-		//项目star变化趋势统计面板
+		//项目star变化趋势和fork变化趋势统计面板
 		box.add(starTitle);
-		box.add(new ChartPanel(star,
+		box.add(new ChartPanel(star_fork,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
 		//项目star分布统计面板
 		box.add(new ChartPanel(starHistogram,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
-		//项目fork变化趋势统计面板
-		box.add(forkTitle);
-		box.add(new ChartPanel(fork,
-				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
-		box.add(new BoxStrut());
+//		//项目fork变化趋势统计面板
+//		box.add(forkTitle);
+//		box.add(new ChartPanel(fork,
+//				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+//		box.add(new BoxStrut());
 		//项目fork分布统计面板
 		box.add(new ChartPanel(forkHistogram,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
