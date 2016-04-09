@@ -11,4 +11,8 @@ public interface HistogramStatisticUser {
 	 * @return 返回直方图用户信息
 	 */
 	public HistogramInfo getUsrHistogramInfo();
+	//取得前90％的直方图数据
+	public HistogramInfo getSmallUsrHistogramInfo();
+	//取得后10％的直方图数据
+	public HistogramInfo getBigUsrHistogramInfo();
 }
