@@ -20,6 +20,7 @@ import ui.Refreshable;
 import ui.chart.Company;
 import ui.chart.Histogram;
 import ui.chart.HistogramLabel;
+import ui.chart.NumbersOfRepositoryByUsers;
 import ui.chart.NumbersofRepositoryCreated;
 import ui.chart.NumbersofRepositoryInvolved;
 import ui.chart.UserCreateTime;
@@ -110,23 +111,23 @@ public class UserStatPage extends JPanel implements Refreshable {
 		//用户注册时间统计面板
 		UserCreateTime registry = new UserCreateTime(
 				TIME_STAT, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		//用户参加项目数目变化趋势统计面板标题
+		//用户参加项目数目和创建项目标题
 		TitlePanel involveTitle = new TitlePanel(
-				Strings.User.INVOLVE_LINE_TITLE,
+				Strings.User.INVOLVE_CREATE_LINE_TITLE,
 				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
-		//用户参加项目数目变化趋势统计面板
-		NumbersofRepositoryInvolved involve = new NumbersofRepositoryInvolved(
-				INVOLVE_LINE, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+		//用户参加项目和创建数目统计面板
+		NumbersOfRepositoryByUsers involve_create = new NumbersOfRepositoryByUsers(
+				CREATE_LINE, INVOLVE_LINE, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户参与项目数目分布统计面板
 		Histogram involveHistogram = new Histogram(INVOLVE_HISTOGRAM,
 				INVOLVE_LABEL, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		//用户创建项目数目变化趋势统计面板标题
-		TitlePanel createTitle = new TitlePanel(
-				Strings.User.CREATE_LINE_TITLE,
-				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
-		//用户创建项目数目变化趋势统计面板
-		NumbersofRepositoryCreated create = new NumbersofRepositoryCreated(
-				CREATE_LINE, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+//		//用户创建项目数目变化趋势统计面板标题
+//		TitlePanel createTitle = new TitlePanel(
+//				Strings.User.CREATE_LINE_TITLE,
+//				StatConst.PANEL_WIDTH, StatConst.TITLE_HEIGHT);
+//		//用户创建项目数目变化趋势统计面板
+//		NumbersofRepositoryCreated create = new NumbersofRepositoryCreated(
+//				CREATE_LINE, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户创建项目数目分布统计面板
 		Histogram createHistogram = new Histogram(CREATE_HISTOGRAM,
 				CREATE_LABEL, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
@@ -158,18 +159,18 @@ public class UserStatPage extends JPanel implements Refreshable {
 		box.add(new BoxStrut());
 		//用户参与项目数目变化趋势统计面板
 		box.add(involveTitle);
-		box.add(new ChartPanel(involve,
+		box.add(new ChartPanel(involve_create,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
 		//用户参与项目数目分布统计面板
 		box.add(new ChartPanel(involveHistogram,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
-		//用户创建项目数目变化趋势统计面板
-		box.add(createTitle);
-		box.add(new ChartPanel(create,
-				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
-		box.add(new BoxStrut());
+//		//用户创建项目数目变化趋势统计面板
+//		box.add(createTitle);
+//		box.add(new ChartPanel(create,
+//				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+//		box.add(new BoxStrut());
 		//用户创建项目数目分布统计面板
 		box.add(new ChartPanel(createHistogram,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
