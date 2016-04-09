@@ -60,10 +60,16 @@ public class Strings {
 		public static final String STAR_HISTOGRAM_TILE = "Distribution of star";
 		
 		/**
-		 *start分布折线图的标题 
+		 *star分布折线图的标题 
 		 */
 		public static final String STAR_LINE_TILE =
-				"Tendency of total star quantities in recent years";
+				"Tendency of total star quantity in recent years";
+		
+		/**
+		 *star和fork合并折线图的标题 
+		 */
+		public static final String STAR_FORK_LINE_TITLE =
+				"Tendency of total star and fork quantity in recent years";
 		
 		/**
 		 *fork分布直方图的标题 
@@ -74,19 +80,25 @@ public class Strings {
 		 *fork分布折线图的标题 
 		 */
 		public static final String FORK_LINE_TILE =
-				"Tendency of total fork quantities in recent years";
+				"Tendency of total fork quantity in recent years";
 
 		/**
 		 *项目创建时间柱状图的标题 
 		 */
 		public static final String PROJECT_TIME_BAR_TITLE =
-				"Quantities of created repository in recent years";
+				"Quantity of created repository in recent years";
 		
 		/**
 		 *项目语言pareto图的标题 
 		 */
 		public static final String LANGUAGE_PARETO_TITLE =
 				"Numbers of Repository in Different Languages";
+		
+		/**
+		 *star和fork的散点图的标题 
+		 */
+		public static final String STAR_FORK_SCATTER =
+				"Relation between star and fork";
 	}
 
 	/**
@@ -152,6 +164,12 @@ public class Strings {
 				"Total quantity of repositories involved by users in recent years";
 		
 		/**
+		 *用户参与项目和创建项目折线图的标题 
+		 */
+		public static final String INVOLVE_CREATE_LINE_TITLE =
+				"Total quantity of repositories involved or created by users in recent years";
+		
+		/**
 		 *用户参与项目数目直方图面板标题 
 		 */
 		public static final String INVOLVE_HISTOGRAM_TITLE =
@@ -172,7 +190,7 @@ public class Strings {
 		/**
 		 *参与公司统计面板标题 
 		 */
-		public static final String COMPANY_TITLE = "Contribution of companies";
+		public static final String COMPANY_TITLE = "Quantity of Github developers in each company";
 		
 	}
 	

@@ -5,14 +5,20 @@ package ui.chart;
  */
 public class HistogramLabel {
 
+	/**
+	 *图标标题 
+	 */
 	private String title;
 	
-	private String key;
+	/**
+	 *图例名称 
+	 */
+	private String legend;
 
-	public HistogramLabel(String title, String key) {
+	public HistogramLabel(String title, String legend) {
 		super();
 		this.title = title;
-		this.key = key;
+		this.legend = legend;
 	}
 
 	public String getTitle() {
@@ -24,10 +30,10 @@ public class HistogramLabel {
 	}
 
 	public String getKey() {
-		return key;
+		return legend;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setLegend(String legend) {
+		this.legend = legend;
 	}
 }

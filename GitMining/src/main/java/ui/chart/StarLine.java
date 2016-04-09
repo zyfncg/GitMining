@@ -7,13 +7,13 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import Info.RepStatisticInfo.StarStatistics;
 import res.Strings;
 import twaver.Element;
 import twaver.Node;
 import twaver.TDataBox;
 import twaver.TWaverConst;
 import twaver.chart.LineChart;
+import Info.RepStatisticInfo.StarStatistics;
 
 /**
  *项目star随着年份变化趋势的折线图面板 
@@ -22,6 +22,7 @@ import twaver.chart.LineChart;
 public class StarLine extends JPanel{
 
 	public StarLine(List<StarStatistics> starList, int width, int height) {
+
 		TDataBox box = new TDataBox();		
 		LineChart lineChart = new LineChart(box);
 		
