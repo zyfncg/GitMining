@@ -50,20 +50,7 @@ public class HistogramStatisticCreat implements HistogramStatisticUser {
 	@Override
 	public HistogramInfo getSmallUsrHistogramInfo() {
 		// 取得全部用户粗略信息列表
-		UserHandle userHandle = new UserHandle();
-		List<UserInfo> userInfoList = null;
-		try {
-			userInfoList = userHandle.GetAllUsers();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		Collections.sort(userInfoList, new Comparator<UserInfo>() {
-			@Override
-			public int compare(UserInfo arg0, UserInfo arg1) {
-				return (new Integer(arg0.getProjectCreate())).compareTo(new Integer(arg1.getProjectCreate()));
-			}
-		});
+		List<UserInfo> userInfoList = this.getSortedUser();
 
 		List<UserInfo> smallUsrHis = new ArrayList<UserInfo>();
 		for (int i = 0; i < (int) (userInfoList.size() * 0.9); i++) {
@@ -91,20 +78,7 @@ public class HistogramStatisticCreat implements HistogramStatisticUser {
 	@Override
 	public HistogramInfo getBigUsrHistogramInfo() {
 		// 取得全部用户粗略信息列表
-		UserHandle userHandle = new UserHandle();
-		List<UserInfo> userInfoList = null;
-		try {
-			userInfoList = userHandle.GetAllUsers();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		Collections.sort(userInfoList, new Comparator<UserInfo>() {
-			@Override
-			public int compare(UserInfo arg0, UserInfo arg1) {
-				return (new Integer(arg0.getProjectCreate())).compareTo(new Integer(arg1.getProjectCreate()));
-			}
-		});
+		List<UserInfo> userInfoList = this.getSortedUser();
 
 		List<UserInfo> bigUsrHis = new ArrayList<UserInfo>();
 		for (int i = (int) (userInfoList.size() * 0.9); i < userInfoList.size(); i++) {
@@ -127,6 +101,26 @@ public class HistogramStatisticCreat implements HistogramStatisticUser {
 		// 创建HistogramInfo对象
 		HistogramInfo histogramInfo = new HistogramInfo(CreatMax, CreatMin, GroupNum, allCreatInfo);
 		return histogramInfo;
+	}
+
+	public List<UserInfo> getSortedUser() {
+		// 取得全部用户粗略信息列表
+		UserHandle userHandle = new UserHandle();
+		List<UserInfo> userInfoList = null;
+		try {
+			userInfoList = userHandle.GetAllUsers();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Collections.sort(userInfoList, new Comparator<UserInfo>() {
+			@Override
+			public int compare(UserInfo arg0, UserInfo arg1) {
+				return (new Integer(arg0.getProjectCreate())).compareTo(new Integer(arg1.getProjectCreate()));
+			}
+		});
+
+		return userInfoList;
 	}
 
 }

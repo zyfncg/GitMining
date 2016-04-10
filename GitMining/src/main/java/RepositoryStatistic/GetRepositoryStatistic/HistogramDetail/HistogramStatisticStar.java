@@ -51,23 +51,7 @@ public class HistogramStatisticStar implements HistogramStatisticRep {
 
 	public HistogramInfo getSmallRepHistogramInfo() {
 		// 取得全部项目粗略信息列表
-		RepositoryHandle repositoryHandle = new RepositoryHandle();
-		List<ProjectInfo> projectInfoList = null;
-
-		try {
-			projectInfoList = repositoryHandle.GetAllRepositorys();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// 按Star从小到大排序
-		Collections.sort(projectInfoList, new Comparator<ProjectInfo>() {
-			@Override
-			public int compare(ProjectInfo arg0, ProjectInfo arg1) {
-				return (new Integer(arg0.getStars())).compareTo(new Integer(arg1.getStars()));
-			}
-		});
+		List<ProjectInfo> projectInfoList = this.getSortedProject();
 
 		List<ProjectInfo> smallRepHis = new ArrayList<ProjectInfo>();
 		for (int i = 0; i < (int) (projectInfoList.size() * 0.9); i++) {
@@ -94,26 +78,10 @@ public class HistogramStatisticStar implements HistogramStatisticRep {
 
 	public HistogramInfo getBigRepHistogramInfo() {
 		// 取得全部项目粗略信息列表
-		RepositoryHandle repositoryHandle = new RepositoryHandle();
-		List<ProjectInfo> projectInfoList = null;
-
-		try {
-			projectInfoList = repositoryHandle.GetAllRepositorys();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// 按Star从小到大排序
-		Collections.sort(projectInfoList, new Comparator<ProjectInfo>() {
-			@Override
-			public int compare(ProjectInfo arg0, ProjectInfo arg1) {
-				return (new Integer(arg0.getStars())).compareTo(new Integer(arg1.getStars()));
-			}
-		});
+		List<ProjectInfo> projectInfoList = this.getSortedProject();
 
 		List<ProjectInfo> bigRepHis = new ArrayList<ProjectInfo>();
-		for (int i =  (int) (projectInfoList.size() * 0.9); i < (projectInfoList.size()-1); i++) {
+		for (int i = (int) (projectInfoList.size() * 0.9); i < (projectInfoList.size() - 1); i++) {
 			bigRepHis.add(projectInfoList.get(i));
 		}
 
@@ -135,4 +103,26 @@ public class HistogramStatisticStar implements HistogramStatisticRep {
 		return histogramInfo;
 	}
 
+	public List<ProjectInfo> getSortedProject() {
+		// 取得全部项目粗略信息列表
+		RepositoryHandle repositoryHandle = new RepositoryHandle();
+		List<ProjectInfo> projectInfoList = null;
+
+		try {
+			projectInfoList = repositoryHandle.GetAllRepositorys();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// 按Star从小到大排序
+		Collections.sort(projectInfoList, new Comparator<ProjectInfo>() {
+			@Override
+			public int compare(ProjectInfo arg0, ProjectInfo arg1) {
+				return (new Integer(arg0.getStars())).compareTo(new Integer(arg1.getStars()));
+			}
+		});
+
+		return projectInfoList;
+	}
 }
