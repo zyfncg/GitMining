@@ -55,9 +55,14 @@ public class Strings {
 		public static final String PROJECT_SEARCH_TIP = "Enter project name";
 		
 		/**
-		 *star分布直方图的标题 
+		 *star分布直方图的标题 （小数值部分）
 		 */
-		public static final String STAR_HISTOGRAM_TILE = "Distribution of star";
+		public static final String SMALL_STAR_HISTOGRAM_TILE = "Distribution of star(smaller part)";
+		
+		/**
+		 *star分布直方图的标题 （大数值部分）
+		 */
+		public static final String BIG_STAR_HISTOGRAM_TILE = "Distribution of star(bigger part)";
 		
 		/**
 		 *star分布折线图的标题 
@@ -72,9 +77,16 @@ public class Strings {
 				"Tendency of total star and fork quantity in recent years";
 		
 		/**
-		 *fork分布直方图的标题 
+		 *fork分布直方图的标题 （小数值部分）
 		 */
-		public static final String FORK_HISTOGRAM_TILE = "Distribution of fork";
+		public static final String SMALL_FORK_HISTOGRAM_TILE =
+				"Distribution of fork(smaller part)";
+		
+		/**
+		 *fork分布直方图的标题 （大数值部分）
+		 */
+		public static final String BIG_FORK_HISTOGRAM_TILE =
+				"Distribution of fork(bigger part)";
 		
 		/**
 		 *fork分布折线图的标题 
@@ -170,10 +182,16 @@ public class Strings {
 				"Total quantity of repositories involved or created by users in recent years";
 		
 		/**
-		 *用户参与项目数目直方图面板标题 
+		 *用户参与项目数目直方图面板标题 （小数值部分）
 		 */
-		public static final String INVOLVE_HISTOGRAM_TITLE =
-				"Distribution of the quantity of repositories involved by users";
+		public static final String SMALL_INVOLVE_HISTOGRAM_TITLE =
+				"Distribution of the quantity of repositories involved by users(smaller part)";
+		
+		/**
+		 *用户参与项目数目直方图面板标题 （小数值部分）
+		 */
+		public static final String BIG_INVOLVE_HISTOGRAM_TITLE =
+				"Distribution of the quantity of repositories involved by users(smaller part)";
 		
 		/**
 		 *用户创建项目数目折线图面板标题
@@ -182,10 +200,16 @@ public class Strings {
 				"Total quantity of repositories created by users in recent years";
 		
 		/**
-		 *用户创建项目数目直方图面板标题 
+		 *用户创建项目数目直方图面板标题 （小数值部分）
 		 */
-		public static final String CREATE_HISTOGRAM_TITLE =
-				"Distribution of the quantity of repositories created by users";
+		public static final String SMALL_CREATE_HISTOGRAM_TITLE =
+				"Distribution of the quantity of repositories created by users(smaller part)";
+		
+		/**
+		 *用户创建项目数目直方图面板标题 （大数值部分）
+		 */
+		public static final String BIG_CREATE_HISTOGRAM_TITLE =
+				"Distribution of the quantity of repositories created by users(bigger part)";
 		
 		/**
 		 *参与公司统计面板标题 

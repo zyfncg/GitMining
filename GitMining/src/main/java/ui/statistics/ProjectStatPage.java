@@ -63,16 +63,28 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 			DATA_FACTORY.GetStar().getStarStatistic();
 	
 	/**
-	 *项目star直方图统计数据 
+	 *项目star直方图统计数据 （小数值部分）
 	 */
-	private static final HistogramInfo STAR_HISTOGRAM =
-			DATA_FACTORY.GetHistogramStar().getRepHistogramInfo();
+	private static final HistogramInfo SMALL_STAR_HISTOGRAM =
+			DATA_FACTORY.GetHistogramStar().getSmallRepHistogramInfo();
 	
 	/**
-	 *项目star直方图的标签 
+	 *项目star直方图统计数据 （大数值部分）
 	 */
-	private static final HistogramLabel STAR_LABEL = new HistogramLabel(
-			Strings.Project.STAR_HISTOGRAM_TILE, Strings.Project.STAR_LABEL);
+	private static final HistogramInfo BIG_STAR_HISTOGRAM =
+			DATA_FACTORY.GetHistogramStar().getBigRepHistogramInfo();
+	
+	/**
+	 *项目star直方图的标签 （小数值部分）
+	 */
+	private static final HistogramLabel SMALL_STAR_LABEL = new HistogramLabel(
+			Strings.Project.SMALL_STAR_HISTOGRAM_TILE, Strings.Project.STAR_LABEL);
+	
+	/**
+	 *项目star直方图的标签 （大数值部分）
+	 */
+	private static final HistogramLabel BIG_STAR_LABEL = new HistogramLabel(
+			Strings.Project.BIG_STAR_HISTOGRAM_TILE, Strings.Project.STAR_LABEL);
 	
 	/**
 	 *项目fork折线图统计数据 
@@ -81,16 +93,28 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 			DATA_FACTORY.GetFork().getForkStatistic();
 	
 	/**
-	 *项目fork直方图统计数据 
+	 *项目fork直方图统计数据 （小数值部分）
 	 */
-	private static final HistogramInfo FORK_HISTOGRAM =
-			DATA_FACTORY.GetHistogramFork().getRepHistogramInfo();
+	private static final HistogramInfo SMALL_FORK_HISTOGRAM =
+			DATA_FACTORY.GetHistogramFork().getSmallRepHistogramInfo();
 	
 	/**
-	 *项目star直方图的标签 
+	 *项目fork直方图统计数据 （大数值部分）
 	 */
-	private static final HistogramLabel FORK_LABEL = new HistogramLabel(
-			Strings.Project.FORK_HISTOGRAM_TILE, Strings.Project.FORK_LABEL);
+	private static final HistogramInfo BIG_FORK_HISTOGRAM =
+			DATA_FACTORY.GetHistogramFork().getBigRepHistogramInfo();
+	
+	/**
+	 *项目star直方图的标签 （小数值部分）
+	 */
+	private static final HistogramLabel SMALL_FORK_LABEL = new HistogramLabel(
+			Strings.Project.SMALL_FORK_HISTOGRAM_TILE, Strings.Project.FORK_LABEL);
+	
+	/**
+	 *项目star直方图的标签 （大数值部分）
+	 */
+	private static final HistogramLabel BIG_FORK_LABEL = new HistogramLabel(
+			Strings.Project.BIG_FORK_HISTOGRAM_TILE, Strings.Project.FORK_LABEL);
 	
 	public ProjectStatPage(PanelSwitcher switcher) {
 		//项目创建时间统计标题
@@ -110,8 +134,11 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		//star折线图和fork折线图
 		StarAndForkLine star_fork = new StarAndForkLine(STAR_LINE, FORK_LINE,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		//star直方图统计
-		Histogram starHistogram = new Histogram(STAR_HISTOGRAM, STAR_LABEL,
+		//star直方图统计（小数值部分）
+		Histogram smallStar = new Histogram(SMALL_STAR_HISTOGRAM, SMALL_STAR_LABEL,
+				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+		//star直方图统计（大数值部分）
+		Histogram bigStar = new Histogram(BIG_STAR_HISTOGRAM, BIG_STAR_LABEL,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 //		//fork折线图标题
 //		TitlePanel forkTitle = new TitlePanel(
@@ -120,16 +147,19 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 //		//fork折线图统计
 //		ForkLine fork = new ForkLine(FORK_LINE,
 //				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		//fork直方图统计
-		Histogram forkHistogram = new Histogram(FORK_HISTOGRAM, FORK_LABEL,
+		//fork直方图统计（小数值部分）
+		Histogram smallFork = new Histogram(SMALL_FORK_HISTOGRAM, SMALL_FORK_LABEL,
+				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+		//fork直方图统计（小数值部分）
+		Histogram bigFork = new Histogram(BIG_FORK_HISTOGRAM, BIG_FORK_LABEL,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//star和fork的散点图
-		double[][] data = new double[2][];
-		data[0] = STAR_HISTOGRAM.getAllNum();
-		data[1] = FORK_HISTOGRAM.getAllNum();
-		ScatterChart scatter = new ScatterChart(new ScatterLabel(Strings.Project.STAR_FORK_SCATTER,
-				Strings.Project.STAR_LABEL, Strings.Project.FORK_LABEL),
-				data, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+//		double[][] data = new double[2][];
+//		data[0] = SMALL_STAR_HISTOGRAM.getAllNum();
+//		data[1] = FORK_HISTOGRAM.getAllNum();
+//		ScatterChart scatter = new ScatterChart(new ScatterLabel(Strings.Project.STAR_FORK_SCATTER,
+//				Strings.Project.STAR_LABEL, Strings.Project.FORK_LABEL),
+//				data, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		
 		
 		//组装统计面板
@@ -153,8 +183,12 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		box.add(new ChartPanel(star_fork,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
-		//项目star分布统计面板
-		box.add(new ChartPanel(starHistogram,
+		//项目star分布统计面板（小数值部分）
+		box.add(new ChartPanel(smallStar,
+				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+		box.add(new BoxStrut());
+		//项目star分布统计面板（小数值部分）
+		box.add(new ChartPanel(bigStar,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
 //		//项目fork变化趋势统计面板
@@ -162,13 +196,17 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 //		box.add(new ChartPanel(fork,
 //				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 //		box.add(new BoxStrut());
-		//项目fork分布统计面板
-		box.add(new ChartPanel(forkHistogram,
+		//项目fork分布统计面板（小数值部分）
+		box.add(new ChartPanel(smallFork,
+				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+		box.add(new BoxStrut());
+		//项目fork分布统计面板（大数值部分）
+		box.add(new ChartPanel(bigFork,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
 		//star和fork的关系分析面板
-		box.add(new ChartPanel(scatter,
-				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+//		box.add(new ChartPanel(scatter,
+//				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		
 		this.scrollPane = new ChartScrollPane(box);
 		this.setLayout(new BorderLayout());

@@ -124,6 +124,7 @@ public class ProjectPage extends JPanel implements Refreshable {
 				SwitchPanel.SWITCH_WIDTH << 1, searchH));
 		statistics.addActionListener(e -> switcher.backableJump(this,
 				new ProjectStatPage(switcher), PanelSwitcher.LEFT));
+		statistics.setIcon(Img.STATISTICS);
 		//将搜索框、搜索按钮和统计按钮添加到搜索面板
 		center.add(search);
 		center.add(statistics);
