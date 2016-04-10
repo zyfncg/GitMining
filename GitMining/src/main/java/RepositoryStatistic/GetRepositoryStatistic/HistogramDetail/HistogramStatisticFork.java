@@ -51,22 +51,8 @@ public class HistogramStatisticFork implements HistogramStatisticRep {
 	}
 
 	public HistogramInfo getSmallRepHistogramInfo() {
-		RepositoryHandle repositoryHandle = new RepositoryHandle();
-		List<ProjectInfo> projectInfoList = null;
-
-		try {
-			projectInfoList = repositoryHandle.GetAllRepositorys();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Collections.sort(projectInfoList, new Comparator<ProjectInfo>() {
-			@Override
-			public int compare(ProjectInfo arg0, ProjectInfo arg1) {
-				return (new Integer(arg0.getForks())).compareTo(new Integer(arg1.getForks()));
-			}
-		});
+		//取得全部的数据
+		List<ProjectInfo> projectInfoList = this.getSortedProject();
 
 		List<ProjectInfo> smallRepHis = new ArrayList<ProjectInfo>();
 		for (int i = 0; i < (int)(projectInfoList.size() * 0.9); i++) {
@@ -92,22 +78,8 @@ public class HistogramStatisticFork implements HistogramStatisticRep {
 	}
 
 	public HistogramInfo getBigRepHistogramInfo() {
-		RepositoryHandle repositoryHandle = new RepositoryHandle();
-		List<ProjectInfo> projectInfoList = null;
-
-		try {
-			projectInfoList = repositoryHandle.GetAllRepositorys();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Collections.sort(projectInfoList, new Comparator<ProjectInfo>() {
-			@Override
-			public int compare(ProjectInfo arg0, ProjectInfo arg1) {
-				return (new Integer(arg0.getForks())).compareTo(new Integer(arg1.getForks()));
-			}
-		});
+		//去的全部的数据
+		List<ProjectInfo> projectInfoList = this.getSortedProject();
 
 		List<ProjectInfo> bigRepHis = new ArrayList<ProjectInfo>();
 		for (int i = (int) (projectInfoList.size() * 0.9); i < (projectInfoList.size()); i++) {
@@ -130,6 +102,28 @@ public class HistogramStatisticFork implements HistogramStatisticRep {
 		HistogramInfo histogramInfo = new HistogramInfo(maxFork, minFork, GroupNum, allForkInfo);
 		
 		return histogramInfo;
+	}
+	
+	//对projectInfoList排序，按从小到大的顺序
+	public List<ProjectInfo> getSortedProject(){
+		RepositoryHandle repositoryHandle = new RepositoryHandle();
+		List<ProjectInfo> projectInfoList = null;
+
+		try {
+			projectInfoList = repositoryHandle.GetAllRepositorys();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Collections.sort(projectInfoList, new Comparator<ProjectInfo>() {
+			@Override
+			public int compare(ProjectInfo arg0, ProjectInfo arg1) {
+				return (new Integer(arg0.getForks())).compareTo(new Integer(arg1.getForks()));
+			}
+		});
+		
+		return projectInfoList;
 	}
 
 }
