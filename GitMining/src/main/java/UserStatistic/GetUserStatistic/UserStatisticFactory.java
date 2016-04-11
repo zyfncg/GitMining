@@ -34,4 +34,7 @@ public class UserStatisticFactory {
 	public ScatterStatisticUsr GetScatterStatisticUsr(){
 		return new ScatterStatisticUsr();
 	}
+	public ScatterStatisticUsrSmall GetSmallScatterStatisticUsr(){
+		return new ScatterStatisticUsrSmall();
+	}
 }

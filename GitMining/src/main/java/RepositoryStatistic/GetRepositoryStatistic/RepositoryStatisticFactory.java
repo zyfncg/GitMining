@@ -41,4 +41,8 @@ public class RepositoryStatisticFactory {
 	public ScatterStatisticRep GetScatterStatisticRep() {
 		return new ScatterStatisticRep();
 	}
+	
+	public ScatterStatisticRepSmall GetSmallScatterStatisticRep() {
+		return new ScatterStatisticRepSmall();
+	}
 }
