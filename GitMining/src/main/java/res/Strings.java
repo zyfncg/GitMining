@@ -107,10 +107,16 @@ public class Strings {
 				"Numbers of Repository in Different Languages";
 		
 		/**
-		 *star和fork的散点图的标题 
+		 *star和fork的散点图的标题 （小数值部分）
 		 */
-		public static final String STAR_FORK_SCATTER =
-				"Relation between star and fork";
+		public static final String SMALL_STAR_FORK_SCATTER =
+				"Relationship between star and fork(smaller part)";
+		
+		/**
+		 *star和fork的散点图的标题 （大数值部分）
+		 */
+		public static final String BIG_STAR_FORK_SCATTER =
+				"Relationship between star and fork(bigger part)";
 	}
 
 	/**
@@ -192,6 +198,18 @@ public class Strings {
 		 */
 		public static final String BIG_INVOLVE_HISTOGRAM_TITLE =
 				"Distribution of the quantity of repositories involved by users(smaller part)";
+		
+		/**
+		 *用户创建项目数目与参与项目数目关系分析面板标题（小数值部分） 
+		 */
+		public static final String SMALL_CREATE_INVOLVE_RELATION =
+				"Relationship between created and involved repositories(smaller part)";
+		
+		/**
+		 *用户创建项目数目与参与项目数目关系分析面板标题（大数值部分） 
+		 */
+		public static final String BIG_CREATE_INVOLVE_RELATION =
+				"Relationship between created and involved repositories(bigger part)";
 		
 		/**
 		 *用户创建项目数目折线图面板标题
