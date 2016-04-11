@@ -31,4 +31,7 @@ public class UserStatisticFactory {
 	public HistogramStatisticJoin GetHistogramJoin(){
 		return new HistogramStatisticJoin();
 	}
+	public ScatterStatisticUsr GetScatterStatisticUsr(){
+		return new ScatterStatisticUsr();
+	}
 }
