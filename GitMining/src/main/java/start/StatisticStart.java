@@ -1,6 +1,7 @@
 package start;
 
 import RepositoryStatistic.GetRepositoryStatistic.ScatterStatisticRep;
+import RepositoryStatistic.GetRepositoryStatistic.ScatterStatisticRepSmall;
 import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
 import RepositoryStatistic.SetRepositoryStatistic.SetRaderStatistic;
 import UserStatistic.SetUserStatistic.AllUserStatistic;
@@ -15,7 +16,7 @@ public class StatisticStart {
 //		tryUserStatistic.UserAnalyze();
 //		tryRaderStatistic.DetailRaderStatistic();
 		
-//		ScatterStatisticRep sc = new ScatterStatisticRep();
+//		ScatterStatisticRepSmall sc = new ScatterStatisticRepSmall();
 //		sc.getRepScatterInfo();
 //	}
 	
