@@ -52,6 +52,9 @@ public class ScatterStatisticRepSmall {
 		for (int i = 0; i < BaiFenBi; i++) {
 			StatisticNum[1][i] = (double)projectInfoList.get(i).getForks();
 		}
+		
+//		System.out.println(StatisticNum[0].length);
+//		System.out.println(StatisticNum[1].length);
 
 		// 统计
 		int StarAll = 0;
