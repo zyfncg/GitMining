@@ -140,6 +140,15 @@ public class Img {
 	public static final ImageIcon COPY =
 			new ImageIcon(BUTTON_ROOT_PATH + "/copy.png");
 	
+	/**
+	 *统计按钮 
+	 */
+	public static final ImageIcon STATISTICS =
+			new ImageIcon(BUTTON_ROOT_PATH + "/statistics.png");
+	
+	/**
+	 *搜索按钮 
+	 */
 	public static final ImageIcon SEARCH =
 			new ImageIcon(BUTTON_ROOT_PATH + "/search.png");
 	

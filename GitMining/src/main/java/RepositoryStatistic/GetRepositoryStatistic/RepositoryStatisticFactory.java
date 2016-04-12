@@ -37,4 +37,12 @@ public class RepositoryStatisticFactory {
 	public HistogramStatisticFork GetHistogramFork() {
 		return new HistogramStatisticFork();
 	}
+	
+	public ScatterStatisticRep GetScatterStatisticRep() {
+		return new ScatterStatisticRep();
+	}
+	
+	public ScatterStatisticRepSmall GetSmallScatterStatisticRep() {
+		return new ScatterStatisticRepSmall();
+	}
 }

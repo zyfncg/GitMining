@@ -137,6 +137,7 @@ public class UserPage extends JPanel implements Refreshable {
 		statistics.setPreferredSize(new Dimension(btnW, btnH));
 		statistics.addActionListener(e -> switcher.backableJump(
 				this, new UserStatPage(switcher), PanelSwitcher.LEFT));
+		statistics.setIcon(Img.STATISTICS);
 		//将搜索框、搜索按钮和统计按钮添加到搜索面板
 		center.add(search);
 		center.add(statistics);
