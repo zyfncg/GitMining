@@ -54,7 +54,10 @@ public class DataDownload {
 			if(i%100==0){
 				System.out.println(i);
 			}
-			projectList.add(projectInfo);
+			if(projectInfo!=null){
+				projectList.add(projectInfo);
+			}
+			
 		}
 		
 		if(!fileUtil.setProjectToFile(projectList)){
@@ -104,8 +107,10 @@ public class DataDownload {
 			if(i%10==0){
 				System.out.println(i);
 			}
+			if(projectDetail!=null){
+				projectList.add(projectDetail);
+			}
 			
-			projectList.add(projectDetail);
 		}
 		
 		if(!fileUtil.setProjectDetailToFile(projectList)){
