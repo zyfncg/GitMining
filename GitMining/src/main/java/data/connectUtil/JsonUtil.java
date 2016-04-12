@@ -114,6 +114,9 @@ public class JsonUtil {
 //		UserInfo userInfo;
 		
 		ProjectInfo projectInfo=jsonToProject(jsonString);
+		if(projectInfo==null){
+			return null;
+		}
 		
 		json = JSONObject.fromObject(jsonString);
 		

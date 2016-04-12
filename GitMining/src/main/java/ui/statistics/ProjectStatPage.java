@@ -20,6 +20,8 @@ import ui.chart.CreateTimeofRepository;
 import ui.chart.Histogram;
 import ui.chart.HistogramLabel;
 import ui.chart.LanguageChart;
+import ui.chart.ScatterChart;
+import ui.chart.ScatterLabel;
 import ui.chart.StarAndForkLine;
 import ui.component.BackPanel;
 import ui.component.ChartScrollPane;
@@ -152,19 +154,23 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		Histogram bigFork = new Histogram(BIG_FORK_HISTOGRAM, BIG_FORK_LABEL,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//star和fork的散点图（小数值部分）
-//		double[][] data = new double[2][];
-//		data[0] = SMALL_STAR_HISTOGRAM.getAllNum();
-//		data[1] = SMALL_FORK_HISTOGRAM.getAllNum();
-//		int min1 = SMALL_FORK_HISTOGRAM.getMinNum();
-//		int max1 = SMALL_FORK_HISTOGRAM.getMaxNum();
-//		ScatterChart smallScatter = new ScatterChart(new ScatterLabel(Strings.Project.SMALL_STAR_FORK_SCATTER,
-//				Strings.Project.STAR_LABEL, Strings.Project.FORK_LABEL),
-//				data, min1, max1, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-
-		//star和fork的散点图（小数值部分）
-//		double[][] data1 = new double[2][];
-//		data1[0] = BIG_STAR_HISTOGRAM.getAllNum();
-//		data1[1] = BIG_FORK_HISTOGRAM.getAllNum();
+		double[][] data = new double[2][];
+		data[0] = SMALL_STAR_HISTOGRAM.getAllNum();
+		data[1] = SMALL_FORK_HISTOGRAM.getAllNum();
+		System.out.println(data[0].length);
+		System.out.println(data[1].length);
+		int min1 = SMALL_FORK_HISTOGRAM.getMinNum();
+		int max1 = SMALL_FORK_HISTOGRAM.getMaxNum();
+		ScatterChart smallScatter = new ScatterChart(new ScatterLabel(Strings.Project.SMALL_STAR_FORK_SCATTER,
+				Strings.Project.STAR_LABEL, Strings.Project.FORK_LABEL),
+				data, min1, max1, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+//
+		//star和fork的散点图（大数值部分）
+		double[][] data1 = new double[2][];
+		data1[0] = BIG_STAR_HISTOGRAM.getAllNum();
+		data1[1] = BIG_FORK_HISTOGRAM.getAllNum();
+		System.out.println(data1[0].length);
+		System.out.println(data1[1].length);
 //		int min2 = BIG_FORK_HISTOGRAM.getMinNum();
 //		int max2 = BIG_FORK_HISTOGRAM.getMaxNum();
 //		ScatterChart bigScatter = new ScatterChart(new ScatterLabel(Strings.Project.BIG_STAR_FORK_SCATTER,
@@ -215,9 +221,9 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
 		//star和fork的关系分析面板（小数值部分）
-//		box.add(new ChartPanel(smallScatter,
-//				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
-//		box.add(new BoxStrut());
+		box.add(new ChartPanel(smallScatter,
+				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+		box.add(new BoxStrut());
 //		//star和fork的关系分析面板（小数值部分）
 //		box.add(new ChartPanel(bigScatter,
 //				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));

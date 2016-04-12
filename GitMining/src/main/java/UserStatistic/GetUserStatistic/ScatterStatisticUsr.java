@@ -21,11 +21,11 @@ public class ScatterStatisticUsr {
 		// 二维double值，先Star后Fork
 		double[][] StatisticNum = new double[2][userInfoList.size()];
 		for (int i = 0; i < userInfoList.size(); i++) {
-			StatisticNum[0][i] = userInfoList.get(i).getProjectCreate();
+			StatisticNum[0][i] = (double)userInfoList.get(i).getProjectCreate();
+			StatisticNum[1][i] = (double)userInfoList.get(i).getProjectInvolved();
 		}
-		for (int i = 0; i < userInfoList.size(); i++) {
-			StatisticNum[1][i] = userInfoList.get(i).getProjectInvolved();
-		}
+//		for (int i = 0; i < userInfoList.size(); i++) {
+//		}
 
 		//
 		int CreatAll = 0;
