@@ -35,11 +35,11 @@ public class ScatterStatisticUsrSmall {
 		});
 
 		for (int i = 0; i < BaiFenBi; i++) {
-			StatisticNum[0][i] = userInfoList.get(i).getProjectCreate();
+			StatisticNum[0][i] = (double)userInfoList.get(i).getProjectCreate();
 		}
 
 		for (int i = 0; i < BaiFenBi; i++) {
-			StatisticNum[1][i] = userInfoList.get(i).getProjectInvolved();
+			StatisticNum[1][i] = (double)userInfoList.get(i).getProjectInvolved();
 		}
 
 		// 统计
