@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
 
@@ -23,7 +24,8 @@ public class Radar_chart extends JPanel{
 	public Radar_chart(StatisticDetail statisticDetail, int width, int height) {
 		TDataBox box = new TDataBox();
 		RadarChart chart = new RadarChart(box);
-		chart.setTitle("Score of Repository(total:" + (statisticDetail.getTotalStatistic() * 10 )+ ")");
+		DecimalFormat df = new DecimalFormat("0.00");
+		chart.setTitle("Score of Repository(total:" + df.format(statisticDetail.getTotalStatistic() * 10 )+ ")");
 		
 		//添加数据
 		addElement(box,statisticDetail,false,new Color(0, 100, 255, 100),TWaverConst.STROKE_SOLID_1);
@@ -41,11 +43,11 @@ public class Radar_chart extends JPanel{
 		chart.setAxisTextFont(new Font("Forte", Font.PLAIN, 14));
 		chart.setScaleMaxValue(10.0);
 		chart.addAxisText("contributor");
-		chart.addAxisText("mature");
-		chart.addAxisText("popular");
-		chart.addAxisText("hot");
+		chart.addAxisText("commit");
+		chart.addAxisText("star");
+		chart.addAxisText("pullRequest");
 		chart.addAxisText("size");
-		chart.addAxisText("famous");
+		chart.addAxisText("issue");
 		//设置不可拖动
 		chart.setEnableXTranslate(false);
 		chart.setEnableYTranslate(false);
