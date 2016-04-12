@@ -49,9 +49,9 @@ public class ProjectPage extends JPanel implements Refreshable {
 	private List<ProjectInfo> currentProjects;
 	
 	/**
-	 *当前页面所显示的项目信息 面板
+	 *当前页面所显示的项目信息面板
 	 */
-	private SwitchPanel currentPanel;
+	private SwitchPanel showingPanel;
 	
 	/**
 	 *页面切换器 
@@ -59,9 +59,9 @@ public class ProjectPage extends JPanel implements Refreshable {
 	private PanelSwitcher switcher;
 	
 	/**
-	 *展现项目信息的面板 
+	 *项目信息面板的父容器
 	 */
-	private JPanel infoPanel;
+	private JPanel infoParent;
 	
 	/**
 	 *一行显示的信息卡片数量 
@@ -79,8 +79,8 @@ public class ProjectPage extends JPanel implements Refreshable {
 		//分为三个部分，搜索面板：排序面板：信息面板 = 1 : 1 : 4
 		
 		//信息面板
-		this.infoPanel = new JPanel(new BorderLayout());	//项目信息面板
-		infoPanel.setOpaque(false);
+		this.infoParent = new JPanel(new BorderLayout());
+		infoParent.setOpaque(false);
 		try {
 			currentProjects = this.repository.getAllRepositorys();
 		} catch (Exception e) {
@@ -88,12 +88,11 @@ public class ProjectPage extends JPanel implements Refreshable {
 			JOptionPane.showMessageDialog(null, e.getMessage(),
 					Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 		}
-		SwitchPanel projectPanel = InfoManager.getProjectInfoPanel(
-				currentProjects, infoPanel, switcher, lineCard,
+		showingPanel = InfoManager.getProjectInfoPanel(
+				currentProjects, infoParent, switcher, lineCard,
 				this, CARD_ROW, repository, user,
 				Img.PROJECT_LIST_TIP, Img.LARGE_NULL_TIP);
-		currentPanel = projectPanel;
-		infoPanel.add(currentPanel, BorderLayout.CENTER);
+		infoParent.add(showingPanel, BorderLayout.CENTER);
 		
 		//搜索面板
 		FlowLayout searchFL = new FlowLayout();
@@ -171,7 +170,7 @@ public class ProjectPage extends JPanel implements Refreshable {
 		Box container = Box.createVerticalBox();
 		container.add(switcherPanel);
 		container.add(sort);
-		container.add(infoPanel);
+		container.add(infoParent);
 		container.setOpaque(false);
 		this.setLayout(new BorderLayout());
 		this.add(container);
@@ -195,9 +194,10 @@ public class ProjectPage extends JPanel implements Refreshable {
 						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 			}
 			
+			//如果用户没有输入搜索关键字，则从当前项目信息面板跳转到当前项目信息面板
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
 				this.jump(currentProjects, PanelSwitcher.RIGHT);
-			}else {
+			}else {//否则，跳转到查询结果信息面板
 				this.jump(result, PanelSwitcher.LEFT);
 			}
 		};
@@ -229,18 +229,16 @@ public class ProjectPage extends JPanel implements Refreshable {
 	 */
 	private void jump(List<ProjectInfo> projects,
 			int direction) {
-//		JPanel from = currentPanel.getCurrentPanel();
-		SwitchPanel from = currentPanel;//TODO TEST
-		from.removeAll();
-		this.remove(from);
+		SwitchPanel from = this.showingPanel.getCurrentPanel();
+		//释放面板占用的资源
 		from.clearPanelList();
 		
 		SwitchPanel to = InfoManager.getProjectInfoPanel(
-				projects, infoPanel, switcher,
+				projects, infoParent, switcher,
 				lineCard, this, CARD_ROW, repository, user,
 				Img.PROJECT_LIST_TIP, Img.LARGE_NULL_TIP);
-		switcher.jump(infoPanel, from, to, direction);
-		currentPanel = to;
+		switcher.jump(infoParent, from, to, direction);
+		showingPanel = to;
 		currentProjects = projects;
 	}
 	
@@ -303,8 +301,7 @@ public class ProjectPage extends JPanel implements Refreshable {
 
 	@Override
 	public void refresh() {
-//		SwitchPanel current = this.currentPanel.getCurrentPanel();//TODO TEST
-		SwitchPanel current = this.currentPanel;
+		SwitchPanel current = this.showingPanel.getCurrentPanel();
 		try {
 			if(currentProjects == null || currentProjects.isEmpty()) {
 				currentProjects = repository.getAllRepositorys();
@@ -312,10 +309,11 @@ public class ProjectPage extends JPanel implements Refreshable {
 		} catch (Exception e) {
 			currentProjects = new ArrayList<>();
 		}
+		current.clearPanelList();
 		SwitchPanel to = InfoManager.getProjectInfoPanel(currentProjects,
-				infoPanel, switcher, lineCard, this, CARD_ROW,
+				infoParent, switcher, lineCard, this, CARD_ROW,
 				repository, user, Img.PROJECT_LIST_TIP, Img.LARGE_NULL_TIP);
-		switcher.jump(infoPanel, current, to, PanelSwitcher.LEFT);
-		currentPanel = to;
+		switcher.jump(infoParent, current, to, PanelSwitcher.LEFT);
+		showingPanel = to;
 	}
 }

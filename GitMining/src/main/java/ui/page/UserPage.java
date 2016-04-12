@@ -185,10 +185,7 @@ public class UserPage extends JPanel implements Refreshable {
 	 *@param image 切换面板的
 	 */
 	private void jump(List<UserInfo> users, int direction) {
-//		JPanel from = currentPanel.getCurrentPanel();//TODO TEST
-		SwitchPanel from = currentPanel;
-		from.removeAll();
-		this.remove(from);
+		SwitchPanel from = currentPanel.getCurrentPanel();
 		from.clearPanelList();
 		SwitchPanel to = InfoManager.getUserInfoPanel(
 				users, infoPanel, switcher, lineCard,
@@ -200,8 +197,7 @@ public class UserPage extends JPanel implements Refreshable {
 
 	@Override
 	public void refresh() {
-//		SwitchPanel current = this.currentPanel.getCurrentPanel();//TODO TEST
-		SwitchPanel current = this.currentPanel;
+		SwitchPanel current = this.currentPanel.getCurrentPanel();
 		try {
 			if(allUsers == null || allUsers.isEmpty()) {
 				allUsers = this.user.getAllUsers();
@@ -209,6 +205,8 @@ public class UserPage extends JPanel implements Refreshable {
 		} catch (Exception e) {
 			allUsers = new ArrayList<>();
 		}
+		
+		current.clearPanelList();
 		SwitchPanel to = InfoManager.getUserInfoPanel(allUsers, infoPanel,
 				switcher, lineCard, CARD_ROW, this, repository, user,
 				Img.USER_LIST_TIP, Img.LARGE_NULL_TIP);

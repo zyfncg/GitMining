@@ -379,10 +379,9 @@ public class SwitchPanel extends JPanel {
 		return panel;
 	}
 	
-	//TODO TEST
-//	public SwitchPanel getCurrentPanel() {
-//		return this.current;
-//	}
+	public SwitchPanel getCurrentPanel() {
+		return this.current;
+	}
 	
 	/**
 	 *获得整个SwitchPanel的宽度和高度 
