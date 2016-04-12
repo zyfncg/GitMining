@@ -113,7 +113,8 @@ public class UserInfoPage extends JPanel implements Refreshable {
 
 	@Override
 	public void refresh() {
-		SwitchPanel from = this.infoPanel.getCurrentPanel();
+//		SwitchPanel from = this.infoPanel.getCurrentPanel();//TODO TEST
+		SwitchPanel from = this.infoPanel;
 		SwitchPanel to = InfoManager.getProjectInfoPanel(projects, infoContainer,
 				switcher, lineCard, this, CREATE_ROW,
 				this.repoService, this.userService,

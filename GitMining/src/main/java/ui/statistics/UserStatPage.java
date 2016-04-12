@@ -165,8 +165,8 @@ public class UserStatPage extends JPanel implements Refreshable {
 		double[][] data1 = new double[2][];
 		data1[0] = SMALL_CREATE_HISTOGRAM.getAllNum();
 		data1[1] = SMALL_INVOLVE_HISTOGRAM.getAllNum();
-		int min1 = SMALL_INVOLVE_HISTOGRAM.getMinNum();
-		int max1 = SMALL_INVOLVE_HISTOGRAM.getMaxNum();
+		int min1 = SMALL_CREATE_HISTOGRAM.getMinNum();
+		int max1 = SMALL_CREATE_HISTOGRAM.getMaxNum();
 		ScatterChart smallNum = new ScatterChart(
 				new ScatterLabel(Strings.User.SMALL_CREATE_INVOLVE_RELATION,
 						Strings.User.CREATE_PROJECTS, Strings.User.INVOLVE_PROJECTS),
@@ -175,8 +175,8 @@ public class UserStatPage extends JPanel implements Refreshable {
 		double[][] data2 = new double[2][];
 		data2[0] = BIG_CREATE_HISTOGRAM.getAllNum();
 		data2[1] = BIG_INVOLVE_HISTOGRAM.getAllNum();
-		int min2 = BIG_INVOLVE_HISTOGRAM.getMinNum();
-		int max2 = BIG_INVOLVE_HISTOGRAM.getMaxNum();
+		int min2 = BIG_CREATE_HISTOGRAM.getMinNum();
+		int max2 = BIG_CREATE_HISTOGRAM.getMaxNum();
 		ScatterChart bigNum = new ScatterChart(
 				new ScatterLabel(Strings.User.BIG_CREATE_INVOLVE_RELATION,
 						Strings.User.CREATE_PROJECTS, Strings.User.INVOLVE_PROJECTS),

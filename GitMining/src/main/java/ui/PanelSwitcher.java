@@ -174,8 +174,8 @@ public class PanelSwitcher {
 	private int startY; //面板滑动之前相对于窗体的y坐标
 	private int startW; //面板滑动之前的宽度
 	private int startH; //面板滑动之前的高度
-	private int frequency = 15; //面板位置变化的频率
-	private int distance = 36;  //面板每次移动的距离
+	private int frequency = 10; //面板位置变化的频率
+	private int distance = 40;  //面板每次移动的距离
 	private int left; //向左一次放大的距离
 	private int right;//向右一次放大的距离
 	private int up;   //向上一次放大的距离
