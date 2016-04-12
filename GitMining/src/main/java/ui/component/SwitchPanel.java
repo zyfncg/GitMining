@@ -224,6 +224,7 @@ public class SwitchPanel extends JPanel {
 	private void initProjectList(List<ProjectInfo> projects,
 			JPanel page, PanelSwitcher switcher, int row, int column,
 			RepositoryBLService service, UserBLService user){
+		this.panelList.clear();//TODO TEST
 		int size = projects.size();
 		int num = row * column;
 		int i;
@@ -260,6 +261,7 @@ public class SwitchPanel extends JPanel {
 	private void initUserList(List<UserInfo> users,
 			JPanel page, PanelSwitcher switcher, int row, int column,
 			RepositoryBLService repo, UserBLService u){
+		this.panelList.clear(); //TODO TEST
 		int size = users.size();
 		int num = row * column;
 		int i;

@@ -248,6 +248,7 @@ public class ProjectPage extends JPanel implements Refreshable {
 		switcher.jump(infoPanel, from, to, direction);
 		currentPanel = to;
 		currentProjects = projects;
+		System.gc();
 	}
 	
 	/**

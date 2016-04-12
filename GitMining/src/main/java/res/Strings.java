@@ -272,6 +272,16 @@ public class Strings {
 	}
 	
 	/**
+	 *dot 标签 
+	 */
+	public static final String DOT_LABEL = "dot";
+	
+	/**
+	 *regression 标签 
+	 */
+	public static final String REGRESSION_LABEL = "regression";
+	
+	/**
 	 *发生错误时，提示框的标题字符串
 	 */
 	public static final String ERROR_DIALOG_TITLE = "Error";

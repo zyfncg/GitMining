@@ -20,8 +20,6 @@ import ui.chart.CreateTimeofRepository;
 import ui.chart.Histogram;
 import ui.chart.HistogramLabel;
 import ui.chart.LanguageChart;
-import ui.chart.ScatterChart;
-import ui.chart.ScatterLabel;
 import ui.chart.StarAndForkLine;
 import ui.component.BackPanel;
 import ui.component.ChartScrollPane;

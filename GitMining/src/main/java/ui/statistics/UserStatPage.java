@@ -229,16 +229,16 @@ public class UserStatPage extends JPanel implements Refreshable {
 		box.add(new ChartPanel(smallCreate,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
+		//用户创建项目数目分布统计面板（大数值部分）
+		box.add(new ChartPanel(bigCreate,
+				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+		box.add(new BoxStrut());
 		//用户创建项目与参与项目之间关系的分析（小数值部分）
 		box.add(new ChartPanel(smallNum,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
 		//用户创建项目与参与项目之间关系的分析（大数值部分）
 		box.add(new ChartPanel(bigNum,
-				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
-		box.add(new BoxStrut());
-		//用户创建项目数目分布统计面板（大数值部分）
-		box.add(new ChartPanel(bigCreate,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
 		//公司创建项目个数统计面板
