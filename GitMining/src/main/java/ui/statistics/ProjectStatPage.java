@@ -153,14 +153,26 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		//fork直方图统计（小数值部分）
 		Histogram bigFork = new Histogram(BIG_FORK_HISTOGRAM, BIG_FORK_LABEL,
 				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		//star和fork的散点图
+		//star和fork的散点图（小数值部分）
 //		double[][] data = new double[2][];
 //		data[0] = SMALL_STAR_HISTOGRAM.getAllNum();
-//		data[1] = FORK_HISTOGRAM.getAllNum();
-//		ScatterChart scatter = new ScatterChart(new ScatterLabel(Strings.Project.STAR_FORK_SCATTER,
+//		data[1] = SMALL_FORK_HISTOGRAM.getAllNum();
+//		int min1 = SMALL_FORK_HISTOGRAM.getMinNum();
+//		int max1 = SMALL_FORK_HISTOGRAM.getMaxNum();
+//		ScatterChart smallScatter = new ScatterChart(new ScatterLabel(Strings.Project.SMALL_STAR_FORK_SCATTER,
 //				Strings.Project.STAR_LABEL, Strings.Project.FORK_LABEL),
-//				data, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		
+//				data, min1, max1, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+
+		//star和fork的散点图（小数值部分）
+//		double[][] data1 = new double[2][];
+//		data1[0] = BIG_STAR_HISTOGRAM.getAllNum();
+//		data1[1] = BIG_FORK_HISTOGRAM.getAllNum();
+//		int min2 = BIG_FORK_HISTOGRAM.getMinNum();
+//		int max2 = BIG_FORK_HISTOGRAM.getMaxNum();
+//		ScatterChart bigScatter = new ScatterChart(new ScatterLabel(Strings.Project.BIG_STAR_FORK_SCATTER,
+//				Strings.Project.STAR_LABEL, Strings.Project.FORK_LABEL),
+//				data1, min2, max2, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+				
 		
 		//组装统计面板
 		Box box = Box.createVerticalBox();
@@ -204,10 +216,14 @@ public class ProjectStatPage extends JPanel implements Refreshable{
 		box.add(new ChartPanel(bigFork,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
-		//star和fork的关系分析面板
-//		box.add(new ChartPanel(scatter,
+		//star和fork的关系分析面板（小数值部分）
+//		box.add(new ChartPanel(smallScatter,
 //				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
-		
+//		box.add(new BoxStrut());
+//		//star和fork的关系分析面板（小数值部分）
+//		box.add(new ChartPanel(bigScatter,
+//				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+				
 		this.scrollPane = new ChartScrollPane(box);
 		this.setLayout(new BorderLayout());
 		this.setBackground(Colors.STAT_BG);
