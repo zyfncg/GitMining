@@ -23,11 +23,13 @@ public class ScatterStatisticRep {
 		//二维double值，先Star后Fork
 		double[][] StatisticNum = new double[2][projectInfoList.size()];
 		for(int i=0;i<projectInfoList.size();i++){
-			StatisticNum[0][i] = projectInfoList.get(i).getStars();
+			StatisticNum[0][i] = (double)projectInfoList.get(i).getStars();
+			StatisticNum[1][i] = (double)projectInfoList.get(i).getForks();
 		}
-		for(int i=0;i<projectInfoList.size();i++){
-			StatisticNum[1][i] = projectInfoList.get(i).getForks();
-		}
+//		System.out.println(StatisticNum[0].length);
+//		System.out.println(StatisticNum[1].length);
+//		for(int i=0;i<projectInfoList.size();i++){
+//		}
 		
 		//
 		int StarAll = 0;

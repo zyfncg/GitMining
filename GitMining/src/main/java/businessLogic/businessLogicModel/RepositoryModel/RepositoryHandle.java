@@ -28,6 +28,7 @@ public class RepositoryHandle {
 		List<ProjectInfo> allProjects = projectData.getAllProjects();
 		//junit Test
 //		List<ProjectInfo> allProjects = repositoryStub.getAllProjects();
+		
 		allprojects.clear();
 		allprojects.addAll(allProjects);
 		return allProjects;

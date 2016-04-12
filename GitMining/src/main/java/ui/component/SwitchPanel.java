@@ -58,7 +58,6 @@ public class SwitchPanel extends JPanel {
 	 */
 	private SwitchPanel current;
 	
-	
 	/**
 	 *获得一个自己完成跳转任务的项目信息面板
 	 *@param projects 所有要显示的项目信息
@@ -129,6 +128,10 @@ public class SwitchPanel extends JPanel {
 						height, switcher, parent, image));
 		
 		return this.getFirstPage(next, height, image);
+	}
+	
+	public void clearPanelList() {
+		this.panelList.clear();
 	}
 	
 	/**
@@ -376,9 +379,10 @@ public class SwitchPanel extends JPanel {
 		return panel;
 	}
 	
-	public SwitchPanel getCurrentPanel() {
-		return this.current;
-	}
+	//TODO TEST
+//	public SwitchPanel getCurrentPanel() {
+//		return this.current;
+//	}
 	
 	/**
 	 *获得整个SwitchPanel的宽度和高度 

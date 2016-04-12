@@ -20,6 +20,7 @@ import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
 
 import res.Colors;
+import res.Strings;
 
 /**
  *散点图面板 
@@ -31,7 +32,7 @@ public class ScatterChart extends JPanel {
 			int min, int max, int width, int height) {
 		//创建数据集
 		DefaultXYDataset set = new DefaultXYDataset();
-		set.addSeries("", data);
+		set.addSeries(Strings.DOT_LABEL, data);
 		//创建散点图
 		JFreeChart chart = ChartFactory.createScatterPlot(label.getTitle(),
 				label.getxLabel(), label.getyLabel(),
@@ -51,13 +52,13 @@ public class ScatterChart extends JPanel {
 		double[] coefficients = Regression.getPowerRegression(set, 0);   
         Function2D curve = new PowerFunction2D(coefficients[0], coefficients[1]);   
         XYDataset regressionData = DatasetUtilities.sampleFunction2D(curve,   
-                min, max, 100, "Fitted Regression Line");   
+                min, max, 300, Strings.REGRESSION_LABEL);   
            
-        XYLineAndShapeRenderer renderer2 = new XYLineAndShapeRenderer(true,    
+        XYLineAndShapeRenderer line = new XYLineAndShapeRenderer(true,    
                 false);   
-        renderer2.setSeriesPaint(0, Color.blue);   
+        line.setSeriesPaint(0, Color.blue);   
         plot.setDataset(1, regressionData);   
-        plot.setRenderer(1, renderer2);  
+        plot.setRenderer(1, line);  
 //		XYLineAndShapeRenderer line = new XYLineAndShapeRenderer(false, true);
 //		NumberAxis xAxis = new NumberAxis(label.getxLabel());   
 //        xAxis.setAutoRangeIncludesZero(false);   

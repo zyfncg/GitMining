@@ -81,7 +81,7 @@ public class HistogramStatisticStar implements HistogramStatisticRep {
 		List<ProjectInfo> projectInfoList = this.getSortedProject();
 
 		List<ProjectInfo> bigRepHis = new ArrayList<ProjectInfo>();
-		for (int i = (int) (projectInfoList.size() * 0.9); i < (projectInfoList.size() - 1); i++) {
+		for (int i = (int) (projectInfoList.size() * 0.9); i < (projectInfoList.size()); i++) {
 			bigRepHis.add(projectInfoList.get(i));
 		}
 

@@ -44,11 +44,6 @@ public class ProjectPage extends JPanel implements Refreshable {
 	private UserBLService user = new UserController();
 
 	/**
-	 *所有的项目信息 
-	 */
-	private List<ProjectInfo> allProjects;
-	
-	/**
 	 *当前显示的项目信息 
 	 */
 	private List<ProjectInfo> currentProjects;
@@ -86,17 +81,15 @@ public class ProjectPage extends JPanel implements Refreshable {
 		//信息面板
 		this.infoPanel = new JPanel(new BorderLayout());	//项目信息面板
 		infoPanel.setOpaque(false);
-		allProjects = null;
 		try {
-			allProjects = this.repository.getAllRepositorys();
+			currentProjects = this.repository.getAllRepositorys();
 		} catch (Exception e) {
-			allProjects = new ArrayList<>();
+			currentProjects = new ArrayList<>();
 			JOptionPane.showMessageDialog(null, e.getMessage(),
 					Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 		}
-		currentProjects = allProjects;
 		SwitchPanel projectPanel = InfoManager.getProjectInfoPanel(
-				allProjects, infoPanel, switcher, lineCard,
+				currentProjects, infoPanel, switcher, lineCard,
 				this, CARD_ROW, repository, user,
 				Img.PROJECT_LIST_TIP, Img.LARGE_NULL_TIP);
 		currentPanel = projectPanel;
@@ -128,12 +121,7 @@ public class ProjectPage extends JPanel implements Refreshable {
 		//将搜索框、搜索按钮和统计按钮添加到搜索面板
 		center.add(search);
 		center.add(statistics);
-//		ClickHandler left =
-//				() -> switcher.jump(Page.PROJECT, Page.START, PanelSwitcher.RIGHT);
-//		ClickHandler right =
-//				() -> switcher.jump(Page.PROJECT, Page.USER, PanelSwitcher.LEFT);
 		SwitchPanel switcherPanel = SwitchPanel.noSwitch(center, null);
-//		SwitchPanel switcherPanel = SwitchPanel.bothSides(left, right, search);
 		
 		//排序面板
 		int sortH = centerH;
@@ -201,13 +189,14 @@ public class ProjectPage extends JPanel implements Refreshable {
 			List<ProjectInfo> result = null;
 			try {
 				result = repository.searchRepositorys(search.getText());
-			} catch (Exception e1) {
+			} catch (Exception e) {
 				result = new ArrayList<>();
-				JOptionPane.showMessageDialog(null, e1.getMessage(),
+				JOptionPane.showMessageDialog(null, e.getMessage(),
 						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 			}
+			
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
-				this.jump(allProjects, PanelSwitcher.RIGHT);
+				this.jump(currentProjects, PanelSwitcher.RIGHT);
 			}else {
 				this.jump(result, PanelSwitcher.LEFT);
 			}
@@ -240,7 +229,12 @@ public class ProjectPage extends JPanel implements Refreshable {
 	 */
 	private void jump(List<ProjectInfo> projects,
 			int direction) {
-		JPanel from = currentPanel.getCurrentPanel();
+//		JPanel from = currentPanel.getCurrentPanel();
+		SwitchPanel from = currentPanel;//TODO TEST
+		from.removeAll();
+		this.remove(from);
+		from.clearPanelList();
+		
 		SwitchPanel to = InfoManager.getProjectInfoPanel(
 				projects, infoPanel, switcher,
 				lineCard, this, CARD_ROW, repository, user,
@@ -309,15 +303,16 @@ public class ProjectPage extends JPanel implements Refreshable {
 
 	@Override
 	public void refresh() {
-		SwitchPanel current = this.currentPanel.getCurrentPanel();
+//		SwitchPanel current = this.currentPanel.getCurrentPanel();//TODO TEST
+		SwitchPanel current = this.currentPanel;
 		try {
-			if(allProjects == null || allProjects.isEmpty()) {
-				allProjects = repository.getAllRepositorys();
+			if(currentProjects == null || currentProjects.isEmpty()) {
+				currentProjects = repository.getAllRepositorys();
 			}
 		} catch (Exception e) {
-			allProjects = new ArrayList<>();
+			currentProjects = new ArrayList<>();
 		}
-		SwitchPanel to = InfoManager.getProjectInfoPanel(allProjects,
+		SwitchPanel to = InfoManager.getProjectInfoPanel(currentProjects,
 				infoPanel, switcher, lineCard, this, CARD_ROW,
 				repository, user, Img.PROJECT_LIST_TIP, Img.LARGE_NULL_TIP);
 		switcher.jump(infoPanel, current, to, PanelSwitcher.LEFT);

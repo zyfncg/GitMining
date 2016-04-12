@@ -37,7 +37,7 @@ public class ScatterStatisticRepSmall {
 		});
 
 		for (int i = 0; i < BaiFenBi; i++) {
-			StatisticNum[0][i] = projectInfoList.get(i).getStars();
+			StatisticNum[0][i] = (double)projectInfoList.get(i).getStars();
 		}
 
 		// 添加Fork值
@@ -50,8 +50,11 @@ public class ScatterStatisticRepSmall {
 		// });
 
 		for (int i = 0; i < BaiFenBi; i++) {
-			StatisticNum[1][i] = projectInfoList.get(i).getForks();
+			StatisticNum[1][i] = (double)projectInfoList.get(i).getForks();
 		}
+		
+//		System.out.println(StatisticNum[0].length);
+//		System.out.println(StatisticNum[1].length);
 
 		// 统计
 		int StarAll = 0;

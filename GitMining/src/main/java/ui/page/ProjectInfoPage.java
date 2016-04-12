@@ -283,14 +283,16 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 
 	@Override
 	public void refresh() {
-		SwitchPanel from1 = collab.getCurrentPanel();
+//		SwitchPanel from1 = collab.getCurrentPanel();//TODO TEST
+		SwitchPanel from1 = collab;
 		SwitchPanel to1 = InfoManager.getUserInfoPanel(collaborators, collabContainer, switcher,
 				lineCard, CONTRIBUTOR_ROW, this, repo, user,
 				Img.COLLABOROTOR_TIP, Img.SAMLL_NULL_TIP);
 		switcher.jump(collabContainer, from1, to1, PanelSwitcher.LEFT);
 		collab = to1;
 		
-		SwitchPanel from2 = contri.getCurrentPanel();
+//		SwitchPanel from2 = contri.getCurrentPanel();//TODO TEST
+		SwitchPanel from2 = contri;
 		SwitchPanel to2 = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
 				lineCard, CONTRIBUTOR_ROW, this, repo, user,
 				Img.COLLABOROTOR_TIP, Img.SAMLL_NULL_TIP);

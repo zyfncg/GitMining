@@ -174,8 +174,8 @@ public class PanelSwitcher {
 	private int startY; //面板滑动之前相对于窗体的y坐标
 	private int startW; //面板滑动之前的宽度
 	private int startH; //面板滑动之前的高度
-	private int frequency = 15; //面板位置变化的频率
-	private int distance = 36;  //面板每次移动的距离
+	private int frequency = 10; //面板位置变化的频率
+	private int distance = 40;  //面板每次移动的距离
 	private int left; //向左一次放大的距离
 	private int right;//向右一次放大的距离
 	private int up;   //向上一次放大的距离
@@ -186,7 +186,6 @@ public class PanelSwitcher {
 	private void initSlideMap() {
 		//向左切换
 		this.slideMap.put(LEFT, (from, to) -> {
-//			startX = from.getX() + from.getWidth();
 			startY = from.getY();
 			startX = from.getX() + MainFrame.PAGE_WIDTH;
 			int endX = from.getX();
@@ -206,9 +205,7 @@ public class PanelSwitcher {
 		//向右切换
 		this.slideMap.put(RIGHT, (from , to) -> {
 			startW = 0;
-//			startH = from.getHeight();
 			startH = MainFrame.PAGE_HEIGHT;
-//			int endW = from.getWidth();
 			int endW = MainFrame.PAGE_WIDTH;
 			to.setLocation(from.getX(), from.getY());
 			to.setSize(startW, startH);
@@ -262,7 +259,6 @@ public class PanelSwitcher {
 				}
 				//如果都已经完成
 				if(leftDone && rightDone && upDone && downDone) {
-//					from.setVisible(false);
 					to.setBounds(endX, endY, endW, endH);
 					((Timer)e.getSource()).stop();
 					System.out.println("done");
