@@ -25,7 +25,7 @@ public class Radar_chart extends JPanel{
 		TDataBox box = new TDataBox();
 		RadarChart chart = new RadarChart(box);
 		DecimalFormat df = new DecimalFormat("0.00");
-		chart.setTitle("Score of Repository(total:" + df.format(statisticDetail.getTotalStatistic() * 10 )+ ")");
+		chart.setTitle("Score of Repository(total:" + (df.format(statisticDetail.getTotalStatistic() * 10))+ ")");
 		
 		//添加数据
 		addElement(box,statisticDetail,false,new Color(0, 100, 255, 100),TWaverConst.STROKE_SOLID_1);
