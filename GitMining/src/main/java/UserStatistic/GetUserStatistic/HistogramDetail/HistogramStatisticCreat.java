@@ -62,7 +62,7 @@ public class HistogramStatisticCreat implements HistogramStatisticUser {
 		int CreatMin = smallUsrHis.get(0).getProjectCreate();
 
 		// 组数
-		int GroupNum = 1 + (int) ((Math.log10(smallUsrHis.size())) / (Math.log10(2)));
+		int GroupNum = (1 + (int) ((Math.log10(smallUsrHis.size())) / (Math.log10(2))))*2;
 
 		// 全部Creat Repository信息
 		double[] allCreatInfo = new double[smallUsrHis.size()];
@@ -90,7 +90,7 @@ public class HistogramStatisticCreat implements HistogramStatisticUser {
 		int CreatMin = bigUsrHis.get(0).getProjectCreate();
 
 		// 组数
-		int GroupNum = 1 + (int) ((Math.log10(bigUsrHis.size())) / (Math.log10(2)));
+		int GroupNum = (1 + (int) ((Math.log10(bigUsrHis.size())) / (Math.log10(2))))*2;
 
 		// 全部Creat Repository信息
 		double[] allCreatInfo = new double[bigUsrHis.size()];
