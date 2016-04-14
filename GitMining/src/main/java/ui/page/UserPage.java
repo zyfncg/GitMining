@@ -163,11 +163,12 @@ public class UserPage extends JPanel implements Refreshable {
 			List<UserInfo> users = null;
 			try {
 				users = user.searchUsers(search.getText());
-			} catch (Exception e1) {
+			} catch (Exception e) {
 				users = new ArrayList<>();
-				JOptionPane.showMessageDialog(null, e1.getMessage(),
+				JOptionPane.showMessageDialog(null, e.getMessage(),
 						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 			}
+			
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
 				this.jump(allUsers, PanelSwitcher.RIGHT);
 			}else {

@@ -49,6 +49,11 @@ public class ProjectPage extends JPanel implements Refreshable {
 	private List<ProjectInfo> currentProjects;
 	
 	/**
+	 *所有项目信息 
+	 */
+	private List<ProjectInfo> allProjects;
+	
+	/**
 	 *当前页面所显示的项目信息面板
 	 */
 	private SwitchPanel showingPanel;
@@ -88,6 +93,7 @@ public class ProjectPage extends JPanel implements Refreshable {
 			JOptionPane.showMessageDialog(null, e.getMessage(),
 					Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
 		}
+		allProjects = currentProjects;
 		showingPanel = InfoManager.getProjectInfoPanel(
 				currentProjects, infoParent, switcher, lineCard,
 				this, CARD_ROW, repository, user,
@@ -196,7 +202,7 @@ public class ProjectPage extends JPanel implements Refreshable {
 			
 			//如果用户没有输入搜索关键字，则从当前项目信息面板跳转到当前项目信息面板
 			if(search.getText().isEmpty() || search.getText().equals(tip)) {
-				this.jump(currentProjects, PanelSwitcher.RIGHT);
+				this.jump(allProjects, PanelSwitcher.RIGHT);
 			}else {//否则，跳转到查询结果信息面板
 				this.jump(result, PanelSwitcher.LEFT);
 			}
