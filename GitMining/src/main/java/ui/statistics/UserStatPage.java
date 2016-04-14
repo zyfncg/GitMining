@@ -73,16 +73,28 @@ public class UserStatPage extends JPanel implements Refreshable {
 			DATA_FACTORY.GetHistogramJoin().getBigUsrHistogramInfo();
 	
 	/**
+	 *用户参与项目数目直方图统计数据（全部数据） 
+	 */
+	private static final HistogramInfo INVOLVE_HISTOGRAM =
+			DATA_FACTORY.GetHistogramJoin().getUsrHistogramInfo();
+	
+	/**
 	 *用户参与项目数目直方图标签 （小数值部分）
 	 */
 	private static final HistogramLabel SMALL_INVOLVE_LABEL = new HistogramLabel(
 			Strings.User.SMALL_INVOLVE_HISTOGRAM_TITLE, Strings.User.INVOLVE_PROJECTS);
 	
+//	/**
+//	 *用户参与项目数目直方图标签 （大数值部分）
+//	 */
+//	private static final HistogramLabel BIG_INVOLVE_LABEL = new HistogramLabel(
+//			Strings.User.BIG_INVOLVE_HISTOGRAM_TITLE, Strings.User.INVOLVE_PROJECTS);
+	
 	/**
-	 *用户参与项目数目直方图标签 （大数值部分）
+	 *用户参与项目数目直方图标签（全部数据） 
 	 */
-	private static final HistogramLabel BIG_INVOLVE_LABEL = new HistogramLabel(
-			Strings.User.BIG_INVOLVE_HISTOGRAM_TITLE, Strings.User.INVOLVE_PROJECTS);
+	private static final HistogramLabel INVOLVE_LABEL = new HistogramLabel(
+			Strings.User.INVOLVE_HISTOGRAM_TITLE, Strings.User.INVOLVE_PROJECTS);
 	
 	/**
 	 *用户创建项目数目折线图统计数据 
@@ -103,16 +115,28 @@ public class UserStatPage extends JPanel implements Refreshable {
 			DATA_FACTORY.GetHistogramCreat().getBigUsrHistogramInfo();
 	
 	/**
+	 *用户创建项目数目直方图统计数据（全部数据） 
+	 */
+	private static final HistogramInfo CREATE_HISTOGRAM =
+			DATA_FACTORY.GetHistogramCreat().getUsrHistogramInfo();
+	
+	/**
 	 *用户创建项目数目直方图标签 （小数值部分）
 	 */
 	private static final HistogramLabel SMALL_CREATE_LABEL = new HistogramLabel(
 			Strings.User.SMALL_CREATE_HISTOGRAM_TITLE, Strings.User.CREATE_PROJECTS);
 	
+//	/**
+//	 *用户创建项目数目直方图标签 （大数值部分）
+//	 */
+//	private static final HistogramLabel BIG_CREATE_LABEL = new HistogramLabel(
+//			Strings.User.BIG_CREATE_HISTOGRAM_TITLE, Strings.User.CREATE_PROJECTS);
+	
 	/**
-	 *用户创建项目数目直方图标签 （大数值部分）
+	 *用户创建项目数目直方图标签（全部数据） 
 	 */
-	private static final HistogramLabel BIG_CREATE_LABEL = new HistogramLabel(
-			Strings.User.BIG_CREATE_HISTOGRAM_TITLE, Strings.User.CREATE_PROJECTS);
+	private static final HistogramLabel CREATE_LABEL = new HistogramLabel(
+			Strings.User.CREATE_HISTOGRAM_TITLE, Strings.User.CREATE_PROJECTS);
 	
 	/**
 	 *用户所属公司统计数据 
@@ -142,12 +166,15 @@ public class UserStatPage extends JPanel implements Refreshable {
 		//用户参加项目和创建数目统计面板
 		NumbersOfRepositoryByUsers involve_create = new NumbersOfRepositoryByUsers(
 				CREATE_LINE, INVOLVE_LINE, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+		//用户参与项目数目分布统计面板（全部数据）
+		Histogram involve = new Histogram(INVOLVE_HISTOGRAM, INVOLVE_LABEL,
+				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户参与项目数目分布统计面板（小数值部分）
 		Histogram smallInvolve = new Histogram(SMALL_INVOLVE_HISTOGRAM,
 				SMALL_INVOLVE_LABEL, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		//用户参与项目数目分布统计面板（小数值部分）
-		Histogram bigInvolve = new Histogram(BIG_INVOLVE_HISTOGRAM,
-				BIG_INVOLVE_LABEL, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+//		//用户参与项目数目分布统计面板（大数值部分）
+//		Histogram bigInvolve = new Histogram(BIG_INVOLVE_HISTOGRAM,
+//				BIG_INVOLVE_LABEL, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 //		//用户创建项目数目变化趋势统计面板标题
 //		TitlePanel createTitle = new TitlePanel(
 //				Strings.User.CREATE_LINE_TITLE,
@@ -155,12 +182,15 @@ public class UserStatPage extends JPanel implements Refreshable {
 //		//用户创建项目数目变化趋势统计面板
 //		NumbersofRepositoryCreated create = new NumbersofRepositoryCreated(
 //				CREATE_LINE, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+		//用户创建项目数目分布统计面板（全部数据）
+		Histogram create = new Histogram(CREATE_HISTOGRAM, CREATE_LABEL,
+				StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户创建项目数目分布统计面板（小数值部分）
 		Histogram smallCreate = new Histogram(SMALL_CREATE_HISTOGRAM,
 				SMALL_CREATE_LABEL, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
-		//用户创建项目数目分布统计面板（大数值部分）
-		Histogram bigCreate = new Histogram(BIG_CREATE_HISTOGRAM,
-				BIG_CREATE_LABEL, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
+//		//用户创建项目数目分布统计面板（大数值部分）
+//		Histogram bigCreate = new Histogram(BIG_CREATE_HISTOGRAM,
+//				BIG_CREATE_LABEL, StatConst.CHART_WIDTH, StatConst.CHART_HEIGHT);
 		//用户创建数目与参与数目之间关系分析（小数值部分）
 		double[][] data1 = new double[2][];
 		data1[0] = SMALL_CREATE_HISTOGRAM.getAllNum();
@@ -212,27 +242,35 @@ public class UserStatPage extends JPanel implements Refreshable {
 		box.add(new ChartPanel(involve_create,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
+		//用户参与项目分布统计面板（全部数据）
+		box.add(new ChartPanel(involve,
+				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+		box.add(new BoxStrut());
 		//用户参与项目数目分布统计面板（小数值部分）
 		box.add(new ChartPanel(smallInvolve,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
-		//用户参与项目数目分布统计面板（大数值部分）
-		box.add(new ChartPanel(bigInvolve,
-				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
-		box.add(new BoxStrut());
+//		//用户参与项目数目分布统计面板（大数值部分）
+//		box.add(new ChartPanel(bigInvolve,
+//				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+//		box.add(new BoxStrut());
 //		//用户创建项目数目变化趋势统计面板
 //		box.add(createTitle);
 //		box.add(new ChartPanel(create,
 //				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 //		box.add(new BoxStrut());
+		//用户创建项目数目分布统计面板（全部数据）
+		box.add(new ChartPanel(create,
+				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+		box.add(new BoxStrut());
 		//用户创建项目数目分布统计面板（小数值部分）
 		box.add(new ChartPanel(smallCreate,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
 		box.add(new BoxStrut());
-		//用户创建项目数目分布统计面板（大数值部分）
-		box.add(new ChartPanel(bigCreate,
-				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
-		box.add(new BoxStrut());
+//		//用户创建项目数目分布统计面板（大数值部分）
+//		box.add(new ChartPanel(bigCreate,
+//				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));
+//		box.add(new BoxStrut());
 		//用户创建项目与参与项目之间关系的分析（小数值部分）
 		box.add(new ChartPanel(smallNum,
 				StatConst.PANEL_WIDTH, StatConst.PANEL_HEIGHT));

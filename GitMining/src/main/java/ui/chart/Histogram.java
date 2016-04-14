@@ -36,9 +36,8 @@ public class Histogram extends JPanel {
 		chart.getLegend().setItemFont(ChartConst.LABEL_FONT);
 		
 		XYPlot plot = (XYPlot) chart.getPlot();
-//		plot.getRenderer().setSeriesPaint(0, Color.RED);
-		plot.getRenderer().setSeriesOutlinePaint(0, Color.RED);
 		plot.setBackgroundPaint(null);
+		plot.getRenderer().setSeriesPaint(0, Color.red);
 		plot.setRangeGridlinePaint(Color.ORANGE);
 		
 		ChartPanel panel = new ChartPanel(chart);
