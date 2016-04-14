@@ -63,7 +63,7 @@ public class HistogramStatisticStar implements HistogramStatisticRep {
 		int minStar = smallRepHis.get(0).getStars();
 
 		// 求出组数
-		int GroupNum = 1 + (int) ((Math.log10(smallRepHis.size())) / (Math.log10(2)));
+		int GroupNum = (1 + (int) ((Math.log10(smallRepHis.size())) / (Math.log10(2))))*2;
 
 		// 全部Star
 		double[] allStarInfo = new double[smallRepHis.size()];
@@ -90,7 +90,7 @@ public class HistogramStatisticStar implements HistogramStatisticRep {
 		int minStar = bigRepHis.get(0).getStars();
 
 		// 求出组数
-		int GroupNum = 1 + (int) ((Math.log10(bigRepHis.size())) / (Math.log10(2)));
+		int GroupNum = (1 + (int) ((Math.log10(bigRepHis.size())) / (Math.log10(2))))*3;
 
 		// 全部Star
 		double[] allStarInfo = new double[bigRepHis.size()];
