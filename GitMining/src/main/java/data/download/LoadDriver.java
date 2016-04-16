@@ -4,7 +4,7 @@ public class LoadDriver {
 	
 	public static void main(String[] args) {
 		DataDownload dataload=new DataDownload();
-		ProjectDataMerge pdm=new ProjectDataMerge();
+		//ProjectDataMerge pdm=new ProjectDataMerge();
 		
 //		if(dataload.getAllProjects()){
 //			System.out.println("项目信息下载成功！");

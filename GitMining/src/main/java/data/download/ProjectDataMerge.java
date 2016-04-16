@@ -1,6 +1,5 @@
 package data.download;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Info.Date;
@@ -123,11 +122,11 @@ public class ProjectDataMerge {
 	 */
 	public boolean setCommitData(){
 		FileUtil fileUtil=new FileUtil();
-		ProjectFile pf=new ProjectFile();
+		//ProjectFile pf=new ProjectFile();
 		ProjectDetail projectDetail;
 		String projectURL;
 		List<ProjectDetail> projectList;
-		List<Integer> commitList=new ArrayList<Integer>();
+		//List<Integer> commitList=new ArrayList<Integer>();
 		try {
 			projectList = fileUtil.getProjectDetailListFromFile();
 		} catch (Exception e1) {
