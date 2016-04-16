@@ -3,3 +3,9 @@ when：第八周
 what：功能测试和总结报告
 problem：无
 todo：迭代三初步
+
+who:阮威威
+when:第八周
+what:完善逻辑层统计方法，完成单元测试和详细设计
+problem:无
+todo:迭代三初步
