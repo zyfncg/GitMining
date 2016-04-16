@@ -9,3 +9,9 @@ when:第八周
 what:完善逻辑层统计方法，完成单元测试和详细设计
 problem:无
 todo:迭代三初步
+
+who:张仁知
+when:第八周
+what:完善统计图表和文档，界面层美化
+problem:无
+todo:迭代三初步
