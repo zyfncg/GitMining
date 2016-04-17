@@ -10,30 +10,36 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import Info.ProjectDetail;
 import Info.UserInfo;
+import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import ui.CardsManager;
 import ui.ClickHandler;
-import ui.InfoManager;
+import ui.MainFrame;
 import ui.PanelSwitcher;
 import ui.Refreshable;
 import ui.component.BackPanel;
 import ui.component.KVPanel;
+import ui.component.SwitchButton;
 import ui.component.SwitchPanel;
 import ui.component.TextPanel;
+import ui.component.UserCard;
 import ui.statistics.SingleProjectStatPage;
 
 /**
@@ -83,11 +89,6 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 	private List<UserInfo> contributors;
 	
 	/**
-	 *一行显示的信息卡片数目 
-	 */
-	private int lineCard;
-	
-	/**
 	 *页面切换器 
 	 */
 	private PanelSwitcher switcher;
@@ -95,18 +96,19 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 	/**
 	 *获取项目信息的接口 
 	 */
-	private RepositoryBLService repo;
+	private RepositoryBLService repository;
 	
 	/**
 	 *获取用户信息的接口 
 	 */
 	private UserBLService user;
 	
-	public ProjectInfoPage(int lineCardNum, int width, int height,
+	public ProjectInfoPage(int width, int height,
 			PanelSwitcher switcher, ProjectDetail detail,
 			RepositoryBLService repo, UserBLService user) {
-		this.lineCard = lineCardNum;
 		this.switcher = switcher;
+		this.user = user;
+		this.repository = repo;
 		//分成6部分， 回退面板：描述面板: 项目地址面板: 信息面板：贡献者面板：协作者面板
 		//= 1/2 : 1/2 : 1/2: 1/2 : 2 : 2
 		
@@ -131,7 +133,7 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		//项目地址文本框
 		JTextField url = new JTextField();
 		url.setText(detail.getURL());
-		int textW = width - (SwitchPanel.SWITCH_WIDTH * 10);
+		int textW = width - (SwitchButton.SWITCH_WIDTH * 10);
 		int textH = urlH / 3 * 2;
 		url.setPreferredSize(new Dimension(textW, textH));
 		url.setEditable(false);
@@ -181,7 +183,7 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		//统计按钮
 		JButton statistics = new JButton();
 		statistics.setPreferredSize(new Dimension(
-				SwitchPanel.SWITCH_WIDTH << 1, copyH));
+				SwitchButton.SWITCH_WIDTH << 1, copyH));
 		statistics.addActionListener(e -> switcher.backableJump(this,
 				new SingleProjectStatPage(switcher, detail.getStatisticDetail()),
 						PanelSwitcher.LEFT));
@@ -189,7 +191,7 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		//将文本框、复制按钮和统计按钮加到面板
 		FlowLayout urlLayout = new FlowLayout();
 		urlLayout.setVgap(urlH / 6);
-		urlLayout.setHgap(SwitchPanel.SWITCH_WIDTH);
+		urlLayout.setHgap(SwitchButton.SWITCH_WIDTH);
 		URL.setLayout(urlLayout);
 		URL.add(panel);
 		URL.add(statistics);
@@ -226,18 +228,16 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		contributors = detail.getContributorsInfo();
 		contriContainer = new JPanel(new BorderLayout());
 		contriContainer.setOpaque(false);
-		contri = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
-				lineCard, CONTRIBUTOR_ROW, this, repo, user,
-				Img.CONTRIBUTOR_TIP, Img.SAMLL_NULL_TIP);
+		contri = this.createSwitchPanel(contributors,
+				contriContainer, CONTRIBUTOR_ROW, Img.CONTRIBUTOR_TIP);
 		contriContainer.add(contri, BorderLayout.CENTER);
 
 		//协作者面板
 		collaborators = detail.getCollaboratorsInfo();
 		collabContainer = new JPanel(new BorderLayout());
 		collabContainer.setOpaque(false);
-		collab = InfoManager.getUserInfoPanel(collaborators, collabContainer, switcher,
-				lineCard, COLLABORATOR_ROW, this, repo, user,
-				Img.COLLABOROTOR_TIP, Img.SAMLL_NULL_TIP);
+		collab = this.createSwitchPanel(collaborators,
+				collabContainer, COLLABORATOR_ROW, Img.COLLABOROTOR_TIP);
 		collabContainer.add(collab, BorderLayout.CENTER);
 		
 		//组装所有面板
@@ -252,6 +252,48 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 		this.setLayout(new BorderLayout());
 		this.add(all, BorderLayout.CENTER);
 		this.setBackground(Colors.PAGE_BG);
+	}
+	
+	/**
+	 *创建可切换用户信息面板
+	 */
+	private SwitchPanel createSwitchPanel(List<UserInfo> list,
+			JPanel parent, int row, Image image) {
+		List<UserCard> cards = new ArrayList<>();
+		int size = list.size();
+		UserInfo userInfo = null;
+		for (int i = 0; i < size; ++i) {
+			userInfo = list.get(i);
+			cards.add(new UserCard(
+					this.toDetailInfo(userInfo),
+					userInfo));
+		}
+		CardsManager cm = new CardsManager(image,
+				row, cards, parent, switcher);
+		return cm.first();
+	}
+	
+	/**
+	 *获得由信息卡片跳转到详细信息页面的控制器 
+	 */
+	private ClickHandler toDetailInfo(UserInfo info) {
+		ClickHandler handler = () -> {
+			UserInfoDetail detail = null;
+			try {
+				detail = user.getUserByName(info.getUserName());
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e.getMessage(),
+						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
+				return ;
+			}
+			
+			switcher.backableJump(this,
+					new UserInfoPage(MainFrame.PAGE_WIDTH,
+							MainFrame.PAGE_HEIGHT, switcher,
+							detail, repository, user),
+					PanelSwitcher.LEFT);
+		};
+		return handler;
 	}
 	
 	private class TipText extends JMenuItem {
@@ -283,20 +325,6 @@ public class ProjectInfoPage extends JPanel implements Refreshable {
 
 	@Override
 	public void refresh() {
-//		SwitchPanel from1 = collab.getCurrentPanel();//TODO TEST
-		SwitchPanel from1 = collab;
-		SwitchPanel to1 = InfoManager.getUserInfoPanel(collaborators, collabContainer, switcher,
-				lineCard, CONTRIBUTOR_ROW, this, repo, user,
-				Img.COLLABOROTOR_TIP, Img.SAMLL_NULL_TIP);
-		switcher.jump(collabContainer, from1, to1, PanelSwitcher.LEFT);
-		collab = to1;
-		
-//		SwitchPanel from2 = contri.getCurrentPanel();//TODO TEST
-		SwitchPanel from2 = contri;
-		SwitchPanel to2 = InfoManager.getUserInfoPanel(contributors, contriContainer, switcher,
-				lineCard, CONTRIBUTOR_ROW, this, repo, user,
-				Img.COLLABOROTOR_TIP, Img.SAMLL_NULL_TIP);
-		switcher.jump(contriContainer, from2, to2, PanelSwitcher.LEFT);
-		contri = to2;
+		//TODO 暂时无事可做
 	}
 }

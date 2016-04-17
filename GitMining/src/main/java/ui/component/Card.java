@@ -30,6 +30,16 @@ public class Card extends JPanel {
 	private static final int LINE_MAX = 40;
 	
 	/**
+	 *信息卡片的宽度 
+	 */
+	protected static final int CARD_WIDTH = 300;
+
+	/**
+	 *信息卡片的高度 
+	 */
+	protected static final int CARD_HEIGHT = 200;
+	
+	/**
 	 *图像面板 
 	 */
 	protected JPanel iconPanel;
@@ -44,21 +54,21 @@ public class Card extends JPanel {
 	 */
 	protected JPanel itemPanel;
 
-	public Card(ClickHandler handler, int width, int height, String text) {
+	public Card(ClickHandler handler, String text) {
 		//分成3部分， 空白面板：描述面板：信息面板 = 1 : 1 : 2
 		
 		//空白面板,为了布局美观
-		int iconH = height >> 2;
+		int iconH = CARD_HEIGHT >> 2;
 		this.iconPanel = new JPanel();
 		this.iconPanel.setOpaque(false);
-		this.iconPanel.setPreferredSize(new Dimension(width, iconH));
+		this.iconPanel.setPreferredSize(new Dimension(CARD_WIDTH, iconH));
 		this.iconPanel.setOpaque(false);
 		
 		//描述面板
 		if(text.length() >= LINE_MAX) {
 			text = text.substring(0, LINE_MAX) + "...";
 		}
-		this.txtPanel = new TextPanel(text, width, iconH);
+		this.txtPanel = new TextPanel(text, CARD_WIDTH, iconH);
 
 		//信息面板
 		FlowLayout itemLayout = new FlowLayout();
@@ -66,7 +76,7 @@ public class Card extends JPanel {
 		itemLayout.setHgap(0);
 		this.itemPanel = new JPanel(itemLayout);
 		this.itemPanel.setOpaque(false);
-		this.itemPanel.setPreferredSize(new Dimension(width, iconH << 1));
+		this.itemPanel.setPreferredSize(new Dimension(CARD_WIDTH, iconH << 1));
 
 		//组装所有面板
 		Box all = Box.createVerticalBox();
@@ -91,7 +101,7 @@ public class Card extends JPanel {
 			}
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				handler.handle();
 			}
 		});

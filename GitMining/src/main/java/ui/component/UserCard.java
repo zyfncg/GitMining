@@ -11,15 +11,15 @@ import ui.ClickHandler;
 @SuppressWarnings("serial")
 public class UserCard extends Card {
 	
-	public UserCard(ClickHandler handler, int width, int height, UserInfo user) {
-		super(handler, width, height,
-				user.getUserName() + "," + user.getDescriptionUser());
+	public UserCard(ClickHandler handler, UserInfo user) {
+		super(handler, user.getUserName() + "," + user.getDescriptionUser());
 		
-		int itemW = width / 3;
-		KVPanel projectInvolve = new KVPanel(itemW, height,
+		int itemW = CARD_WIDTH / 3;
+		int itemH = CARD_HEIGHT >> 1;
+		KVPanel projectInvolve = new KVPanel(itemW, itemH,
 				Strings.User.INVOLVE_PROJECTS, String.valueOf(user.getProjectInvolved()),
 				KVPanel.VERTICAL);
-		KVPanel projectCreate = new KVPanel(itemW, height,
+		KVPanel projectCreate = new KVPanel(itemW, itemH,
 				Strings.User.CREATE_PROJECTS, String.valueOf(user.getProjectCreate()),
 				KVPanel.VERTICAL);
 		this.itemPanel.add(projectInvolve);
