@@ -14,7 +14,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import res.Strings;
-import ui.chart.UserType;
 
 /**
  *@author ZhangYF 
@@ -324,11 +323,11 @@ public class JsonUtil {
 	
     private static int getCommitNumber(String url){
     	
-    	StringListTool stringTool=new StringListTool();
-    	String page="?page=";
-    	String retStr="";
-    	List<String> list;
-    	int i=1;
+//    	StringListTool stringTool=new StringListTool();
+//    	String page="?page=";
+//    	String retStr="";
+//    	List<String> list;
+//    	int i=1;
     	int num=0;
 //    	try {
 //			retStr=HttpRequestUtil.httpRequest(url+page+i);
