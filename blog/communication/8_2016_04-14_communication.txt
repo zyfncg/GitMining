@@ -1,0 +1,5 @@
+who:张云飞，肖安祥，阮威威，张仁知
+when：第八周
+what：完善项目，准备检查
+how long:2h （以小时为单位）
+arrived solutions: 项目完善，成功通过检查

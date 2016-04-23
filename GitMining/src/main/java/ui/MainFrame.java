@@ -23,7 +23,7 @@ import constant.Page;
 import res.Img;
 import res.Strings;
 import ui.component.CardsPanel;
-import ui.component.SwitchPanel;
+import ui.component.SwitchButton;
 import ui.page.ProjectPage;
 import ui.page.StartPage;
 import ui.page.UserPage;
@@ -86,24 +86,17 @@ public class MainFrame extends JFrame {
 			new HashMap<Page, JPanel>();
 	
 	/**
-	 *一行显示的信息卡片的数量 
-	 */
-	private static final int CARD_NUM = 3;
-	
-	/**
 	 *页面宽度 
 	 */
 	public static final int PAGE_WIDTH =
-			CARD_NUM * CardsPanel.CARD_WIDTH +
-			(CARD_NUM + 1) * CardsPanel.CARD_GAP +
-			(SwitchPanel.SWITCH_WIDTH << 1);
+			CardsPanel.WIDTH +
+			(SwitchButton.SWITCH_WIDTH << 1);
 	
 	/**
 	 *页面高度 
 	 */
 	public static final int PAGE_HEIGHT =
-			(((CardsPanel.CARD_HEIGHT << 1) +
-			 3 * CardsPanel.CARD_GAP) * 3) >> 1;
+			(int) (CardsPanel.HEIGHT * 1.5);
 			
 	/**
 	 *按钮边长 
@@ -123,8 +116,8 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		this.switcher = new PanelSwitcher(this);
 		this.start = new StartPage(PAGE_WIDTH, PAGE_HEIGHT, switcher);
-		this.project = new ProjectPage(CARD_NUM, PAGE_WIDTH, PAGE_HEIGHT, switcher);
-		this.user = new UserPage(CARD_NUM, PAGE_WIDTH, PAGE_HEIGHT, switcher);
+		this.project = new ProjectPage(PAGE_WIDTH, PAGE_HEIGHT, switcher);
+		this.user = new UserPage(PAGE_WIDTH, PAGE_HEIGHT, switcher);
 		this.currentPage = this.start;
 		this.refreshPage = this.start;
 		

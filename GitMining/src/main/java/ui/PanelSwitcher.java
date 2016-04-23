@@ -50,7 +50,7 @@ public class PanelSwitcher {
 	/**
 	 *保存面板的栈，用于面板回退 
 	 */
-	private static Deque<JPanel> panelStack =
+	private Deque<JPanel> panelStack =
 			new ArrayDeque<JPanel>();
 	
 	public PanelSwitcher(MainFrame frame) {
@@ -95,7 +95,7 @@ public class PanelSwitcher {
 
 	/**
 	 *不同面板的切换 
-	 *@param parent 被切换面板的父容器
+	 *@param parent 两个面板的父容器
 	 *@param from 被切换面板
 	 *@param to 新面板
 	 */
@@ -104,7 +104,7 @@ public class PanelSwitcher {
 		if(from == to) return ;
 		to.setVisible(true);
 		parent.add(to);
-		this.panelSlide(from, to, direction);
+		this.panelSlide(parent, from, to, direction);
 		parent.revalidate();
 	}
 	
@@ -161,7 +161,7 @@ public class PanelSwitcher {
 		to.setVisible(true);
 		JPanel root = this.frame.getRootPanel();
 		root.add(to, BorderLayout.CENTER);
-		this.panelSlide(from, to, direction);
+		this.panelSlide(root, from, to, direction);
 		this.frame.setCurrentPage(to);
 		root.revalidate();
 	}
@@ -185,7 +185,7 @@ public class PanelSwitcher {
 	 */
 	private void initSlideMap() {
 		//向左切换
-		this.slideMap.put(LEFT, (from, to) -> {
+		this.slideMap.put(LEFT, (parent, from, to) -> {
 			startY = from.getY();
 			startX = from.getX() + MainFrame.PAGE_WIDTH;
 			int endX = from.getX();
@@ -203,7 +203,7 @@ public class PanelSwitcher {
 			startSlide(timer);
 		});
 		//向右切换
-		this.slideMap.put(RIGHT, (from , to) -> {
+		slideMap.put(RIGHT, (parent, from , to) -> {
 			startW = 0;
 			startH = MainFrame.PAGE_HEIGHT;
 			int endW = MainFrame.PAGE_WIDTH;
@@ -222,7 +222,7 @@ public class PanelSwitcher {
 			startSlide(timer);
 		});
 		//放大至全屏 TODO 以后有机会就实现
-		this.slideMap.put(FULL_SCREEN, (from, to) -> {
+		slideMap.put(FULL_SCREEN, (parent, from, to) -> {
 			from.setVisible(false);
 			startX = from.getX();
 			startY = from.getY();
@@ -267,7 +267,6 @@ public class PanelSwitcher {
 				startW = startW + left + right;
 				startY -= up;
 				startH = startH + up + down;
-				System.out.println("hh");
 			});
 			startSlide(timer);
 		});
@@ -285,13 +284,14 @@ public class PanelSwitcher {
 	
 	/**
 	 *实现页面切换的滑动效果 
-	 *@param from, 被切换的面板
-	 *@param to, 切换的面板
-	 *@param direction,切换的方向
+	 *@param parent 两个面板的父容器
+	 *@param from 被切换的面板
+	 *@param to 切换的面板
+	 *@param direction切换的方向
 	 */
-	private void panelSlide(JPanel from, JPanel to, int direction) {
-		SlideStrategy s = this.slideMap.get(direction);
-		s.slide(from, to);
+	private void panelSlide(JPanel parent, JPanel from, JPanel to, int direction) {
+		SlideStrategy s = slideMap.get(direction);
+		s.slide(parent, from, to);
 	}
 	
 	/**
@@ -299,6 +299,6 @@ public class PanelSwitcher {
 	 */
 	@FunctionalInterface
 	private interface SlideStrategy {
-		public void slide(JPanel from, JPanel to);
+		public void slide(JPanel parent, JPanel from, JPanel to);
 	}
 }

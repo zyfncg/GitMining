@@ -24,10 +24,8 @@ public class Histogram extends JPanel {
 
 	public Histogram(HistogramInfo info, HistogramLabel label, int width, int height) {
 		HistogramDataset dataset = new HistogramDataset();
-//		dataset.addSeries(label.getKey(), info.getAllNum(),
-//				info.getGroupNum(), info.getMinNum(), info.getMaxNum());
 		dataset.addSeries(label.getKey(), info.getAllNum(),
-				50, info.getMinNum(), info.getMaxNum());  //TODO TEST
+				info.getGroupNum(), info.getMinNum(), info.getMaxNum());
 		JFreeChart chart = ChartFactory.createHistogram(label.getTitle(),
 				null, null,
 				dataset,
