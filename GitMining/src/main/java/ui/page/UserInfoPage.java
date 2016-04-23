@@ -1,11 +1,15 @@
 package ui.page;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.UserInfoDetail;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
@@ -13,12 +17,14 @@ import businessLogicService.UserBLService.UserBLService;
 import res.Colors;
 import res.Img;
 import res.Strings;
+import ui.CardsManager;
 import ui.ClickHandler;
-import ui.InfoManager;
+import ui.MainFrame;
 import ui.PanelSwitcher;
 import ui.Refreshable;
 import ui.component.BackPanel;
 import ui.component.KVPanel;
+import ui.component.ProjectCard;
 import ui.component.SwitchPanel;
 
 /**
@@ -30,7 +36,7 @@ public class UserInfoPage extends JPanel implements Refreshable {
 	/**
 	 *显示的创建项目信息卡片的行数 
 	 */
-	private static final int CREATE_ROW = 2;
+	private static final int ROW = 2;
 	
 	/**
 	 *创建项目信息面板的容器 
@@ -49,16 +55,13 @@ public class UserInfoPage extends JPanel implements Refreshable {
 	
 	private PanelSwitcher switcher;
 	
-	private int lineCard;
-	
 	private RepositoryBLService repoService;
 	
 	private UserBLService userService;
 
-	public UserInfoPage(int lineCardNum, int width, int height,
+	public UserInfoPage(int width, int height,
 			PanelSwitcher switcher, UserInfoDetail detail,
 			RepositoryBLService repo, UserBLService user) {
-		this.lineCard = lineCardNum;
 		this.switcher = switcher;
 		this.repoService = repo;
 		this.userService = user;
@@ -93,10 +96,8 @@ public class UserInfoPage extends JPanel implements Refreshable {
 		projects = detail.getProjectCreatInfo();
 		infoContainer = new JPanel(new BorderLayout());
 		infoContainer.setOpaque(false);
-		infoPanel = InfoManager.getProjectInfoPanel(
-				projects, infoContainer, switcher, lineCardNum,
-				this, CREATE_ROW, repo, user,
-				Img.PROJECT_CREATED_TIP, Img.LARGE_NULL_TIP);
+		infoPanel = this.createSwitchPanel(projects,
+				infoContainer, ROW, Img.PROJECT_CREATED_TIP);
 		infoContainer.add(infoPanel, BorderLayout.CENTER);
 
 
@@ -111,15 +112,47 @@ public class UserInfoPage extends JPanel implements Refreshable {
 		this.setBackground(Colors.PAGE_BG);
 	}
 
+	/**
+	 *创建可切换项目信息面板
+	 */
+	private SwitchPanel createSwitchPanel(List<ProjectInfo> list,
+			JPanel parent, int row, Image image) {
+		List<ProjectCard> cards = new ArrayList<>();
+		for (ProjectInfo projectInfo : list) {
+			cards.add(new ProjectCard(
+					this.toDetailInfo(projectInfo),
+					projectInfo));
+		}
+		CardsManager cm = new CardsManager(image,
+				row, cards, parent, switcher);
+		return cm.first();
+	}
+	
+	/**
+	 *获得由信息卡片跳转到详细信息页面的控制器 
+	 */
+	private ClickHandler toDetailInfo(ProjectInfo info) {
+		ClickHandler handler = () -> {
+			ProjectDetail detail = null;
+			try {
+				detail = repoService.getRepositoryByName(info.getProjectName());
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e.getMessage(),
+						Strings.ERROR_DIALOG_TITLE, JOptionPane.ERROR_MESSAGE);
+				return ;
+			}
+			
+			switcher.backableJump(this,
+					new ProjectInfoPage(MainFrame.PAGE_WIDTH,
+							MainFrame.PAGE_HEIGHT, switcher,
+							detail, repoService, userService),
+					PanelSwitcher.LEFT);
+		};
+		return handler;
+	}
+	
 	@Override
 	public void refresh() {
-//		SwitchPanel from = this.infoPanel.getCurrentPanel();//TODO TEST
-		SwitchPanel from = this.infoPanel;
-		SwitchPanel to = InfoManager.getProjectInfoPanel(projects, infoContainer,
-				switcher, lineCard, this, CREATE_ROW,
-				this.repoService, this.userService,
-				Img.PROJECT_CREATED_TIP, Img.LARGE_NULL_TIP);
-		this.switcher.jump(infoContainer, from, to, PanelSwitcher.LEFT);
-		this.infoPanel = to;
+		//TODO 暂时无事可做
 	}
 }

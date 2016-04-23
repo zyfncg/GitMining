@@ -15,3 +15,10 @@ when:第八周
 what:完善统计图表和文档，界面层美化
 problem:无
 todo:迭代三初步
+
+who:肖安祥
+when:第八周
+what:重构，尽量修复内存泄漏问题
+problem:无法彻底解决内存泄漏问题
+problem:无
+todo:迭代三
