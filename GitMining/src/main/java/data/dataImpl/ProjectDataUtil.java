@@ -26,7 +26,7 @@ public class ProjectDataUtil {
 	/**
 	 *获得单个项目的具体信息
 	 *@author ZhangYF
-	 *@param 项目名称
+	 *@param name 项目名称
 	 *@return 具体项目信息
 	 *
 	 */

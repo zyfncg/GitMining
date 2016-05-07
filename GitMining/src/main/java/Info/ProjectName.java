@@ -30,6 +30,13 @@ public class ProjectName implements Serializable{
 		this.owner = owner;
 		this.repository = repository;
 	}
+
+	public ProjectName(String projectName) {
+		String pn[]=projectName.split("/");
+
+		this.owner = pn[0];
+		this.repository = pn[1];
+	}
 	
 	public void setOwner(String owner) {
 		this.owner = owner;

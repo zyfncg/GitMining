@@ -3,6 +3,12 @@
      <VALUE>   
          <!-- API连接设置 -->   
    		<ProjectURL>http://www.gitmining.net/api/repository/</ProjectURL> 
-        <UserURL>http://www.gitmining.net/api/user/</UserURL>     
+        <UserURL>http://www.gitmining.net/api/user/</UserURL>
+
+         <!-- mysql连接设置 -->
+         <url>jdbc:mysql://localhost/GitMiningDB</url>
+         <user>root</user>
+         <pass>12345678</pass>
+         <port>3306</port>
     </VALUE>   
 </CONFIG>   

@@ -1,4 +1,4 @@
-package mysql;
+package data.mysql;
 
 import java.io.File;
 import java.sql.Connection;

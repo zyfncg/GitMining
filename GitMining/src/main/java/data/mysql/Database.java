@@ -1,4 +1,4 @@
-package mysql;
+package data.mysql;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,7 +31,7 @@ public class Database {
 	 * @param id 要查的编号
 	 * @return 结果的集合
 	 */
-	public static ResultSet query(String table,String idname,String id){
+	public static ResultSet find(String table,String idname,String id){
 		String sql="SELECT * FROM "+table+" WHERE "+idname+"="+"'"+id+"'";
 		try {
 			rs=stat.executeQuery(sql);
@@ -104,7 +104,7 @@ public class Database {
 	}
 	
 	//查询数据
-	public static ResultSet findOperation(String sql) throws SQLException{
+	public static ResultSet query(String sql) throws SQLException{
 		rs=stat.executeQuery(sql);
 		return rs;
 	}
