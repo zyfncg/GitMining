@@ -17,7 +17,7 @@ public class RepositoryController implements RepositoryBLService {
 	@Override
 	public List<ProjectInfo> getAllRepositorys()throws Exception {
 
-		return repositoryHandle.GetAllRepositorys();
+		return repositoryHandle.GetAllRepositorys(); 
 	}
 
 	@Override
