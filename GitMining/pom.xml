@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -44,33 +44,17 @@
 					</webResources>
 				</configuration>
 			</plugin>
-			
-			<plugin>  
-            <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-compiler-plugin</artifactId>  
-            <configuration>  
-                <source>1.8</source>  
-                <target>1.8</target>  
-            </configuration>
-            
-        </plugin> 
-		</plugins>
-	</build>
 
-<<<<<<< HEAD
-=======
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
 
-	<build>
-		<finalName>GitlabMonitor</finalName>
-		<plugins>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -84,22 +68,21 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<reporting>
-             <plugins>
-             <plugin>
-             <groupId>org.codehaus.mojo</groupId>
-             <artifactId>cobertura-maven-plugin</artifactId>
-             <version>2.5.2</version>
-             <configuration>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
 					<formats>
-                         <format>xml</format>
-                         <format>html</format>
-                     </formats>
-                 </configuration>
-             </plugin>
-             </plugins>
-         </reporting>
-              
->>>>>>> a1af4473e0f8deef93a58d3a80c9471ef1fe7280
+						<format>xml</format>
+						<format>html</format>
+					</formats>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
 </project>
