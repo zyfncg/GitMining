@@ -1,8 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="echarts.min.js"></script>
-<meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,29 +16,9 @@
 </head>
 
 <body>
-    <div class="fixed-header">
-        <div class="container">
-            <!-- <div class="navbar-header">
-                <button type="button" class="navbar-toggle">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                </button>
-                <a href="#" onClick="javascript:history.back(-1);">Home</a>
-            </div> -->
-            
-            <nav class="navbar-header">
-                <ul>
-					<li><a href="/visualize/home.html">Home</a></li>
-					<li><a href="/visualize/analysis.html">Analysis</a></li>
-					<li><a href="/visualize/developer.html">Developer</a></li>
-					<li><a href="/visualize/recommend.html">Recommendation</a></li>
-				</ul>
-            </nav>
-        </div>
-    </div>
-    
-    <div class="container">
+	<%@include file="/visualize/common/navigation.jsp"%>
+
+	<div class="container">
         <section class="col-md-12 ">
            <div class="col-lg-6 col-md-6 content" id="top">
                <div id="main" style="width: 600px;height:600px;"></div>
@@ -222,17 +203,17 @@ option = {
 
        <section class="col-md-12 ">
         <div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation">
-        	<img src="images/relation.png" alt="人物关系图" class="tm-image">
+        	<img src="/visualize/images/relation.png" alt="人物关系图" class="tm-image">
        </div>
        <div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map">
-            <img src="images/map.png" alt="WorldMap" class="tm-image">
+            <img src="/visualize/images/map.png" alt="WorldMap" class="tm-image">
        </div>
+       <h1>
+       <%out.println(request.getAttribute("Message")); %>
+       </h1>
 
    </section>
    
-   <!-- <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div> -->
-
-
    <section class="col-md-12 content" id="clients">
        <div class="col-lg-6 col-md-6 content-item">
   		

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,27 +44,7 @@
 		</div>
 	</nav>  -->
 
-	<div class="fixed-header">
-		<div class="container">
-			<!-- <div class="navbar-header">
-                <button type="button" class="navbar-toggle">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                </button>
-                <a href="#" onClick="javascript:history.back(-1);">Home</a>
-            </div> -->
-
-			<nav class="navbar-header">
-				<ul>
-					<li><a href="/visualize/home.html">Home</a></li>
-					<li><a href="/visualize/analysis.html">Analysis</a></li>
-					<li><a href="/visualize/developer.html">Developer</a></li>
-					<li><a href="/visualize/recommend.html">Recommendation</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+	<%@include file="/visualize/common/navigation.jsp"%>
 
 	<div id="section1">
 		<header id="header-area" class="intro-section">
