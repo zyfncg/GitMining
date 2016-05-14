@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="echarts.min.js"></script>
+<script src="/visualize/js/echarts.min.js"></script>
   <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='/visualize/css/font.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/visualize/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/visualize/css/templatemo-style.css">
     <title>Analysis</title>
 </head>
 
 <body>
-    <div class="fixed-header">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                </button>
-                <a href="#" onClick="javascript:history.back(-1);">Home</a>
-            </div>
-            <nav class="main-menu">
-                <ul>
-                    <li><a href="#language">语言优秀项目</a></li>
-                    <li><a href="#contribution">团队贡献</a></li>
-                    <li><a href="#analysis">成功因素</a></li>
-                    <li><a href="#commit">一周commit情况</a></li>
-                    <li><a href="#dot">散点图</a></li>
-					<li><a href="#relation">人物关系图</a></li>
-					<li><a href="#languagePie">项目使用语言</a></li>
-					<li><a href="#map">世界地图</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    
-    <div class="container">
+	<div class="fixed-header">
+		<div class="container">
+			<!-- <div class="navbar-header">
+				<button type="button" class="navbar-toggle">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#" onClick="javascript:history.back(-1);">Home</a>
+			</div> -->
+			<nav class="navbar-header">
+				<ul>
+					<li><a href="/visualize/home.html">Home</a></li>
+					<li><a href="/visualize/analysis.html">Analysis</a></li>
+					<li><a href="/visualize/developer.html">Developer</a></li>
+					<li><a href="/visualize/recommend.html">Recommendation</a></li>
+				</ul>
+			</nav> 
+			
+		</div>
+	</div>
+	
+	
+
+	<div class="container">
         <section class="col-md-12" >
            <div class="col-lg-6 col-md-6 content" id="language">
-               <div id="main" style="width: 600px;height:600px;"></div>
+               <div id="main" style="width: 600px;height:600px; margin-top: 100px"></div>
     <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+					// 基于准备好的dom，初始化echarts实例
+					var myChart = echarts.init(document.getElementById('main'));
 
-          var option = {
-            title: {
-                text: '各种语言产生的优秀项目'
-            },
-            tooltip: {},
-            legend: {
-                data:['Language']
-            },
-            xAxis: {
-                data: ["C","C++","Java","Python","JavaScript","Other"]
-            },
-            yAxis: {},
-            series: [{
-                name: 'Language',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
+					var option = {
+						title : {
+							text : '各种语言产生的优秀项目'
+						},
+						tooltip : {},
+						legend : {
+							data : [ 'Language' ]
+						},
+						xAxis : {
+							data : [ "C", "C++", "Java", "Python",
+									"JavaScript", "Other" ]
+						},
+						yAxis : {},
+						series : [ {
+							name : 'Language',
+							type : 'bar',
+							data : [ 5, 20, 36, 10, 10, 20 ]
+						} ]
+					};
 
-        myChart.setOption(option);
-    </script>
+					myChart.setOption(option);
+				</script>
            </div>
            <div class="col-lg-6 col-md-6 content" id="contribution">
 		    <div id="next" style="width: 600px;height:600px;"></div>
@@ -380,16 +380,16 @@ option = {
 				myChart.setOption(option);
 		 </script>
        </div>
-       <div class="col-lg-6 col-md-6 content" id="relation">
+       <!-- <div class="col-lg-6 col-md-6 content" id="relation">
            <img src="images/relation.png" alt="人物关系图" class="tm-image">
-       </div>
+       </div> -->
    </section>
 
 
    <section class="col-md-12">
-       <div class="col-lg-6 col-md-6 col-md-push-6 content" id="map">
+       <!-- <div class="col-lg-6 col-md-6 col-md-push-6 content" id="map">
            <img src="images/map.png" alt="WorldMap" class="tm-image">
-       </div>
+       </div> -->
        <div class="col-lg-6 col-md-6 col-md-pull-6 content" id="languagePie">
       	<div id="rose" style="width:600px;height:600px;"></div>
   			<script type="text/javascript">
@@ -496,20 +496,20 @@ option = {
 
 
 
- <script src="echarts.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.singlePageNav.min.js"></script>
+<script src="/visualize/js/echarts.min.js"></script>
+<script src="/visualize/js/jquery.min.js"></script>
+<script src="/visualize/js/bootstrap.min.js"></script>
+<!-- <script src="/visualize/js/jquery.singlePageNav.min.js"></script> -->
 
 <script>
-
+$(".fixed-header").addClass("scroll");
 // Check scroll position and add/remove background to navbar
 function checkScrollPosition() {
-    if($(window).scrollTop() > 50) {
+//     if($(window).scrollTop() > 50) {
       $(".fixed-header").addClass("scroll");
-  } else {        
-      $(".fixed-header").removeClass("scroll");
-  }
+//   } else {        
+//       $(".fixed-header").removeClass("scroll");
+//   }
 }
 
 $(document).ready(function () {   
@@ -522,19 +522,20 @@ $(document).ready(function () {
 
     checkScrollPosition();
 
-    // nav bar
-    $('.navbar-toggle').click(function(){
-        $('.main-menu').toggleClass('show');
-    });
+		
+	// nav bar
+		$('.navbar-toggle').click(function() {
+			$('.main-menu').toggleClass('show');
+		});
 
-    $('.main-menu a').click(function(){
-        $('.main-menu').removeClass('show');
-    });
-});
+		$('.main-menu a').click(function() {
+			$('.main-menu').removeClass('show');
+		});
+	});
 
-$(window).on("scroll", function() {
-    checkScrollPosition();    
-});
+	$(window).on("scroll", function() {
+		checkScrollPosition();
+	});
 </script>
 </body>
 </html>

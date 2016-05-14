@@ -2,41 +2,44 @@
 <html>
 <head>
 <script src="echarts.min.js"></script>
-  <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="/visualize/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/visualize/css/templatemo-style.css">
-    <title>User Statistics</title>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/visualize/css/font.css" rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css"
+	href="/visualize/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/visualize/css/templatemo-style.css">
+<title>Developer</title>
 </head>
 
 <body>
     <div class="fixed-header">
         <div class="container">
-            <div class="navbar-header">
+            <!-- <div class="navbar-header">
                 <button type="button" class="navbar-toggle">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                        
                 </button>
                 <a href="#" onClick="javascript:history.back(-1);">Home</a>
-            </div>
-            <nav class="main-menu">
+            </div> -->
+            
+            <nav class="navbar-header">
                 <ul>
-                   <li><a href="#top">参与项目较多的成员</a></li>
-                    <li><a href="#dot">个人能力和参与项目数量关系</a></li>
-                    <li><a href="#map">世界地图</a></li>
-                    <li><a href="#relation">人物关系图</a></li>
-                </ul>
+					<li><a href="/visualize/home.html">Home</a></li>
+					<li><a href="/visualize/analysis.html">Analysis</a></li>
+					<li><a href="/visualize/developer.html">Developer</a></li>
+					<li><a href="/visualize/recommend.html">Recommendation</a></li>
+				</ul>
             </nav>
         </div>
     </div>
     
     <div class="container">
         <section class="col-md-12 ">
-           <div class="col-lg-6 col-md-6 content" id="top"">
+           <div class="col-lg-6 col-md-6 content" id="top">
                <div id="main" style="width: 600px;height:600px;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
@@ -64,7 +67,7 @@
         myChart.setOption(option);
     </script>
            </div>
-           <div class="col-lg-6 col-md-6 content" id="dot"" background">
+           <div class="col-lg-6 col-md-6 content" id="dot">
 		   <div id="dot" style="width:600px;height:600px;"></div>
   			<script type="text/javascript">
 				var myChart = echarts.init(document.getElementById('dot'));
@@ -218,10 +221,10 @@ option = {
        </section>
 
        <section class="col-md-12 ">
-        <div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation"">
+        <div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation">
         	<img src="images/relation.png" alt="人物关系图" class="tm-image">
        </div>
-       <div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map"" flexbox">
+       <div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map">
             <img src="images/map.png" alt="WorldMap" class="tm-image">
        </div>
 
@@ -261,20 +264,21 @@ option = {
 
 
 
- <script src="echarts.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.singlePageNav.min.js"></script>
+<script src="/visualize/js/echarts.min.js"></script>
+<script src="/visualize/js/jquery.min.js"></script>
+<script src="/visualize/js/bootstrap.min.js"></script>
+<!-- <script src="/visualize/js/jquery.singlePageNav.min.js"></script> -->
 
 <script>
+$(".fixed-header").addClass("scroll");
 
 // Check scroll position and add/remove background to navbar
 function checkScrollPosition() {
-    if($(window).scrollTop() > 50) {
+//     if($(window).scrollTop() > 50) {
       $(".fixed-header").addClass("scroll");
-  } else {        
-      $(".fixed-header").removeClass("scroll");
-  }
+//   } else {        
+//       $(".fixed-header").removeClass("scroll");
+//   }
 }
 
 $(document).ready(function () {   
