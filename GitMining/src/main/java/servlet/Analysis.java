@@ -24,6 +24,7 @@ public class Analysis extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setAttribute("Message", "Hello World!");
 		request.getRequestDispatcher("/visualize/analysis.jsp").forward(request, response);
 	}
 
