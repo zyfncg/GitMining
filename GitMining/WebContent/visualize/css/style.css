@@ -45,6 +45,13 @@ body {
 	margin-top: 100px;
 }
 
+/* style of radar chart*/
+.radar {
+	width: 370px;
+	height: 400px;
+	margin: 0 auto;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -125,12 +132,9 @@ z-index: 999;
 }
 .single-page-nav { text-align: center; }
 /* End Header CSS */
-.copyrights{
-	text-indent:-9999px;
-	height:0;
-	line-height:0;
-	font-size:0;
-	overflow:hidden;
+.copyright{
+	font-family: fantasy;
+	margin: 0 auto;
 }
 /* Start Feature CSS */
 .green-text { color: #178A27; }
@@ -333,6 +337,17 @@ input {
     margin-bottom: 25px;
     margin-top: 35px;
 }
+
+.footer-content h4 {
+	font-size: 16px;
+	font-style: italic;
+    text-align: center;
+    color: white;
+    background-color: #233;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+	
 .footer-content  p {
     color: #999;
     font-style: italic;
@@ -534,7 +549,7 @@ input {
   .blog-content p { text-align: center; }
   .blog-content span { margin-left: 0; }
   .testimornial-content p { text-align: center; }
-  .footer-content h4 { font-size: 16px; }
+  
   .navbar-nav>li { display: block; }
   .navbar-inverse {
     background: none;

@@ -117,6 +117,9 @@
 			</div>
 		</section>
 	</div>
+	
+	<%@include file="/visualize/common/footer.jsp" %>
+	
 	<script src="/visualize/js/echarts.min.js"></script>
 	<script src="/visualize/js/jquery.min.js"></script>
 	<script src="/visualize/js/bootstrap.min.js"></script>	
@@ -165,22 +168,6 @@
 							$('#scrollUp').css('bottom', '30px');
 						}
 					});
-
-			$('.single-page-nav').singlePageNav({
-				offset : $('.single-page-nav').outerHeight(),
-				speed : 1500,
-				filter : ':not(.external)',
-				updateHash : true
-			});
-
-			$('.navbar-toggle').click(function() {
-				$('.single-page-nav').toggleClass('show');
-			});
-
-			$('.single-page-nav a').click(function() {
-				$('.single-page-nav').removeClass('show');
-			});
-
 		});
 	</script>
 	

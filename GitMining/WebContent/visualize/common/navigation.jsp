@@ -9,7 +9,7 @@
 		</div>
 		<div class="single-page-nav sticky-wrapper" id="tmNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="/visualize/home.html">Home</a></li>
+				<li><a href="/visualize/home.jsp">Home</a></li>
 				<li><a href="/Analysis">Analysis</a></li>
 				<li><a href="/Developer">Developer</a></li>
 				<li><a href="/Recommend">Recommendation</a></li>

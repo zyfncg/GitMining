@@ -18,231 +18,108 @@
 
 <body>
 	<%@include file="/visualize/common/navigation.jsp"%>
+	
+	<div id="section1">
+		<header id="header-area" class="intro-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<div class="header-content">
+							<h1>Developer</h1>
+							<h4>Do you want to learn more about your
+							favorite developer?</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+
+	<br />
+	<br />
+	<form action="/Developer" method="post">
+		<input type="text" placeholder="Developer..." maxlength="255"
+			style="position: absolute; left: 50%; margin-left: -300px;
+			width: 500px; height: 50px">
+		<input type="submit" value="search"
+			style="position: absolute; left: 50%; margin-left: 200px;
+			 width: 100px; height: 50px" />
+	</form>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 
 	<div class="container">
 		<section class="col-md-12 ">
-			<div class="col-lg-6 col-md-6 content" id="top">
-				<div id="main" style="width: 600px; height: 600px;"></div>
-				<script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
-
-          var option = {
-            title: {
-                text: '参与项目较多的用户及其参与项目数量'
-            },
-            tooltip: {},
-            legend: {
-                data:['User']
-            },
-            xAxis: {
-                data: ["A","B","C","D","E","F"]
-            },
-            yAxis: {},
-            series: [{
-                name: 'User',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-
-        myChart.setOption(option);
-    </script>
-			</div>
-			<div class="col-lg-6 col-md-6 content" id="dot">
-				<div id="dot" style="width: 600px; height: 600px;"></div>
-				<script type="text/javascript">
-				var myChart = echarts.init(document.getElementById('dot'));
-				var dataAll = [
-    			[
-        [10.0, 8.04],
-        [8.0, 6.95],
-        [13.0, 7.58],
-        [9.0, 8.81],
-        [11.0, 8.33],
-        [14.0, 9.96],
-        [6.0, 7.24],
-        [4.0, 4.26],
-        [12.0, 10.84],
-        [7.0, 4.82],
-        [5.0, 5.68]
-    ],
-    [
-        [10.0, 9.14],
-        [8.0, 8.14],
-        [13.0, 8.74],
-        [9.0, 8.77],
-        [11.0, 9.26],
-        [14.0, 8.10],
-        [6.0, 6.13],
-        [4.0, 3.10],
-        [12.0, 9.13],
-        [7.0, 7.26],
-        [5.0, 4.74]
-    ],
-    [
-        [10.0, 7.46],
-        [8.0, 6.77],
-        [13.0, 12.74],
-        [9.0, 7.11],
-        [11.0, 7.81],
-        [14.0, 8.84],
-        [6.0, 6.08],
-        [4.0, 5.39],
-        [12.0, 8.15],
-        [7.0, 6.42],
-        [5.0, 5.73]
-    ],
-    [
-        [8.0, 6.58],
-        [8.0, 5.76],
-        [8.0, 7.71],
-        [8.0, 8.84],
-        [8.0, 8.47],
-        [8.0, 7.04],
-        [8.0, 5.25],
-        [19.0, 12.50],
-        [8.0, 5.56],
-        [8.0, 7.91],
-        [8.0, 6.89]
-    ]
-];
-
-var markLineOpt = {
-    animation: false,
-    label: {
-        normal: {
-            formatter: 'y = 0.5 * x + 3',
-            textStyle: {
-                align: 'right'
-            }
-        }
-    },
-    lineStyle: {
-        normal: {
-            type: 'solid'
-        }
-    },
-    tooltip: {
-        formatter: 'y = 0.5 * x + 3'
-    },
-    data: [[{
-        coord: [0, 3],
-        symbol: 'none'
-    }, {
-        coord: [20, 13],
-        symbol: 'none'
-    }]]
-};
-
-option = {
-    title: {
-        text: '个人能力与参与项目数量关系',
-        x: 'center',
-        y: 0
-    },
-    grid: [
-        {x: '7%', y: '7%', width: '38%', height: '38%'},
-        {x2: '7%', y: '7%', width: '38%', height: '38%'},
-        {x: '7%', y2: '7%', width: '38%', height: '38%'},
-        {x2: '7%', y2: '7%', width: '38%', height: '38%'}
-    ],
-    tooltip: {
-        formatter: 'Group {a}: ({c})'
-    },
-    xAxis: [
-        {gridIndex: 0, min: 0, max: 20},
-        {gridIndex: 1, min: 0, max: 20},
-        {gridIndex: 2, min: 0, max: 20},
-        {gridIndex: 3, min: 0, max: 20}
-    ],
-    yAxis: [
-        {gridIndex: 0, min: 0, max: 15},
-        {gridIndex: 1, min: 0, max: 15},
-        {gridIndex: 2, min: 0, max: 15},
-        {gridIndex: 3, min: 0, max: 15}
-    ],
-    series: [
-        {
-            name: 'I',
-            type: 'scatter',
-            xAxisIndex: [0],
-            yAxisIndex: [0],
-            data: dataAll[0],
-            markLine: markLineOpt
-        },
-        {
-            name: 'II',
-            type: 'scatter',
-            xAxisIndex: [1],
-            yAxisIndex: [1],
-            data: dataAll[1],
-            markLine: markLineOpt
-        },
-        {
-            name: 'III',
-            type: 'scatter',
-            xAxisIndex: [2],
-            yAxisIndex: [2],
-            data: dataAll[2],
-            markLine: markLineOpt
-        },
-        {
-            name: 'IV',
-            type: 'scatter',
-            xAxisIndex: [3],
-            yAxisIndex: [3],
-            data: dataAll[3],
-            markLine: markLineOpt
-        }
-    ]
-};	
-				myChart.setOption(option);
-		 </script>
-			</div>
-		</section>
-
-		<section class="col-md-12 ">
 			<div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation">
-				<img src="/visualize/images/relation.png" alt="人物关系图"
+				<img src="/visualize/images/relation.png" alt="Member Relationship"
 					class="tm-image">
 			</div>
 			<div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map">
-				<img src="/visualize/images/map.png" alt="WorldMap" class="tm-image">
+				<img src="/visualize/images/map.png" alt="World Map" class="tm-image">
 			</div>
-			<h1>
-				<%out.println(request.getAttribute("Message")); %>
-			</h1>
-
 		</section>
 
 		<section class="col-md-12 content" id="clients">
 			<div class="col-lg-6 col-md-6 content-item"></div>
-			<div class="col-lg-6 col-md-6 content-item background flexbox">
-
-			</div>
+			<div class="col-lg-6 col-md-6 content-item background flexbox"></div>
 		</section>
-
-
-		<section class="col-md-12 content" id="contact">
-			<div class="col-lg-6 col-md-6 col-md-push-6 content-item"></div>
-			<div
-				class="col-lg-6 col-md-6 col-md-pull-6 content-item background flexbox">
-
-			</div>
-		</section>
-
-		<footer class="col-md-12 content" id="externals">
-			<div class="col-lg-6 col-md-6 last"></div>
-			<div class="col-lg-6 col-md-6 background last about-text-container">
-
-			</div>
-		</footer>
-
 	</div>
+
+	<%@include file="/visualize/common/footer.jsp" %>
 
 	<script src="/visualize/js/echarts.min.js"></script>
 	<script src="/visualize/js/jquery.min.js"></script>
 	<script src="/visualize/js/bootstrap.min.js"></script>
+	<script src="/visualize/js/jquery-1.11.2.min.js"></script>
+	<script src="/visualize/js/jquery.scrollUp.min.js"></script>
+	<script src="/visualize/js/parallax.js-1.3.1/parallax.js"></script>
+	<script>
+		// HTML document is loaded. DOM is ready.
+		$(function() {
+
+			// Parallax
+			$('.intro-section').parallax({
+				imageSrc : '/visualize/img/bg-1.jpg',
+				speed : 0.2
+			});
+			
+			// jQuery Scroll Up / Back To Top Image
+			$.scrollUp({
+				scrollName : 'scrollUp', // Element ID
+				scrollDistance : 300, // Distance from top/bottom before showing element (px)
+				scrollFrom : 'top', // 'top' or 'bottom'
+				scrollSpeed : 1000, // Speed back to top (ms)
+				easingType : 'linear', // Scroll to top easing (see http://easings.net/)
+				animation : 'fade', // Fade, slide, none
+				animationSpeed : 300, // Animation speed (ms)		        
+				scrollText : '', // Text for element, can contain HTML		        
+				scrollImg : true
+			// Set true to use image		        
+			});
+
+			// ScrollUp Placement
+			$(window).on(
+					'scroll',
+					function() {
+
+						// If the height of the document less the height of the document is the same as the
+						// distance the window has scrolled from the top...
+						if ($(document).height() - $(window).height() === $(
+								window).scrollTop()) {
+
+							// Adjust the scrollUp image so that it's a few pixels above the footer
+							$('#scrollUp').css('bottom', '80px');
+
+						} else {
+							// Otherwise, leave set it to its default value.
+							$('#scrollUp').css('bottom', '30px');
+						}
+					});
+		});
+	</script>
 </body>
 </html>
