@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,7 @@
 	href="/visualize/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="/visualize/css/templatemo-style.css">
+<link rel="stylesheet" type="text/css" href="/visualize/css/style.css">
 <title>Developer</title>
 </head>
 
@@ -19,10 +20,10 @@
 	<%@include file="/visualize/common/navigation.jsp"%>
 
 	<div class="container">
-        <section class="col-md-12 ">
-           <div class="col-lg-6 col-md-6 content" id="top">
-               <div id="main" style="width: 600px;height:600px;"></div>
-    <script type="text/javascript">
+		<section class="col-md-12 ">
+			<div class="col-lg-6 col-md-6 content" id="top">
+				<div id="main" style="width: 600px; height: 600px;"></div>
+				<script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
 
@@ -47,10 +48,10 @@
 
         myChart.setOption(option);
     </script>
-           </div>
-           <div class="col-lg-6 col-md-6 content" id="dot">
-		   <div id="dot" style="width:600px;height:600px;"></div>
-  			<script type="text/javascript">
+			</div>
+			<div class="col-lg-6 col-md-6 content" id="dot">
+				<div id="dot" style="width: 600px; height: 600px;"></div>
+				<script type="text/javascript">
 				var myChart = echarts.init(document.getElementById('dot'));
 				var dataAll = [
     			[
@@ -199,92 +200,49 @@ option = {
 				myChart.setOption(option);
 		 </script>
 			</div>
-       </section>
+		</section>
 
-       <section class="col-md-12 ">
-        <div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation">
-        	<img src="/visualize/images/relation.png" alt="人物关系图" class="tm-image">
-       </div>
-       <div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map">
-            <img src="/visualize/images/map.png" alt="WorldMap" class="tm-image">
-       </div>
-       <h1>
-       <%out.println(request.getAttribute("Message")); %>
-       </h1>
+		<section class="col-md-12 ">
+			<div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation">
+				<img src="/visualize/images/relation.png" alt="人物关系图"
+					class="tm-image">
+			</div>
+			<div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map">
+				<img src="/visualize/images/map.png" alt="WorldMap" class="tm-image">
+			</div>
+			<h1>
+				<%out.println(request.getAttribute("Message")); %>
+			</h1>
 
-   </section>
-   
-   <section class="col-md-12 content" id="clients">
-       <div class="col-lg-6 col-md-6 content-item">
-  		
-       </div>
-       <div class="col-lg-6 col-md-6 content-item background flexbox">
-           
-       </div>
-   </section>
+		</section>
 
+		<section class="col-md-12 content" id="clients">
+			<div class="col-lg-6 col-md-6 content-item"></div>
+			<div class="col-lg-6 col-md-6 content-item background flexbox">
 
-   <section class="col-md-12 content" id="contact">
-       <div class="col-lg-6 col-md-6 col-md-push-6 content-item">
-           </div>
-       <div class="col-lg-6 col-md-6 col-md-pull-6 content-item background flexbox">
-      	
-		</div>
-</section>
-
-<footer class="col-md-12 content" id="externals">
- <div class="col-lg-6 col-md-6 last">
-  
-</div>
-<div class="col-lg-6 col-md-6 background last about-text-container">
- 
-</div>
-</footer>
-
-</div>
+			</div>
+		</section>
 
 
+		<section class="col-md-12 content" id="contact">
+			<div class="col-lg-6 col-md-6 col-md-push-6 content-item"></div>
+			<div
+				class="col-lg-6 col-md-6 col-md-pull-6 content-item background flexbox">
 
-<script src="/visualize/js/echarts.min.js"></script>
-<script src="/visualize/js/jquery.min.js"></script>
-<script src="/visualize/js/bootstrap.min.js"></script>
-<!-- <script src="/visualize/js/jquery.singlePageNav.min.js"></script> -->
+			</div>
+		</section>
 
-<script>
-$(".fixed-header").addClass("scroll");
+		<footer class="col-md-12 content" id="externals">
+			<div class="col-lg-6 col-md-6 last"></div>
+			<div class="col-lg-6 col-md-6 background last about-text-container">
 
-// Check scroll position and add/remove background to navbar
-function checkScrollPosition() {
-//     if($(window).scrollTop() > 50) {
-      $(".fixed-header").addClass("scroll");
-//   } else {        
-//       $(".fixed-header").removeClass("scroll");
-//   }
-}
+			</div>
+		</footer>
 
-$(document).ready(function () {   
-    // Single page nav
-    $('.fixed-header').singlePageNav({
-        offset: 59,
-        filter: ':not(.external)',
-        updateHash: true        
-    });
+	</div>
 
-    checkScrollPosition();
-
-    // nav bar
-    $('.navbar-toggle').click(function(){
-        $('.main-menu').toggleClass('show');
-    });
-
-    $('.main-menu a').click(function(){
-        $('.main-menu').removeClass('show');
-    });
-});
-
-$(window).on("scroll", function() {
-    checkScrollPosition();    
-});
-</script>
+	<script src="/visualize/js/echarts.min.js"></script>
+	<script src="/visualize/js/jquery.min.js"></script>
+	<script src="/visualize/js/bootstrap.min.js"></script>
 </body>
 </html>

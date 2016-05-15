@@ -1,49 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Recommend</title>
-<!-- <meta charset="utf-8"> -->
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-<!-- <link href="/visualize/css/font.css" rel='stylesheet' type='text/css'> -->
-<!-- <link rel="stylesheet" href="/visualize/css/bootstrap.min.css"> -->
-<!-- <link rel="stylesheet" href="/visualize/css/style.css"> -->
-<script src="echarts.min.js"></script>
 <meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/visualize/css/font.css" rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css"
-	href="/visualize/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/visualize/css/templatemo-style.css">
-<title>Recommendation</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href='/visualize/css/font.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/visualize/css/bootstrap.min.css">
+<link rel="stylesheet" href="/visualize/css/style.css">
 </head>
 <body>
-	<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>                        
-				</button>
-			</div>   
-			<div class="single-page-nav sticky-wrapper" id="tmNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="#section1">Homepage</a></li>
-					<li><a href="#section2">Repository</a></li>
-					<li><a href="#section3">User</a></li>
-					<li><a href="#section4">Other</a></li>
-					<li><a href="http://www.facebook.com/templatemo" class="external" target="_blank">External</a></li>
-				</ul>
-			</div>   
-		</div>
-	</nav>  -->
-
 	<%@include file="/visualize/common/navigation.jsp"%>
 
 	<div id="section1">
@@ -53,13 +22,14 @@
 					<div class="col-sm-12 text-center">
 						<div class="header-content">
 							<h1>Recommend</h1>
-							<h4>We will recommend what you want</h4>
+							<h4>We will recommend some interesting stuffs for you</h4>
 						</div>
 					</div>
 				</div>
 			</div>
 		</header>
 	</div>
+
 	<div id="section2">
 		<!-- Start Feature Area -->
 		<section id="feature-area" class="about-section">
@@ -67,7 +37,7 @@
 				<div class="row text-center inner">
 					<div class="col-sm-4">
 						<div class="feature-content">
-							<img src="img/1st.jpg" alt="Image"> <a
+							<img src="/visualize/img/1st.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/repository/content?id=8393">thoughtbot/paperclip</a>
 							<p class="feature-content-description">Easy file attachment
@@ -80,14 +50,12 @@
 					</div>
 					<div class="col-sm-4">
 						<div class="feature-content">
-							<img src="img/2nd.jpg" alt="Image"> <a
+							<img src="/visualize/img/2nd.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/repository/content?id=10865">norman/friendly_id</a>
 							<p class="feature-content-description">FriendlyId is the
-								“Swiss Army bulldozer” of slugging and permalink plugins for
-								ActiveRecord. It allows you to create pretty URL’s and work with
-								human-friendly strings as if they were numeric ids for
-								ActiveRecord models.</p>
+								“Swiss Army bulldozer” of slugging and permalink plugins for ActiveRecord. It allows you to create pretty URL’s and work with
+								human-friendly strings as if they were numeric ids for ActiveRecord models.</p>
 							<p>Last updated : 2015-11-28</p>
 							<p>Star : 3780</p>
 							<p>Fork : 421</p>
@@ -96,7 +64,7 @@
 					</div>
 					<div class="col-sm-4">
 						<div class="feature-content">
-							<img src="img/3rd.jpg" alt="Image"> <a
+							<img src="/visualize/img/3rd.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/repository/content?id=2376">ActsAsParanoid/acts_as_paranoid</a>
 							<p class="feature-content-description">ActiveRecord plugin
@@ -117,9 +85,9 @@
 		<section id="blog-area">
 			<div class="container">
 				<div class="row text-center inner">
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<div class="blog-content">
-							<img src="img/4th.jpg" alt="Image"> <a
+							<img src="/visualize/img/4th.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/repository/content?id=1734">aasm/aasm</a>
 							<p>AASM - State machines for Ruby classes (plain Ruby,
@@ -131,9 +99,23 @@
 
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<div class="blog-content">
-							<img src="img/5th.jpg" alt="Image"> <a
+							<img src="/visualize/img/5th.jpg" alt="Image"> <a
+								class="First-Commend"
+								href="http://www.gitmining.net/GithubVisualization/repository/content?id=2498">JackDanger/permanent_records</a>
+							<p>Rails Plugin - soft-delete your ActiveRecord records. It's
+								like an explicit version of ActsAsParanoid.</p>
+							<p>
+								Last updated : 2014-7-12<br />Star : 189<br />Fork : 48
+							</p>
+							<!-- <span><a href="#">read more</a></span><br> -->
+							<p id="blofr"></p>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="blog-content">
+							<img src="/visualize/img/5th.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/repository/content?id=2498">JackDanger/permanent_records</a>
 							<p>Rails Plugin - soft-delete your ActiveRecord records. It's
@@ -150,15 +132,15 @@
 		</section>
 		<!-- End Blog Area -->
 	</div>
+	
 	<div id="section3">
-		<!-- Start Services Area -->
+		<!-- Start Title Area -->
 		<section id="services-area" class="services-section">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12 text-center inner our-service">
 						<div class="service">
-							<h1>Our Services</h1>
-							<p>我们根据每个用户完成的历史项目情况，统计出了8位值得推荐的优秀用户。</p>
+							<h1>Guess You May Prefer</h1>
 						</div>
 					</div>
 				</div>
@@ -172,7 +154,7 @@
 				<div class="row text-center">
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 						<div class="testimonial-content">
-							<img src="img/4-1.jpg" alt="Image"> <a
+							<img src="/visualize/img/4-1.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/user/content?id=2">Chris
 								Wanstrath</a>
@@ -200,7 +182,7 @@
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 						<div class="testimonial-content">
-							<img src="img/4-2.jpg" alt="Image"> <a
+							<img src="/visualize/img/4-2.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/user/content?id=39191">Paul
 								Irish</a>
@@ -228,7 +210,7 @@
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 						<div class="testimonial-content">
-							<img src="img/4-3.jpg" alt="Image"> <a
+							<img src="/visualize/img/4-3.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/user/content?id=66577">Jake
 								Wharton</a>
@@ -256,7 +238,7 @@
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 						<div class="testimonial-content">
-							<img src="img/4-4.jpg" alt="Image"> <a
+							<img src="/visualize/img/4-4.jpg" alt="Image"> <a
 								class="First-Commend"
 								href="http://www.gitmining.net/GithubVisualization/user/content?id=1615">John
 								Resig</a>
@@ -287,7 +269,7 @@
 					<div class="row text-center">
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 							<div class="testimonial-content">
-								<img src="img/4-1.jpg" alt="Image"> <a
+								<img src="/visualize/img/4-1.jpg" alt="Image"> <a
 									class="First-Commend"
 									href="http://www.gitmining.net/GithubVisualization/user/content?id=25254">TJ
 									Holowaychuk</a>
@@ -315,7 +297,7 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 							<div class="testimonial-content">
-								<img src="img/4-2.jpg" alt="Image"> <a
+								<img src="/visualize/img/4-2.jpg" alt="Image"> <a
 									class="First-Commend"
 									href="http://www.gitmining.net/GithubVisualization/user/content?id=1615">John
 									Resig</a>
@@ -343,7 +325,7 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 							<div class="testimonial-content">
-								<img src="img/4-3.jpg" alt="Image"> <a
+								<img src="/visualize/img/4-3.jpg" alt="Image"> <a
 									class="First-Commend"
 									href="http://www.gitmining.net/GithubVisualization/user/content?id=70">Scott
 									Chacon</a>
@@ -371,7 +353,7 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 							<div class="testimonial-content">
-								<img src="img/4-4.jpg" alt="Image"> <a
+								<img src="/visualize/img/4-4.jpg" alt="Image"> <a
 									class="First-Commend"
 									href="http://www.gitmining.net/GithubVisualization/user/content?id=2741">David
 									Heinemeier Hansson</a>
@@ -397,76 +379,11 @@
 								</table>
 							</div>
 						</div>
-						<!-- <div class="col-lg-12">
-									<div class="tm-box">
-										<img src="img/4-5.jpg" alt="Image" class="img-responsive">
-										<div class="tm-box-description">
-											<h2>One Big Column</h2>
-											<p class="tm-box-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempor eros eget eros maximus, ut cursus sem euismod. Donec iaculis tristique odio at consectetur. Nullam dignissim varius suscipit. Sed in leo sit amet velit finibus pretium. Vivamus dictum nisi ac fermentum interdum. Vestibulum vel mauris at erat mattis accumsan et ac lorem. Cras non venenatis orci, sed tincidunt massa. Duis nisl lectus, auctor eu sodales at, dignissim eu orci. Sed vitae venenatis magna, in blandit metus. Praesent volutpat cursus rhoncus. Aenean arcu diam, suscipit ac neque in, sollicitudin convallis orci.</p>
-											<p class="tm-box-p">Fusce eu porta massa, sed tincidunt turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus a urna tellus. Integer pharetra vitae nisi et lacinia. Morbi sagittis justo a velit placerat ullamcorper quis quis velit. Sed convallis at risus ullamcorper auctor. Praesent quis velit neque. Quisque semper porta nisi vitae suscipit. Duis lectus magna, ornare ac scelerisque quis, maximus eget nisi.</p>
-											<a href="#" class="content-link">Read More</a>    
-										</div>                        
-									</div>                    
-								</div> -->
-					</div>
-				</div>
-		</section>
-		<!-- End Testimornial Area -->
-	</div>
-	<div id="section4">
-		<!-- Start Contact Area -->
-		<section id="contact-area" class="contact-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-center inner">
-						<div class="contact-content">
-							<h1>other good Repository or Users</h1>
-							<div class="row">
-								<div class="col-sm-12">
-									<p>Other interesting thing we think you will be interested.</p>
-									<p>For example :gay group(基佬组合)</p>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<form action="#" method="post" class="contact-form">
-							<div class="col-sm-6 contact-form-left">
-								<div class="form-group">
-									<a class="form-control" id="mail"
-										href="http://www.gitmining.net/GithubVisualization/user/content?id=70">Scott
-										Chacon</a> <a class="form-control" id="mail"
-										href="http://www.gitmining.net/GithubVisualization/user/content?id=70">Scott
-										Chacon</a> <a class="form-control" id="mail"
-										href="http://www.gitmining.net/GithubVisualization/user/content?id=70">Scott
-										Chacon</a> <a class="form-control" id="mail"
-										href="http://www.gitmining.net/GithubVisualization/user/content?id=70">Scott
-										Chacon</a> <a class="form-control" id="mail"
-										href="http://www.gitmining.net/GithubVisualization/user/content?id=70">Scott
-										Chacon</a>
-									<!-- <input name="name" type="text" class="form-control" id="name" placeholder="Name">
-												  	<input type="email" name="email" class="form-control" id="mail" placeholder="Email">
-													<input name="subject" type="text" class="form-control" id="subject" placeholder="Subject"> -->
-								</div>
-							</div>
-							<div class="col-sm-6 contact-form-right">
-								<div class="form-group">
-									<a class="form-control" id="comment"
-										href="http://www.gitmining.net/GithubVisualization/user/content?id=70">Scott
-										Chacon</a>
-									<!-- <textarea name="message" rows="6" class="form-control" id="comment" placeholder="Your message here..."></textarea> -->
-									<!-- <button type="submit" class="btn btn-default">Send</button> -->
-								</div>
-							</div>
-						</form>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!-- End Contact Area -->
+		<!-- End Testimornial Area -->
 	</div>
 
 	<!-- Start Footer Area -->
@@ -474,141 +391,85 @@
 		<div class="container">
 			<div class="row text-center">
 				<div class="col-sm-12">
-					<div class="footer-content">
-						<!-- <h1>Use it free!</h1>
-										<p>“Conquer is free Bootstrap template from templatemo website. 
-											<br>No backlink is required to use this layout.”</p> -->
-					</div>
+					<div class="footer-content"></div>
 				</div>
 			</div>
 		</div>
 		<hr>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12 text-center">
-					<!-- <p class="copy">Copyright © 2084 Your Company Name 
-                                        
-                                        | More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p> -->
-				</div>
+				<div class="col-sm-12 text-center"></div>
 			</div>
 		</div>
 	</footer>
 	<!-- End Footer Area -->
 
-	<script src="/visualize/js/echarts.min.js"></script>
-	<script src="/visualize/js/jquery.min.js"></script>
-	<script src="/visualize/js/bootstrap.min.js"></script>
-	<!-- <script src="/visualize/js/jquery.singlePageNav.min.js"></script> -->
-
+	<script src="/visualize/js/jquery-1.11.2.min.js"></script>
+	<script src="/visualize/js/jquery.scrollUp.min.js"></script>
+	<script src="/visualize/js/parallax.js-1.3.1/parallax.js"></script>
 	<script>
-		$(".fixed-header").addClass("scroll");
+		// HTML document is loaded. DOM is ready.
+		$(function() {
 
-		// Check scroll position and add/remove background to navbar
-		function checkScrollPosition() {
-			//     if($(window).scrollTop() > 50) {
-			$(".fixed-header").addClass("scroll");
-			//   } else {        
-			//       $(".fixed-header").removeClass("scroll");
-			//   }
-		}
+			// Parallax
+			$('.intro-section').parallax({
+				imageSrc : '/visualize/img/bg-1.jpg',
+				speed : 0.2
+			});
+			$('.services-section').parallax({
+				imageSrc : '/visualize/img/bg-2.jpg',
+				speed : 0.2
+			});
+			
+			// jQuery Scroll Up / Back To Top Image
+			$.scrollUp({
+				scrollName : 'scrollUp', // Element ID
+				scrollDistance : 300, // Distance from top/bottom before showing element (px)
+				scrollFrom : 'top', // 'top' or 'bottom'
+				scrollSpeed : 1000, // Speed back to top (ms)
+				easingType : 'linear', // Scroll to top easing (see http://easings.net/)
+				animation : 'fade', // Fade, slide, none
+				animationSpeed : 300, // Animation speed (ms)		        
+				scrollText : '', // Text for element, can contain HTML		        
+				scrollImg : true
+			// Set true to use image		        
+			});
 
-		$(document).ready(function() {
-			// Single page nav
-			$('.fixed-header').singlePageNav({
-				offset : 59,
+			// ScrollUp Placement
+			$(window).on(
+					'scroll',
+					function() {
+
+						// If the height of the document less the height of the document is the same as the
+						// distance the window has scrolled from the top...
+						if ($(document).height() - $(window).height() === $(
+								window).scrollTop()) {
+
+							// Adjust the scrollUp image so that it's a few pixels above the footer
+							$('#scrollUp').css('bottom', '80px');
+
+						} else {
+							// Otherwise, leave set it to its default value.
+							$('#scrollUp').css('bottom', '30px');
+						}
+					});
+
+			$('.single-page-nav').singlePageNav({
+				offset : $('.single-page-nav').outerHeight(),
+				speed : 1500,
 				filter : ':not(.external)',
 				updateHash : true
 			});
 
-			checkScrollPosition();
-
-			// nav bar
 			$('.navbar-toggle').click(function() {
-				$('.main-menu').toggleClass('show');
+				$('.single-page-nav').toggleClass('show');
 			});
 
-			$('.main-menu a').click(function() {
-				$('.main-menu').removeClass('show');
+			$('.single-page-nav a').click(function() {
+				$('.single-page-nav').removeClass('show');
 			});
-		});
 
-		$(window).on("scroll", function() {
-			checkScrollPosition();
 		});
 	</script>
-
-
-<!-- 	<script src="/visualize/js/jquery-1.11.2.min.js"></script> -->
-<!-- 	<script src="/visualize/js/jquery.scrollUp.min.js"></script> -->
-<!-- 	<!-- https://github.com/markgoodyear/scrollup --> -->
-<!-- 	<script src="/visualize/js/jquery.singlePageNav.min.js"></script> -->
-<!-- 	<!-- https://github.com/ChrisWojcik/single-page-nav --> -->
-<!-- 	<script src="/visualize/js/parallax.js-1.3.1/parallax.js"></script> -->
-<!-- 	<!-- http://pixelcog.github.io/parallax.js/ --> -->
-<!-- 	<script> -->
-
-<!-- //     // HTML document is loaded. DOM is ready. -->
-<!-- //     $(function() {   -->
-
-<!-- //     // Parallax -->
-<!-- //         $('.intro-section').parallax({ -->
-<!-- //         	imageSrc: 'img/bg-1.jpg', -->
-<!-- //         	speed: 0.2 -->
-<!-- //         }); -->
-<!-- //         $('.services-section').parallax({ -->
-<!-- //         	imageSrc: 'img/bg-2.jpg', -->
-<!-- //         	speed: 0.2 -->
-<!-- //     	}); -->
-<!-- //         $('.contact-section').parallax({ -->
-<!-- //         	imageSrc: 'img/bg-3.jpg', -->
-<!-- //         	speed: 0.2 -->
-<!-- //         });     -->
-
-<!-- //         // jQuery Scroll Up / Back To Top Image -->
-<!-- //         $.scrollUp({ -->
-<!-- //                 scrollName: 'scrollUp',      // Element ID -->
-<!-- // 		        scrollDistance: 300,         // Distance from top/bottom before showing element (px) -->
-<!-- // 		        scrollFrom: 'top',           // 'top' or 'bottom' -->
-<!-- // 		        scrollSpeed: 1000,            // Speed back to top (ms) -->
-<!-- // 		        easingType: 'linear',        // Scroll to top easing (see http://easings.net/) -->
-<!-- // 		        animation: 'fade',           // Fade, slide, none -->
-<!-- // 		        animationSpeed: 300,         // Animation speed (ms)		         -->
-<!-- // 		        scrollText: '', // Text for element, can contain HTML		         -->
-<!-- // 		        scrollImg: true            // Set true to use image		         -->
-<!-- //             }); -->
-
-<!-- //         // ScrollUp Placement -->
-<!-- //         $( window ).on( 'scroll', function() { -->
-
-<!-- //             // If the height of the document less the height of the document is the same as the -->
-<!-- //             // distance the window has scrolled from the top... -->
-<!-- //             if ( $( document ).height() - $( window ).height() === $( window ).scrollTop() ) { -->
-
-<!-- //                 // Adjust the scrollUp image so that it's a few pixels above the footer -->
-<!-- //                 $('#scrollUp').css( 'bottom', '80px' ); -->
-
-<!-- //             } else {       -->
-<!-- //                 // Otherwise, leave set it to its default value. -->
-<!-- //                 $('#scrollUp').css( 'bottom', '30px' );         -->
-<!-- //             } -->
-<!-- //         }); -->
-
-<!-- //         $('.single-page-nav').singlePageNav({ -->
-<!-- //         	offset: $('.single-page-nav').outerHeight(), -->
-<!-- //         	speed: 1500, -->
-<!-- //         	filter: ':not(.external)', -->
-<!-- //         	updateHash: true -->
-<!-- //         }); -->
-
-<!-- //         $('.navbar-toggle').click(function(){ -->
-<!-- //         	$('.single-page-nav').toggleClass('show'); -->
-<!-- //         }); -->
-
-<!-- //         $('.single-page-nav a').click(function(){ -->
-<!-- //         	$('.single-page-nav').removeClass('show'); -->
-<!-- //         }); -->
-        
-<!-- //     }); -->
-<!-- </script> -->
 </body>
 </html>
