@@ -10,17 +10,12 @@
 	<name>GitMining</name>
 	<url>http://maven.apache.org</url>
 
-<<<<<<< HEAD
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	  <maven.compiler.source>1.8</maven.compiler.source>
 	  <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
-=======
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
->>>>>>> ceb5da14cf4058bb2040bb8a0672120dea6b1bc8
+
 
 	<dependencies>
 		<dependency>
