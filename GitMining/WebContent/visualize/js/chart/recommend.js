@@ -14,18 +14,18 @@ function radar(id) {
 //			},
 			tooltip : {},
 			legend : {
-				data : [ '预估', '实际' ]
+				data : [ 'Estimation', 'Actual' ]
 			},
 			radar : {
 				// shape: 'circle',
 				indicator : [ {
-					name : '语言',
+					name : 'Language',
 					max : 6500
 				}, {
-					name : '技术人员',
+					name : 'Developer',
 					max : 16000
 				}, {
-					name : '团队气氛',
+					name : 'Tea',
 					max : 30000
 				}, {
 					name : '团队模式',
@@ -34,7 +34,7 @@ function radar(id) {
 					name : '创意',
 					max : 52000
 				}, {
-					name : '市场',
+					name : 'Market',
 					max : 25000
 				} ]
 			},

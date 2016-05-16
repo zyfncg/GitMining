@@ -37,37 +37,73 @@
 
 	<br />
 	<br />
+	<br />
 	<form action="/Developer" method="post">
 		<input type="text" placeholder="Developer..." maxlength="255"
 			style="position: absolute; left: 50%; margin-left: -300px;
 			width: 500px; height: 50px">
-		<input type="submit" value="search"
+		<input id="search" type="submit" value="search"
 			style="position: absolute; left: 50%; margin-left: 200px;
 			 width: 100px; height: 50px" />
 	</form>
 	<br />
 	<br />
 	<br />
-	<br />
-	<br />
-	<br />
 
-	<div class="container">
-		<section class="col-md-12 ">
-			<div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation">
-				<img src="/visualize/images/relation.png" alt="Member Relationship"
-					class="tm-image">
-			</div>
-			<div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map">
-				<img src="/visualize/images/map.png" alt="World Map" class="tm-image">
+	<div id="section2">
+		<%
+			int section = 3;
+			for (int i = 0; i < section; ++i) {
+		%>
+		<section id="feature-area" class="about-section">
+			<div class="container">
+				<%
+					for (int j = 0; j < 3; ++j) {
+				%>
+				<div class="row text-center inner">
+					<div class="col-sm-4">
+						<div class="feature-content">
+							<a class="First-Commend"
+								href="http://www.gitmining.net/
+							GithubVisualization/repository/content?id=8393">paperclip</a>
+							<p class="feature-content-description">Easy file attachment
+								management for ActiveRecord</p>
+							<p>developer : thoughtbot</p>
+							<p>Star : 144</p>
+							<p>Fork : 222</p>
+						</div>
+					</div>
+					<%
+						}
+					%>
+				</div>
 			</div>
 		</section>
-
-		<section class="col-md-12 content" id="clients">
-			<div class="col-lg-6 col-md-6 content-item"></div>
-			<div class="col-lg-6 col-md-6 content-item background flexbox"></div>
-		</section>
+		<%
+		}
+	%>
 	</div>
+
+
+	<br />
+	<br />
+
+	<!-- 	<div class="container"> -->
+<!-- 		<section class="col-md-12 "> -->
+<!-- 			<div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation"> -->
+<!-- 				<img src="/visualize/img/relation.png" alt="Member Relationship" -->
+<!-- 					class="tm-image"> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map"> -->
+<!-- 				<img src="/visualize/img/map.png" alt="World Map" class="tm-image"> -->
+<!-- 			</div> -->
+<!-- 		</section> -->
+
+<!-- 		<section class="col-md-12 content" id="clients"> -->
+<!-- 			<div class="col-lg-6 col-md-6 content-item"></div> -->
+<!-- 			<div class="col-lg-6 col-md-6 content-item background flexbox"></div> -->
+<!-- 		</section> -->
+<!-- 	</div> -->
 
 	<%@include file="/visualize/common/footer.jsp" %>
 
