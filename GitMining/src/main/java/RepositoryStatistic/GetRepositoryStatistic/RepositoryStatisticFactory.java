@@ -7,6 +7,9 @@ import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetStarStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.HistogramDetail.HistogramStatisticFork;
 import RepositoryStatistic.GetRepositoryStatistic.HistogramDetail.HistogramStatisticStar;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.SuccAnalysisStatic;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.SuccessAnalysis;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.UnSuccessAnalysis;
 
 public class RepositoryStatisticFactory {
 	
@@ -44,5 +47,13 @@ public class RepositoryStatisticFactory {
 	
 	public ScatterStatisticRepSmall GetSmallScatterStatisticRep() {
 		return new ScatterStatisticRepSmall();
+	}
+	
+	public SuccAnalysisStatic GetSuccStatistcs(){
+		return new SuccessAnalysis();
+	}
+	
+	public SuccAnalysisStatic GetUnSuccStatistcs(){
+		return new UnSuccessAnalysis();
 	}
 }
