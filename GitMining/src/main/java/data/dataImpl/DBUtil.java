@@ -139,6 +139,22 @@ public class DBUtil {
         int issue;
         int oneUserCommit;
 
+        double StarStatistic;
+		double ContributorStatistic;
+		double CommitStatistic;
+		double issueStatistic;
+		double PullRequestStatistic;
+		double sizeStatistic;
+		double StarAverage;
+		double ContibutorAverage;
+		double CommitAverage;
+		double issueAverage;
+		double PullRequestAverage;
+		double sizeAverage;
+		double totalStatistic;
+		
+		StatisticDetail statistic = null;
+        
         UserInfo userInfo;
 
         ResultSet userRS;
@@ -147,6 +163,7 @@ public class DBUtil {
         String contributorSQL;
         String collaboratorSQL;
         String commitSQL;
+        String statisticSQL;
 
         String userName;
 
@@ -225,9 +242,38 @@ public class DBUtil {
                 }
                 userRS.close();
                 
+                statisticSQL="select * from projectStatistic where name='" + projectName + "'";
+                userRS = Database.query(statisticSQL);
+                while (userRS.next()) {
+                	StarStatistic=userRS.getDouble("StarStatistic");
+                	ContributorStatistic=userRS.getDouble("ContributorStatistic");
+            		CommitStatistic=userRS.getDouble("CommitStatistic");
+            		issueStatistic=userRS.getDouble("issueStatistic");
+            		PullRequestStatistic=userRS.getDouble("PullRequestStatistic");
+            		sizeStatistic=userRS.getDouble("sizeStatistic");
+            		StarAverage=userRS.getDouble("StarAverage");
+            		ContibutorAverage=userRS.getDouble("ContibutorAverage");
+            		CommitAverage=userRS.getDouble("CommitAverage");
+            		issueAverage=userRS.getDouble("issueAverage");
+            		PullRequestAverage=userRS.getDouble("PullRequestAverage");
+            		sizeAverage=userRS.getDouble("sizeAverage");
+            		totalStatistic=userRS.getDouble("totalStatistic");
+                    
+            		statistic=new StatisticDetail(StarStatistic, ContributorStatistic, CommitStatistic,
+            				issueStatistic, PullRequestStatistic, sizeStatistic, totalStatistic);
+            		statistic.setStarAverage(StarAverage);
+            		statistic.setContibutorAverage(ContibutorAverage);
+            		statistic.setCommitAverage(CommitAverage);
+            		statistic.setIssueAverage(issueAverage);
+            		statistic.setPullRequestAverage(PullRequestAverage);
+            		statistic.setSizeAverage(sizeAverage);
+            		
+                }
+                
                 projectDetail.setContributorsInfo(contributorsInfo);
                 projectDetail.setCollaboratorsInfo(collaboratorsInfo);
                 projectDetail.setUserCommits(userCommits);
+                projectDetail.setStatisticDetail(statistic);
                 pList.set(i, projectDetail);
             }
             

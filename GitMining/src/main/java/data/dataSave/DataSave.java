@@ -34,6 +34,71 @@ public class DataSave {
 		
 		
 	}
+	
+	/**
+	 * 保存项目统计信息到数据库
+	 */
+	public boolean saveProjectStatis(List<ProjectDetail> list){
+		double StarStatistic;
+		double ContributorStatistic;
+		double CommitStatistic;
+		double issueStatistic;
+		double PullRequestStatistic;
+		double sizeStatistic;
+		double StarAverage;
+		double ContibutorAverage;
+		double CommitAverage;
+		double issueAverage;
+		double PullRequestAverage;
+		double sizeAverage;
+		double totalStatistic;
+		String name;
+		String sql;
+		StatisticDetail statistic;
+		
+		
+		try {
+			sql="delete from projectStatistic";
+			Database.operate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			for(ProjectDetail projectDetail:list){
+				statistic=projectDetail.getStatisticDetail();
+				name=projectDetail.getProjectName().toString();
+				
+				StarStatistic=statistic.getStarStatistic();
+				ContributorStatistic=statistic.getContributorStatistic();
+				CommitStatistic=statistic.getCommitStatistic();
+				issueStatistic=statistic.getIssueStatistic();
+				PullRequestStatistic=statistic.getPullRequestStatistic();
+				sizeStatistic=statistic.getSizeStatistic();
+				StarAverage=statistic.getStarAverage();
+				ContibutorAverage=statistic.getContibutorAverage();
+				CommitAverage=statistic.getCommitAverage();
+				issueAverage=statistic.getIssueAverage();
+				PullRequestAverage=statistic.getPullRequestAverage();
+				sizeAverage=statistic.getSizeAverage();
+				totalStatistic=statistic.getTotalStatistic();
+				
+				sql="INSERT INTO projectInfo VALUES('"+name+"',"+StarStatistic+ContributorStatistic+CommitStatistic+
+						issueStatistic+PullRequestStatistic+sizeStatistic+StarAverage+ContibutorAverage+CommitAverage+
+						issueAverage+PullRequestAverage+sizeAverage+totalStatistic+");";
+				
+				Database.operate(sql);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
 	/**
 	 *保存项目信息到数据库
 	 *
@@ -71,13 +136,15 @@ public class DataSave {
 		}
 		assert projectDetailList != null;
 		
-		sql="TRUNCATE TABLE projectInfo";
+//		sql="TRUNCATE TABLE projectInfo";
 		try {
 			sql="delete from projectContributors";
 			Database.operate(sql);
 			sql="delete from projectCollaborators";
 			Database.operate(sql);
 			sql="delete from projectCommits";
+			Database.operate(sql);
+			sql="delete from projectStatistic";
 			Database.operate(sql);
 			sql="delete from projectInfo";
 			Database.operate(sql);
