@@ -5,19 +5,17 @@ import java.util.List;
 import Info.UserInfo;
 import Info.UserInfoDetail;
 
-public class UserDataUtil {
-	
-	private FileUtil fileUtil=new FileUtil();
-	
+public class UserDataImpl {
+	DBUtil dbUtil=new DBUtil();
 	/**
-	 *从文件中获取用户数据 
+	 *从数据库中获取用户数据 
 	 * 
 	 */
 	public List<UserInfo> getAllUsers() throws Exception{
 		
 		List<UserInfo> userList = null;
 		
-		userList=fileUtil.getUserListFromFile();
+		userList=dbUtil.getUserInfoFromDB();
 		
 		return userList;
 	} 
@@ -31,17 +29,9 @@ public class UserDataUtil {
 	 */
 	public UserInfoDetail getUserByName(String name) throws Exception{
 		
-		List<UserInfoDetail> userDetailList=fileUtil.getUserDetailFromFile();
-		UserInfoDetail userDetail = null;
-		String userName;
 		
-		for(UserInfoDetail ud:userDetailList){
-			userName=ud.getUserName();
-			if(userName.equals(name)){
-				userDetail=ud;
-				break;
-			}
-		}
+		UserInfoDetail userDetail = null;
+		userDetail=dbUtil.getUserDetail(name);
 		
 		return userDetail;
 	}

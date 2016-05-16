@@ -20,7 +20,7 @@ public class ProjectDataImpl {
     /**
      *从数据库中获取项目数据
      */
-	public List<ProjectInfo> getAllProjectsFromFile() throws Exception{
+	public List<ProjectInfo> getAllProjects() throws Exception{
 		
 		List<ProjectInfo> pList = null;
 

@@ -11,6 +11,7 @@ import res.Strings;
 public class UserDataController implements UserDataServer{
 
 	private UserDataUtil userDataUtil=new UserDataUtil();
+//	private UserDataImpl userDataUtil=new UserDataImpl();
 	
 	@Override
 	public List<UserInfo> getAllUsers(){
@@ -18,7 +19,7 @@ public class UserDataController implements UserDataServer{
 		List<UserInfo> userList=new ArrayList<UserInfo>();
 		
 		try {
-			userList=userDataUtil.getAllUsersFromFile();
+			userList=userDataUtil.getAllUsers();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return userList;

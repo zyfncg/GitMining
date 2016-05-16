@@ -14,7 +14,7 @@ public class ProjectDataUtil {
 	 * 
 	 * 
 	 */
-	public List<ProjectInfo> getAllProjectsFromFile() throws Exception{
+	public List<ProjectInfo> getAllProjects() throws Exception{
 		
 		List<ProjectInfo> pList = null;
 

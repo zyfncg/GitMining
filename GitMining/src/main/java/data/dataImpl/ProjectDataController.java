@@ -12,14 +12,14 @@ import res.Strings;
 public class ProjectDataController implements ProjectDataServer{
 
 	
-//	private ProjectDataUtil projectData=new ProjectDataUtil();
-	private ProjectDataImpl projectData=new ProjectDataImpl();
+	private ProjectDataUtil projectData=new ProjectDataUtil();
+//	private ProjectDataImpl projectData=new ProjectDataImpl();
 	
 	@Override
 	public List<ProjectInfo> getAllProjects(){
 		List<ProjectInfo> pList=new ArrayList<ProjectInfo>();
 		try {
-			pList=projectData.getAllProjectsFromFile();
+			pList=projectData.getAllProjects();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return pList;
