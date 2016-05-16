@@ -2,6 +2,7 @@ package Info;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目详细信息
@@ -99,6 +100,11 @@ public class ProjectDetail implements Serializable{
 	 * 雷达图详细数据
 	 */
 	private StatisticDetail statisticDetail;
+
+	/**
+	 * 用户commit统计
+	 */
+	private Map userCommits;
 	
 
 	public ProjectDetail(String description, String language, String uRL,
@@ -251,6 +257,14 @@ public class ProjectDetail implements Serializable{
 
 	public void setIssue(int issue) {
 		this.issue = issue;
+	}
+
+	public void setUserCommits(Map userCommits){
+		this.userCommits=userCommits;
+	}
+
+	public Map getUserCommits(){
+		return this.userCommits;
 	}
 
 	/**

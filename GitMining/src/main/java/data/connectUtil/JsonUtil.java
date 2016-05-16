@@ -77,7 +77,7 @@ public class JsonUtil {
 	}
 	
 	/**
-	 *@param json格式的字符串
+	 *@param jsonString json格式的字符串
 	 *@return json转为的ProjectDetail类 
 	 * 
 	 */
