@@ -4,6 +4,7 @@
 <html>
 <head>
 <script src="/visualize/js/echarts.min.js"></script>
+<script src="/visualize/js/d3.min.js"></script>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -104,17 +105,7 @@
 		</section>
 
 		<section>
-			<div id="succTeamTypeRate" class="chart">
-				<script type="text/javascript">
-					succTeamTypeRate();
-				</script>
-			</div>
-
-			<div id="unsuccTeamTypeRate" class="chart">
-				<script type="text/javascript">
-					unsuccTeamTypeRate();
-				</script>
-			</div>
+			
 		</section>
 	</div>
 	
