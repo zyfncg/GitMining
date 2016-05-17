@@ -51,7 +51,7 @@ public class Developer extends HttpServlet {
 		if(attr == null) {
 			request.setAttribute("currentPage", 0);
 		}
-		
+	
 		if(para != null) {
 			Integer i = Integer.parseInt(para);
 			request.setAttribute("currentPage", i);

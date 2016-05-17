@@ -58,6 +58,12 @@
 			int currentPage = 0;
 		%>
 		<%
+			Object obj = request.getAttribute("currentPage");
+			if(obj != null) {
+				currentPage = (Integer)obj;
+			}
+		%>
+		<%
 			@SuppressWarnings("unchecked")
 			List<UserInfoDetail> list = (List<UserInfoDetail>) request.getAttribute("test");
 			resultNum = list.size();
@@ -106,18 +112,20 @@
 
 	<br />
 	<br />
+
 	<ul class="pagination"
 		style="position: absolute; left: 50%; margin-left: -150px; width: 300px;">
+		<li class="prev"><a href="/Developer?currentPage=<%= currentPage - 1%>" 
+		class=<%= currentPage == 0 ? "disable" : "pre" %>>Previous</a></li>
 		<%
 			if (pageNum >= 2 && pageNum <= 4) {
 		%>
-		<li class="prev"><a href="/Developer?currentPage=<%= --currentPage%>" 
-		class=<%=currentPage == 0 ? "disable" : "pre" %>>Previous</a></li>
-		<li class="next"><a href="/Developer?currentPage=<%= ++currentPage%>" 
-		class=<%=currentPage == pageNum - 1 ? "disable" : "next" %>>Next</a></li>
+		
 		<%
 			}
 		%>
+		<li class="next"><a href="/Developer?currentPage=<%= currentPage + 1 %>" 
+		class=<%= currentPage == pageNum - 1 ? "disable" : "next" %>>Next</a></li>
 	</ul>
 	<br />
 	<br />
