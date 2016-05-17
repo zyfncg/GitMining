@@ -12,14 +12,14 @@ import res.Strings;
 public class ProjectDataController implements ProjectDataServer{
 
 	
-	private ProjectDataUtil projectdataUtil=new ProjectDataUtil();
-	
+	private ProjectDataUtil projectData=new ProjectDataUtil();
+//	private ProjectDataImpl projectData=new ProjectDataImpl();
 	
 	@Override
 	public List<ProjectInfo> getAllProjects(){
 		List<ProjectInfo> pList=new ArrayList<ProjectInfo>();
 		try {
-			pList=projectdataUtil.getAllProjectsFromFile();
+			pList=projectData.getAllProjects();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return pList;
@@ -33,7 +33,7 @@ public class ProjectDataController implements ProjectDataServer{
 		ProjectDetail proDetail;
 		
 		try {
-			proDetail=projectdataUtil.getProjectByName(name);
+			proDetail=projectData.getProjectByName(name);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception(Strings.URL_EXCEPTION_TIP);

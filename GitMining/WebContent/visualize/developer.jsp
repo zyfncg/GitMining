@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+	pageEncoding="utf-8" import="java.util.List, Info.UserInfoDetail"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +18,7 @@
 
 <body>
 	<%@include file="/visualize/common/navigation.jsp"%>
+	<!-- the number of searching result -->
 	
 	<div id="section1">
 		<header id="header-area" class="intro-section">
@@ -51,26 +52,44 @@
 	<br />
 
 	<div id="section2">
+		<%!
+			int resultNum;
+			int pageNum;
+			int currentPage = 0;
+		%>
 		<%
-			int section = 3;
-			for (int i = 0; i < section; ++i) {
+			@SuppressWarnings("unchecked")
+			List<UserInfoDetail> list = (List<UserInfoDetail>) request.getAttribute("test");
+			resultNum = list.size();
+			pageNum = (resultNum + 5) / 6;	//6 item per page
+			UserInfoDetail user = null;
+			int index;
+			for (int i = 0; i < 2; ++i) {
 		%>
 		<section id="feature-area" class="about-section">
 			<div class="container">
 				<%
-					for (int j = 0; j < 3; ++j) {
+					index = currentPage * 6 + i * 3;
+					for (int j = 0; j < 3 && index + j < resultNum; ++j) {
+							user = list.get(index + j);
 				%>
 				<div class="row text-center inner">
 					<div class="col-sm-4">
 						<div class="feature-content">
 							<a class="First-Commend"
-								href="http://www.gitmining.net/
-							GithubVisualization/repository/content?id=8393">paperclip</a>
-							<p class="feature-content-description">Easy file attachment
-								management for ActiveRecord</p>
-							<p>developer : thoughtbot</p>
-							<p>Star : 144</p>
-							<p>Fork : 222</p>
+								href=<%="http://www.github.com/" + user.getUserName()%>>
+								 <%=user.getUserName()%></a>
+							<p class="feature-content-description">
+								<%="Brief Description: " + user.getDescriptionUser()%></p>
+							<p>
+								Email :
+								<%=user.getEmail()%></p>
+							<p>
+								Company :
+								<%=user.getCompany()%></p>
+							<p>
+								Address :
+								<%=user.getAddress()%></p>
 						</div>
 					</div>
 					<%
@@ -80,11 +99,30 @@
 			</div>
 		</section>
 		<%
-		}
-	%>
+			}
+		%>
 	</div>
 
 
+	<br />
+	<br />
+	<ul class="pagination"
+		style="position: absolute; left: 50%; margin-left: -150px; width: 300px;">
+		<%
+			if (pageNum >= 2 && pageNum <= 4) {
+		%>
+		<li class="prev"><a href="/Developer?currentPage=<%= --currentPage%>" 
+		class=<%=currentPage == 0 ? "disable" : "pre" %>>Previous</a></li>
+		<li class="next"><a href="/Developer?currentPage=<%= ++currentPage%>" 
+		class=<%=currentPage == pageNum - 1 ? "disable" : "next" %>>Next</a></li>
+		<%
+			}
+		%>
+	</ul>
+	<br />
+	<br />
+	<br />
+	<br />
 	<br />
 	<br />
 
