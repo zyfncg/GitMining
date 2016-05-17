@@ -1,6 +1,8 @@
 package data.download;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Info.Date;
 import Info.ProjectDetail;
@@ -10,6 +12,7 @@ import data.connectUtil.StringListTool;
 import data.connectUtil.URLString;
 import data.dataImpl.FileUtil;
 import data.statistisDataImpl.ProjectFile;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class ProjectDataMerge {
@@ -70,12 +73,12 @@ public class ProjectDataMerge {
 	}
 	
 	/**
-	 * 从文件获得项目的commit信息并写到项目文件中
+	 * 使用URL获得所有用户的项目的userCommits信息并写到项目文件中
 	 * @author ZhangYF
-	 * @return 是否合并成功 
+	 * @return 是否获取成功
 	 * 
 	 */
-	public boolean setCommitMerge(){
+	public boolean setUserCommits(){
 		FileUtil fileUtil=new FileUtil();
 		ProjectFile pf=new ProjectFile();
 		ProjectDetail projectDetail;
@@ -89,20 +92,38 @@ public class ProjectDataMerge {
 			e1.printStackTrace();
 			return false;
 		}
-		
-		
+		String projectURL;
+		int commit=0;
+		ProjectName pn;
+		Map<String,Integer> userCommits;
+
+		for(int i=0;i<projectList.size();i++){
+			projectDetail=projectList.get(i);
+			pn=projectDetail.getProjectName();
+			if(pn.toString().contains(".")){
+				System.out.println(pn.toString());
+			}
+			String pname=pn.toString().replace(".", "+");
+			projectURL=URLString.getRepositoryApiString()+pname;
+
 			try {
-				commitList=pf.getProjectCommit();
+
+				userCommits=getUserCommitMap(projectURL);
+				commit=0;
+				for(Integer value:userCommits.values()){
+					commit=commit+value;
+				}
+				projectDetail.setUserCommits(userCommits);
+				projectDetail.setCommit(commit);
+				projectList.set(i, projectDetail);
+
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return false;
 			}
-		int commit;
-		for(int i=0;i<projectList.size();i++){
-			commit=commitList.get(i);
-			projectDetail=projectList.get(i);
-			projectDetail.setCommit(commit);
+			if(i%10==0){
+				System.out.println(i);
+			}
 			
 		}
 		
@@ -229,4 +250,54 @@ public class ProjectDataMerge {
 	    	
 	    	return num;
 	    }
+
+	 private Map<String,Integer> getUserCommitMap(String url) {
+
+		 Map<String,Integer> userCommits=new HashMap<String,Integer>();
+		 JSONArray commitJSONList;
+		 JSONObject jb;
+		 StringListTool stringTool=new StringListTool();
+		 String page="/commits?page=";
+		 String retStr="";
+		 String name;
+		 int commits;
+		 int i=1;
+
+		 try {
+			 retStr=HttpRequestUtil.httpRequest(url+page+i);
+//			 System.out.println(url+page+i);
+			 while(retStr!=null&&retStr.length()>2){
+				 commitJSONList=JSONArray.fromObject(retStr);
+				 for(int k=0;k<commitJSONList.size();k++){
+					 jb=commitJSONList.getJSONObject(k);
+					 jb=jb.getJSONObject("commit");
+					 jb=jb.getJSONObject("author");
+					 name=jb.getString("name");
+
+					 if(userCommits.containsKey(name)){
+						 commits=(Integer) userCommits.get(name);
+						 userCommits.put(name,commits+1);
+					 }else{
+						 userCommits.put(name,1);
+					 }
+				 }
+				 
+				 i++;
+				 if(i%20==0){
+					 System.out.println("page="+i);
+				 }
+				 retStr=HttpRequestUtil.httpRequest(url+page+i);
+
+			 }
+			 System.out.println("endPage="+i);
+		 } catch (Exception e) {
+			 System.out.println("endPage="+i);
+			 e.printStackTrace();
+			 return userCommits;
+		 }
+
+
+
+		 return userCommits;
+	 }
 }
