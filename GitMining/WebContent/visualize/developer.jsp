@@ -82,20 +82,22 @@
 				<div class="row text-center inner">
 					<div class="col-sm-4">
 						<div class="feature-content">
-							<a class="First-Commend"
-								href=<%="http://www.github.com/" + user.getUserName()%>>
+							<a class="First-Commend">
 								 <%=user.getUserName()%></a>
 							<p class="feature-content-description">
 								<%="Brief Description: " + user.getDescriptionUser()%></p>
-							<p>
+							<p class="feature-content-item">
 								Email :
 								<%=user.getEmail()%></p>
-							<p>
+							<p class="feature-content-item">
 								Company :
 								<%=user.getCompany()%></p>
-							<p>
+							<p class="feature-content-item">
 								Address :
 								<%=user.getAddress()%></p>
+							<p class="feature-content-item">
+							<a href="<%="http://www.github.com/" + user.getUserName()%>">
+								See more on github</a></p>
 						</div>
 					</div>
 					<%
@@ -114,18 +116,59 @@
 	<br />
 
 	<ul class="pagination"
-		style="position: absolute; left: 50%; margin-left: -150px; width: 300px;">
-		<li class="prev"><a href="/Developer?currentPage=<%= currentPage - 1%>" 
-		class=<%= currentPage == 0 ? "disable" : "pre" %>>Previous</a></li>
+		style="position: absolute; left: 50%; margin-left: -200px; width: 400px;">
 		<%
-			if (pageNum >= 2 && pageNum <= 4) {
+			if (pageNum > 1) {
 		%>
-		
+		<li class="prev"><a
+			href="/Developer?currentPage=<%=currentPage - 1%>"
+			class=<%=currentPage == 0 ? "disable" : "pre"%>>Previous</a></li>
 		<%
 			}
 		%>
-		<li class="next"><a href="/Developer?currentPage=<%= currentPage + 1 %>" 
-		class=<%= currentPage == pageNum - 1 ? "disable" : "next" %>>Next</a></li>
+		<%!int i; %>
+		<%
+			if (pageNum >= 2 && pageNum <= 5) {
+				for(i = 0; i < pageNum; ++i) {
+		%>
+		<li id=<%="button" + i%>><a href="/Developer?currentPage=<%=i%>"
+		 ><%= i + 1 %></a></li>
+		<%
+				}
+			}else
+		%>
+		<%
+			if (pageNum > 5) {
+				if(pageNum - currentPage <= 3) {
+					for(i = pageNum - 3; i < pageNum; ++i) {
+		%>
+		<li id=<%="button" + i%>><a href="/Developer?currentPage=<%=i%>"
+		 ><%= i + 1 %></a></li>
+		<%
+					}
+				}else {
+		%>
+		<li id=<%="button" + currentPage%>><a href="/Developer?currentPage=<%=currentPage%>"
+		 ><%= currentPage + 1 %></a></li>
+		 <li id=<%= "button" + (currentPage + 1) %> >
+		 <a href="/Developer?currentPage=<%=currentPage + 1%>"><%= currentPage + 2 %></a></li>
+		 <li><a>...</a></li>
+		 <li id=<%="button" + (pageNum - 1)%>><a href="/Developer?currentPage=<%=(pageNum - 1)%>"
+		 ><%= pageNum %></a></li>
+		<%
+				}
+			}
+		%>
+		
+		<%
+			if (pageNum > 1) {
+		%>
+		<li class="next"><a
+			href="/Developer?currentPage=<%=currentPage + 1%>"
+			class=<%=currentPage == pageNum - 1 ? "disable" : "next"%>>Next</a></li>
+		<% 
+			}
+		%>
 	</ul>
 	<br />
 	<br />
@@ -133,23 +176,10 @@
 	<br />
 	<br />
 	<br />
-
-	<!-- 	<div class="container"> -->
-<!-- 		<section class="col-md-12 "> -->
-<!-- 			<div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation"> -->
-<!-- 				<img src="/visualize/img/relation.png" alt="Member Relationship" -->
-<!-- 					class="tm-image"> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map"> -->
-<!-- 				<img src="/visualize/img/map.png" alt="World Map" class="tm-image"> -->
-<!-- 			</div> -->
-<!-- 		</section> -->
-
-<!-- 		<section class="col-md-12 content" id="clients"> -->
-<!-- 			<div class="col-lg-6 col-md-6 content-item"></div> -->
-<!-- 			<div class="col-lg-6 col-md-6 content-item background flexbox"></div> -->
-<!-- 		</section> -->
-<!-- 	</div> -->
+	<script type="text/javascript">
+		var ele = document.getElementById("button" + <%=currentPage%>);
+		ele.className = 'active';
+	</script>
 
 	<%@include file="/visualize/common/footer.jsp" %>
 
@@ -168,7 +198,7 @@
 				imageSrc : '/visualize/img/bg-1.jpg',
 				speed : 0.2
 			});
-			
+
 			// jQuery Scroll Up / Back To Top Image
 			$.scrollUp({
 				scrollName : 'scrollUp', // Element ID

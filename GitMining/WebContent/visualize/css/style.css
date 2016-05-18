@@ -207,6 +207,11 @@ z-index: 999;
     padding-bottom: 40px;
 }
 
+.feature-content-item {
+	margin-left: 20%;
+	text-align: left;
+}
+
 .feature-content-title {
     padding: 0 20px;
     text-align: left;    
