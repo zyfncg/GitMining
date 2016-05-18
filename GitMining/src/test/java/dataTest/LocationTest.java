@@ -1,6 +1,7 @@
 package dataTest;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -43,9 +44,23 @@ public class LocationTest {
 			
 		}
 		System.out.println(addressList.size());
-		for(int i=0;i<50;i++){
+		
+		for(int i=0;i<150;i++){
 			System.out.println(addressList.get(i));
 		}
+		
+//		List<String> cityList=new ArrayList<String>();
+//		for(int i=0;i<addressList.size();i++){
+//			String nation=addressList.get(i);
+//			if(nation.contains(" us")||nation.contains(" usa")){
+//				cityList.add(nation);
+//			}
+//			//System.out.println(addressList.get(i));
+//		}
+//		Collections.sort(cityList);  
+//		for(int i=0;i<cityList.size();i++){
+//			System.out.println(cityList.get(i));
+//		}
 		
 	}
 
