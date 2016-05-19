@@ -34,6 +34,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Java/tomcat/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/Users/sam/Documents/apache-tomcat-7.0.69/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
