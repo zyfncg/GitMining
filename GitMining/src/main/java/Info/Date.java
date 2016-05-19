@@ -28,7 +28,10 @@ public class Date implements Serializable{
 	}
 	
 	public static Date stringToDate(String dateString){
-		dateString=dateString.substring(0,10);
+		if(dateString.length()>10){
+			dateString=dateString.substring(0,10);
+		}
+		
 		String time[]=dateString.split(seperator);
 		int toYear=Integer.parseInt(time[0]);
 		int toMonth=Integer.parseInt(time[1]);

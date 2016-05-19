@@ -1,57 +1,29 @@
 package data.dataImpl;
 
-import Info.Date;
+import java.util.List;
+
 import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
-import data.mysql.Database;
-
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ZhangYF on 2016/5/7.
  */
 public class ProjectDataImpl {
+	
+	DBUtil dbUtil=new DBUtil();
 
     /**
      *从数据库中获取项目数据
-     *
-     *
      */
-    ResultSet rs;
-    public List<ProjectDetail> getAllProjectsFromDB() throws Exception{
+	public List<ProjectInfo> getAllProjects() throws Exception{
+		
+		List<ProjectInfo> pList = null;
 
-        List<ProjectDetail> pList = new ArrayList<ProjectDetail>();
-        ProjectDetail projectDetail;
-        ProjectName proname;
-        String language;
-        String URL;
-        String description;
+		pList=dbUtil.getProjectListFromDB();
 
-        int forks;
-        int stars;
-        int contributors;
-        int collaborators;
-        int subscribers;
-
-        Date creatDate;
-
-        int pullRequest;
-        int size;
-        int commit;
-        int issue;
-        String sql="select * from projectInfo";
-        rs= Database.query(sql);
-        while(rs.next()){
-            proname=new ProjectName(rs.getString("name"));
-            //projectDetail=new ProjectDetail();
-        }
-        //pList=proFile.getProjectListFromFile();
-
-        return pList;
-    }
+		return pList;
+	}
 
     /**
      *获得单个项目的具体信息
@@ -62,10 +34,8 @@ public class ProjectDataImpl {
      */
     public ProjectDetail getProjectByName(ProjectName name) throws Exception {
 
-        //List<ProjectDetail> proList=proFile.getProjectDetailListFromFile();
-        ProjectDetail projectDetail = null;
-        ProjectName pn;
-
+    	ProjectDetail projectDetail;
+    	projectDetail=dbUtil.getProjectDetail(name.toString());
 
 
         return projectDetail;

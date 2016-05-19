@@ -22,7 +22,7 @@ public class FileUtil {
 	public List<ProjectInfo> getProjectListFromFile() throws Exception{
 		
 		List<ProjectInfo> pList = null;	
-		
+
 		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectData.ser"));
 			
 		pList=(List<ProjectInfo>) is.readObject();
@@ -34,7 +34,7 @@ public class FileUtil {
 	
 	/**
 	 * 所有项目信息的列表放入文件中
-	 * @param 项目信息列表
+	 * @param pList 项目信息列表
 	 */
 	public boolean setProjectToFile(List<ProjectInfo> pList){
 		try {
@@ -56,7 +56,7 @@ public class FileUtil {
 	@SuppressWarnings("unchecked")
 	public List<UserInfo> getUserListFromFile() throws Exception{
 		
-		List<UserInfo> userList = null;	
+		List<UserInfo> userList;
 		
 		ObjectInputStream is=new ObjectInputStream(new FileInputStream("userData.ser"));
 			
@@ -69,7 +69,7 @@ public class FileUtil {
 	
 	/**
 	 * 所有用户信息的列表放入文件中
-	 * @param 用户信息列表
+	 * @param userList 用户信息列表
 	 */
 	public boolean setUserToFile(List<UserInfo> userList){
 		try {
@@ -103,7 +103,7 @@ public class FileUtil {
 	
 	/**
 	 * 所有项目信息的列表放入文件中
-	 * @param 项目信息列表
+	 * @param pList 项目信息列表
 	 */
 	public boolean setProjectDetailToFile(List<ProjectDetail> pList){
 		try {

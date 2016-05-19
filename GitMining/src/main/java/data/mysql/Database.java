@@ -105,6 +105,7 @@ public class Database {
 	
 	//查询数据
 	public static ResultSet query(String sql) throws SQLException{
+		stat=conn.createStatement();
 		rs=stat.executeQuery(sql);
 		return rs;
 	}

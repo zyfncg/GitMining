@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+	pageEncoding="utf-8" import="java.util.List, Info.UserInfoDetail"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +18,7 @@
 
 <body>
 	<%@include file="/visualize/common/navigation.jsp"%>
+	<!-- the number of searching result -->
 	
 	<div id="section1">
 		<header id="header-area" class="intro-section">
@@ -51,26 +52,52 @@
 	<br />
 
 	<div id="section2">
+		<%!
+			int resultNum;
+			int pageNum;
+			int currentPage = 0;
+		%>
 		<%
-			int section = 3;
-			for (int i = 0; i < section; ++i) {
+			Object obj = request.getAttribute("currentPage");
+			if(obj != null) {
+				currentPage = (Integer)obj;
+			}
+		%>
+		<%
+			@SuppressWarnings("unchecked")
+			List<UserInfoDetail> list = (List<UserInfoDetail>) request.getAttribute("test");
+			resultNum = list.size();
+			pageNum = (resultNum + 5) / 6;	//6 item per page
+			UserInfoDetail user = null;
+			int index;
+			for (int i = 0; i < 2; ++i) {
 		%>
 		<section id="feature-area" class="about-section">
 			<div class="container">
 				<%
-					for (int j = 0; j < 3; ++j) {
+					index = currentPage * 6 + i * 3;
+					for (int j = 0; j < 3 && index + j < resultNum; ++j) {
+							user = list.get(index + j);
 				%>
 				<div class="row text-center inner">
 					<div class="col-sm-4">
 						<div class="feature-content">
-							<a class="First-Commend"
-								href="http://www.gitmining.net/
-							GithubVisualization/repository/content?id=8393">paperclip</a>
-							<p class="feature-content-description">Easy file attachment
-								management for ActiveRecord</p>
-							<p>developer : thoughtbot</p>
-							<p>Star : 144</p>
-							<p>Fork : 222</p>
+							<a class="First-Commend">
+								 <%=user.getUserName()%></a>
+							<p class="feature-content-description">
+								<%="Brief Description: " + user.getDescriptionUser()%></p>
+							<p class="feature-content-item">
+								Email :
+								<%=user.getEmail()%></p>
+							<p class="feature-content-item">
+								Company :
+								<%=user.getCompany()%></p>
+							<p class="feature-content-item">
+								Address :
+								<%=user.getAddress()%></p>
+							<p class="feature-content-item">
+							<a href="<%="http://www.github.com/" + user.getUserName()%>">
+								See more on github</a></p>
 						</div>
 					</div>
 					<%
@@ -80,30 +107,79 @@
 			</div>
 		</section>
 		<%
-		}
-	%>
+			}
+		%>
 	</div>
 
 
 	<br />
 	<br />
 
-	<!-- 	<div class="container"> -->
-<!-- 		<section class="col-md-12 "> -->
-<!-- 			<div class="col-lg-6 col-md-6 col-md-push-6 content" id="relation"> -->
-<!-- 				<img src="/visualize/img/relation.png" alt="Member Relationship" -->
-<!-- 					class="tm-image"> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-lg-6 col-md-6 col-md-pull-6 content" id="map"> -->
-<!-- 				<img src="/visualize/img/map.png" alt="World Map" class="tm-image"> -->
-<!-- 			</div> -->
-<!-- 		</section> -->
-
-<!-- 		<section class="col-md-12 content" id="clients"> -->
-<!-- 			<div class="col-lg-6 col-md-6 content-item"></div> -->
-<!-- 			<div class="col-lg-6 col-md-6 content-item background flexbox"></div> -->
-<!-- 		</section> -->
-<!-- 	</div> -->
+	<ul class="pagination"
+		style="position: absolute; left: 50%; margin-left: -200px; width: 400px;">
+		<%
+			if (pageNum > 1) {
+		%>
+		<li class="prev"><a
+			href="/Developer?currentPage=<%=currentPage - 1%>"
+			class=<%=currentPage == 0 ? "disable" : "pre"%>>Previous</a></li>
+		<%
+			}
+		%>
+		<%!int i; %>
+		<%
+			if (pageNum >= 2 && pageNum <= 5) {
+				for(i = 0; i < pageNum; ++i) {
+		%>
+		<li id=<%="button" + i%>><a href="/Developer?currentPage=<%=i%>"
+		 ><%= i + 1 %></a></li>
+		<%
+				}
+			}else
+		%>
+		<%
+			if (pageNum > 5) {
+				if(pageNum - currentPage <= 3) {
+					for(i = pageNum - 3; i < pageNum; ++i) {
+		%>
+		<li id=<%="button" + i%>><a href="/Developer?currentPage=<%=i%>"
+		 ><%= i + 1 %></a></li>
+		<%
+					}
+				}else {
+		%>
+		<li id=<%="button" + currentPage%>><a href="/Developer?currentPage=<%=currentPage%>"
+		 ><%= currentPage + 1 %></a></li>
+		 <li id=<%= "button" + (currentPage + 1) %> >
+		 <a href="/Developer?currentPage=<%=currentPage + 1%>"><%= currentPage + 2 %></a></li>
+		 <li><a>...</a></li>
+		 <li id=<%="button" + (pageNum - 1)%>><a href="/Developer?currentPage=<%=(pageNum - 1)%>"
+		 ><%= pageNum %></a></li>
+		<%
+				}
+			}
+		%>
+		
+		<%
+			if (pageNum > 1) {
+		%>
+		<li class="next"><a
+			href="/Developer?currentPage=<%=currentPage + 1%>"
+			class=<%=currentPage == pageNum - 1 ? "disable" : "next"%>>Next</a></li>
+		<% 
+			}
+		%>
+	</ul>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<script type="text/javascript">
+		var ele = document.getElementById("button" + <%=currentPage%>);
+		ele.className = 'active';
+	</script>
 
 	<%@include file="/visualize/common/footer.jsp" %>
 
@@ -122,7 +198,7 @@
 				imageSrc : '/visualize/img/bg-1.jpg',
 				speed : 0.2
 			});
-			
+
 			// jQuery Scroll Up / Back To Top Image
 			$.scrollUp({
 				scrollName : 'scrollUp', // Element ID
