@@ -30,35 +30,27 @@ public class Developer extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<UserInfoDetail> list = new ArrayList<>();
-		list.add(new UserInfoDetail("Linus", "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
-		list.add(new UserInfoDetail("Linus", "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
-		list.add(new UserInfoDetail("Linus", "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
-		list.add(new UserInfoDetail("Linus", "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
-		list.add(new UserInfoDetail("Linus", "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
-		list.add(new UserInfoDetail("Linus", "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
-		list.add(new UserInfoDetail("Stallman", "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
-		list.add(new UserInfoDetail("Dennis", "a programmer", "linus@example.com",
-				new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
+		for(int i = 0; i < 30; ++i) {
+			list.add(new UserInfoDetail("Linus", "Hello, this is linus Torvalds. Talk"
+					+ "is cheap. Show me your code", "linus@example.com",
+					new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
+			list.add(new UserInfoDetail("Stallman", "a programmer", "linus@example.com",
+					new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
+			list.add(new UserInfoDetail("Dennis", "a programmer", "linus@example.com",
+					new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
+		}
+		
 		String para = request.getParameter("currentPage");
 		Object attr = request.getAttribute("currentPage");
 		if(attr == null) {
 			request.setAttribute("currentPage", 0);
 		}
-		
+	
 		if(para != null) {
 			Integer i = Integer.parseInt(para);
 			request.setAttribute("currentPage", i);
-			request.setAttribute("test", list.subList(i * 6, list.size()));
-		}else {
-			request.setAttribute("test", list);
 		}
+		request.setAttribute("test", list);
 		request.getRequestDispatcher("/visualize/developer.jsp").forward(request, response);
 	}
 

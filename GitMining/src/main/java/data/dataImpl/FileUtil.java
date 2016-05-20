@@ -22,7 +22,7 @@ public class FileUtil {
 	public List<ProjectInfo> getProjectListFromFile() throws Exception{
 		
 		List<ProjectInfo> pList = null;	
-		
+
 		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectData.ser"));
 			
 		pList=(List<ProjectInfo>) is.readObject();
