@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import Info.LocalInfo;
@@ -11,17 +12,21 @@ import data.map.MapData;
 
 public class MapDataTest {
 
-	@SuppressWarnings("deprecation")
+	private MapData mapData=new MapData();
+	@Before
+	public void setUp() throws Exception {
+	}
+
 	@Test
-	public void test() {
-		MapData mapData=new MapData();
+	public void testGetMapData() {
 		Map<String,LocalInfo> map=mapData.getMapData();
 		String key="china";
 		LocalInfo localInfo=map.get(key);
-		System.out.println("test!");
 		System.out.println(localInfo.getSite());
-		assertEquals(100,localInfo.getLongtitude());
-		assertEquals(30,localInfo.getLatitude());
+		
+		
+		assertEquals(100.0,localInfo.getLongtitude(),0.01);
+		assertEquals(30.0,localInfo.getLatitude(),0.01);
 	}
 
 }
