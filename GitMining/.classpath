@@ -1,44 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-<<<<<<< HEAD
-    <classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-    <classpathentry kind="src" output="WebContent/WEB-INF/classes" path="src/main/java">
-        <attributes>
-            <attribute name="optional" value="true"/>
-            <attribute name="maven.pomderived" value="true"/>
-        </attributes>
-    </classpathentry>
-    <classpathentry kind="src" output="target/test-classes" path="src/test/java">
-        <attributes>
-            <attribute name="optional" value="true"/>
-            <attribute name="maven.pomderived" value="true"/>
-        </attributes>
-    </classpathentry>
-    <classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-        <attributes>
-            <attribute name="maven.pomderived" value="true"/>
-            <attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-        </attributes>
-    </classpathentry>
-    <classpathentry kind="lib" path="lib/commons-beanutils-1.7.0.jar"/>
-    <classpathentry kind="lib" path="lib/commons-collections-3.1.jar"/>
-    <classpathentry kind="lib" path="lib/commons-lang-2.5.jar"/>
-    <classpathentry kind="lib" path="lib/commons-logging.jar"/>
-    <classpathentry kind="lib" path="lib/dom4j-2.0.0-RC1.jar"/>
-    <classpathentry kind="lib" path="lib/ezmorph-1.0.3.jar"/>
-    <classpathentry kind="lib" path="lib/jcommon-1.0.23.jar"/>
-    <classpathentry kind="lib" path="lib/jfreechart-1.0.19.jar"/>
-    <classpathentry kind="lib" path="lib/json-lib-2.1-jdk15.jar"/>
-    <classpathentry kind="lib" path="lib/twaver.jar"/>
-    <classpathentry kind="lib" path="lib/mysql-connector-java-5.1.36-bin.jar"/>
-    <classpathentry kind="lib" path="lib/servlet-api.jar"/>
-    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
-        <attributes>
-            <attribute name="maven.pomderived" value="true"/>
-        </attributes>
-    </classpathentry>
-    <classpathentry kind="output" path="target/classes"/>
-=======
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" output="WebContent/WEB-INF/classes" path="src/main/java">
 		<attributes>
@@ -76,5 +37,4 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
->>>>>>> 4a7345b59dfb664b90e681a9758fe4e06863d377
 </classpath>
