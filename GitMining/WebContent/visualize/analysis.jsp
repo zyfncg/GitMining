@@ -49,6 +49,8 @@
 		</section>
 
 		<section>
+		<script src="/visualize/js/dataTool.js"></script>
+		<script src="/visualize/js/jquery.js"></script>
 			<div id="succCollaDistr" class="chart">
 				<script type="text/javascript">
 					succCollaDistr();
