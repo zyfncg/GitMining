@@ -39,7 +39,7 @@ public class Analysis extends HttpServlet {
 			public List<LanguageStatistics> getLanguageStat() {
 				List<LanguageStatistics> list = new ArrayList<>();
 				for(int i = 0; i < 10; ++i) {
-					list.add(new LanguageStatistics("Java", 100, 0.0));
+					list.add(new LanguageStatistics("Java" + i, 100, 0.0));
 				}
 				return list;
 			}

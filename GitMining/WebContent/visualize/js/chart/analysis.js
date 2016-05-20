@@ -8,7 +8,6 @@
  * Rate of successful projects
  */
 function succRate(id, numSuccess, numFail) {
-	//TODO test
 	var myChart = echarts.init(document.getElementById(id));
 	myChart.setOption({
 		title : {
@@ -34,9 +33,8 @@ function succRate(id, numSuccess, numFail) {
  * Distribution of collaborators in successful projects
  */
 function CollaDistr(id, name, collaNums) {
-	//TODO test
 	var myChart = echarts.init(document.getElementById(id));
-	var data = echarts.dataTool.prepareBoxplotData(collaNums);
+	var data = echarts.dataTool.prepareBoxplotData([collaNums]);
     option = {
         title: [
             {
@@ -124,7 +122,6 @@ function CollaDistr(id, name, collaNums) {
  * 50% of collaborator numbers in successful projects
  */
 function MrBigOccupied(id, name, moreNum, lessNum) {
-	//TODO test
 	var myChart = echarts.init(document.getElementById(id));
 	option = {
 			title : {
@@ -164,36 +161,7 @@ function MrBigOccupied(id, name, moreNum, lessNum) {
 				}
 			},
 			calculable : true,
-			series : [ {
-				name : '半径模式',
-				type : 'pie',
-				radius : [ 20, 110 ],
-				center : [ '25%', 200 ],
-				roseType : 'radius',
-				label : {
-					normal : {
-						show : false
-					},
-					emphasis : {
-						show : true
-					}
-				},
-				lableLine : {
-					normal : {
-						show : false
-					},
-					emphasis : {
-						show : true
-					}
-				},
-				data : [ {
-					value : moreNum,
-					name : '超过50%'
-				}, {
-					value : lessNum,
-					name : '低于50%'
-				} ]
-			}, {
+			series : [{
 				name : '面积模式',
 				type : 'pie',
 				radius : [ 30, 110 ],
@@ -217,7 +185,6 @@ function MrBigOccupied(id, name, moreNum, lessNum) {
  * 各语言/各公司的项目个数(柱状图)
  */
 function BarDistr(id, name, types, names, nums) {
-	//TODO test
 	var myChart = echarts.init(document.getElementById(id));
 	var option = {
 			title : {
@@ -228,13 +195,13 @@ function BarDistr(id, name, types, names, nums) {
 				data : [types]
 			},
 			xAxis : {
-				data : names
+				data : [names]
 			},
 			yAxis : {},
 			series : [ {
 				name : types,
 				type : 'bar',
-				data : nums
+				data : [nums]
 			} ]
 	};
 	myChart.setOption(option);
