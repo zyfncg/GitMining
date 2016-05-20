@@ -195,6 +195,7 @@ D:\Java\eclipse\workplace\GitMining\GitMining\src\main\java\RepositoryStatistic\
 /Users/sam/GitMining/GitMining/src/main/java/start/StatisticStart.java
 /Users/sam/GitMining/GitMining/src/main/java/ui/chart/NumbersofRepositoryCreated.java
 /Users/sam/GitMining/GitMining/src/main/java/ui/component/SwitchButton.java
+/Users/sam/GitMining/GitMining/src/main/java/data/map/MapData.java
 /Users/sam/GitMining/GitMining/src/main/java/ui/component/SearchPanel.java
 /Users/sam/GitMining/GitMining/src/main/java/RepositoryStatistic/SetRepositoryStatistic/DetailAnalyze/SetTimeStatistic.java
 /Users/sam/GitMining/GitMining/src/main/java/data/connectUtil/URLString.java
@@ -292,6 +293,7 @@ D:\Java\eclipse\workplace\GitMining\GitMining\src\main\java\RepositoryStatistic\
 /Users/sam/GitMining/GitMining/src/main/java/Info/HistogramInfo.java
 /Users/sam/GitMining/GitMining/src/main/java/businessLogicService/RepositoryBLService/RepositoryBLService.java
 /Users/sam/GitMining/GitMining/src/main/java/constant/SortType.java
+/Users/sam/GitMining/GitMining/src/main/java/Info/LocalInfo.java
 /Users/sam/GitMining/GitMining/src/main/java/RepositoryStatistic/SetRepositoryStatistic/AllRepositoryStatistic.java
 /Users/sam/GitMining/GitMining/src/main/java/UserStatistic/GetUserStatistic/DetailGet/GetJoinRepositoryStatistic.java
 /Users/sam/GitMining/GitMining/src/main/java/RepositoryStatistic/GetRepositoryStatistic/RepositoryStatisticFactory.java
