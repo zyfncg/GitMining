@@ -45,14 +45,14 @@ public class LocationTest {
 		}
 		System.out.println(addressList.size());
 		
-		for(int i=0;i<150;i++){
+		for(int i=0;i<addressList.size();i++){
 			System.out.println(addressList.get(i));
 		}
 		
 //		List<String> cityList=new ArrayList<String>();
 //		for(int i=0;i<addressList.size();i++){
 //			String nation=addressList.get(i);
-//			if(nation.contains(" us")||nation.contains(" usa")){
+//			if(nation.contains(" us")||nation.contains("san francisco")){
 //				cityList.add(nation);
 //			}
 //			//System.out.println(addressList.get(i));
