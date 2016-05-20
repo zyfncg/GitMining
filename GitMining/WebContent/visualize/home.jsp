@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Recommend</title>
+<title>Home</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +16,10 @@
 <body>
 	<%@include file="/visualize/common/navigation.jsp"%>
 	
+<<<<<<< HEAD
+
+=======
+>>>>>>> c5c2cbf6b8a83e425294a5ce909b2d48aa0d7e5c
 	<div id="section1">
 		<header id="header-area" class="intro-section">
 			<div class="container">
