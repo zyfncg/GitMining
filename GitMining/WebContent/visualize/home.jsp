@@ -3,11 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
 <title>GitMining</title>
-=======
-<title>Home</title>
->>>>>>> 19985cc2eee1a23b025596233761f196be304dce
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,10 +16,6 @@
 <body>
 	<%@include file="/visualize/common/navigation.jsp"%>
 	
-<<<<<<< HEAD
-
-=======
->>>>>>> c5c2cbf6b8a83e425294a5ce909b2d48aa0d7e5c
 	<div id="section1">
 		<header id="header-area" class="intro-section">
 			<div class="container">
