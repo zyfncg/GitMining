@@ -41,7 +41,7 @@ public class MapData {
 					localInfo=new LocalInfo(local[0],Double.parseDouble(local[1]),
 							Double.parseDouble(local[2]), Integer.parseInt(local[3]));
 					map.put(info[0], localInfo);
-					System.out.println(info[1]);
+//					System.out.println(info[1]);
 				}
 				
 			}

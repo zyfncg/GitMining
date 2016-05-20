@@ -22,7 +22,7 @@ public class MapDataTest {
 		Map<String,LocalInfo> map=mapData.getMapData();
 		String key="china";
 		LocalInfo localInfo=map.get(key);
-		System.out.println(localInfo.getSite());
+//		System.out.println(localInfo.getSite());
 		
 		
 		assertEquals(100.0,localInfo.getLongtitude(),0.01);

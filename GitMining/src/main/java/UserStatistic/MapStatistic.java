@@ -32,13 +32,22 @@ public class MapStatistic {
 		    localInfo.setWorkerNumber(0);
 		    map.put(key, localInfo);
 		}
-		
+		int count = 0;
+		System.out.println(map.size());
 		for(UserInfoDetail user :userList){
-			address=user.getAddress();
+			address=user.getAddress().toLowerCase();
+		
+//			System.out.println(address);
 			for(String key:map.keySet()){
 				if(address.contains(key)){
+					count++;
+					System.out.println(count);
 					if(key.equals(", ca")&&address.contains("canada")){
-						key="canada";
+						continue;
+					}else if(key.equals(", in")&&address.contains("india")){
+						continue;
+					}else if(address.contains("england")){
+						key=", uk";
 					}
 					localInfo=map.get(key);
 					workerNum=localInfo.getWorkerNumber();
