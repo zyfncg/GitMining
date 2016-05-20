@@ -95,13 +95,13 @@
 		<section>
 			<div id="succComDistr" class="chart">
 				<script type="text/javascript">
-					succComDistr();
+					BarDistr('succComDistr', '非成功项目各语言的项目个数','Company', names, nums);
 				</script>
 			</div>
 
 			<div id="unsuccComDistr" class="chart">
 				<script type="text/javascript">
-					unsuccComDistr();
+				BarDistr('unsuccComDistr', '非成功项目各语言的项目个数','Company', names, nums);
 				</script>
 			</div>
 		</section>
