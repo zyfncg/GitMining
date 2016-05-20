@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" import="RepositoryStatistic.
+    GetRepositoryStatistic.RepositoryAnalysis.SuccAnalysisStatic"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,10 @@
 		</header>
 	</div>
 	
-	
+	<%
+		SuccAnalysisStatic succ = (SuccAnalysisStatic)request.getAttribute("succStat");
+		SuccAnalysisStatic unsucc = (SuccAnalysisStatic)request.getAttribute("unsuccStat");
+	%>
 	<script src="/visualize/js/chart/analysis.js" charset="utf-8"></script>
 	<div class="container">
 		<section>
