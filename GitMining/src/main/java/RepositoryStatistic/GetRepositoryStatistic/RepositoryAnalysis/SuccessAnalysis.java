@@ -2,6 +2,7 @@ package RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Info.ProjectDetail;
@@ -27,10 +28,10 @@ public class SuccessAnalysis implements SuccAnalysisStatic {
 	}
 
 	@Override
-	public List<Integer> getCollaNum() {
-		List<Integer> allcolla = new ArrayList<Integer>();
-		for (ProjectDetail aProject : temp) {
-			allcolla.add(aProject.getCollaboratorsInfo().size());
+	public int[] getCollaNum() {
+		int[] allcolla = new int[temp.size()];
+		for (int i=0;i<temp.size();i++) {
+			allcolla[i] = temp.get(i).getCollaborators();
 		}
 
 		return allcolla;
@@ -86,9 +87,24 @@ public class SuccessAnalysis implements SuccAnalysisStatic {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// 统计用户的全部公司种类
+		HashMap<String, Integer> CompanyResult = new HashMap<>();
+		List<String> allCompany = new ArrayList<String>();
+		for (UserInfoDetail tempUserInfo : tempDetailUser) {
+			if (!allCompany.contains(tempUserInfo.getCompany())) {
+				allCompany.add(tempUserInfo.getCompany());
+				CompanyResult.put(tempUserInfo.getCompany(), 0);
+			}
+		}
 		for(ProjectDetail tempProject:temp){
 			for(UserInfo tempUser:(tempProject.getCollaboratorsInfo())){
-				
+				for(UserInfoDetail UserDetail:tempDetailUser){
+					if(tempUser.getUserName().equals(UserDetail.getUserName())){
+						int num = CompanyResult.get(UserDetail.getCompany());
+						num++;
+						CompanyResult.put(UserDetail.getCompany(), num);
+					}
+				}
 			}
 		}
 		
@@ -96,16 +112,5 @@ public class SuccessAnalysis implements SuccAnalysisStatic {
 		return null;
 	}
 
-	@Override
-	public int getManageTeamNum() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getCommuTeamNum() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

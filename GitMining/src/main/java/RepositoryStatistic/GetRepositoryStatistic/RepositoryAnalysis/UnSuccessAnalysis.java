@@ -22,11 +22,11 @@ public class UnSuccessAnalysis implements SuccAnalysisStatic{
 	}
 
 	@Override
-	public List<Integer> getCollaNum() {
+	public int[] getCollaNum() {
 		// TODO Auto-generated method stub
-		List<Integer> allcolla = new ArrayList<Integer>();
-		for (ProjectDetail aProject : temp) {
-			allcolla.add(aProject.getCollaboratorsInfo().size());
+		int[] allcolla = new int[temp.size()];
+		for (int i=0;i<temp.size();i++) {
+			allcolla[i] = temp.get(i).getCollaborators();
 		}
 
 		return allcolla;
@@ -80,16 +80,6 @@ public class UnSuccessAnalysis implements SuccAnalysisStatic{
 		return null;
 	}
 
-	@Override
-	public int getManageTeamNum() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public int getCommuTeamNum() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }
