@@ -47,7 +47,7 @@
 		<section>
 			<div id="succRate" class="chart">
 				<script type="text/javascript">
-					succRate();
+					succRate('succRate', numSuccess, numFail);
 				</script>
 			</div>
 		</section>
@@ -57,13 +57,13 @@
 		<script src="/visualize/js/jquery.js"></script>
 			<div id="succCollaDistr" class="chart">
 				<script type="text/javascript">
-					succCollaDistr();
+					CollaDistr('succCollaDistr', '成功项目协作者分布', collaNums);
 				</script>
 			</div>
 
 			<div id="unsuccCollaDistr" class="chart">
 				<script type="text/javascript">
-					unsuccCollaDistr();
+					CollaDistr('unsuccCollaDistr', '非成功项目协作者分布', collaNums);
 				</script>
 			</div>
 		</section>
@@ -71,13 +71,13 @@
 		<section>
 			<div id="succMrBigOccupied" class="chart">
 				<script type="text/javascript">
-					succMrBigOccupied();
+					MrBigOccupied('succMrBigOccupied', '成功项目大牛占collaborator超过50%比例', moreNum, lessNum);
 				</script>
 			</div>
 
 			<div id="unsuccMrBigOccupied" class="chart">
 				<script type="text/javascript">
-					unsuccMrBigOccupied();
+					MrBigOccupied('unsuccMrBigOccupied', '非成功项目大牛占collaborator超过50%比例', moreNum, lessNum);
 				</script>
 			</div>
 		</section>
@@ -85,13 +85,13 @@
 		<section>
 			<div id="succLangDistr" class="chart">
 				<script type="text/javascript">
-					succLangDistr();
+					BarDistr('succLangDistr', '成功项目各语言的项目个数','Language', names, nums);
 				</script>
 			</div>
 
 			<div id="unsuccLangDistr" class="chart">
 				<script type="text/javascript">
-					unsuccLangDistr();
+					BarDistr('unsuccLangDistr', '非成功项目各语言的项目个数','Language', names, nums);
 				</script>
 			</div>
 		</section>
@@ -99,13 +99,13 @@
 		<section>
 			<div id="succComDistr" class="chart">
 				<script type="text/javascript">
-					succComDistr();
+					BarDistr('succComDistr', '非成功项目各语言的项目个数','Company', names, nums);
 				</script>
 			</div>
 
 			<div id="unsuccComDistr" class="chart">
 				<script type="text/javascript">
-					unsuccComDistr();
+				BarDistr('unsuccComDistr', '非成功项目各语言的项目个数','Company', names, nums);
 				</script>
 			</div>
 		</section>
