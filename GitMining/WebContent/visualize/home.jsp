@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Recommend</title>
+<title>GitMining</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +22,9 @@
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<div class="header-content">
-							<h1>Recommend</h1>
-							<h4>We will recommend some interesting stuffs for you</h4>
+							<h1>GitMining</h1>
+							<h4>A github-like helper to help you
+							explore more about open source projects</h4>
 						</div>
 					</div>
 				</div>

@@ -38,7 +38,7 @@
 	</div>
 	
 	
-	<script src="/visualize/js/chart/analysis.js"></script>
+	<script src="/visualize/js/chart/analysis.js" charset="utf-8"></script>
 	<div class="container">
 		<section>
 			<div id="succRate" class="chart">

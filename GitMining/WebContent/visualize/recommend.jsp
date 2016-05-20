@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
+	import="Info.ProjectInfo,
+	java.util.List, Info.UserInfoDetail"%>
 
 <!DOCTYPE html>
 <html>
@@ -32,145 +34,66 @@
 		</header>
 	</div>
 
+	<%
+		@SuppressWarnings("unchecked")
+		List<ProjectInfo> list = (List<ProjectInfo>) request.getAttribute("top6");
+		ProjectInfo project = null;
+	%>
 	<div id="section2">
 		<!-- Start Feature Area -->
+		<%
+			for (int row = 0; row < 2; ++row) {
+		%>
 		<section id="feature-area" class="about-section">
 			<div class="container">
 				<div class="row text-center inner">
+					<%
+					for (int col = 0; col < 3; ++col) {
+							project = list.get(row * 3 + col);
+							String developer = project.getProjectName().getowner();
+							String projectName = project.getProjectName().getrepository();
+				%>
 					<div class="col-sm-4">
 						<div class="feature-content">
-							<div class="radar" id="1stRadar">
+							<div class="radar" id="<%="Radar" + (row * 3 + col)%>">
 								<script type="text/javascript">
-									radar("1stRadar");
-								</script>
+									radar("<%="Radar" + (row * 3 + col)%>");
+							</script>
 							</div>
-							<a class="First-Commend"
-									href="http://www.gitmining.net/
-							GithubVisualization/repository/content?id=8393">paperclip</a>
-								<p class="feature-content-description">Easy file attachment
-									management for ActiveRecord</p>
-								<p>developer : thoughtbot</p>
-								<p>Star : 144</p>
-								<p>Fork : 222</p>
+							<a class="First-Commend"> <%=projectName%></a>
+							<p class="feature-content-description">
+								<%=project.getDescription()%></p>
+							<p class="feature-content-item">
+								developer :
+								<%=developer%></p>
+							<p class="feature-content-item">
+								Star :
+								<%=project.getStars()%></p>
+							<p class="feature-content-item">
+								Fork :
+								<%=project.getForks()%></p>
+							<p class="feature-content-item">
+								<a
+									href=<%="http://www.github.com/" + developer + "/" + projectName%>>
+									See more on github</a>
+							</p>
 						</div>
 					</div>
-
-					<div class="col-sm-4">
-						<div class="feature-content">
-							<div class="radar" id="2ndRadar">
-								<script type="text/javascript">
-									radar("2ndRadar");
-								</script>
-							</div>
-							<a class="First-Commend"
-								href="http://www.gitmining.net/
-								GithubVisualization/repository/content?id=10865">friendly_id</a>
-							<p class="feature-content-description">FriendlyId is the
-								“Swiss Army bulldozer” of slugging and permalink plugins for
-								ActiveRecord. It allows you to create pretty URL’s and work with
-								human-friendly strings as if they were numeric ids for
-								ActiveRecord models.</p>
-							<p>developer : normanp</p>
-							<p>Star : 3780</p>
-							<p>Fork : 421</p>
-						</div>
-					</div>
-
-					<div class="col-sm-4">
-						<div class="feature-content">
-							<div class="radar" id="3rdRadar">
-								<script type="text/javascript">
-									radar("3rdRadar");
-								</script>
-							</div>
-							 <a
-								class="First-Commend"
-								href="http://www.gitmining.net/
-								GithubVisualization/repository/content?id=2376">acts_as_paranoid</a>
-							<p class="feature-content-description">ActiveRecord plugin
-								allowing you to hide and restore records without actually
-								deleting them.</p>
-							<p>developer : ActsAsParanoid</p>
-							<p>Star : 144</p>
-							<p>Fork : 222</p>
-						</div>
-					</div>
+					<%
+					}
+				%>
 				</div>
 			</div>
 		</section>
+		<%
+			}
+		%>
 		<!-- End Feature Area -->
-		
-		<!-- Start feature Area -->
-		<section id="feature-area" class="about-section">
-			<div class="container">
-				<div class="row text-center inner">
-					<div class="col-sm-4">
-						<div class="feature-content">
-							<div class="radar" id="4thRadar">
-								<script type="text/javascript">
-									radar("4thRadar");
-								</script>
-							</div>
-							<a class="First-Commend"
-									href="http://www.gitmining.net/
-							GithubVisualization/repository/content?id=8393">paperclip</a>
-								<p class="feature-content-description">Easy file attachment
-									management for ActiveRecord</p>
-								<p>developer : thoughtbot</p>
-								<p>Star : 144</p>
-								<p>Fork : 222</p>
-						</div>
-					</div>
-
-					<div class="col-sm-4">
-						<div class="feature-content">
-							<div class="radar" id="5thRadar">
-								<script type="text/javascript">
-									radar("5thRadar");
-								</script>
-							</div>
-							<a class="First-Commend"
-								href="http://www.gitmining.net/
-								GithubVisualization/repository/content?id=10865">friendly_id</a>
-							<p class="feature-content-description">FriendlyId is the
-								“Swiss Army bulldozer” of slugging and permalink plugins for
-								ActiveRecord. It allows you to create pretty URL’s and work with
-								human-friendly strings as if they were numeric ids for
-								ActiveRecord models.</p>
-							<p>developer : normanp</p>
-							<p>Star : 3780</p>
-							<p>Fork : 421</p>
-						</div>
-					</div>
-
-					<div class="col-sm-4">
-						<div class="feature-content">
-							<div class="radar" id="6thRadar">
-								<script type="text/javascript">
-									radar("6thRadar");
-								</script>
-							</div>
-							 <a
-								class="First-Commend"
-								href="http://www.gitmining.net/
-								GithubVisualization/repository/content?id=2376">acts_as_paranoid</a>
-							<p class="feature-content-description">ActiveRecord plugin
-								allowing you to hide and restore records without actually
-								deleting them.</p>
-							<p>developer : ActsAsParanoid</p>
-							<p>Star : 144</p>
-							<p>Fork : 222</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End feature Area -->
 	</div>
-	
-	<br/>
-	<br/>
-	
+
+	<br />
+	<br />
+
 	<div id="section3">
 		<!-- Start Services Area -->
 		<section id="services-area" class="services-section">
@@ -190,129 +113,69 @@
 		<section id="testimornial-area">
 			<div class="container">
 				<div class="row text-center">
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
+				<%
+					@SuppressWarnings("unchecked")
+					List<UserInfoDetail> users = (List<UserInfoDetail>)request.getAttribute("guessDevs");
+					UserInfoDetail user = null;
+				%>
+				<%
+					for(int i = 0; i < 4; ++i) {
+						user = users.get(i);
+				%>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 						<div class="testimonial-content">
-							<img src="/visualize/img/4-1.jpg" alt="Image"> <a
-								class="First-Commend"
-								href="http://www.gitmining.net/
-								GithubVisualization/user/content?id=2">Chris Wanstrath</a>
+							<img src="<%= "/visualize/img/4-" + (i + 1) + ".jpg"%>" alt="Image"> 
+							<a class="First-Commend"><%= user.getUserName() %></a>
 							<p>
-								Joined on 2007-10-20<br />
-								email: chris@github.com<br />
-								company: GitHub<br />
-								address: San Francisco<br />
+								Joined on <%= user.getJoinDate().getDate() %><br />
+								email : <%= user.getEmail() %><br />
+								company: <%= user.getCompany() %><br />
+								address: <%= user.getAddress() %><br />
+								<a href=<%= "http://www.github.com/" + user.getUserName()%>>
+								See more on github</a>
 							</p>
 						</div>
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-						<div class="testimonial-content">
-							<img src="/visualize/img/4-2.jpg" alt="Image"> <a
-								class="First-Commend"
-								href="http://www.gitmining.net/
-								GithubVisualization/user/content?id=39191">Paul Irish</a>
-							<p>
-								Joined on 2007-10-20<br />
-								email: chris@github.com<br />
-								company: GitHub<br />
-								address: San Francisco<br />
-							</p>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-						<div class="testimonial-content">
-							<img src="/visualize/img/4-3.jpg" alt="Image"> <a
-								class="First-Commend"
-								href="http://www.gitmining.net/
-								GithubVisualization/user/content?id=66577">Jake Wharton</a>
-							<p>
-								Joined on 2007-10-20<br />
-								email: chris@github.com<br />
-								company: GitHub<br />
-								address: San Francisco<br />
-							</p>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-						<div class="testimonial-content">
-							<img src="/visualize/img/4-4.jpg" alt="Image"> <a
-								class="First-Commend"
-								href="http://www.gitmining.net/
-								GithubVisualization/user/content?id=1615">John Resig</a>
-							<p>
-								Joined on 2007-10-20<br />
-								email: chris@github.com<br />
-								company: GitHub<br />
-								address: San Francisco<br />
-							</p>
-						</div>
-					</div>
+				<%
+					}
+				%>
 				</div>
-				<div class="row">
-					<div class="row text-center">
-						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-							<div class="testimonial-content">
-								<img src="/visualize/img/4-1.jpg" alt="Image"> <a
-									class="First-Commend"
-									href="http://www.gitmining.net/
-									GithubVisualization/user/content?id=25254">TJ Holowaychuk</a>
-								<p>
-									star: 8000<br />
-									fork: 8000<br />
-									collaborator: 200<br />
-									contributor: 200<br />
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-							<div class="testimonial-content">
-								<img src="/visualize/img/4-2.jpg" alt="Image"> <a
-									class="First-Commend"
-									href="http://www.gitmining.net/
-									GithubVisualization/user/content?id=1615">John Resig</a>
-								<p>
-									star: 8000<br />
-								fork: 8000<br />
-									collaborator: 200<br />
-									contributor: 200<br />
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-							<div class="testimonial-content">
-								<img src="/visualize/img/4-3.jpg" alt="Image"> <a
-									class="First-Commend"
-									href="http://www.gitmining.net/
-									GithubVisualization/user/content?id=70">Scott Chacon</a>
-								<p>
-									star: 8000<br />
-									fork: 8000<br />
-									collaborator: 200<br />
-									contributor: 200<br />
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-							<div class="testimonial-content">
-								<img src="/visualize/img/4-4.jpg" alt="Image"> <a
-									class="First-Commend"
-									href="http://www.gitmining.net/
-									GithubVisualization/user/content?id=2741">David Heinemeier Hansson</a>
-								<p>
-									star: 8000<br />
-									fork: 8000<br />
-									collaborator: 200<br />
-									contributor: 200<br />
-								</p>
-							</div>
+				
+				<div class="row text-center">
+					<%
+						@SuppressWarnings("unchecked")
+						List<ProjectInfo> projects = (List<ProjectInfo>) request.getAttribute("guessPros");
+					%>
+					<%
+						for(int i = 0; i < 4; ++i) {
+							project = projects.get(i);
+							String developer = project.getProjectName().getowner();
+							String projectName = project.getProjectName().getrepository();
+					%>
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="testimonial-content">
+							<img src="<%= "/visualize/img/4-" + (i + 1) + ".jpg"%>" alt="Image">
+							 <a class="First-Commend"><%= projectName %></a>
+							<p>
+								developer : <%= developer %><br />
+								star : <%= project.getStars() %><br />
+								fork : <%= project.getForks() %><br /> 
+								contributors: <%= project.getContributors() %><br />
+								<a href=<%= "http://www.github.com/" + developer +
+								"/" + projectName%>>See more on github</a>
+							</p>
 						</div>
 					</div>
+					<%
+						}
+					%>
 				</div>
 			</div>
 		</section>
 		<!-- End Testimornial Area -->
 	</div>
 
-	<%@include file="/visualize/common/footer.jsp" %>
+	<%@include file="/visualize/common/footer.jsp"%>
 
 	<script src="/visualize/js/jquery-1.11.2.min.js"></script>
 	<script src="/visualize/js/jquery.scrollUp.min.js"></script>
@@ -330,7 +193,7 @@
 				imageSrc : '/visualize/img/bg-2.jpg',
 				speed : 0.2
 			});
-			
+
 			// jQuery Scroll Up / Back To Top Image
 			$.scrollUp({
 				scrollName : 'scrollUp', // Element ID
