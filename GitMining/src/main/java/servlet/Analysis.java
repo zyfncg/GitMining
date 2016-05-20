@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import Info.RepStatisticInfo.LanguageStatistics;
 import Info.UsrStatisticInfo.CompanyStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.SuccAnalysisStatic;
-import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.SuccessAnalysis;
 
 /**
  * 响应项目成功原因分析模块的请求
@@ -36,40 +35,63 @@ public class Analysis extends HttpServlet {
 			public double getProjectNum() {return 540;}
 			@Override
 			public int getMrBigOccupyNum() {return 200;}
-			
-			@Override
-			public int getManageTeamNum() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
 			@Override
 			public List<LanguageStatistics> getLanguageStat() {
 				List<LanguageStatistics> list = new ArrayList<>();
 				for(int i = 0; i < 10; ++i) {
-					
+					list.add(new LanguageStatistics("Java", 100, 0.0));
 				}
-				return null;
+				return list;
 			}
-			
 			@Override
 			public List<CompanyStatistics> getCompanyStat() {
-				// TODO Auto-generated method stub
-				return null;
+				List<CompanyStatistics> list = new ArrayList<>();
+				for(int i = 0; i < 10; ++i) {
+					list.add(new CompanyStatistics("Google", 20));
+				}
+				return list;
 			}
-			
 			@Override
-			public int getCommuTeamNum() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
-			@Override
-			public List<Integer> getCollaNum() {
-				// TODO Auto-generated method stub
-				return null;
+			public int[] getCollaNum() {
+				int[] nums = new int[10];
+				for(int i = 0; i < 10; ++i) {
+					nums[i] = i;
+				}
+				return nums;
 			}
 		};
+		request.setAttribute("succStat", succ);
+		SuccAnalysisStatic unsucc = new SuccAnalysisStatic() {
+			@Override
+			public double getProjectNum() {return 540;}
+			@Override
+			public int getMrBigOccupyNum() {return 200;}
+			@Override
+			public List<LanguageStatistics> getLanguageStat() {
+				List<LanguageStatistics> list = new ArrayList<>();
+				for(int i = 0; i < 10; ++i) {
+					list.add(new LanguageStatistics("Java", 100, 0.0));
+				}
+				return list;
+			}
+			@Override
+			public List<CompanyStatistics> getCompanyStat() {
+				List<CompanyStatistics> list = new ArrayList<>();
+				for(int i = 0; i < 10; ++i) {
+					list.add(new CompanyStatistics("Google", 20));
+				}
+				return list;
+			}
+			@Override
+			public int[] getCollaNum() {
+				int[] nums = new int[10];
+				for(int i = 0; i < 10; ++i) {
+					nums[i] = i;
+				}
+				return nums;
+			}
+		};
+		request.setAttribute("unsuccStat", unsucc);
 		request.getRequestDispatcher("/visualize/analysis.jsp").forward(request, response);
 	}
 
