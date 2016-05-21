@@ -31,18 +31,28 @@ body {
   overflow-x: hidden;
 }
 
-/* Chart Style*/
-.chart {
+.chartContainer {
 	position: relative;
-	min-height: 1px;
-	padding-right: 15px;
-	padding-left: 15px;
-	text-align: center;
-	margin: auto;
-	width: 800px;
-	height: 600px;
+	width: 100%;
+	height: 700px;
 	margin: 0 auto;
+}
+
+/* only one chart in a line */
+.onechart {
+	width: 76%;
+	height: 600px;
 	margin-top: 100px;
+	margin: 0 auto;
+}
+
+/* two charts in one line */
+.twochart {
+	width: 40%;
+	height: 600px;
+	margin-top: 100px;
+	margin-left: 6%;
+	float: left;
 }
 
 /* style of radar chart*/
@@ -55,20 +65,19 @@ body {
 /* ---------------------------------------------------- */
 /*		Pagination
 /* ---------------------------------------------------- */
-
-#main .pagination {
+.pagination {
 	list-style: none;
 	margin-bottom: 30px;
 	overflow: hidden;
 }
 
-#main .pagination li {
+.pagination li {
 	background: #f3f3f3 url(../img/pagination-bg.png) repeat-x;
 	float: left;
 	margin: 0 8px 0 0;
 }
 
-.pagination li.active, #main .pagination li.active:hover {
+.pagination li.active, .pagination li.active:hover {
 	background: #f3f3f3 url(../img/pagination-active-bg.png) repeat-x;
 }
 
