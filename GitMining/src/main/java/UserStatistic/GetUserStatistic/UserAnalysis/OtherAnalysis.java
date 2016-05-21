@@ -36,4 +36,9 @@ public class OtherAnalysis {
 		}
 		return null;
 	}
+	//用户的个人能力值
+	public int PowerNum() {
+		
+		return 0;
+	}
 }
