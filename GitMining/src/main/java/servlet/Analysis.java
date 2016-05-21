@@ -39,7 +39,7 @@ public class Analysis extends HttpServlet {
 			public List<LanguageStatistics> getLanguageStat() {
 				List<LanguageStatistics> list = new ArrayList<>();
 				for(int i = 0; i < 10; ++i) {
-					list.add(new LanguageStatistics("Java" + i, 100, 0.0));
+					list.add(new LanguageStatistics("Java" + i, 100 * i, 0.0));
 				}
 				return list;
 			}
@@ -47,7 +47,7 @@ public class Analysis extends HttpServlet {
 			public List<CompanyStatistics> getCompanyStat() {
 				List<CompanyStatistics> list = new ArrayList<>();
 				for(int i = 0; i < 10; ++i) {
-					list.add(new CompanyStatistics("Google", 20));
+					list.add(new CompanyStatistics("Google" + i, 20 * i));
 				}
 				return list;
 			}
@@ -70,7 +70,7 @@ public class Analysis extends HttpServlet {
 			public List<LanguageStatistics> getLanguageStat() {
 				List<LanguageStatistics> list = new ArrayList<>();
 				for(int i = 0; i < 10; ++i) {
-					list.add(new LanguageStatistics("Java", 100, 0.0));
+					list.add(new LanguageStatistics("Java" + i, 100 * (10 - i), 0.0));
 				}
 				return list;
 			}
@@ -78,7 +78,7 @@ public class Analysis extends HttpServlet {
 			public List<CompanyStatistics> getCompanyStat() {
 				List<CompanyStatistics> list = new ArrayList<>();
 				for(int i = 0; i < 10; ++i) {
-					list.add(new CompanyStatistics("Google", 20));
+					list.add(new CompanyStatistics("Google" + i, 20 * (10 - i)));
 				}
 				return list;
 			}

@@ -195,13 +195,13 @@ function BarDistr(id, name, types, names, nums) {
 				data : [types]
 			},
 			xAxis : {
-				data : [names]
+				data : names
 			},
 			yAxis : {},
 			series : [ {
 				name : types,
 				type : 'bar',
-				data : [nums]
+				data : nums
 			} ]
 	};
 	myChart.setOption(option);

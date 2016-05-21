@@ -60,22 +60,20 @@
 		<section class="chartContainer">
 			<div id="succCollaDistr" class="twochart">
 				<script type="text/javascript">
-					var nums = [
-				            <%for (int i : succ.getCollaNum()) {%>
-				            <%=i%>,
-				            <%}%>
-				            ];
+					var nums = new Array();
+				    <%for (int i : succ.getCollaNum()) {%>
+				    	nums.push(<%= i %>);
+				    <%}%>
 					CollaDistr('succCollaDistr', '成功项目协作者分布',nums);
 				</script>
 			</div>
 
 			<div id="unsuccCollaDistr" class="twochart">
 				<script type="text/javascript">
-					var nums = [
-				            <%for (int i : unsucc.getCollaNum()) {%>
-				            <%=i%>,
-				            <%}%>
-				            ];
+					var nums = new Array();
+				    <%for (int i : unsucc.getCollaNum()) {%>
+				    	nums.push(<%= i %>);
+				    <%}%>
 					CollaDistr('unsuccCollaDistr', '非成功项目协作者分布',nums);
 				</script>
 			</div>
@@ -106,16 +104,10 @@
 					List<LanguageStatistics> language = succ.getLanguageStat();
 					int size = language.size();
 				%>
-				alert(['<%=language.get(0).getLanguage()%>',
-				       '<%=language.get(1).getLanguage()%>',
-				       '<%=language.get(2).getLanguage()%>',
-				       '<%=language.get(3).getLanguage()%>',
-				       '<%=language.get(4).getLanguage()%>']);
-				var names = [
-					<%for (int i = 0; i < size; ++i) {%>
-					<%=language.get(i).getLanguage()%>,
-					<%}%>
-				];
+				var names = new Array();
+				<%for (int i = 0; i < size; ++i) {%>
+					names.push('<%= language.get(i).getLanguage()%>');
+				<%}%>
 				var nums = [
 					<%for (int i = 0; i < size; ++i) {%>
 					<%=language.get(i).getNum()%>,
@@ -125,18 +117,17 @@
 							names, nums);
 				</script>
 			</div>
-
+			
 			<div id="unsuccLangDistr" class="twochart">
 				<%
 					language = unsucc.getLanguageStat();
 					size = language.size();
 				%>
 				<script type="text/javascript">
-					var names = [
-						<%for (int i = 0; i < size; ++i) {%>
-						<%=language.get(i).getLanguage()%>,
-						<%}%>
-					];
+					var names = new Array();
+					<%for (int i = 0; i < size; ++i) {%>
+						names.push('<%=language.get(i).getLanguage()%>');
+					<%}%>
 					var nums = [
 						<%for (int i = 0; i < size; ++i) {%>
 						<%=language.get(i).getNum()%>,
@@ -146,23 +137,42 @@
 				</script>
 			</div>
 		</section>
-
+		
 		<section class="chartContainer">
-			<div id="succComDistr" class="chart">
+			<div id="succComDistr" class="twochart">
 				<script type="text/javascript">
+					var names = new Array();
+					<%
+						List<CompanyStatistics> company = succ.getCompanyStat();
+						size = company.size();
+					%>
+					<% for(int i = 0; i < size; ++i) {%>
+						names.push('<%= company.get(i).getCompany() %>');
+					<% } %>
+					var nums = new Array();
+					<% for(int i = 0; i < size; ++i) { %>
+						nums.push(<%= company.get(i).getNum() %>);
+					<% } %>
 					BarDistr('succComDistr', '非成功项目各语言的项目个数','Company', names, nums);
 				</script>
 			</div>
-
-			<div id="unsuccComDistr" class="chart">
+			
+			<div id="unsuccComDistr" class="twochart">
 				<script type="text/javascript">
-				BarDistr('unsuccComDistr', '非成功项目各语言的项目个数','Company', names, nums);
+					<%
+						company = unsucc.getCompanyStat();
+						size = company.size();
+					%>
+					<% for(int i = 0; i < size; ++i) {%>
+						names.push('<%= company.get(i).getCompany() %>');
+					<% } %>
+					var nums = new Array();
+					<% for(int i = 0; i < size; ++i) { %>
+						nums.push(<%= company.get(i).getNum() %>);
+					<% } %>
+					BarDistr('unsuccComDistr', '非成功项目各语言的项目个数','Company', names, nums);
 				</script>
 			</div>
-		</section>
-
-		<section>
-			
 		</section>
 	</div>
 	
