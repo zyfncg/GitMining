@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import Info.LocalInfo;
+import Info.AddressInfo;
 
 public class MapData {
 	
@@ -25,11 +25,11 @@ public class MapData {
 	 * 获取地图数据及人员分布信息
 	 * @return Map形式数据
 	 */
-	public Map<String,LocalInfo> getMapData(){
-		Map<String,LocalInfo> map=new HashMap<String,LocalInfo>();
+	public Map<String,AddressInfo> getMapData(){
+		Map<String,AddressInfo> map=new HashMap<String,AddressInfo>();
 		
 		String line;
-		LocalInfo localInfo;
+		AddressInfo addressInfo;
 		
 		try {
 			
@@ -38,9 +38,9 @@ public class MapData {
 				if(line.contains(":")){
 					String info[]=line.split(":");
 					String local[]=info[1].split(",");
-					localInfo=new LocalInfo(local[0],Double.parseDouble(local[1]),
+					addressInfo=new AddressInfo(local[0],Double.parseDouble(local[1]),
 							Double.parseDouble(local[2]), Integer.parseInt(local[3]));
-					map.put(info[0], localInfo);
+					map.put(info[0], addressInfo);
 //					System.out.println(info[1]);
 				}
 				
@@ -63,18 +63,18 @@ public class MapData {
 	 * @param map
 	 * @return 是否设置成功
 	 */
-	public boolean setMapData(Map<String,LocalInfo> map){
-		LocalInfo localInfo;
+	public boolean setMapData(Map<String,AddressInfo> map){
+		AddressInfo addressInfo;
 		String key;
 		String line;
 		
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path)));
-			for (Entry<String, LocalInfo> entry: map.entrySet()) {
+			for (Entry<String, AddressInfo> entry: map.entrySet()) {
 			    key = entry.getKey();
-			    localInfo = entry.getValue();
-			    line=key+":"+localInfo.getSite()+","+String.valueOf(localInfo.getLongtitude()+","+
-			    String.valueOf(localInfo.getLatitude())+","+String.valueOf(localInfo.getWorkerNumber())+"\n");
+			    addressInfo = entry.getValue();
+			    line=key+":"+addressInfo.getSite()+","+String.valueOf(addressInfo.getLongtitude()+","+
+			    String.valueOf(addressInfo.getLatitude())+","+String.valueOf(addressInfo.getWorkerNumber())+"\n");
 			    
 			    bw.write(line);
 			}

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import Info.LocalInfo;
+import Info.AddressInfo;
 import Info.UserInfoDetail;
 import data.map.MapData;
 import data.statisticServer.UserStatisticsDataServer;
@@ -13,7 +13,7 @@ import data.statistisDataImpl.UserStatisticData;
 public class MapStatistic {
 	public boolean StatisticMapData(){
 		MapData mapData=new MapData();
-		Map<String,LocalInfo> map=mapData.getMapData();
+		Map<String,AddressInfo> map=mapData.getMapData();
 		UserStatisticsDataServer userData=new UserStatisticData();
 		List<UserInfoDetail> userList = null;
 		try {
@@ -23,14 +23,14 @@ public class MapStatistic {
 			return false;
 		}
 		String address;
-		LocalInfo localInfo;
+		AddressInfo addressInfo;
 		int workerNum;
 		
-		for (Entry<String, LocalInfo> entry: map.entrySet()) {
+		for (Entry<String, AddressInfo> entry: map.entrySet()) {
 			String key=entry.getKey();
-		    localInfo=entry.getValue();
-		    localInfo.setWorkerNumber(0);
-		    map.put(key, localInfo);
+		    addressInfo=entry.getValue();
+		    addressInfo.setWorkerNumber(0);
+		    map.put(key, addressInfo);
 		}
 		int count = 0;
 		System.out.println(map.size());
@@ -58,11 +58,11 @@ public class MapStatistic {
 					}else if(key.equals(", in")&&address.contains("india")){
 						continue;
 					}
-					localInfo=map.get(key);
-					workerNum=localInfo.getWorkerNumber();
+					addressInfo=map.get(key);
+					workerNum=addressInfo.getWorkerNumber();
 					workerNum++;
-					localInfo.setWorkerNumber(workerNum);
-					map.put(key, localInfo);
+					addressInfo.setWorkerNumber(workerNum);
+					map.put(key, addressInfo);
 					
 				}
 			}

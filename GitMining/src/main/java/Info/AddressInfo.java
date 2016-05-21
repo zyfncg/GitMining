@@ -1,6 +1,6 @@
 package Info;
 
-public class LocalInfo {
+public class AddressInfo {
 	/**
 	 * 地点名称
 	 */
@@ -21,7 +21,7 @@ public class LocalInfo {
 	 */
 	private int workerNumber;
 
-	public LocalInfo(String site, double longtitude, double latitude, int workerNumber) {
+	public AddressInfo(String site, double longtitude, double latitude, int workerNumber) {
 		super();
 		this.site = site;
 		this.longtitude = longtitude;
