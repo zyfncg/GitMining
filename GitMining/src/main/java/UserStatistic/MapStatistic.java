@@ -36,9 +36,20 @@ public class MapStatistic {
 		System.out.println(map.size());
 		for(UserInfoDetail user :userList){
 			address=user.getAddress().toLowerCase();
-		
+			if(address.contains("san francisco")&&!address.contains(", ca")){
+				address=", ca";
+			}else if(address.contains("seattle")&&!address.contains(", wa")){
+				address=", wa";
+			}else if(address.contains("united kingdom")||address.contains("england")){
+				address=", uk";
+			}else if(address.contains(", new york")){
+				address=", ny";
+			}else if(address.contains("brazil")){
+				address="brasil";
+			}
 //			System.out.println(address);
 			for(String key:map.keySet()){
+				
 				if(address.contains(key)){
 					count++;
 					System.out.println(count);
@@ -46,8 +57,6 @@ public class MapStatistic {
 						continue;
 					}else if(key.equals(", in")&&address.contains("india")){
 						continue;
-					}else if(address.contains("england")){
-						key=", uk";
 					}
 					localInfo=map.get(key);
 					workerNum=localInfo.getWorkerNumber();
