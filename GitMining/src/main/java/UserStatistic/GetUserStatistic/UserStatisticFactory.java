@@ -7,6 +7,7 @@ import UserStatistic.GetUserStatistic.DetailGet.GetCreatTimeStatistic;
 import UserStatistic.GetUserStatistic.DetailGet.GetJoinRepositoryStatistic;
 import UserStatistic.GetUserStatistic.HistogramDetail.HistogramStatisticCreat;
 import UserStatistic.GetUserStatistic.HistogramDetail.HistogramStatisticJoin;
+import UserStatistic.GetUserStatistic.UserAnalysis.RelationAnalysisStatic;
 
 public class UserStatisticFactory {
 
@@ -36,5 +37,8 @@ public class UserStatisticFactory {
 	}
 	public ScatterStatisticUsrSmall GetSmallScatterStatisticUsr(){
 		return new ScatterStatisticUsrSmall();
+	}
+	public RelationAnalysisStatic GetRelationAnalysisStatic() {
+		return new RelationAnalysisStatic();
 	}
 }

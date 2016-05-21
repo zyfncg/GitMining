@@ -6,25 +6,28 @@ public class Relationship {
 	/**
 	 * 用户姓名
 	 */
-	private String userName;
+	private UserInfoDetail userName;
 	/**
 	 * 用户姓名
 	 */
-	private List<UserInfo> RelationUser;
-	public Relationship(String name,List<UserInfo> relation){
+	private List<RelationUser> RelationUser;
+	public Relationship(UserInfoDetail name,List<RelationUser> relation){
 		this.userName = name;
 		this.RelationUser = relation;
 	}
-	public String getUserName() {
+	public Relationship(){
+		
+	}
+	public UserInfoDetail getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) {
+	public void setUserName(UserInfoDetail userName) {
 		this.userName = userName;
 	}
-	public List<UserInfo> getRelationUser() {
+	public List<RelationUser> getRelationUser() {
 		return RelationUser;
 	}
-	public void setRelationUser(List<UserInfo> relationUser) {
+	public void setRelationUser(List<RelationUser> relationUser) {
 		RelationUser = relationUser;
 	}
 	
