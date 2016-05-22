@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 import Info.AddressInfo;
 import Info.UserInfoDetail;
 import data.map.AddressImpl;
-import data.map.MapData;
 import data.statisticServer.AddressServer;
 import data.statisticServer.UserStatisticsDataServer;
 import data.statistisDataImpl.UserStatisticData;
