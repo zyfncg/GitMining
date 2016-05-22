@@ -96,7 +96,7 @@
 								Address :
 								<%=user.getAddress()%></p>
 							<p class="feature-content-item">
-							<a href="<%="http://www.github.com/" + user.getUserName()%>">
+							<a href="/DeveloperGithub?chooseDeveloper=<%= user.getUserName() %>">
 								See more on github</a></p>
 						</div>
 					</div>

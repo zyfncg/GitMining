@@ -20,6 +20,7 @@ import Info.UserInfoDetail;
  */
 @WebServlet("/Recommend")
 public class Recommend extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     public Recommend() {

@@ -73,8 +73,8 @@
 								Fork :
 								<%=project.getForks()%></p>
 							<p class="feature-content-item">
-								<a
-									href=<%="http://www.github.com/" + developer + "/" + projectName%>>
+								<a href="/ProjectGithub?owner=<%= developer %>&
+								project=<%= projectName %>">
 									See more on github</a>
 							</p>
 						</div>
@@ -131,7 +131,7 @@
 								email : <%= user.getEmail() %><br />
 								company: <%= user.getCompany() %><br />
 								address: <%= user.getAddress() %><br />
-								<a href=<%= "http://www.github.com/" + user.getUserName()%>>
+								<a href="/DeveloperGithub?chooseDeveloper=<%= user.getUserName() %>">
 								See more on github</a>
 							</p>
 						</div>
@@ -161,8 +161,8 @@
 								star : <%= project.getStars() %><br />
 								fork : <%= project.getForks() %><br /> 
 								contributors: <%= project.getContributors() %><br />
-								<a href=<%= "http://www.github.com/" + developer +
-								"/" + projectName%>>See more on github</a>
+								<a href="/ProjectGithub?owner=<%= developer %>&
+								project=<%= projectName %>">See more on github</a>
 							</p>
 						</div>
 					</div>
@@ -212,7 +212,6 @@
 			$(window).on(
 					'scroll',
 					function() {
-
 						// If the height of the document less the height of the document is the same as the
 						// distance the window has scrolled from the top...
 						if ($(document).height() - $(window).height() === $(
