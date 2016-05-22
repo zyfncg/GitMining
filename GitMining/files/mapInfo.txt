@@ -6,13 +6,13 @@ japan:japan,139.4,35.4,33
 , ut:Utah犹他州,-111.6,40.5,6
 brasil:brazil,48.0,-16.0,30
 , al:Alabama阿拉巴马州,-87.0,33.0,6
-, va:Virginia弗吉尼亚州,-77.3,37.3,5
+, va:Virginia弗吉尼亚州,-77.3,37.3,6
 , in:Indiana印第安纳州,-86.0,39.0,2
 scotland:scotland,3.2,55.6,5
 russia:russia,38.0,55.0,26
 sweden:sweden,18.0,59.3,28
 , ia:Iowa爱荷华州,-93.4,41.4,2
-france:france,2.2,42.5,38
+france:france,2.2,42.5,39
 , ma:Massachusetts马萨诸塞州,-70.0,42.0,49
 melbourne:melbourne,144.5,-37.5,27
 belgium:belgium,4.2,50.5,13
@@ -28,19 +28,19 @@ netherlands:netherlands,4.52,52.3,43
 , wa:Washington华盛顿州,-122.2,47.4,46
 , ny:New York纽约州,-73.5,42.4,34
 , fl:Florida佛罗里达州,-82.0,26.3,12
-canada:canada,-120.0,50.0,51
+canada:canada,-120.0,50.0,52
 , az:Arizona阿利桑那州,-112.0,33.3,5
 , nh:New hampshire新罕布什尔州,-72.2,43.5,1
 , nc:North Carolina北卡罗来纳州,-80.0,35.4,8
-, ne:Nebraska内布拉斯加州,-100.0,41.0,18
+, ne:Nebraska内布拉斯加州,-100.0,41.0,21
 , ri:Rhode island罗得岛州,-71.3,41.5,1
 , or:Oregon俄勒冈州,-123.0,44.6,22
 , ok:Oklahoma俄克拉荷马州,-97.3,35.3,2
 , ca:California加利福尼亚州,-122.0,38.0,236
-germany:germany,13.2,52.3,104
+germany:germany,13.2,52.3,105
 , ks:Kansas堪萨斯州,-87.3,33.5,2
 romania:romania,26.1,44.3,2
-india:india,80.0,20.0,9
+india:india,80.0,20.0,10
 , sc:South carolina南卡罗来纳州,-81.0,34.0,7
 , sd:South dakota南达科他州,-100.0,44.2,1
 , wi:Wisconsin威斯康星州,-89.3,43.1,6
@@ -53,5 +53,5 @@ india:india,80.0,20.0,9
 polska:polska,19.1,51.6,1
 mexico:mexico,-99.1,19.3,3
 , co:Colorado科罗拉多州,-104.59,39.44,27
-china:china,100.0,30.0,16
+china:china,100.0,30.0,17
 , tn:Tennessee田纳西州,-86.5,36.1,6

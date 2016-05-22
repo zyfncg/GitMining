@@ -1,4 +1,4 @@
-package dataTest;
+package dataTest.mapTest;
 
 import static org.junit.Assert.assertEquals;
 
