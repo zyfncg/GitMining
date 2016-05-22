@@ -2,12 +2,15 @@ package UserStatistic.GetUserStatistic.UserAnalysis;
 
 import java.util.List;
 
+import Info.ProjectDetail;
 import Info.UserInfo;
 import Info.UserInfoDetail;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfSuccess;
 import UserStatistic.SetUserStatistic.AllUserStatistic;
 
 public class OtherAnalysis {
 	private AllUserStatistic allUserStatistic = new AllUserStatistic();
+	private IfSuccess ToGetSucc = new IfSuccess();
 	private List<UserInfoDetail> allUserDetail = allUserStatistic.getStatisticUserInfo();
 	//判断两个UserInfo是否一致
 	public boolean IfUserEqual(UserInfo Auser,UserInfo Buser) {
@@ -37,8 +40,19 @@ public class OtherAnalysis {
 		return null;
 	}
 	//用户的个人能力值
-	public int PowerNum() {
+	public int PowerNum(UserInfoDetail AnUSer) {
+		int power = 0;
+		List<ProjectDetail> allProject = ToGetSucc.GetAllSuccess();
+		for(ProjectDetail temp:allProject){
+			for(UserInfo tempUser:temp.getCollaboratorsInfo()){
+				if(this.IfEqualDetail(tempUser, AnUSer)){
+					power++;
+					break;
+				}
+			}
+		}
 		
-		return 0;
+		return power;
 	}
+	
 }
