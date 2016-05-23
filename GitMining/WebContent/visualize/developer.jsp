@@ -40,7 +40,8 @@
 	<br />
 	<br />
 	<form action="/Developer" method="post">
-		<input type="text" placeholder="Developer..." maxlength="255"
+		<input type="text" placeholder="Developer..."
+			maxlength="255" name="inputDeveloper"
 			style="position: absolute; left: 50%; margin-left: -300px;
 			width: 500px; height: 50px">
 		<input id="search" type="submit" value="search"

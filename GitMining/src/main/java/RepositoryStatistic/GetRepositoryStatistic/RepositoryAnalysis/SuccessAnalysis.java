@@ -13,6 +13,7 @@ import Info.UserInfo;
 import Info.UserInfoDetail;
 import Info.RepStatisticInfo.LanguageStatistics;
 import Info.UsrStatisticInfo.CompanyStatistics;
+import RepositoryStatistic.SuccAnalysisStatic;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfBigCow;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfSuccess;
 import data.statisticServer.UserStatisticsDataServer;

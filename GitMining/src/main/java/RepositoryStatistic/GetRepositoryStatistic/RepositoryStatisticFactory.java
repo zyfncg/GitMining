@@ -1,5 +1,6 @@
 package RepositoryStatistic.GetRepositoryStatistic;
 
+import RepositoryStatistic.SuccAnalysisStatic;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetContributorStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetForkStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetLanguageStatistic;
@@ -7,7 +8,6 @@ import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetStarStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.DetailGet.GetTimeStatistic;
 import RepositoryStatistic.GetRepositoryStatistic.HistogramDetail.HistogramStatisticFork;
 import RepositoryStatistic.GetRepositoryStatistic.HistogramDetail.HistogramStatisticStar;
-import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.SuccAnalysisStatic;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.SuccessAnalysis;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.UnSuccessAnalysis;
 

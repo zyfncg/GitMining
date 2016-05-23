@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import="RepositoryStatistic.
-    GetRepositoryStatistic.RepositoryAnalysis.SuccAnalysisStatic,
+    pageEncoding="utf-8" import="RepositoryStatistic.SuccAnalysisStatic,
     java.util.List, Info.RepStatisticInfo.LanguageStatistics,
     Info.UsrStatisticInfo.CompanyStatistics"%>
 <!DOCTYPE html>

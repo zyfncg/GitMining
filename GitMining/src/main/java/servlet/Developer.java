@@ -24,11 +24,12 @@ public class Developer extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String name = request.getParameter("inputDeveloper");
+		if(name != null) {
+			//TODO 更新数据库中开发者的引用次数,更新用户输入搜索相应的开发者信息
+		}
 		List<UserInfoDetail> list = new ArrayList<>();
 		for(int i = 0; i < 30; ++i) {
 			list.add(new UserInfoDetail("Linus", "Hello, this is linus Torvalds. Talk"
@@ -54,9 +55,6 @@ public class Developer extends HttpServlet {
 		request.getRequestDispatcher("/visualize/developer.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
