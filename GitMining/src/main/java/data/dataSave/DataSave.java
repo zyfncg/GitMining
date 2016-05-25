@@ -14,11 +14,11 @@ public class DataSave {
 
 	public static void main(String args[]){
 		DataSave ds=new DataSave();
-//		if(ds.saveProjectData()){
-//			System.out.println("项目信息保存成功！");
-//		}else{
-//			System.out.println("项目信息保存失败！");
-//		}
+		if(ds.saveProjectData()){
+			System.out.println("项目信息保存成功！");
+		}else{
+			System.out.println("项目信息保存失败！");
+		}
 		if(ds.saveUserData()){
 			System.out.println("用户信息保存成功！");
 		}else{
@@ -35,74 +35,12 @@ public class DataSave {
 		
 	}
 	
-	/**
-	 * 保存项目统计信息到数据库
-	 */
-	public boolean saveProjectStatis(List<ProjectDetail> list){
-		double StarStatistic;
-		double ContributorStatistic;
-		double CommitStatistic;
-		double issueStatistic;
-		double PullRequestStatistic;
-		double sizeStatistic;
-		double StarAverage;
-		double ContibutorAverage;
-		double CommitAverage;
-		double issueAverage;
-		double PullRequestAverage;
-		double sizeAverage;
-		double totalStatistic;
-		String name;
-		String sql;
-		StatisticDetail statistic;
-		
-		
-		try {
-			sql="delete from projectStatistic";
-			Database.operate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			for(ProjectDetail projectDetail:list){
-				statistic=projectDetail.getStatisticDetail();
-				name=projectDetail.getProjectName().toString();
-				
-				StarStatistic=statistic.getStarStatistic();
-				ContributorStatistic=statistic.getContributorStatistic();
-				CommitStatistic=statistic.getCommitStatistic();
-				issueStatistic=statistic.getIssueStatistic();
-				PullRequestStatistic=statistic.getPullRequestStatistic();
-				sizeStatistic=statistic.getSizeStatistic();
-				StarAverage=statistic.getStarAverage();
-				ContibutorAverage=statistic.getContibutorAverage();
-				CommitAverage=statistic.getCommitAverage();
-				issueAverage=statistic.getIssueAverage();
-				PullRequestAverage=statistic.getPullRequestAverage();
-				sizeAverage=statistic.getSizeAverage();
-				totalStatistic=statistic.getTotalStatistic();
-				
-				sql="INSERT INTO projectInfo VALUES('"+name+"',"+StarStatistic+ContributorStatistic+CommitStatistic+
-						issueStatistic+PullRequestStatistic+sizeStatistic+StarAverage+ContibutorAverage+CommitAverage+
-						issueAverage+PullRequestAverage+sizeAverage+totalStatistic+");";
-				
-				Database.operate(sql);
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		
-		return true;
-	}
 	
 	/**
 	 *保存项目信息到数据库
 	 *
 	 */
+	@SuppressWarnings("unchecked")
 	public boolean saveProjectData(){
 		int count=0;
 		ProjectName pn;
@@ -149,7 +87,6 @@ public class DataSave {
 			sql="delete from projectInfo";
 			Database.operate(sql);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		for(ProjectDetail projectDetail:projectDetailList){
@@ -213,7 +150,7 @@ public class DataSave {
 			
 		}
 
-		return false;
+		return true;
 	}
 
 	/**

@@ -64,7 +64,7 @@ public class ProjectDataMerge {
 			
 		}
 		
-		if(!fileUtil.setProjectDetailToFile(projectList)){
+		if(!fileUtil.saveProjectDetail(projectList)){
 			return false;
 		}
 		
@@ -125,7 +125,7 @@ public class ProjectDataMerge {
 			
 		}
 		
-		if(!fileUtil.setProjectDetailToFile(projectList)){
+		if(!fileUtil.saveProjectDetail(projectList)){
 			return false;
 		}
 		
@@ -187,7 +187,7 @@ public class ProjectDataMerge {
 			
 		}
 		
-		if(!fileUtil.setProjectDetailToFile(projectList)){
+		if(!fileUtil.saveProjectDetail(projectList)){
 			return false;
 		}
 		

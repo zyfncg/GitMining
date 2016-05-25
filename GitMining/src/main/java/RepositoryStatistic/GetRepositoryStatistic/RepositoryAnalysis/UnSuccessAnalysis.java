@@ -15,8 +15,8 @@ import Info.RepStatisticInfo.LanguageStatistics;
 import Info.UsrStatisticInfo.CompanyStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfBigCow;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfSuccess;
-import data.statisticServer.UserStatisticsDataServer;
-import data.statistisDataImpl.UserStatisticData;
+import data.dataImpl.statistisDataImpl.UserStatisticData;
+import data.dataServer.statisticServer.UserStatisticsDataServer;
 
 public class UnSuccessAnalysis implements SuccAnalysisStatic{
 	private IfSuccess success = new IfSuccess();

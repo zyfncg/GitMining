@@ -108,7 +108,7 @@ public class FileUtil {
 	 * 所有项目信息的列表放入文件中
 	 * @param pList 项目信息列表
 	 */
-	public boolean setProjectDetailToFile(List<ProjectDetail> pList){
+	public boolean saveProjectDetail(List<ProjectDetail> pList){
 		try {
 			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("projectDetailData.ser"));
 			oos.writeObject(pList);

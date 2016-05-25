@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import Info.ProjectDetail;
 import Info.RepStatisticInfo.SaveRepositoryStatisticInfo;
-import data.statistisDataImpl.ProjectStatisticData;
+import data.dataImpl.statistisDataImpl.ProjectStatisticData;
 
 public class ProjectStatisticDataTest {
 

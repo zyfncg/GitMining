@@ -7,8 +7,8 @@ import java.util.List;
 
 import Info.ProjectDetail;
 import Info.StatisticDetail;
-import data.statisticServer.RepositoryStatisticsDataServer;
-import data.statistisDataImpl.ProjectStatisticData;
+import data.dataImpl.statistisDataImpl.ProjectStatisticData;
+import data.dataServer.statisticServer.RepositoryStatisticsDataServer;
 
 public class SetRaderStatistic {
 	DecimalFormat df = new DecimalFormat("######0.00");

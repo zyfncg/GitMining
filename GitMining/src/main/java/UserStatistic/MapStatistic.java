@@ -6,10 +6,10 @@ import java.util.Map.Entry;
 
 import Info.AddressInfo;
 import Info.UserInfoDetail;
+import data.dataImpl.statistisDataImpl.UserStatisticData;
+import data.dataServer.statisticServer.AddressServer;
+import data.dataServer.statisticServer.UserStatisticsDataServer;
 import data.map.AddressImpl;
-import data.statisticServer.AddressServer;
-import data.statisticServer.UserStatisticsDataServer;
-import data.statistisDataImpl.UserStatisticData;
 
 public class MapStatistic {
 	

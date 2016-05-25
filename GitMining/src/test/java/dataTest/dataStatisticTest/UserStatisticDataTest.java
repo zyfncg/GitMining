@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import Info.UserInfoDetail;
 import Info.UsrStatisticInfo.SaveUserStatisticInfo;
-import data.statistisDataImpl.UserStatisticData;
+import data.dataImpl.statistisDataImpl.UserStatisticData;
 
 public class UserStatisticDataTest {
 

@@ -1,11 +1,11 @@
-package data.statistisDataImpl;
+package data.dataImpl.statistisDataImpl;
 
 import java.util.List;
 
 import Info.UserInfoDetail;
 import Info.UsrStatisticInfo.SaveUserStatisticInfo;
 import data.dataImpl.FileUtil;
-import data.statisticServer.UserStatisticsDataServer;
+import data.dataServer.statisticServer.UserStatisticsDataServer;
 
 public class UserStatisticData implements UserStatisticsDataServer{
 

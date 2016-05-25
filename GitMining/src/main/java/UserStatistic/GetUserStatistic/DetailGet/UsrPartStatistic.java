@@ -8,8 +8,8 @@ import Info.UsrStatisticInfo.CreatRepositoryStatistics;
 import Info.UsrStatisticInfo.CreatTimeStatistics;
 import Info.UsrStatisticInfo.JoinRepositoryStatistics;
 import Info.UsrStatisticInfo.SaveUserStatisticInfo;
-import data.statisticServer.UserStatisticsDataServer;
-import data.statistisDataImpl.UserStatisticData;
+import data.dataImpl.statistisDataImpl.UserStatisticData;
+import data.dataServer.statisticServer.UserStatisticsDataServer;
 import stub.StatisticStub.UserStubStatistic;
 
 public class UsrPartStatistic {

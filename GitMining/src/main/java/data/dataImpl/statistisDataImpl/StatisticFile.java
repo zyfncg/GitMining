@@ -1,4 +1,4 @@
-package data.statistisDataImpl;
+package data.dataImpl.statistisDataImpl;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

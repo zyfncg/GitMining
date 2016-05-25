@@ -287,6 +287,7 @@ public class DBUtil {
         return pList;
     }
     
+	
     /**
      * 从数据库获得指定用户简单信息
      */
