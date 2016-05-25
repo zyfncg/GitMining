@@ -21,7 +21,7 @@ public class DBUtil {
 	public ProjectDetail getProjectDetail(String projectName){
 		List<ProjectDetail> pList;
     	String target="where name='"+projectName+"'";
-    	pList=getProjectDetailList(target);
+    	pList=getProjectDetailListFromDB(target);
     	
     	return pList.get(0);
 	}
@@ -62,11 +62,11 @@ public class DBUtil {
     /**
      *从数据库中获取所有项目详细数据
      */
-    public List<ProjectDetail> getProjectDetailListFromDB() {
+    public List<ProjectDetail> getProjectDetailList() {
 
     	List<ProjectDetail> pList;
     	String target="";
-    	pList=getProjectDetailList(target);
+    	pList=getProjectDetailListFromDB(target);
     	
     	return pList;
     }
@@ -74,7 +74,7 @@ public class DBUtil {
     /**
      *从数据库中获取所有项目简单数据
      */
-    public List<ProjectInfo> getProjectListFromDB(){
+    public List<ProjectInfo> getProjectList(){
     	ResultSet rs;
 
         List<ProjectInfo> pList = new ArrayList<ProjectInfo>();
@@ -113,7 +113,7 @@ public class DBUtil {
      * targer格式为where name='xxx'
      * target为""则为所有项目
      */
-    private List<ProjectDetail> getProjectDetailList(String target){
+    private List<ProjectDetail> getProjectDetailListFromDB(String target){
     	ResultSet rs;
 
         List<ProjectDetail> pList = new ArrayList<ProjectDetail>();
@@ -321,7 +321,7 @@ public class DBUtil {
     public UserInfoDetail getUserDetail(String userName){
     	List<UserInfoDetail> userList;
     	String target="where name='"+userName+"'";
-    	userList=getUserDetailList(target);
+    	userList=getUserDetailListFromDB(target);
     	
     	return userList.get(0);
     }
@@ -329,10 +329,10 @@ public class DBUtil {
     /**
      * 从数据库获取所有用户详细信息
      */
-    public List<UserInfoDetail> getUserDetailFromDB(){
+    public List<UserInfoDetail> getUserDetailList(){
     	List<UserInfoDetail> userList;
     	String target="";
-    	userList=getUserDetailList(target);
+    	userList=getUserDetailListFromDB(target);
     	
     	return userList;
     }
@@ -342,7 +342,7 @@ public class DBUtil {
      * targer格式为where name='xxx'
      * target为""则为所有用户
      */
-    private List<UserInfoDetail> getUserDetailList(String target){
+    private List<UserInfoDetail> getUserDetailListFromDB(String target){
 
         ResultSet rs;
 
@@ -416,7 +416,7 @@ public class DBUtil {
     /**
      * 从数据库获取所有用户简单信息
      */
-    public List<UserInfo> getUserInfoFromDB(){
+    public List<UserInfo> getUserList(){
     	
     	List<UserInfo> userList=new ArrayList<UserInfo>();
     	

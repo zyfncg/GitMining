@@ -1,4 +1,4 @@
-package data.connectUtil;
+package data.download.connectUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,7 +148,7 @@ public class JsonUtil {
 		
 		List<UserInfo> allUser = null;
 		try {
-			allUser = userFile.getUserListFromFile();
+			allUser = userFile.getUserList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -272,7 +272,7 @@ public class JsonUtil {
 		projectInvolved=json.getInt("following");
 		projectCreate=json.getInt("public_repos");
 		
-		List<ProjectInfo> projectList=proFile.getProjectListFromFile();
+		List<ProjectInfo> projectList=proFile.getProjectList();
 		ProjectName proName;
 		for(ProjectInfo project:projectList){
 			proName=project.getProjectName();

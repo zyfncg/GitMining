@@ -7,11 +7,10 @@ import java.util.Map;
 import Info.Date;
 import Info.ProjectDetail;
 import Info.ProjectName;
-import data.connectUtil.HttpRequestUtil;
-import data.connectUtil.StringListTool;
-import data.connectUtil.URLString;
 import data.dataImpl.FileUtil;
-import data.statistisDataImpl.ProjectFile;
+import data.download.connectUtil.HttpRequestUtil;
+import data.download.connectUtil.StringListTool;
+import data.download.connectUtil.URLString;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -30,7 +29,7 @@ public class ProjectDataMerge {
 		String projectJson = null;
 		List<ProjectDetail> projectList;
 		try {
-			projectList = fileUtil.getProjectDetailListFromFile();
+			projectList = fileUtil.getProjectDetailList();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -80,13 +79,12 @@ public class ProjectDataMerge {
 	 */
 	public boolean setUserCommits(){
 		FileUtil fileUtil=new FileUtil();
-		ProjectFile pf=new ProjectFile();
 		ProjectDetail projectDetail;
 		List<ProjectDetail> projectList;
 		List<Integer> commitList;
 		
 		try {
-			projectList = fileUtil.getProjectDetailListFromFile();
+			projectList = fileUtil.getProjectDetailList();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -149,7 +147,7 @@ public class ProjectDataMerge {
 		List<ProjectDetail> projectList;
 		//List<Integer> commitList=new ArrayList<Integer>();
 		try {
-			projectList = fileUtil.getProjectDetailListFromFile();
+			projectList = fileUtil.getProjectDetailList();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

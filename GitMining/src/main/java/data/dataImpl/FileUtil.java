@@ -19,7 +19,7 @@ public class FileUtil {
 	 * @return 项目信息列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ProjectInfo> getProjectListFromFile() throws Exception{
+	public List<ProjectInfo> getProjectList() throws Exception{
 		
 		List<ProjectInfo> pList = null;	
 
@@ -54,7 +54,7 @@ public class FileUtil {
 	 * @return 用户信息列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<UserInfo> getUserListFromFile() throws Exception{
+	public List<UserInfo> getUserList() throws Exception{
 		
 		List<UserInfo> userList;
 		
@@ -88,9 +88,12 @@ public class FileUtil {
 	 * @return 项目信息列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ProjectDetail> getProjectDetailListFromFile() throws Exception{
+	public List<ProjectDetail> getProjectDetailList() throws Exception{
 		
 		List<ProjectDetail> pList = null;	
+		
+		String relativelyPath=System.getProperty("user.dir");
+		System.out.println(relativelyPath);
 		
 		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectDetailData.ser"));
 			
@@ -123,7 +126,7 @@ public class FileUtil {
 	 * @return 用户信息列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<UserInfoDetail> getUserDetailFromFile() throws Exception{
+	public List<UserInfoDetail> getUserDetailList() throws Exception{
 		
 		List<UserInfoDetail> userList = null;	
 		

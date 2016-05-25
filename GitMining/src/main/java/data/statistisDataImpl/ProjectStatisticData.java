@@ -15,7 +15,7 @@ public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 		
 		List<ProjectDetail> proList = null;
 		try {
-			proList=proFile.getProjectDetailListFromFile();
+			proList=proFile.getProjectDetailList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

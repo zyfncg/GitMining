@@ -130,7 +130,7 @@ public class DataSave {
 		List<ProjectDetail> projectDetailList=null;
 
 		try {
-			projectDetailList=fileUtil.getProjectDetailListFromFile();
+			projectDetailList=fileUtil.getProjectDetailList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -232,7 +232,7 @@ public class DataSave {
 		String sql;
 
 		try {
-			projectDetailList=fileUtil.getProjectDetailListFromFile();
+			projectDetailList=fileUtil.getProjectDetailList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -308,7 +308,7 @@ public class DataSave {
 		String projectName;
 
 		try {
-			userInfoDetailList=fileUtil.getUserDetailFromFile();
+			userInfoDetailList=fileUtil.getUserDetailList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

@@ -16,7 +16,7 @@ public class UserStatisticData implements UserStatisticsDataServer{
 		List<UserInfoDetail> userList = null;
 		
 		try {
-			userList=fileUtil.getUserDetailFromFile();
+			userList=fileUtil.getUserDetailList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

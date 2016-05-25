@@ -7,15 +7,14 @@ import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.UserInfo;
 import Info.UserInfoDetail;
-import data.connectUtil.HttpRequestUtil;
-import data.connectUtil.JsonUtil;
-import data.connectUtil.StringListTool;
-import data.connectUtil.URLString;
 import data.dataImpl.FileUtil;
+import data.download.connectUtil.HttpRequestUtil;
+import data.download.connectUtil.JsonUtil;
+import data.download.connectUtil.URLString;
 
 public class DataDownload {
-	private static String projectListUrl=URLString.getRepositoryApiString()+"names";
-	private StringListTool stringTool=new StringListTool();
+	private static String projectListUrl=data.download.connectUtil.URLString.getRepositoryApiString()+"names";
+	private data.download.connectUtil.StringListTool stringTool=new data.download.connectUtil.StringListTool();
 	private FileUtil fileUtil=new FileUtil();
 	
 	/**

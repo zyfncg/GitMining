@@ -18,7 +18,7 @@ public class ProjectDataUtil {
 		
 		List<ProjectInfo> pList = null;
 
-		pList=proFile.getProjectListFromFile();
+		pList=proFile.getProjectList();
 
 		return pList;
 	}
@@ -32,7 +32,7 @@ public class ProjectDataUtil {
 	 */
 	public ProjectDetail getProjectByName(ProjectName name) throws Exception {
 		
-		List<ProjectDetail> proList=proFile.getProjectDetailListFromFile();
+		List<ProjectDetail> proList=proFile.getProjectDetailList();
 		ProjectDetail projectDetail = null;
 		ProjectName pn;
 		

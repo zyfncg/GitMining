@@ -1,4 +1,4 @@
-package data.connectUtil;
+package data.download.connectUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
