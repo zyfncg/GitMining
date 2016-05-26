@@ -102,19 +102,33 @@ body {
 	
 }
 
-.itemContainer {
+/* 项目信息描述，包含左边的图标和右边的数据*/
+.project-info {
 	
 }
 
-.itemContainer .item {
+/* 项目信息描述中左边的图表 */
+.project-info .left-chart {
 	
 }
 
-.itemContainer .item .key {
+/* 项目信息描述中右边的信息项 */
+.project-info .right-items {
 	
 }
 
-.itemContainer .item .value {
+/* 信息项 */
+.item {
+	
+}
+
+/* 信息项的名字 */
+.item .key {
+	
+}
+
+/* 信息项的值 */
+.item .value {
 	
 }
 

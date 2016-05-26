@@ -63,69 +63,13 @@
 	<br />
 	
 	<%
-		int projectNum = (Integer)request.getAttribute("projectNum");
-		int itemPerPage = 6;
-		int row = 2;
-		int col = itemPerPage / row;
-		pageNum = (projectNum + itemPerPage - 1) / itemPerPage;	
-		currentPage = (Integer)request.getAttribute("currentPage");
-		
+		handleServlet = "/Project";
+		num = (Integer)request.getAttribute("projectNum");
+		type = InfoType.PROJECT;
 		@SuppressWarnings("unchecked")
-		List<ProjectInfo> projects = (List<ProjectInfo>)request.getAttribute("projects");
-		ProjectInfo project = null;
-		String owner = null;
-		String projectName = null;
-		for(int i = 0; i < row; ++i) {
+		List<?> list = (List<UserInfoDetail>) request.getAttribute("projects");
 	%>
-	<section id="feature-area" class="about-section">
-			<div class="container">
-				<%
-					boolean isEndOfList;
-					for (int j = 0; j < col; ++j) {
-						isEndOfList = currentPage * itemPerPage + i * 3 + j >= projectNum;
-						if(isEndOfList) {
-							break;
-						}
-						project = projects.get(i * col + j);
-						owner = project.getProjectName().getowner();
-						projectName = project.getProjectName().getrepository();
-				%>
-				<div class="row text-center inner">
-					<div class="col-sm-4">
-						<div class="feature-content">
-							<a class="First-Commend"
-								href="/ProjectDetail?owner=<%= owner %>&
-								project=<%= projectName %>">
-								 <%= projectName %></a>
-							<p class="feature-content-description">
-								<%="Brief Description: " + project.getDescription()%></p>
-							<p class="feature-content-item">
-								Owner : <%= owner %></p>
-							<p class="feature-content-item">
-								Star : <%= project.getStars() %></p>
-							<p class="feature-content-item">
-								Fork : <%= project.getForks() %></p>
-							<p class="feature-content-item">
-							<a href="/ProjectGithub?owner=<%= owner %>&
-								project=<%= projectName %>">
-								See more on github</a></p>
-						</div>
-					</div>
-					<%
-						}
-					%>
-				</div>
-			</div>
-		</section>
-	<%
-		}
-	%>
-	
-	<br />
-	<br />
-	
-	<% handleServlet = "/Project";%>
-	<%@include file="/visualize/common/pagination.jsp" %>
+	<%@include file="/visualize/common/info_list.jsp" %>
 	
 	<br />
 	<br />

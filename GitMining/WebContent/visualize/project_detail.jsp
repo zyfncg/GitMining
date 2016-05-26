@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+	pageEncoding="utf-8" import="java.util.List,
+	Info.UserInfoDetail"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -30,18 +31,23 @@
 		
 	</div>
 	
-	<div class="itemContainer">
-		<div class="item">
-			<div class="key"></div>
-			<div class="value"></div>
+	<div class="project-info">
+		<div class="left-chart">
+			<section class="chartContainer">
+				<div id="map">
+					<script type="text/javascript">
+						
+					</script>
+				</div>
+			</section>
 		</div>
-	</div>
-	
-	<br />
-	<br />
-	
-	<div class="text-center">
-		<h1>项目贡献者</h1>
+		
+		<div class="right-items">
+			<div class="item">
+				<div class="key"></div>
+				<div class="value"></div>
+			</div>
+		</div>
 	</div>
 	
 	<br />
@@ -50,16 +56,23 @@
 	<div class="text-center">
 		<h1>项目协作者</h1>
 	</div>
+	
+	<br />
+	<br />
+	<br />
 
-	<div class="container">
-		<section class="chartContainer">
-			<div id="map">
-				<script type="text/javascript">
-				
-				</script>
-			</div>
-		</section>
-	</div>
+	<%
+		handleServlet = "/ProjectDetail";
+		num = (Integer)request.getAttribute("collaNum");
+		type = InfoType.DEVELOPER;
+		@SuppressWarnings("unchecked")
+		List<?> list = (List<UserInfoDetail>) request.getAttribute("collaborators");
+	%>
+	<%@include file="/visualize/common/info_list.jsp" %>
+
+	<br />
+	<br />
+	<br />
 	<br />
 	<br />
 	<br />
