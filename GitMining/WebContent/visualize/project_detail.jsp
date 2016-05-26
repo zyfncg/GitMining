@@ -17,6 +17,10 @@
 	<br />
 	<br />
 	<br />
+	
+	<div class="icon">
+		<img alt="" src="">
+	</div>
 
 	<div class="container">
 		<section class="chartContainer">
