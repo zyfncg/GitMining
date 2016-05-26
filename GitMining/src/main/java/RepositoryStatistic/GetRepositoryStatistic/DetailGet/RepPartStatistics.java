@@ -8,8 +8,8 @@ import Info.RepStatisticInfo.LanguageStatistics;
 import Info.RepStatisticInfo.SaveRepositoryStatisticInfo;
 import Info.RepStatisticInfo.StarStatistics;
 import Info.RepStatisticInfo.TimeStatistics;
-import data.statisticServer.RepositoryStatisticsDataServer;
-import data.statistisDataImpl.ProjectStatisticData;
+import data.dataImpl.statistisDataImpl.ProjectStatisticData;
+import data.dataServer.statisticServer.RepositoryStatisticsDataServer;
 
 public class RepPartStatistics {
 	

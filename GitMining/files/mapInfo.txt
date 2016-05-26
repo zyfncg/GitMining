@@ -1,19 +1,19 @@
-, mn:Minnesota明尼苏达州,-93.2,43.4,5
+, mn:Minnesota明尼苏达�?,-93.2,43.4,5
 , mo:Missouri密苏里州,-94.2,38.17,5
-, il:Illinois伊利诺斯州,-89.0,39.0,16
+, il:Illinois伊利诺斯�?,-89.0,39.0,16
 , mi:Michigan密歇根州,-83.4,42.6,15
 japan:japan,139.4,35.4,33
-, ut:Utah犹他州,-111.6,40.5,6
+, ut:Utah犹他�?,-111.6,40.5,6
 brasil:brazil,48.0,-16.0,30
-, al:Alabama阿拉巴马州,-87.0,33.0,6
-, va:Virginia弗吉尼亚州,-77.3,37.3,6
-, in:Indiana印第安纳州,-86.0,39.0,2
+, al:Alabama阿拉巴马�?,-87.0,33.0,6
+, va:Virginia弗吉尼亚�?,-77.3,37.3,6
+, in:Indiana印第安纳�?,-86.0,39.0,2
 scotland:scotland,3.2,55.6,5
 russia:russia,38.0,55.0,26
 sweden:sweden,18.0,59.3,28
 , ia:Iowa爱荷华州,-93.4,41.4,2
 france:france,2.2,42.5,39
-, ma:Massachusetts马萨诸塞州,-70.0,42.0,49
+, ma:Massachusetts马萨诸塞�?,-70.0,42.0,49
 melbourne:melbourne,144.5,-37.5,27
 belgium:belgium,4.2,50.5,13
 , uk:England,0.0,55.5,93
@@ -21,15 +21,15 @@ belgium:belgium,4.2,50.5,13
 czech:czech,14.3,50.1,8
 africa:africa,27.2,-20.3,4
 , nj:New jersey新泽西州,-74.5,40.2,4
-, nm:New mexico新墨西哥州,-106.4,35.1,3
+, nm:New mexico新墨西哥�?,-106.4,35.1,3
 switzerland:switzerland,6.0,46.1,19
 , nv:Nevada内华达州,-115.1,36.1,1
 netherlands:netherlands,4.52,52.3,43
 , wa:Washington华盛顿州,-122.2,47.4,46
-, ny:New York纽约州,-73.5,42.4,34
-, fl:Florida佛罗里达州,-82.0,26.3,12
+, ny:New York纽约�?,-73.5,42.4,34
+, fl:Florida佛罗里达�?,-82.0,26.3,12
 canada:canada,-120.0,50.0,52
-, az:Arizona阿利桑那州,-112.0,33.3,5
+, az:Arizona阿利桑那�?,-112.0,33.3,5
 , nh:New hampshire新罕布什尔州,-72.2,43.5,1
 , nc:North Carolina北卡罗来纳州,-80.0,35.4,8
 , ne:Nebraska内布拉斯加州,-100.0,41.0,21
@@ -42,16 +42,16 @@ germany:germany,13.2,52.3,105
 romania:romania,26.1,44.3,2
 india:india,80.0,20.0,10
 , sc:South carolina南卡罗来纳州,-81.0,34.0,7
-, sd:South dakota南达科他州,-100.0,44.2,1
-, wi:Wisconsin威斯康星州,-89.3,43.1,6
+, sd:South dakota南达科他�?,-100.0,44.2,1
+, wi:Wisconsin威斯康星�?,-89.3,43.1,6
 , oh:Ohio俄亥俄州,-181.3,41.0,5
 , ga:Georgia乔治亚州,-84.23,33.46,9
 , hi:Hawaii夏威夷州,-157.51,21.18,2
-, tx:Texas德克萨斯州,-98.3,29.3,17
-, ct:Connecticut康涅狄格州,-72.4,41.5,5
+, tx:Texas德克萨斯�?,-98.3,29.3,17
+, ct:Connecticut康涅狄格�?,-72.4,41.5,5
 , pa:Pennsylvania宾夕法尼亚州,-76.6,40.1,21
 polska:polska,19.1,51.6,1
 mexico:mexico,-99.1,19.3,3
-, co:Colorado科罗拉多州,-104.59,39.44,27
+, co:Colorado科罗拉多�?,-104.59,39.44,27
 china:china,100.0,30.0,17
 , tn:Tennessee田纳西州,-86.5,36.1,6

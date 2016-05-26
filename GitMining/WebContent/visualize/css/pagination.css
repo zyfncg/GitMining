@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+/* ---------------------------------------------------- */
+/*		Pagination
+/* ---------------------------------------------------- */
+.pagination {
+	list-style: none;
+	margin-bottom: 30px;
+	overflow: hidden;
+}
+
+.pagination li {
+	background: #f3f3f3 url(../img/pagination-bg.png) repeat-x;
+	float: left;
+	margin: 0 8px 0 0;
+}
+
+.pagination li.active, .pagination li.active:hover {
+	background: #f3f3f3 url(../img/pagination-active-bg.png) repeat-x;
+}
+
+.pagination li a {
+	color: #939191;
+	display: block;
+	font-weight: bold;
+	height: 27px;
+	line-height: 27px;
+	text-decoration: none;
+	padding: 0 8px;
+}
+
+.pagination li.prev a {
+	background: no-repeat 8px 11px;
+	padding: 0 14px 0 24px;
+}
+
+.pagination li.next a {
+	background: no-repeat 47px 11px;
+	padding: 0 24px 0 14px;
+}
+
+.pagination li.active a, .pagination li.active:hover a {
+	color: #fff;
+}
+
+.pagination li:hover {
+	background: repeat-x;
+}
+
+.pagination li:hover a {
+	color: #777;
+}
+
+.pagination li .disable {
+	pointer-events: none;
+}

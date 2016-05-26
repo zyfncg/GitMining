@@ -1,4 +1,4 @@
-package data.statisticServer;
+package data.dataServer.statisticServer;
 
 import java.util.List;
 import java.util.Map;

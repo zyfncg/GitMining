@@ -13,8 +13,8 @@ import RepositoryStatistic.SetRepositoryStatistic.DetailAnalyze.SetForkStatistic
 import RepositoryStatistic.SetRepositoryStatistic.DetailAnalyze.SetLanguageStatistic;
 import RepositoryStatistic.SetRepositoryStatistic.DetailAnalyze.SetStarStatisitc;
 import RepositoryStatistic.SetRepositoryStatistic.DetailAnalyze.SetTimeStatistic;
-import data.statisticServer.RepositoryStatisticsDataServer;
-import data.statistisDataImpl.ProjectStatisticData;
+import data.dataImpl.statistisDataImpl.ProjectStatisticData;
+import data.dataServer.statisticServer.RepositoryStatisticsDataServer;
 
 public class AllRepositoryStatistic {
 

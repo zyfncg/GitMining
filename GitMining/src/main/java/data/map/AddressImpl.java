@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import Info.AddressInfo;
-import data.statisticServer.AddressServer;
+import data.dataServer.statisticServer.AddressServer;
 
 public class AddressImpl implements AddressServer{
 	
