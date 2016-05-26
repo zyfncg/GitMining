@@ -26,9 +26,21 @@
 		<img alt="" src="">
 	</div>
 	
-	<div class="First-Commend">
+	<div class="description">
 		Hello World!
 	</div>
+	
+	<div class="itemContainer">
+		<div class="item">
+			<div class="key"></div>
+			<div class="value"></div>
+		</div>
+	</div>
+	
+	<br />
+	<br />
+	
+	
 
 	<div class="container">
 		<section class="chartContainer">
