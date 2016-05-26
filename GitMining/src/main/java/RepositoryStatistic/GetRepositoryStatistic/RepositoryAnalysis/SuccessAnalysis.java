@@ -36,10 +36,10 @@ public class SuccessAnalysis implements SuccAnalysisStatic {
 		for (int i=0;i<temp.size();i++) {
 			allcolla[i] = temp.get(i).getCollaborators();
 		}
-
+		
 		return allcolla;
 	}
-
+	
 	@Override
 	public int getMrBigOccupyNum() {
 		List<ProjectDetail> allbigcow = new ArrayList<ProjectDetail>();
