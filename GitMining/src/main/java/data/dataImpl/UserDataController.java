@@ -10,8 +10,8 @@ import res.Strings;
 
 public class UserDataController implements UserDataServer{
 
-	private UserDataUtil userData=new UserDataUtil();
-//	private UserDataImpl userData=new UserDataImpl();
+//	private UserDataUtil userData=new UserDataUtil();
+	private UserDataImpl userData=new UserDataImpl();
 	
 	@Override
 	public List<UserInfo> getAllUsers(){
