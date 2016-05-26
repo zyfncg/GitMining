@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import res.CookieUtil;
+
 /**
  * 处理跳转至项目github主页的请求
  */
@@ -21,6 +23,7 @@ public class ProjectGithub extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//TODO 更新数据库中项目、语言、公司的引用次数
+		String user_id = CookieUtil.getUserIDfromCookie(request, response);
 		String owner = request.getParameter("owner");
 		String name = request.getParameter("project");
 		if(owner != null && name != null) {

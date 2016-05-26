@@ -12,6 +12,7 @@
 				<li><a href="/visualize/home.jsp">Home</a></li>
 				<li><a href="/Analysis">Analysis</a></li>
 				<li><a href="/Developer">Developer</a></li>
+				<li><a href="/Project">Project</a></li>
 				<li><a href="/Recommend">Recommendation</a></li>
 			</ul>
 		</div>

@@ -14,6 +14,7 @@ import Info.Date;
 import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfoDetail;
+import res.CookieUtil;
 
 /**
  * 处理来自推荐模块的请求
@@ -27,11 +28,11 @@ public class Recommend extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String user_id = CookieUtil.getUserIDfromCookie(request, response);
+		//TODO 根据用户id获得向用户推荐的项目和开发者信息
+		
 		List<ProjectInfo> list = new ArrayList<>();
 		for(int i = 0; i < 6; ++i) {
 			list.add(new ProjectInfo("This is the kernel of Linux",
@@ -56,9 +57,6 @@ public class Recommend extends HttpServlet {
 		request.getRequestDispatcher("/visualize/recommend.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

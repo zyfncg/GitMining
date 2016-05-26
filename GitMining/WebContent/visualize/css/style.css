@@ -62,59 +62,39 @@ body {
 	margin: 0 auto;
 }
 
-/* ---------------------------------------------------- */
-/*		Pagination
-/* ---------------------------------------------------- */
-.pagination {
-	list-style: none;
-	margin-bottom: 30px;
-	overflow: hidden;
+/* search container, contains text field and button */
+.searchContainer {
+	width: 600px;
+	height: 50px;
+	margin: 0 auto;
 }
 
-.pagination li {
-	background: #f3f3f3 url(../img/pagination-bg.png) repeat-x;
+/* search text*/
+.searchText {
 	float: left;
-	margin: 0 8px 0 0;
+	width: 500px;
+	height: 50px;
 }
 
-.pagination li.active, .pagination li.active:hover {
-	background: #f3f3f3 url(../img/pagination-active-bg.png) repeat-x;
+/* search button*/
+.searchBtn {
+	float: left;
+	width: 100px; 
+	height: 50px;
 }
 
-.pagination li a {
-	color: #939191;
-	display: block;
-	font-weight: bold;
-	height: 27px;
-	line-height: 27px;
-	text-decoration: none;
-	padding: 0 8px;
+/* sort container, contains sort buttons*/
+.sortContainer {
+	width: 520px;
+	height: 50px;
+	margin: 0 auto;
 }
 
-.pagination li.prev a {
-	background: no-repeat 8px 11px;
-	padding: 0 14px 0 24px;
-}
-
-.pagination li.next a {
-	background: no-repeat 47px 11px;
-	padding: 0 24px 0 14px;
-}
-
-.pagination li.active a, .pagination li.active:hover a {
-	color: #fff;
-}
-
-.pagination li:hover {
-	background: repeat-x;
-}
-
-.pagination li:hover a {
-	color: #777;
-}
-
-.pagination li .disable {
-	pointer-events: none;
+/* sort button*/
+.sortButton {
+	float: left;
+	width: 130px;
+	height: 50px;
 }
 
 img {

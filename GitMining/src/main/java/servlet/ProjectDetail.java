@@ -10,24 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 import res.CookieUtil;
 
 /**
- * 处理跳转至开发者github主页的请求
+ * 用户显示项目的详细信息
  */
-@WebServlet("/DeveloperGithub")
-public class DeveloperGithub extends HttpServlet {
+@WebServlet("/ProjectDetail")
+public class ProjectDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public DeveloperGithub() {
+    public ProjectDetail() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//TODO 在数据库中更新这个用户被引用的次数
-		String developer = request.getParameter("chooseDeveloper");
+		String owenr = request.getParameter("owner");
+		String projectName = request.getParameter("project");
+		//TODO 更新数据库中对该用户的引用，获得该用户的数据
 		String user_id = CookieUtil.getUserIDfromCookie(request, response);
-		if(developer != null) {
-			response.sendRedirect("http://www.github.com/" + developer);
-		}
+		request.getRequestDispatcher("/visualize/project_detail.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

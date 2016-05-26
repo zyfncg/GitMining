@@ -1,5 +1,6 @@
 package data.dataImpl;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -92,10 +93,15 @@ public class FileUtil {
 		
 		List<ProjectDetail> pList = null;	
 		
+<<<<<<< HEAD
+		ObjectInputStream is=new ObjectInputStream(new FileInputStream(
+				"projectDetailData.ser"));
+=======
 		String relativelyPath=System.getProperty("user.dir");
 		System.out.println(relativelyPath);
 		
 		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectDetailData.ser"));
+>>>>>>> 88050d4a6cb93547adde2728fdd2892621f5fa9e
 			
 		pList=(List<ProjectDetail>) is.readObject();
 		is.close();
