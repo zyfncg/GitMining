@@ -11,7 +11,7 @@ public class IfSuccess {
 	private List<ProjectDetail> AllProject = allRepositoryStatistic.getStatisticRepositoryInfo();
 	
 	public boolean getIfSuccess(ProjectDetail AProject) {
-		if (AProject.getStars()>=5000) {
+		if (AProject.getStars()>=2000) {
 			return true;
 		}
 		else {
@@ -22,7 +22,7 @@ public class IfSuccess {
 	public List<ProjectDetail> GetAllSuccess() {
 		List<ProjectDetail> AllSuccess = new ArrayList<ProjectDetail>();
 		for(ProjectDetail tempProject:AllProject){
-			if (tempProject.getStars()>=5000) {
+			if (tempProject.getStars()>=2000) {
 				AllSuccess.add(tempProject);
 			}
 		}
@@ -32,7 +32,7 @@ public class IfSuccess {
 	public List<ProjectDetail> GetAllUnSuccess() {
 		List<ProjectDetail> AllUnSuccess = new ArrayList<ProjectDetail>();
 		for(ProjectDetail tempProject:AllProject){
-			if (tempProject.getStars()<5000) {
+			if (tempProject.getStars()<2000) {
 				AllUnSuccess.add(tempProject);
 			}
 		}
