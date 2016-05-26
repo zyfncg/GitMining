@@ -27,7 +27,7 @@
 	</div>
 	
 	<div class="description">
-		Hello World!
+		
 	</div>
 	
 	<div class="itemContainer">
@@ -40,7 +40,16 @@
 	<br />
 	<br />
 	
+	<div class="text-center">
+		<h1>项目贡献者</h1>
+	</div>
 	
+	<br />
+	<br />
+	
+	<div class="text-center">
+		<h1>项目协作者</h1>
+	</div>
 
 	<div class="container">
 		<section class="chartContainer">
@@ -54,30 +63,6 @@
 	<br />
 	<br />
 	<br />
-
-	<div class="container">
-		<section class="chartContainer">
-			<div id="relation">
-				<script type="text/javascript">
-				
-				</script>
-			</div>
-		</section>
-	</div>
-
-	<br />
-	<br />
-	<br />
-
-	<div class="container">
-		<section class="chartContainer">
-			<div id="progress">
-				<script type="text/javascript">
-				
-				</script>
-			</div>
-		</section>
-	</div>
 
 	<%@include file="/visualize/common/footer.jsp"%>
 </body>
