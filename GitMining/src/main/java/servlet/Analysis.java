@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import RepositoryStatistic.SuccAnalysisStatic;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.SuccAnalysisStatic;
 
 /**
  * 响应项目成功原因分析模块的请求

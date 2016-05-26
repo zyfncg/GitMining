@@ -1,4 +1,4 @@
-package RepositoryStatistic;
+package RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis;
 
 import java.util.List;
 
