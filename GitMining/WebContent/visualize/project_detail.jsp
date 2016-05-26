@@ -32,7 +32,7 @@
 	</div>
 	
 	<div class="project-info">
-		<div class="left-chart">
+		<div class="project-chart">
 			<section class="chartContainer">
 				<div id="map">
 					<script type="text/javascript">
@@ -42,7 +42,7 @@
 			</section>
 		</div>
 		
-		<div class="right-items">
+		<div class="project-items">
 			<div class="item">
 				<div class="key"></div>
 				<div class="value"></div>
