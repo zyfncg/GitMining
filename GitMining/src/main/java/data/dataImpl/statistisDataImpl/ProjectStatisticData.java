@@ -1,21 +1,23 @@
-package data.statistisDataImpl;
+package data.dataImpl.statistisDataImpl;
 
 import java.util.List;
 
 import Info.ProjectDetail;
 import Info.RepStatisticInfo.SaveRepositoryStatisticInfo;
-import data.dataImpl.FileUtil;
-import data.statisticServer.RepositoryStatisticsDataServer;
+import data.dataImpl.DBUtil;
+import data.dataImpl.ProjectStatisticDB;
+import data.dataServer.statisticServer.RepositoryStatisticsDataServer;
 
 public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 
 	@Override
 	public List<ProjectDetail> getStatisticRepositoryInfo() throws Exception {
-		FileUtil proFile=new FileUtil();
+//		FileUtil proUtil=new FileUtil();
+		DBUtil proUtil=new DBUtil();
 		
 		List<ProjectDetail> proList = null;
 		try {
-			proList=proFile.getProjectDetailListFromFile();
+			proList=proUtil.getProjectDetailList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -34,7 +36,7 @@ public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 	public SaveRepositoryStatisticInfo GetStatisticedInfo() throws Exception{
 		StatisticFile statisticFile=new StatisticFile();
 		SaveRepositoryStatisticInfo repoStatistic;
-		
+		System.out.println("++++++++++");
 		try {
 			repoStatistic=statisticFile.getProjectStatisticData();
 		} catch (Exception e) {
@@ -47,11 +49,15 @@ public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 	@Override
 	public boolean setDetailStatisticInfo(List<ProjectDetail> list) {
 		
-		FileUtil proFile=new FileUtil();
 		
-		if(!proFile.setProjectDetailToFile(list)){
+		ProjectStatisticDB statisticUtil=new ProjectStatisticDB();
+		if(!statisticUtil.saveProjectStatis(list)){
 			return false;
 		}
+//		FileUtil statisticUtil=new FileUtil();
+//		if(!statisticUtil.saveProjectDetail(list)){
+//			return false;
+//		}
 		return true;
 	}
 

@@ -10,8 +10,8 @@ import Info.Relationship;
 import Info.UserInfo;
 import Info.UserInfoDetail;
 import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
+import data.dataServer.statisticServer.AddressServer;
 import data.map.AddressImpl;
-import data.statisticServer.AddressServer;
 
 public class RelationAnalysisStatic {
 	private OtherAnalysis other = new OtherAnalysis();

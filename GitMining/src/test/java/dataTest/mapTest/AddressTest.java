@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Info.AddressInfo;
+import data.dataServer.statisticServer.AddressServer;
 import data.map.AddressImpl;
-import data.statisticServer.AddressServer;
 
 public class AddressTest {
 

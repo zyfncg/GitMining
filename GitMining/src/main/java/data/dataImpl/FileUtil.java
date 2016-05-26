@@ -20,7 +20,7 @@ public class FileUtil {
 	 * @return 项目信息列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ProjectInfo> getProjectListFromFile() throws Exception{
+	public List<ProjectInfo> getProjectList() throws Exception{
 		
 		List<ProjectInfo> pList = null;	
 
@@ -55,7 +55,7 @@ public class FileUtil {
 	 * @return 用户信息列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<UserInfo> getUserListFromFile() throws Exception{
+	public List<UserInfo> getUserList() throws Exception{
 		
 		List<UserInfo> userList;
 		
@@ -89,12 +89,19 @@ public class FileUtil {
 	 * @return 项目信息列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ProjectDetail> getProjectDetailListFromFile() throws Exception{
+	public List<ProjectDetail> getProjectDetailList() throws Exception{
 		
 		List<ProjectDetail> pList = null;	
 		
+<<<<<<< HEAD
 		ObjectInputStream is=new ObjectInputStream(new FileInputStream(
 				"projectDetailData.ser"));
+=======
+		String relativelyPath=System.getProperty("user.dir");
+		System.out.println(relativelyPath);
+		
+		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectDetailData.ser"));
+>>>>>>> 88050d4a6cb93547adde2728fdd2892621f5fa9e
 			
 		pList=(List<ProjectDetail>) is.readObject();
 		is.close();
@@ -107,7 +114,7 @@ public class FileUtil {
 	 * 所有项目信息的列表放入文件中
 	 * @param pList 项目信息列表
 	 */
-	public boolean setProjectDetailToFile(List<ProjectDetail> pList){
+	public boolean saveProjectDetail(List<ProjectDetail> pList){
 		try {
 			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("projectDetailData.ser"));
 			oos.writeObject(pList);
@@ -125,7 +132,7 @@ public class FileUtil {
 	 * @return 用户信息列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<UserInfoDetail> getUserDetailFromFile() throws Exception{
+	public List<UserInfoDetail> getUserDetailList() throws Exception{
 		
 		List<UserInfoDetail> userList = null;	
 		

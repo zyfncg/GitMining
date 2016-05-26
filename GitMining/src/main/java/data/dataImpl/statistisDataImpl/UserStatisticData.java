@@ -1,11 +1,11 @@
-package data.statistisDataImpl;
+package data.dataImpl.statistisDataImpl;
 
 import java.util.List;
 
 import Info.UserInfoDetail;
 import Info.UsrStatisticInfo.SaveUserStatisticInfo;
 import data.dataImpl.FileUtil;
-import data.statisticServer.UserStatisticsDataServer;
+import data.dataServer.statisticServer.UserStatisticsDataServer;
 
 public class UserStatisticData implements UserStatisticsDataServer{
 
@@ -16,7 +16,7 @@ public class UserStatisticData implements UserStatisticsDataServer{
 		List<UserInfoDetail> userList = null;
 		
 		try {
-			userList=fileUtil.getUserDetailFromFile();
+			userList=fileUtil.getUserDetailList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

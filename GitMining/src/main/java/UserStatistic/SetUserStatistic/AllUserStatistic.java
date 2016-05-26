@@ -15,8 +15,8 @@ import UserStatistic.SetUserStatistic.DetailAnalyze.SetCompanyStatistic;
 import UserStatistic.SetUserStatistic.DetailAnalyze.SetCreatRepositoryStatistic;
 import UserStatistic.SetUserStatistic.DetailAnalyze.SetCreatTimeStatistic;
 import UserStatistic.SetUserStatistic.DetailAnalyze.SetJoinRepositoryStatistic;
-import data.statisticServer.UserStatisticsDataServer;
-import data.statistisDataImpl.UserStatisticData;
+import data.dataImpl.statistisDataImpl.UserStatisticData;
+import data.dataServer.statisticServer.UserStatisticsDataServer;
 
 public class AllUserStatistic {
 

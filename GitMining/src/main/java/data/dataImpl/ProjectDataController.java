@@ -12,8 +12,8 @@ import res.Strings;
 public class ProjectDataController implements ProjectDataServer{
 
 	
-	private ProjectDataUtil projectData=new ProjectDataUtil();
-//	private ProjectDataImpl projectData=new ProjectDataImpl();
+//	private ProjectDataUtil projectData=new ProjectDataUtil();
+	private ProjectDataImpl projectData=new ProjectDataImpl();
 	
 	@Override
 	public List<ProjectInfo> getAllProjects(){
