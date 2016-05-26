@@ -93,11 +93,19 @@ public class FileUtil {
 		
 		List<ProjectDetail> pList = null;	
 		
+<<<<<<< HEAD
 		ObjectInputStream is=new ObjectInputStream(new FileInputStream(
 				"projectDetailData.ser"));
 		String relativelyPath=System.getProperty("user.dir");
 		System.out.println(relativelyPath);
 		
+=======
+		String relativelyPath=System.getProperty("user.dir");
+		System.out.println(relativelyPath);
+		
+		ObjectInputStream is=new ObjectInputStream(new FileInputStream("projectDetailData.ser"));
+
+>>>>>>> 4284ffd1d575482b1a6d1d7aec0af5315c857be7
 			
 		pList=(List<ProjectDetail>) is.readObject();
 		is.close();
