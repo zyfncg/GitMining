@@ -20,7 +20,7 @@ public class ProjectDataImpl {
 		
 		List<ProjectInfo> pList = null;
 
-		pList=dbUtil.getProjectListFromDB();
+		pList=dbUtil.getProjectList();
 
 		return pList;
 	}

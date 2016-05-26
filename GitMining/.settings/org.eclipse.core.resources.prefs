@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/visualize/common/navigation.jsp=UTF-8
+encoding//WebContent/visualize/common/pagination.jsp=UTF-8
+encoding//WebContent/visualize/common/pagination_var.jsp=UTF-8
 encoding//WebContent/visualize/developer.jsp=UTF-8
 encoding//src/main/java=UTF-8
 encoding//src/test/java=UTF-8

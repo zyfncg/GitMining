@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import res.CookieUtil;
+
 /**
  * 处理跳转至开发者github主页的请求
  */
@@ -22,6 +24,7 @@ public class DeveloperGithub extends HttpServlet {
 			throws ServletException, IOException {
 		//TODO 在数据库中更新这个用户被引用的次数
 		String developer = request.getParameter("chooseDeveloper");
+		String user_id = CookieUtil.getUserIDfromCookie(request, response);
 		if(developer != null) {
 			response.sendRedirect("http://www.github.com/" + developer);
 		}

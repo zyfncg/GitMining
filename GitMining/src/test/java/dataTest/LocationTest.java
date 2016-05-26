@@ -18,7 +18,7 @@ public class LocationTest {
 		String address;
 		
 		try {
-			userList=fileUtil.getUserDetailFromFile();
+			userList=fileUtil.getUserDetailList();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

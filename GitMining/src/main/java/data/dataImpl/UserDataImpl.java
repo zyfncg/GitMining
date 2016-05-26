@@ -15,7 +15,7 @@ public class UserDataImpl {
 		
 		List<UserInfo> userList = null;
 		
-		userList=dbUtil.getUserInfoFromDB();
+		userList=dbUtil.getUserList();
 		
 		return userList;
 	} 

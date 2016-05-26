@@ -6,9 +6,10 @@
         <UserURL>http://www.gitmining.net/api/user/</UserURL>
 
          <!-- mysql连接设置 -->
-         <url>jdbc:mysql://localhost/GitMiningDB</url>
+         <!-- 本地连接jdbc:mysql://localhost/GitMiningDB -->
+         <url>jdbc:mysql://115.159.22.86/GitMiningDB</url>
          <user>root</user>
-         <pass>12345678</pass>
+         <pass>123123123</pass>
          <port>3306</port>
     </VALUE>   
 </CONFIG>   

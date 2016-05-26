@@ -17,7 +17,7 @@ public class UserDataUtil {
 		
 		List<UserInfo> userList = null;
 		
-		userList=fileUtil.getUserListFromFile();
+		userList=fileUtil.getUserList();
 		
 		return userList;
 	} 
@@ -31,7 +31,7 @@ public class UserDataUtil {
 	 */
 	public UserInfoDetail getUserByName(String name) throws Exception{
 		
-		List<UserInfoDetail> userDetailList=fileUtil.getUserDetailFromFile();
+		List<UserInfoDetail> userDetailList=fileUtil.getUserDetailList();
 		UserInfoDetail userDetail = null;
 		String userName;
 		

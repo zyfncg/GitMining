@@ -10,8 +10,8 @@ import res.Strings;
 
 public class UserDataController implements UserDataServer{
 
-	private UserDataUtil userDataUtil=new UserDataUtil();
-//	private UserDataImpl userDataUtil=new UserDataImpl();
+//	private UserDataUtil userData=new UserDataUtil();
+	private UserDataImpl userData=new UserDataImpl();
 	
 	@Override
 	public List<UserInfo> getAllUsers(){
@@ -19,7 +19,7 @@ public class UserDataController implements UserDataServer{
 		List<UserInfo> userList=new ArrayList<UserInfo>();
 		
 		try {
-			userList=userDataUtil.getAllUsers();
+			userList=userData.getAllUsers();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return userList;
@@ -40,7 +40,7 @@ public class UserDataController implements UserDataServer{
 		UserInfoDetail user;
 		
 		try {
-			user=userDataUtil.getUserByName(name);
+			user=userData.getUserByName(name);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception(Strings.URL_EXCEPTION_TIP);

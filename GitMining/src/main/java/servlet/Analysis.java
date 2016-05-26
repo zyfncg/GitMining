@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Info.RepStatisticInfo.LanguageStatistics;
-import Info.UsrStatisticInfo.CompanyStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.SuccAnalysisStatic;
-import businessLogic.businessLogicController.UserController.UserController;
-import businessLogicService.UserBLService.UserBLService;
 
 /**
  * 响应项目成功原因分析模块的请求
@@ -38,17 +32,15 @@ public class Analysis extends HttpServlet {
 	/**
 	 *项目成功原因分析中非成功项目的统计数据 
 	 */
-//	private SuccAnalysisStatic unsucc = stat.GetUnSuccStatistcs();
+	private SuccAnalysisStatic unsucc = stat.GetUnSuccStatistcs();
 
     public Analysis() {
     	super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< HEAD
 		SuccAnalysisStatic succ = new SuccAnalysisStatic() {
 			@Override
 			public double getProjectNum() {return 540;}
@@ -110,13 +102,13 @@ public class Analysis extends HttpServlet {
 				return nums;
 			}
 		};
+=======
+		request.setAttribute("succStat", succ);	
+>>>>>>> 4284ffd1d575482b1a6d1d7aec0af5315c857be7
 		request.setAttribute("unsuccStat", unsucc);
 		request.getRequestDispatcher("/visualize/analysis.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
