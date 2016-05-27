@@ -53,6 +53,7 @@ public class AllRepositoryStatistic {
 		}
 	}
 
+	//取得全部项目详细信息
 	public List<ProjectDetail> getStatisticRepositoryInfo() {
 		List<ProjectDetail> StatisticInfo = new ArrayList<ProjectDetail>();
 		try {
