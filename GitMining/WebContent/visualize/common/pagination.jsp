@@ -1,7 +1,12 @@
 <%-- 分页页标 --%>>
 
-<%@include file="/visualize/common/pagination_var.jsp" %>
 <link rel="stylesheet" type="text/css" href="/visualize/css/pagination.css">
+
+<%!
+	int pageNum;				//要显示的页数
+	int currentPage;			//当前显示的页号，从0开始
+	String handleServlet;		//处理跳转的servlet路径
+%>
 
 <ul class="pagination"
 	style="position: absolute; left: 50%; margin-left: -200px; width: 400px;">

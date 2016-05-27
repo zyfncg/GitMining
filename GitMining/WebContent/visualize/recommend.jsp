@@ -42,7 +42,6 @@
 		ProjectInfo project = null;
 	%>
 	<div>
-		<!-- Start Feature Area -->
 		<%
 			for (int row = 0; row < 2; ++row) {
 		%>
@@ -90,28 +89,16 @@
 		<%
 			}
 		%>
-		<!-- End Feature Area -->
 	</div>
-
+	
 	<br />
 	<br />
 
-	<div id="section3">
-		<!-- Start Services Area -->
-		<section id="services-area" class="services-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-center inner our-service">
-						<div class="service">
-							<h1>Guess You May Prefer</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End Services Area -->
+	<div>
+		<div class="text-center">
+			<h1>Guess You May Prefer</h1>
+		</div>
 
-		<!-- Start Testimornial Area -->
 		<section id="testimornial-area">
 			<div class="container">
 				<div class="row text-center">
@@ -180,7 +167,6 @@
 				</div>
 			</div>
 		</section>
-		<!-- End Testimornial Area -->
 	</div>
 
 	<%@include file="/visualize/common/footer.jsp"%>

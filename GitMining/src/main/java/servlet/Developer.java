@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Info.Date;
 import Info.UserInfoDetail;
+import res.PaginationUtil;
 
 /**
  * 响应查询开发者信息模块的请求
@@ -43,20 +44,8 @@ public class Developer extends HttpServlet {
 					new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
 		}
 		
-		int currentPage = 0;
-		String para = request.getParameter("currentPage");
-		if(para != null) {
-			currentPage = Integer.parseInt(para);
-			request.setAttribute("currentPage", currentPage);
-		}else {
-			request.setAttribute("currentPage", 0);
-		}
-		
-		int size = list.size();
-		int end = (currentPage + 1) * 6 >= size ? size
-				: (currentPage + 1) * 6;
-		request.setAttribute("developers", list.subList(currentPage * 6, end));
-		request.setAttribute("developerNum", size);
+		//设置有关页面跳转的一些参数
+		PaginationUtil.setParameters(request, "developerNum", "developers", list);
 		
 		request.getRequestDispatcher("/visualize/developer.jsp").forward(request, response);
 	}

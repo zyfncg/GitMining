@@ -14,6 +14,7 @@ import Info.Date;
 import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfoDetail;
+import res.PaginationUtil;
 
 /**
  * 处理来自项目信息模块的请求
@@ -44,21 +45,9 @@ public class Project extends HttpServlet {
 					new ProjectName("Stallman", "gnu"),
 					100, 200, 300));
 		}
-
-		int currentPage = 0;
-		String para = request.getParameter("currentPage");
-		if(para != null) {
-			currentPage = Integer.parseInt(para);
-			request.setAttribute("currentPage", currentPage);
-		}else {
-			request.setAttribute("currentPage", 0);
-		}
-
-		int size = list.size();
-		int end = (currentPage + 1) * 6 >= size ? size
-				: (currentPage + 1) * 6;
-		request.setAttribute("projects", list.subList(currentPage * 6, end));
-		request.setAttribute("projectNum", size);
+		
+		//设置有关页面跳转的一些参数
+		PaginationUtil.setParameters(request, "projectNum", "projects", list);
 		
 		request.getRequestDispatcher("/visualize/project.jsp").forward(request, response);
 	}
