@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Info.Date;
 import Info.ProjectInfo;
-import Info.ProjectName;
-import Info.UserInfoDetail;
+import businessLogic.businessLogicController.RepositoryController.RepositoryController;
+import businessLogicService.RepositoryBLService.RepositoryBLService;
 import res.PaginationUtil;
 
 /**
@@ -23,6 +21,19 @@ import res.PaginationUtil;
 public class Project extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final RepositoryBLService service =
+			new RepositoryController();
+	
+	private static List<ProjectInfo> projects;
+	
+	static {
+		try {
+			projects = service.getAllRepositorys();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Project() {
 		super();
@@ -35,19 +46,9 @@ public class Project extends HttpServlet {
 		if(name != null) {
 
 		}
-
-		List<ProjectInfo> list = new ArrayList<>();
-		for(int i = 0; i < 17; ++i) {
-			list.add(new ProjectInfo("This is the kernel of Linux",
-					new ProjectName("Linus", "Linux"),
-					2000, 2000, 200));
-			list.add(new ProjectInfo("GNU's not Unix",
-					new ProjectName("Stallman", "gnu"),
-					100, 200, 300));
-		}
 		
 		//设置有关页面跳转的一些参数
-		PaginationUtil.setParameters(request, "projectNum", "projects", list);
+		PaginationUtil.setParameters(request, "projectNum", "projects", projects);
 		
 		request.getRequestDispatcher("/visualize/project.jsp").forward(request, response);
 	}

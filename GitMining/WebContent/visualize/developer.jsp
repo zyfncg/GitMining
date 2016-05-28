@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" import="java.util.List, Info.UserInfoDetail"%>
+	pageEncoding="utf-8" import="java.util.List, Info.UserInfo"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +31,8 @@
 			<div class="row">
 				<div class="col-sm-12 text-center">
 					<div class="header-content">
-						<h1>Developer</h1>
-						<h4>Do you want to learn more about your favorite developer?</h4>
+						<h1>开发者</h1>
+						<h4>你想对你喜欢的开发者了解更多吗</h4>
 					</div>
 				</div>
 			</div>
@@ -71,7 +71,7 @@
 		num = (Integer)request.getAttribute("developerNum");
 		type = InfoType.DEVELOPER;
 		@SuppressWarnings("unchecked")
-		List<?> list = (List<UserInfoDetail>) request.getAttribute("developers");
+		List<?> list = (List<UserInfo>) request.getAttribute("developers");
 	%>
 	<%@include file="/visualize/common/info_list.jsp" %>
 
@@ -87,7 +87,7 @@
 	<script>
 		// HTML document is loaded. DOM is ready.
 		$(function() {
-			prepareScrollUP('.head', '/visualize/img/bg-1.jpg');
+			prepareScrollUP('.head', '/visualize/img/developer_bg.jpg');
 		});
 	</script>
 </body>

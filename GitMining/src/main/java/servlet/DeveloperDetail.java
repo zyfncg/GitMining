@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Info.ProjectInfo;
-import Info.ProjectName;
+import Info.UserInfoDetail;
+import businessLogic.businessLogicController.UserController.UserController;
+import businessLogicService.UserBLService.UserBLService;
 import res.CookieUtil;
 import res.PaginationUtil;
 
@@ -21,6 +20,8 @@ import res.PaginationUtil;
 @WebServlet("/DeveloperDetail")
 public class DeveloperDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final UserBLService service = new UserController();
        
     public DeveloperDetail() {
         super();
@@ -34,18 +35,15 @@ public class DeveloperDetail extends HttpServlet {
 			String user_id = CookieUtil.getUserIDfromCookie(request, response);
 		}
 		
-		List<ProjectInfo> list = new ArrayList<>();
-		for(int i = 0; i < 17; ++i) {
-			list.add(new ProjectInfo("This is the kernel of Linux",
-					new ProjectName("Linus", "Linux"),
-					2000, 2000, 200));
-			list.add(new ProjectInfo("GNU's not Unix",
-					new ProjectName("Stallman", "gnu"),
-					100, 200, 300));
+		UserInfoDetail info = null;
+		try {
+			info = service.getUserByName(name);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		//设置有关页面跳转的一些参数
-		PaginationUtil.setParameters(request, "createNum", "projects", list);
+		PaginationUtil.setParameters(request, "createNum", "projects", info.getProjectCreatInfo());
 		
 		request.getRequestDispatcher("/visualize/developer_detail.jsp").forward(request, response);
 	}

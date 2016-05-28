@@ -28,8 +28,8 @@
 			<div class="row">
 				<div class="col-sm-12 text-center">
 					<div class="header-content">
-						<h1>Recommend</h1>
-						<h4>We will recommend some interesting stuffs for you</h4>
+						<h1>推荐</h1>
+						<h4>我们希望给您推荐一些有趣的项目和开发者</h4>
 					</div>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 
 	<div>
 		<div class="text-center">
-			<h1>Guess You May Prefer</h1>
+			<h1>猜您喜欢</h1>
 		</div>
 
 		<section id="testimornial-area">
@@ -117,13 +117,16 @@
 							<a class="First-Commend"
 								href="/DeveloperDetail?chooseDeveloper=<%= user.getUserName() %>">
 								<%= user.getUserName() %></a>
-							<p>
-								Joined on <%= user.getJoinDate().getDate() %><br />
-								email : <%= user.getEmail() %><br />
-								company: <%= user.getCompany() %><br />
-								address: <%= user.getAddress() %><br />
+							
+							<p>Github注册时间: <%= user.getJoinDate().getDate() %><br />
+								公司: <%= user.getCompany() %><br />
+								地址： <%= user.getAddress() %><br />
+								邮箱: <%= user.getEmail() %><br />
+								创建项目个数: <%= user.getProjectCreate() %><br />
+								参与项目个数 : <%= user.getProjectInvolved() %><br />
+								<br />
 								<a href="/DeveloperGithub?chooseDeveloper=<%= user.getUserName() %>">
-								See more on github</a>
+								去Github逛逛</a>
 							</p>
 						</div>
 					</div>
@@ -151,13 +154,14 @@
 								project=<%= projectName %>">
 							<%= projectName %></a>
 							<p>
-								developer : <%= owner %><br />
-								star : <%= project.getStars() %><br />
-								fork : <%= project.getForks() %><br /> 
-								contributors: <%= project.getContributors() %><br />
+								项目拥有者 : <%= owner %><br />
+								项目star数目 : <%= project.getStars() %><br />
+								项目fork数目 : <%= project.getForks() %><br /> 
+								项目贡献者数目: <%= project.getContributors() %><br />
+								<br />
 								<a href="/ProjectGithub?owner=<%= owner %>&
 								project=<%= projectName %>">
-								See more on github</a>
+								去Github逛逛</a>
 							</p>
 						</div>
 					</div>
@@ -174,7 +178,7 @@
 	<script>
 		// HTML document is loaded. DOM is ready.
 		$(function() {
-			prepareScrollUP('.head', '/visualize/img/bg-1.jpg');
+			prepareScrollUP('.head', '/visualize/img/recommend_bg.jpg');
 		});
 	</script>
 </body>

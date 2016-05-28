@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Info.Date;
+import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfoDetail;
+import recommend.RecommendService;
 import res.CookieUtil;
 
 /**
@@ -23,6 +25,9 @@ import res.CookieUtil;
 public class Recommend extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private static final RecommendService service =
+			new recommend.Recommend();
        
     public Recommend() {
         super();
@@ -40,14 +45,9 @@ public class Recommend extends HttpServlet {
 					2000, 2000, 200));
 		}
 		request.setAttribute("top6", list);
-		List<ProjectInfo> projects = new ArrayList<>();
-		for(int i = 0; i < 4; ++i) {
-			projects.add(new ProjectInfo("GNU's not Unix",
-					new ProjectName("Stallman", "gnu"),
-					100, 200, 300));
-		}
+		List<UserInfoDetail> developers = service.getDevelopers("");
+		List<Info.ProjectDetail> projects = service.getProjects("");
 		request.setAttribute("guessPros", projects);
-		List<UserInfoDetail> developers = new ArrayList<>();
 		for(int i = 0; i < 4; ++i) {
 			developers.add(new UserInfoDetail("Stallman", "Hello, this is Richard Stallman. Remind"
 					+ "that GNU's Not Unix", "stallman@example.com",

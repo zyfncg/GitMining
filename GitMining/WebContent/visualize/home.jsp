@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +23,7 @@
 					<div class="col-sm-12 text-center">
 						<div class="header-content">
 							<h1>GitMining</h1>
-							<h4>A github-like helper to help you
-							explore more about open source projects</h4>
+							<h4>在GitMining中探索开源项目</h4>
 						</div>
 					</div>
 				</div>
@@ -43,7 +42,7 @@
 		$(function() {
 			// Parallax
 			$('.intro-section').parallax({
-				imageSrc : '/visualize/img/bg-1.jpg',
+				imageSrc : '/visualize/img/home_bg.png',
 				speed : 0.2
 			});
 			

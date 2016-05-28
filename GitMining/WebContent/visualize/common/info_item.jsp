@@ -1,6 +1,7 @@
 <%@page import="res.InfoType"%>
-<%@page import="Info.UserInfoDetail" %>
+<%@page import="Info.UserInfo" %>
 <%@page import="Info.ProjectInfo" %>
+<%@ page pageEncoding="utf-8"%>
 
 <%!
 	Object item;
@@ -12,7 +13,7 @@
 	case DEVELOPER:
 %>
 <%
-		UserInfoDetail developer = (UserInfoDetail)item;
+		UserInfo developer = (UserInfo)item;
 %>
 		<%-- 开发者信息 --%>
 		<div class="col-sm-4">
@@ -21,19 +22,15 @@
 				href="/DeveloperDetail?chooseDeveloper=<%= developer.getUserName() %>">
 				<%=developer.getUserName()%></a>
 				<p class="feature-content-description">
-					<%="Brief Description: " + developer.getDescriptionUser()%></p>
+					<%="用户简介: " + developer.getDescriptionUser()%></p>
 				<p class="feature-content-item">
-					Email :
-					<%=developer.getEmail()%></p>
+					用户创建项目个数 : <%=developer.getProjectCreate()%></p>
 				<p class="feature-content-item">
-					Company :
-					<%=developer.getCompany()%></p>
-				<p class="feature-content-item">
-					Address :
-					<%=developer.getAddress()%></p>
+					用户参与项目个数 : <%=developer.getProjectInvolved()%></p>
+				<br />
 				<p class="feature-content-item">
 				<a href="/DeveloperGithub?chooseDeveloper=<%= developer.getUserName() %>">
-					See more on github</a></p>
+					到Github去逛逛</a></p>
 			</div>
 		</div>
 
@@ -54,17 +51,18 @@
 					project=<%= projectName %>">
 					 <%= projectName %></a>
 				<p class="feature-content-description">
-					<%="Brief Description: " + project.getDescription()%></p>
+					<%="项目简介: " + project.getDescription()%></p>
 				<p class="feature-content-item">
-					Owner : <%= owner %></p>
+					项目拥有者 : <%= owner %></p>
 				<p class="feature-content-item">
-					Star : <%= project.getStars() %></p>
+					项目star数量 : <%= project.getStars() %></p>
 				<p class="feature-content-item">
-					Fork : <%= project.getForks() %></p>
+					项目fork数量 : <%= project.getForks() %></p>
+				<br />
 				<p class="feature-content-item">
 				<a href="/ProjectGithub?owner=<%= owner %>&
 					project=<%= projectName %>">
-					See more on github</a></p>
+					去Github逛逛</a></p>
 			</div>
 		</div>
 <%

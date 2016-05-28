@@ -1,6 +1,7 @@
 <%-- 分页页标 --%>>
 
 <link rel="stylesheet" type="text/css" href="/visualize/css/pagination.css">
+<%@ page pageEncoding="utf-8"%>
 
 <%!
 	int pageNum;				//要显示的页数
@@ -15,7 +16,7 @@
 	%>
 	<li class="prev"><a
 		href="<%= handleServlet %>?currentPage=<%=currentPage - 1%>"
-		class=<%=currentPage == 0 ? "disable" : "pre"%>>Previous</a></li>
+		class=<%=currentPage == 0 ? "disable" : "pre"%>>上一页</a></li>
 	<%
 		}
 	%>
@@ -62,7 +63,7 @@
 	%>
 	<li class="next"><a
 		href="<%= handleServlet %>?currentPage=<%=currentPage + 1%>"
-		class=<%=currentPage == pageNum - 1 ? "disable" : "next"%>>Next</a></li>
+		class=<%=currentPage == pageNum - 1 ? "disable" : "next"%>>下一页</a></li>
 	<% 
 		}
 	%>

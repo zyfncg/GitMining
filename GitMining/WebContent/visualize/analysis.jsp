@@ -34,9 +34,8 @@
 			<div class="row">
 				<div class="col-sm-12 text-center">
 					<div class="header-content">
-						<h1>Analysis</h1>
-						<h4>Are you curious about why a project achieve great
-							success?</h4>
+						<h1>分析</h1>
+						<h4>你想知道一个开源项目为什么会成功吗</h4>
 					</div>
 				</div>
 			</div>
@@ -47,6 +46,10 @@
 		SuccAnalysisStatic succ = (SuccAnalysisStatic) request.getAttribute("succStat");
 		SuccAnalysisStatic unsucc = (SuccAnalysisStatic) request.getAttribute("unsuccStat");
 	%>
+	
+	<br />
+	<br />
+	<br />
 	
 	<div class="container">
 		<section class="chartContainer">
@@ -114,7 +117,7 @@
 					<%=language.get(i).getNum()%>,
 					<%}%>
 				];
-					BarDistr('succLangDistr', '成功项目各语言的项目个数','Language',
+					BarDistr('succLangDistr', '成功项目各语言的项目个数','语言',
 							names, nums);
 				</script>
 			</div>
@@ -134,7 +137,7 @@
 						<%=language.get(i).getNum()%>,
 						<%}%>
 					];
-					BarDistr('unsuccLangDistr', '非成功项目各语言的项目个数','Language', names, nums);
+					BarDistr('unsuccLangDistr', '非成功项目各语言的项目个数','语言', names, nums);
 				</script>
 			</div>
 		</section>
@@ -154,7 +157,7 @@
 					<% for(int i = 0; i < size; ++i) { %>
 						nums.push(<%= company.get(i).getNum() %>);
 					<% } %>
-					BarDistr('succComDistr', '成功项目各公司的项目个数','Company', names, nums);
+					BarDistr('succComDistr', '成功项目各公司的项目个数','公司', names, nums);
 				</script>
 			</div>
 			
@@ -171,7 +174,7 @@
 					<% for(int i = 0; i < size; ++i) { %>
 						nums.push(<%= company.get(i).getNum() %>);
 					<% } %>
-					BarDistr('unsuccComDistr', '非成功项目各公司的项目个数','Company', names, nums);
+					BarDistr('unsuccComDistr', '非成功项目各公司的项目个数','公司', names, nums);
 				</script>
 			</div>
 		</section>
@@ -186,7 +189,7 @@
 	<script>
 		// HTML document is loaded. DOM is ready.
 		$(function() {
-			prepareScrollUP('.head', '/visualize/img/bg-1.jpg');
+			prepareScrollUP('.head', '/visualize/img/analysis_bg.jpg');
 		});
 	</script>
 	
