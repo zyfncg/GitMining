@@ -32,28 +32,30 @@ public class RecommendDataImpl implements RecommendDataServer {
 	}
 
 	@Override
-	public ProjectDetail getOneProject(int num) {
+	public ProjectDetail getOneProject(String user_id, int num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public UserInfoDetail getOneUser(int num) {
+	public UserInfoDetail getOneUser(String user_id, int num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getLanguage() {
+	public String getLanguage(String user_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getCompany() {
+	public String getCompany(String user_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	
+	
 	
 }

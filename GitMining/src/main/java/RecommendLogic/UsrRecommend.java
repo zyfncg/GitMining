@@ -1,4 +1,4 @@
-package recommend;
+package RecommendLogic;
 
 import java.util.ArrayList;
 import java.util.Collections;

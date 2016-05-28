@@ -20,7 +20,12 @@ public class UserInfoTest {
 		try {
 			userList=userData.getAllUsers();
 			System.out.println(userList.size());
-			user=userList.get(2);
+			for(UserInfo userInfo:userList){
+				if(userInfo.getUserName().equals("aaronrussell")){
+					user=userInfo;
+					break;
+				}
+			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

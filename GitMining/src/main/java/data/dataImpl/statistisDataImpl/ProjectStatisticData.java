@@ -4,7 +4,6 @@ import java.util.List;
 
 import Info.ProjectDetail;
 import Info.RepStatisticInfo.SaveRepositoryStatisticInfo;
-import data.dataImpl.DBUtil;
 import data.dataImpl.FileUtil;
 import data.dataServer.statisticServer.RepositoryStatisticsDataServer;
 
