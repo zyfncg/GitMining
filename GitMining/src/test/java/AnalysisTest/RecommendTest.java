@@ -4,15 +4,15 @@ import java.util.List;
 
 import Info.ProjectDetail;
 import Info.UserInfoDetail;
-import Recommend.Recommend;
-import Recommend.RecommendService;
+import RecommendLogic.RecommendLogic;
+import RecommendLogic.RecommendService;
 
 public class RecommendTest {
 
 	
 	
 	public static void main(String[] args) {
-		RecommendService recommend = new Recommend();
+		RecommendService recommend = new RecommendLogic();
 		List<ProjectDetail> projectDetails = recommend.getProjects("asd");
 		List<UserInfoDetail> userInfoDetails = recommend.getDevelopers("123");
 		for(ProjectDetail temp:projectDetails){

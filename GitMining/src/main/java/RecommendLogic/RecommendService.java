@@ -1,4 +1,4 @@
-package Recommend;
+package RecommendLogic;
 
 import java.util.List;
 

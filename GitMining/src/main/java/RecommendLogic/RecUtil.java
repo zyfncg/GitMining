@@ -1,4 +1,4 @@
-package Recommend;
+package RecommendLogic;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -56,5 +56,18 @@ public class RecUtil {
 			}
 		});
 		return TempProject.get(num);
+	}
+	
+	public List<ProjectDetail> GetTopSix() {
+		List<ProjectDetail> TempProject = AllProject;
+		Collections.sort(TempProject, new Comparator<ProjectDetail>() {
+			@Override
+			public int compare(ProjectDetail arg0, ProjectDetail arg1) {
+				return (new Integer(arg1.getStars())).compareTo(new Integer(arg0.getStars()));
+			}
+		});
+		
+		List<ProjectDetail> result = TempProject.subList(0, 6);
+		return result;
 	}
 }
