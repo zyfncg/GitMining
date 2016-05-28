@@ -9,10 +9,11 @@ import Info.UserInfoDetail;
 import data.dataImpl.recommendDataImpl.RecommendDataImpl;
 import data.dataServer.recommendDataServer.RecommendDataServer;
 
-public class ProRecommend implements RecommendService {
+public class Recommend implements RecommendService {
 
 	private RecommendDataServer RecommendData = new RecommendDataImpl();
 	private RecUtil AUtil = new RecUtil();
+	private UsrRecommend user = new UsrRecommend();
 
 	@Override
 	public List<ProjectInfo> getProjects(String user_id) {
@@ -45,7 +46,7 @@ public class ProRecommend implements RecommendService {
 		}
 
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
-		result.add(FthGet);
+		result.add(FstGet);
 		result.add(SecGet);
 		result.add(TrdGet);
 		result.add(FthGet);
@@ -60,11 +61,16 @@ public class ProRecommend implements RecommendService {
 		// 推荐3
 		UserInfoDetail TrdGet = RecommendData.getOneUser(1);
 		// 推荐2
-		UserInfoDetail SecGet = new UserInfoDetail(null, null, null, null, null, null, 0, 0, null);
+		UserInfoDetail SecGet = user.getMostRelat(FstGet.getProjectCreatInfo());
 		// 推荐4
-		UserInfoDetail FthGet = new UserInfoDetail(null, null, null, null, null, null, 0, 0, null);
+		UserInfoDetail FthGet = user.getMostRelat(TrdGet.getProjectCreatInfo());
 
-		return null;
+		List<UserInfoDetail> result = new ArrayList<UserInfoDetail>();
+		result.add(FthGet);
+		result.add(SecGet);
+		result.add(TrdGet);
+		result.add(FthGet);
+		return result;
 	}
 
 	@Override
