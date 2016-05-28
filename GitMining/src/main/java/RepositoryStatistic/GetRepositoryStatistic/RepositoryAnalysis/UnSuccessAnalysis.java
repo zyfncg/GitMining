@@ -99,19 +99,23 @@ public class UnSuccessAnalysis implements SuccAnalysisStatic{
 		}
 		// 统计用户的全部公司种类
 		HashMap<String, Integer> CompanyResult = new HashMap<>();
-		List<String> allCompany = new ArrayList<String>();
-		for (UserInfoDetail tempUserInfo : tempDetailUser) {
-			if (!allCompany.contains(tempUserInfo.getCompany())) {
-				allCompany.add(tempUserInfo.getCompany());
-				CompanyResult.put(tempUserInfo.getCompany(), 0);
-			}
+		List<String> allCompany = theelse.GetCompany(tempDetailUser);
+//		for (UserInfoDetail tempUserInfo : tempDetailUser) {
+//			if (!allCompany.contains(tempUserInfo.getCompany())) {
+//				allCompany.add(tempUserInfo.getCompany());
+//				CompanyResult.put(tempUserInfo.getCompany(), 0);
+//			}
+//		}
+		for(String Comtemp:allCompany){
+			CompanyResult.put(Comtemp, 0);
 		}
 
 		for (ProjectDetail tempProject : temp) {
 			for (UserInfo tempUser : (tempProject.getCollaboratorsInfo())) {
 				for (UserInfoDetail UserDetail : tempDetailUser) {
-					if (this.ifEqual(tempUser, UserDetail)) {
+					if ((this.ifEqual(tempUser, UserDetail)) && (allCompany.contains(UserDetail.getCompany()))) {
 						int num = CompanyResult.get(UserDetail.getCompany());
+						CompanyResult.remove(UserDetail.getCompany());
 						num++;
 						CompanyResult.put(UserDetail.getCompany(), num);
 						break;
@@ -126,7 +130,7 @@ public class UnSuccessAnalysis implements SuccAnalysisStatic{
 			// System.out.println(me.getKey()+":"+me.getValue());
 			String key = (String) me.getKey();
 			int val = (Integer) me.getValue();
-			if ((!key.equals("unknow")) && (val != 0)) {
+			if ((!key.equals("unknown"))) {
 				statistics.add(new CompanyStatistics(key, val));
 			}
 		}
