@@ -1,4 +1,4 @@
-package res;
+package constant;
 
 /**
  *信息项类型 

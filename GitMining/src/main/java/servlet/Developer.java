@@ -22,13 +22,13 @@ public class Developer extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final UserBLService service = new UserController();
+	private static final UserBLService user = new UserController();
 	
 	private static List<UserInfo> developers;
 	
 	static {
 		try {
-			developers = service.getAllUsers();
+			developers = user.getAllUsers();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -42,8 +42,16 @@ public class Developer extends HttpServlet {
 			throws ServletException, IOException {
 		//获得用户输入的开发者姓名
 		String name = request.getParameter("inputDeveloper");
+		List<UserInfo> developers = null;
 		if(name != null) {
-			
+			try {
+				developers = user.searchUsers(name);
+			} catch (Exception e) {
+				developers = Developer.developers;
+				e.printStackTrace();
+			}
+		}else {
+			developers = Developer.developers;
 		}
 		
 		//设置有关页面跳转的一些参数

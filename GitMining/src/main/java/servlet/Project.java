@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import Info.ProjectInfo;
 import businessLogic.businessLogicController.RepositoryController.RepositoryController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
+import constant.SortType;
 import res.PaginationUtil;
 
 /**
@@ -22,14 +23,14 @@ public class Project extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static final RepositoryBLService service =
+	private static final RepositoryBLService repository =
 			new RepositoryController();
 	
 	private static List<ProjectInfo> projects;
 	
 	static {
 		try {
-			projects = service.getAllRepositorys();
+			projects = repository.getAllRepositorys();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,8 +44,27 @@ public class Project extends HttpServlet {
 			throws ServletException, IOException {
 		//获得用户输入的项目名称
 		String name = request.getParameter("inputProject");
+		List<ProjectInfo> projects = null;
 		if(name != null) {
-
+			try {
+				projects = repository.searchRepositorys(name);
+			} catch (Exception e) {
+				projects = Project.projects;
+				e.printStackTrace();
+			}
+		}else {
+			projects = Project.projects;
+		}
+		
+		//看用户是否发出了排序请求
+		String sortType = request.getParameter("sort");
+		if(sortType != null) {
+			try {
+				Project.projects = repository.getSortedRepositorys(SortType.valueOf(sortType));
+				projects = Project.projects;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		//设置有关页面跳转的一些参数

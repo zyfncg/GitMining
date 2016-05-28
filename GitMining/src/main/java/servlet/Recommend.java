@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Info.UserInfoDetail;
-import recommend.RecommendService;
+import RecommendLogic.RecommendService;
 import res.CookieUtil;
 
 /**
@@ -22,7 +22,7 @@ public class Recommend extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final RecommendService service =
-			new recommend.Recommend();
+			new RecommendLogic.RecommendLogic();	
        
     public Recommend() {
         super();

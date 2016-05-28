@@ -9,11 +9,13 @@
 	String handleServlet;		//处理跳转的servlet路径
 %>
 
-<ul class="pagination"
-	style="position: absolute; left: 50%; margin-left: -200px; width: 400px;">
+<ul class="pagination" style="position: absolute;
+		 left : 50%; margin-left: -300px; width: 600px;">
 	<%
 		if (pageNum > 1) {
 	%>
+	<li class="head">
+		<a href="<%= handleServlet %>?currentPage=0">首页</a></li>
 	<li class="prev"><a
 		href="<%= handleServlet %>?currentPage=<%=currentPage - 1%>"
 		class=<%=currentPage == 0 ? "disable" : "pre"%>>上一页</a></li>
@@ -64,6 +66,8 @@
 	<li class="next"><a
 		href="<%= handleServlet %>?currentPage=<%=currentPage + 1%>"
 		class=<%=currentPage == pageNum - 1 ? "disable" : "next"%>>下一页</a></li>
+	<li class="tail"><a
+		href="<%= handleServlet %>?currentPage=<%=pageNum - 1%>">尾页</a></li>
 	<% 
 		}
 	%>

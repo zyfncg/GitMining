@@ -1,5 +1,5 @@
 <%-- 信息列表 --%>
-<%@page import="java.util.List, res.InfoType, Info.ProjectInfo, Info.UserInfoDetail" %>
+<%@page import="java.util.List, Info.ProjectInfo, Info.UserInfoDetail" %>
 <%!
 	int num;				//信息项总数
 	List<?> list;			//信息列表
