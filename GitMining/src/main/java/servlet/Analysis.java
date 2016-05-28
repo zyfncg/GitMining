@@ -36,7 +36,7 @@ public class Analysis extends HttpServlet {
 	/**
 	 *项目成功原因分析中非成功项目的统计数据 
 	 */
-//	private SuccAnalysisStatic unsucc = stat.GetUnSuccStatistcs();
+	private SuccAnalysisStatic unsucc = stat.GetUnSuccStatistcs();
 
     public Analysis() {
     	super();
