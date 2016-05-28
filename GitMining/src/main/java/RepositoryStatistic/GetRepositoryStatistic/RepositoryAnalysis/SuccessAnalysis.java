@@ -95,12 +95,15 @@ public class SuccessAnalysis implements SuccAnalysisStatic {
 		}
 		// 统计用户的全部公司种类
 		HashMap<String, Integer> CompanyResult = new HashMap<>();
-		List<String> allCompany = new ArrayList<String>();
-		for (UserInfoDetail tempUserInfo : tempDetailUser) {
-			if (!allCompany.contains(tempUserInfo.getCompany())) {
-				allCompany.add(tempUserInfo.getCompany());
-				CompanyResult.put(tempUserInfo.getCompany(), 0);
-			}
+		List<String> allCompany = theelse.GetCompany(tempDetailUser);
+//		for (UserInfoDetail tempUserInfo : tempDetailUser) {
+//			if (!allCompany.contains(tempUserInfo.getCompany())) {
+//				allCompany.add(tempUserInfo.getCompany());
+//				CompanyResult.put(tempUserInfo.getCompany(), 0);
+//			}
+//		}
+		for(String Comtemp:allCompany){
+			CompanyResult.put(Comtemp, 0);
 		}
 		
 		for(ProjectDetail tempProject:temp){
