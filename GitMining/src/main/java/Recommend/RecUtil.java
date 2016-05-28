@@ -1,11 +1,14 @@
 package Recommend;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfo;
+import Info.UsrStatisticInfo.CompanyStatistics;
 import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
 
 public class RecUtil {
@@ -42,5 +45,16 @@ public class RecUtil {
 		else {
 			return false;
 		}
+	}
+	
+	public ProjectDetail GetTOP(int num) {
+		List<ProjectDetail> TempProject = AllProject;
+		Collections.sort(TempProject, new Comparator<ProjectDetail>() {
+			@Override
+			public int compare(ProjectDetail arg0, ProjectDetail arg1) {
+				return (new Integer(arg1.getStars())).compareTo(new Integer(arg0.getStars()));
+			}
+		});
+		return TempProject.get(num);
 	}
 }

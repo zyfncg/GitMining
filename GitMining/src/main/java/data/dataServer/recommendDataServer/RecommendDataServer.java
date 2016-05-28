@@ -1,5 +1,6 @@
 package data.dataServer.recommendDataServer;
 
+import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.UserInfoDetail;
 
@@ -40,7 +41,7 @@ public interface RecommendDataServer {
 	 * @param num
 	 * @return
 	 */
-	public ProjectInfo getOneProject(int num);
+	public ProjectDetail getOneProject(int num);
 	
 	/**
 	 * 取得引用次数排序第num的项目

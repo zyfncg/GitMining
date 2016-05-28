@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Info.ProjectDetail;
+import Info.ProjectInfo;
+import Info.UserInfoDetail;
 import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
 
 public class IfSuccess {
@@ -37,5 +39,16 @@ public class IfSuccess {
 			}
 		}
 		return AllUnSuccess;
+	}
+	
+	public int CalSuccNum(UserInfoDetail userDetail) {
+		int num = 0;
+		for(ProjectInfo temp:userDetail.getProjectCreatInfo()){
+			if (temp.getStars()>=4000) {
+				num++;
+			}
+		}
+		
+		return num;
 	}
 }

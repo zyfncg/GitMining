@@ -1,5 +1,6 @@
 package data.dataImpl.recommendDataImpl;
 
+import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.UserInfoDetail;
 import data.dataServer.recommendDataServer.RecommendDataServer;
@@ -31,7 +32,7 @@ public class RecommendDataImpl implements RecommendDataServer {
 	}
 
 	@Override
-	public ProjectInfo getOneProject(int num) {
+	public ProjectDetail getOneProject(int num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
