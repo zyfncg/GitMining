@@ -42,7 +42,7 @@ public interface RecommendDataServer {
 	 * @return
 	 */
 
-	public ProjectInfo getOneProject(String user_id,int num);
+	public ProjectDetail getOneProject(String user_id,int num);
 
 	
 	/**

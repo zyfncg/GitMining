@@ -21,13 +21,13 @@ public class RecommendLogic implements RecommendService {
 		int TOPNum = 0;
 		// TODO Auto-generated method stub
 		// 推荐1
-		ProjectDetail FstGet = RecommendData.getOneProject(0);
+		ProjectDetail FstGet = RecommendData.getOneProject(user_id,0);
 		if (FstGet == null) {
 			FstGet = AUtil.GetTOP(TOPNum);
 			TOPNum++;
 		}
 		// 推荐2
-		ProjectDetail SecGet = RecommendData.getOneProject(1);
+		ProjectDetail SecGet = RecommendData.getOneProject(user_id,1);
 		if (SecGet == null) {
 			SecGet = AUtil.GetTOP(TOPNum);
 			TOPNum++;
@@ -38,7 +38,7 @@ public class RecommendLogic implements RecommendService {
 		ProjectDetail FthGet = new ProjectDetail(null, null, null, null, 0, 0, 0, 0, 0, null, null);
 
 		// 推荐三
-		UserInfoDetail FstUser = RecommendData.getOneUser(0);
+		UserInfoDetail FstUser = RecommendData.getOneUser(user_id,0);
 		if (FstUser == null) {
 			TrdGet = AUtil.GetTOP(TOPNum);
 			TOPNum++;
@@ -51,7 +51,7 @@ public class RecommendLogic implements RecommendService {
 			}			
 		}
 		// 推荐四
-		String mostLanguage = RecommendData.getLanguage();
+		String mostLanguage = RecommendData.getLanguage(user_id);
 		if ((mostLanguage == null) || (FstUser == null)) {
 			FthGet = AUtil.GetTOP(TOPNum);
 			TOPNum++;
@@ -80,7 +80,7 @@ public class RecommendLogic implements RecommendService {
 		int TopNum = 0;
 		
 		// 推荐1
-		UserInfoDetail FstGet = RecommendData.getOneUser(0);
+		UserInfoDetail FstGet = RecommendData.getOneUser(user_id,0);
 		if (FstGet == null) {
 			FstGet = user.GetTop(TopNum);
 			TopNum++;
@@ -92,7 +92,7 @@ public class RecommendLogic implements RecommendService {
 			TopNum++;
 		}
 		// 推荐3
-		UserInfoDetail TrdGet = RecommendData.getOneUser(1);
+		UserInfoDetail TrdGet = RecommendData.getOneUser(user_id,1);
 		if (TrdGet == null) {
 			TrdGet = user.GetTop(TopNum);
 			TopNum++;
