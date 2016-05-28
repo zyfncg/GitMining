@@ -2,45 +2,54 @@ package Recommend;
 
 import java.util.List;
 
+import Info.ProjectDetail;
 import Info.ProjectInfo;
+import Info.UserInfo;
 import Info.UserInfoDetail;
+import UserStatistic.GetUserStatistic.UserAnalysis.OtherAnalysis;
 
-public class UsrRecommend implements RecommendService{
+public class UsrRecommend {
 
-	@Override
-	public List<ProjectInfo> getProjects(String user_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<UserInfoDetail> getDevelopers(String user_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void updateLanguageInfo(String user_id, String language) {
-		// TODO Auto-generated method stub
+	private RecUtil Autil = new RecUtil();
+	private OtherAnalysis other = new OtherAnalysis();
+	
+	public UserInfoDetail getMostRelat(List<ProjectInfo> relatePro) {
+		UserInfo resultOne = null;
+		int resultNum = 0;
 		
-	}
-
-	@Override
-	public void updateDeveloperInfo(String user_id, String name) {
-		// TODO Auto-generated method stub
+//		List<UserInfo> tempA = new ArrayList<UserInfo>();
+//		List<UserInfo> tempB = new ArrayList<UserInfo>();
 		
-	}
-
-	@Override
-	public void updateCompanyInfo(String user_id, String company) {
-		// TODO Auto-generated method stub
+		for(ProjectInfo ProInfo:relatePro){
+			ProjectDetail projectDetail = Autil.ToProDetail(ProInfo);
+//			tempA = projectDetail.getCollaboratorsInfo();
+			for(UserInfo UsrInfo:projectDetail.getCollaboratorsInfo()){
+				int i = this.SortNum(UsrInfo, relatePro);
+				if (i>resultNum) {
+					resultNum = i;
+					resultOne = UsrInfo;
+				}
+			}
+			
+		}
+		UserInfoDetail detail = other.BecomeDetail(resultOne);
 		
+		return detail;
 	}
+	
 
-	@Override
-	public void updateProjectInfo(String user_id, String name) {
-		// TODO Auto-generated method stub
+	//某一个UserInfo在相关项目中重复的次数
+	public int SortNum(UserInfo Auser,List<ProjectInfo> relation) {
+		int Num = 0;
+		for(ProjectInfo ProInfo:relation){
+			ProjectDetail temp = Autil.ToProDetail(ProInfo);
+			for(UserInfo tempUser:temp.getCollaboratorsInfo()){
+				if (Autil.IfSameUser(Auser, tempUser)) {
+					Num++;
+				}
+			}
+		}
 		
+		return Num;
 	}
-
 }

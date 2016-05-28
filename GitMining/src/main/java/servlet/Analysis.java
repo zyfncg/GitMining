@@ -44,7 +44,6 @@ public class Analysis extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-<<<<<<< HEAD
 		SuccAnalysisStatic succ = new SuccAnalysisStatic() {
 			@Override
 			public double getProjectNum() {return 540;}
@@ -106,9 +105,6 @@ public class Analysis extends HttpServlet {
 				return nums;
 			}
 		};
-
-=======
->>>>>>> 8d0811fba327578324356a23841209c3e5d589d9
 		request.setAttribute("succStat", succ);	
 		request.setAttribute("unsuccStat", unsucc);
 		request.getRequestDispatcher("/visualize/analysis.jsp").forward(request, response);
