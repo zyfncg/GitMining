@@ -21,14 +21,19 @@
 	<br />
 	<br />
 	<br />
-	
-	<div class="icon">
-		<img alt="" src="">
+
+	<div class="developer-info-container">
+		<div class="icon">
+			<img alt="开发者图标" src="/visualize/img/developer3.jpg">
+		</div>
+		<div class="developer-info">
+			<div class="name"><h4>Linus Torvalds</h4></div>
+			<div class="feature-content-description"><h4>Talk is Cheap, Show me your code
+			Hello World Hello World Hello World Hello World Hello World Hello World
+			Hello World Hello World</h4></div>
+		</div>
 	</div>
-	
-	<div class="description">
-		
-	</div>
+
 
 	<div class="developer-items">
 		<div class="item">

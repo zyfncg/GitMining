@@ -96,10 +96,30 @@ body {
 	height: 50px;
 }
 
-/* text of description */
-.description {
-	
+
+.developer-info-container {
+	width: 100%;
+	height: 400px;
 }
+
+.icon {
+	float: left;
+	width: 23%;
+	margin-left: 20%;
+}
+.developer-info-container .developer-info {
+	float: left;
+	width: 37%;
+	margin-left: 7%;
+}
+
+.developer-info-container .developer-info .name {
+	width: 100%;
+	height: 5%;
+	text-align: center;
+	margin: 0 auto;
+}
+
 
 /* 项目信息描述，包含左边的图标和右边的数据*/
 .project-info {
