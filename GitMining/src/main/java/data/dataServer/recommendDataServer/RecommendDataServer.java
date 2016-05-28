@@ -40,26 +40,26 @@ public interface RecommendDataServer {
 	 * @param num
 	 * @return
 	 */
-	public ProjectInfo getOneProject(int num);
+	public ProjectInfo getOneProject(String user_id,int num);
 	
 	/**
 	 * 取得引用次数排序第num的项目
 	 * @param num
 	 * @return
 	 */
-	public UserInfoDetail getOneUser(int num);
+	public UserInfoDetail getOneUser(String user_id,int num);
 	
 	/**
 	 * 去的引用次数最多的语言
 	 * @return
 	 */
-	public String getLanguage();
+	public String getLanguage(String user_id);
 	
 	/**
 	 * 取得引用次数做多的语言
 	 * @return
 	 */
-	public String getCompany();
+	public String getCompany(String user_id);
 
 
 
