@@ -109,7 +109,7 @@ public class SuccessAnalysis implements SuccAnalysisStatic {
 		for(ProjectDetail tempProject:temp){
 			for(UserInfo tempUser:(tempProject.getCollaboratorsInfo())){
 				for(UserInfoDetail UserDetail:tempDetailUser){
-					if(this.ifEqual(tempUser, UserDetail)){
+					if((this.ifEqual(tempUser, UserDetail)) && (allCompany.contains(UserDetail.getCompany())) ){
 						int num = CompanyResult.get(UserDetail.getCompany());
 						num++;
 						CompanyResult.put(UserDetail.getCompany(), num);
