@@ -10,7 +10,7 @@ import data.dataImpl.recommendDataImpl.RecommendDataImpl;
 import data.dataServer.recommendDataServer.RecommendDataServer;
 import twaver.base.A.E.b;
 
-public class Recommend implements RecommendService {
+public class RecommendLogic implements RecommendService {
 
 	private RecommendDataServer RecommendData = new RecommendDataImpl();
 	private RecUtil AUtil = new RecUtil();

@@ -22,7 +22,7 @@ public class Recommend extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final RecommendService service =
-			new recommend.Recommend();
+			new recommend.RecommendLogic();
        
     public Recommend() {
         super();
