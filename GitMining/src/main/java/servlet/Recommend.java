@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Info.ProjectInfo;
-import Info.ProjectName;
 import Info.UserInfoDetail;
 import recommend.RecommendService;
 import res.CookieUtil;
@@ -36,18 +33,12 @@ public class Recommend extends HttpServlet {
 		String user_id = CookieUtil.getUserIDfromCookie(request, response);
 		//TODO 根据用户id获得向用户推荐的项目和开发者信息
 		
-		List<ProjectInfo> list = new ArrayList<>();
-		for(int i = 0; i < 6; ++i) {
-			list.add(new ProjectInfo("This is the kernel of Linux",
-					new ProjectName("Linus", "Linux"),
-					2000, 2000, 200));
-		}
-		request.setAttribute("top6", list);
-		
+		List<Info.ProjectDetail> top6 = service.getTop();
 		List<UserInfoDetail> developers = service.getDevelopers("");
 		List<Info.ProjectDetail> projects = service.getProjects("");
 		request.setAttribute("guessPros", projects);
 		request.setAttribute("guessDevs", developers);
+		request.setAttribute("top6", top6);
 		request.getRequestDispatcher("/visualize/recommend.jsp").forward(request, response);
 	}
 

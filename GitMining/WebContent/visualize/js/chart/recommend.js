@@ -6,15 +6,11 @@
  * 雷达图
  */
 function radar(id, averageData, realData) {
-	// TODO test
 	var myChart = echarts.init(document.getElementById(id));
 	option = {
-//		 title : {
-//		 text : '项目成功所受因素影响'
-//		 },
 		tooltip : {},
 		legend : {
-			data : [ 'Average', 'This' ]
+			data : [ '平均值', '实际值' ]
 		},
 		radar : {
 			// shape: 'circle',
@@ -41,13 +37,12 @@ function radar(id, averageData, realData) {
 		series : [ {
 			name : 'Average vs This',
 			type : 'radar',
-			// areaStyle: {normal: {}},
 			data : [ {
 				value : averageData,
-				name : 'Average'
+				name : '平均值'
 			}, {
 				value : realData,
-				name : 'This'
+				name : '实际值'
 			} ]
 		} ]
 	};
