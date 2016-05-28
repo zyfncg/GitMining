@@ -138,4 +138,23 @@ public class Recommend implements RecommendService {
 		boolean result = RecommendData.updateProjectInfo(user_id, name);
 	}
 
+	@Override
+	public List<ProjectDetail> getTop() {
+		// TODO Auto-generated method stub
+		ProjectDetail fst = AUtil.GetTOP(0);
+		ProjectDetail fst1 = AUtil.GetTOP(1);
+		ProjectDetail fst2= AUtil.GetTOP(2);
+		ProjectDetail fst3 = AUtil.GetTOP(3);
+		ProjectDetail fst4 = AUtil.GetTOP(4);
+		ProjectDetail fst5 = AUtil.GetTOP(5);
+		List<ProjectDetail> result = new ArrayList<ProjectDetail>();
+		result.add(fst);
+		result.add(fst1);
+		result.add(fst2);
+		result.add(fst3);
+		result.add(fst4);
+		result.add(fst5);
+		return result;
+	}
+
 }
