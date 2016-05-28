@@ -23,8 +23,8 @@ public class SuccessTest {
 		int[] two = SuccStatic.getCollaNum();
 		List<LanguageStatistics> languageStatistics = SuccStatic.getLanguageStat();
 		List<CompanyStatistics> companyStatistics = SuccStatic.getCompanyStat();
-		assertEquals(250.0, one,0.0);
-//		System.out.println(one);
+		System.out.println(one);
+		assertEquals(75.0, one,0.0);
 		//assertEquals(expected, actual);
 		for(int i=0;i < two.length;i++){
 			System.out.println(two[i]);
