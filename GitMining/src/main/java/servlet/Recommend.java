@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Info.Date;
-import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfoDetail;
@@ -45,14 +43,10 @@ public class Recommend extends HttpServlet {
 					2000, 2000, 200));
 		}
 		request.setAttribute("top6", list);
+		
 		List<UserInfoDetail> developers = service.getDevelopers("");
 		List<Info.ProjectDetail> projects = service.getProjects("");
 		request.setAttribute("guessPros", projects);
-		for(int i = 0; i < 4; ++i) {
-			developers.add(new UserInfoDetail("Stallman", "Hello, this is Richard Stallman. Remind"
-					+ "that GNU's Not Unix", "stallman@example.com",
-					new Date(1980, 10, 23), "Microsoft", "America", 200, 1000,null));
-		}
 		request.setAttribute("guessDevs", developers);
 		request.getRequestDispatcher("/visualize/recommend.jsp").forward(request, response);
 	}

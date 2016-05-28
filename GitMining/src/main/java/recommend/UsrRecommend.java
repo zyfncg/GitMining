@@ -1,17 +1,27 @@
 package recommend;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import Info.ProjectDetail;
 import Info.ProjectInfo;
+import Info.RecommendUser;
 import Info.UserInfo;
 import Info.UserInfoDetail;
+import Info.UsrStatisticInfo.CompanyStatistics;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfSuccess;
 import UserStatistic.GetUserStatistic.UserAnalysis.OtherAnalysis;
+import data.dataImpl.statistisDataImpl.UserStatisticData;
+import data.dataServer.statisticServer.UserStatisticsDataServer;
 
 public class UsrRecommend {
 
 	private RecUtil Autil = new RecUtil();
 	private OtherAnalysis other = new OtherAnalysis();
+	private IfSuccess ifSuccess = new IfSuccess();
+	private UserStatisticsDataServer userStatisticsDataServer = new UserStatisticData();
 	
 	public UserInfoDetail getMostRelat(List<ProjectInfo> relatePro) {
 		UserInfo resultOne = null;
@@ -51,5 +61,31 @@ public class UsrRecommend {
 		}
 		
 		return Num;
+	}
+	
+	public UserInfoDetail GetTop(int num) {
+		List<UserInfoDetail> tempDetailUser = new ArrayList<UserInfoDetail>();
+		try {
+			tempDetailUser = userStatisticsDataServer.getStatisticUsersInfo();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		List<RecommendUser> AllRecommend = new ArrayList<RecommendUser>();
+		
+		for(UserInfoDetail userDetail:tempDetailUser){
+			int succnum = ifSuccess.CalSuccNum(userDetail);
+			RecommendUser tempRec = new RecommendUser(userDetail, succnum);
+			AllRecommend.add(tempRec);
+		}
+		
+		//排序
+		Collections.sort(AllRecommend, new Comparator<RecommendUser>() {
+			@Override
+			public int compare(RecommendUser arg0, RecommendUser arg1) {
+				return (new Integer(arg1.getSuccessNum())).compareTo(new Integer(arg0.getSuccessNum()));
+			}
+		});
+		
+		return AllRecommend.get(num).getUserInfoDetail();
 	}
 }
