@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+	pageEncoding="utf-8" import="java.util.List,
+	Info.UserInfoDetail"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,43 +18,64 @@
 	<br />
 	<br />
 	<br />
-
-	<div class="container">
-		<section class="chartContainer">
-			<div id="map">
-				<script type="text/javascript">
-				
-				</script>
-			</div>
-		</section>
+	<br />
+	<br />
+	<br />
+	
+	
+	<div class="icon">
+		<img alt="" src="">
 	</div>
-	<br />
-	<br />
-	<br />
-
-	<div class="container">
-		<section class="chartContainer">
-			<div id="relation">
-				<script type="text/javascript">
-				
-				</script>
-			</div>
-		</section>
+	
+	<div class="description">
+		
 	</div>
-
-	<br />
-	<br />
-	<br />
-
-	<div class="container">
-		<section class="chartContainer">
-			<div id="progress">
-				<script type="text/javascript">
-				
-				</script>
+	
+	<div class="project-info">
+		<div class="project-chart">
+			<section class="chartContainer">
+				<div id="map">
+					<script type="text/javascript">
+						
+					</script>
+				</div>
+			</section>
+		</div>
+		
+		<div class="project-items">
+			<div class="item">
+				<div class="key"></div>
+				<div class="value"></div>
 			</div>
-		</section>
+		</div>
 	</div>
+	
+	<br />
+	<br />
+	
+	<div class="text-center">
+		<h1>项目协作者</h1>
+	</div>
+	
+	<br />
+	<br />
+	<br />
+
+	<%
+		handleServlet = "/ProjectDetail";
+		num = (Integer)request.getAttribute("collaNum");
+		type = InfoType.DEVELOPER;
+		@SuppressWarnings("unchecked")
+		List<?> list = (List<UserInfoDetail>) request.getAttribute("collaborators");
+	%>
+	<%@include file="/visualize/common/info_list.jsp" %>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 
 	<%@include file="/visualize/common/footer.jsp"%>
 </body>

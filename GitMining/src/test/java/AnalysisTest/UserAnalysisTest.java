@@ -14,7 +14,9 @@ public class UserAnalysisTest {
 
 	public static void main(String[] args) {
 		UserStatisticFactory factory = new UserStatisticFactory();
+//		System.out.println("123");
 		RelationAnalysisStatic relation = factory.GetRelationAnalysisStatic();
+//		System.out.println("123a");
 		UserHandle handle = new UserHandle();
 		List<UserInfo> userInfos = new ArrayList<UserInfo>();
 		try {

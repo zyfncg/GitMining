@@ -66,70 +66,15 @@
 	<br />
 	<br />
 
-	<div>
-		<%
-			int itemPerPage = 6;
-			int row = 2;					//搜索结果展示所用的行数
-			int col = itemPerPage / row;	//搜索结果展示所用的列数
-			int developerNum = (Integer)request.getAttribute("developerNum");
-			pageNum = (developerNum + itemPerPage - 1) / itemPerPage;
-			currentPage = (Integer)request.getAttribute("currentPage");
-		
-			@SuppressWarnings("unchecked")
-			List<UserInfoDetail> list = (List<UserInfoDetail>) request.getAttribute("developers");
-			UserInfoDetail user = null;
-			for (int i = 0; i < row; ++i) {
-		%>
-		<section id="feature-area" class="about-section">
-			<div class="container">
-				<%
-					boolean isEndOfList;
-					for (int j = 0; j < col; ++j) {
-						isEndOfList = currentPage * itemPerPage + i * 3 + j >= developerNum;
-						if(isEndOfList) {
-							break;
-						}
-						user = list.get(i * col + j);
-				%>
-				<div class="row text-center inner">
-					<div class="col-sm-4">
-						<div class="feature-content">
-							<a class="First-Commend"
-							href="/DeveloperDetail?chooseDeveloper=<%= user.getUserName() %>">
-								 <%=user.getUserName()%></a>
-							<p class="feature-content-description">
-								<%="Brief Description: " + user.getDescriptionUser()%></p>
-							<p class="feature-content-item">
-								Email :
-								<%=user.getEmail()%></p>
-							<p class="feature-content-item">
-								Company :
-								<%=user.getCompany()%></p>
-							<p class="feature-content-item">
-								Address :
-								<%=user.getAddress()%></p>
-							<p class="feature-content-item">
-							<a href="/DeveloperGithub?chooseDeveloper=<%= user.getUserName() %>">
-								See more on github</a></p>
-						</div>
-					</div>
-					<%
-						}
-					%>
-				</div>
-			</div>
-		</section>
-		<%
-			}
-		%>
-	</div>
+	<%
+		handleServlet = "/Developer";
+		num = (Integer)request.getAttribute("developerNum");
+		type = InfoType.DEVELOPER;
+		@SuppressWarnings("unchecked")
+		List<?> list = (List<UserInfoDetail>) request.getAttribute("developers");
+	%>
+	<%@include file="/visualize/common/info_list.jsp" %>
 
-	<br />
-	<br />
-
-	<% handleServlet = "/Developer"; %>
-	<%@include file="/visualize/common/pagination.jsp" %>
-	
 	<br />
 	<br />
 	<br />

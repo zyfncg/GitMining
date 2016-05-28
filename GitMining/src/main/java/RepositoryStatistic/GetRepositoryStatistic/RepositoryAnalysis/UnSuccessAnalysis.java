@@ -13,6 +13,7 @@ import Info.UserInfo;
 import Info.UserInfoDetail;
 import Info.RepStatisticInfo.LanguageStatistics;
 import Info.UsrStatisticInfo.CompanyStatistics;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.Else;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfBigCow;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfSuccess;
 import data.dataImpl.statistisDataImpl.UserStatisticData;
@@ -21,6 +22,7 @@ import data.dataServer.statisticServer.UserStatisticsDataServer;
 public class UnSuccessAnalysis implements SuccAnalysisStatic{
 	private IfSuccess success = new IfSuccess();
 	private IfBigCow bigCow = new IfBigCow();
+	private Else theelse = new Else();
 	private List<ProjectDetail> temp = success.GetAllUnSuccess();
 	private UserStatisticsDataServer userStatisticsDataServer = new UserStatisticData();
 	
@@ -59,12 +61,12 @@ public class UnSuccessAnalysis implements SuccAnalysisStatic{
 		List<LanguageStatistics> allLanguageResult = new ArrayList<LanguageStatistics>();
 		// 形成所有不同语言的一个集合
 		DecimalFormat df = new DecimalFormat("######0.00");
-		List<String> allLanguage = new ArrayList<String>();
-		for (ProjectDetail tempProject : temp) {
-			if (!allLanguage.contains(tempProject.getLanguage())) {
-				allLanguage.add(tempProject.getLanguage());
-			}
-		}
+		List<String> allLanguage = theelse.GetLanguage();
+//		for (ProjectDetail tempProject : temp) {
+//			if (!allLanguage.contains(tempProject.getLanguage())) {
+//				allLanguage.add(tempProject.getLanguage());
+//			}
+//		}
 
 		// 对各种语言进行统计
 		for (int i = 0; i < allLanguage.size(); i++) {
@@ -97,19 +99,23 @@ public class UnSuccessAnalysis implements SuccAnalysisStatic{
 		}
 		// 统计用户的全部公司种类
 		HashMap<String, Integer> CompanyResult = new HashMap<>();
-		List<String> allCompany = new ArrayList<String>();
-		for (UserInfoDetail tempUserInfo : tempDetailUser) {
-			if (!allCompany.contains(tempUserInfo.getCompany())) {
-				allCompany.add(tempUserInfo.getCompany());
-				CompanyResult.put(tempUserInfo.getCompany(), 0);
-			}
+		List<String> allCompany = theelse.GetCompany(tempDetailUser);
+//		for (UserInfoDetail tempUserInfo : tempDetailUser) {
+//			if (!allCompany.contains(tempUserInfo.getCompany())) {
+//				allCompany.add(tempUserInfo.getCompany());
+//				CompanyResult.put(tempUserInfo.getCompany(), 0);
+//			}
+//		}
+		for(String Comtemp:allCompany){
+			CompanyResult.put(Comtemp, 0);
 		}
 
 		for (ProjectDetail tempProject : temp) {
 			for (UserInfo tempUser : (tempProject.getCollaboratorsInfo())) {
 				for (UserInfoDetail UserDetail : tempDetailUser) {
-					if (this.ifEqual(tempUser, UserDetail)) {
+					if ((this.ifEqual(tempUser, UserDetail)) && (allCompany.contains(UserDetail.getCompany()))) {
 						int num = CompanyResult.get(UserDetail.getCompany());
+						CompanyResult.remove(UserDetail.getCompany());
 						num++;
 						CompanyResult.put(UserDetail.getCompany(), num);
 						break;
@@ -124,7 +130,7 @@ public class UnSuccessAnalysis implements SuccAnalysisStatic{
 			// System.out.println(me.getKey()+":"+me.getValue());
 			String key = (String) me.getKey();
 			int val = (Integer) me.getValue();
-			if ((!key.equals("unknow")) && (val != 0)) {
+			if ((!key.equals("unknown"))) {
 				statistics.add(new CompanyStatistics(key, val));
 			}
 		}

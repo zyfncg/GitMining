@@ -56,4 +56,5 @@ public class RecommendDataImpl implements RecommendDataServer {
 
 	
 	
+	
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Info.ProjectDetail;
+import Info.ProjectInfo;
+import Info.UserInfoDetail;
 import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
 
 public class IfSuccess {
@@ -11,7 +13,7 @@ public class IfSuccess {
 	private List<ProjectDetail> AllProject = allRepositoryStatistic.getStatisticRepositoryInfo();
 	
 	public boolean getIfSuccess(ProjectDetail AProject) {
-		if (AProject.getStars()>=5000) {
+		if (AProject.getStars()>=4000) {
 			return true;
 		}
 		else {
@@ -22,7 +24,7 @@ public class IfSuccess {
 	public List<ProjectDetail> GetAllSuccess() {
 		List<ProjectDetail> AllSuccess = new ArrayList<ProjectDetail>();
 		for(ProjectDetail tempProject:AllProject){
-			if (tempProject.getStars()>=5000) {
+			if (tempProject.getStars()>=4000) {
 				AllSuccess.add(tempProject);
 			}
 		}
@@ -32,10 +34,21 @@ public class IfSuccess {
 	public List<ProjectDetail> GetAllUnSuccess() {
 		List<ProjectDetail> AllUnSuccess = new ArrayList<ProjectDetail>();
 		for(ProjectDetail tempProject:AllProject){
-			if (tempProject.getStars()<5000) {
+			if (tempProject.getStars()<4000) {
 				AllUnSuccess.add(tempProject);
 			}
 		}
 		return AllUnSuccess;
+	}
+	
+	public int CalSuccNum(UserInfoDetail userDetail) {
+		int num = 0;
+		for(ProjectInfo temp:userDetail.getProjectCreatInfo()){
+			if (temp.getStars()>=4000) {
+				num++;
+			}
+		}
+		
+		return num;
 	}
 }

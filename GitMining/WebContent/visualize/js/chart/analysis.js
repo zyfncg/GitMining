@@ -11,7 +11,8 @@ function succRate(id, numSuccess, numFail) {
 	var myChart = echarts.init(document.getElementById(id));
 	myChart.setOption({
 		title : {
-			text : '成功项目与非成功项目所占比例'
+			text : '成功项目与非成功项目所占比例',
+			left:'center'
 		},
 		series : [ {
 			name : '项目情况',
@@ -126,7 +127,6 @@ function MrBigOccupied(id, name, moreNum, lessNum) {
 	option = {
 			title : {
 				text : name,
-				subtext : '大牛占比',
 				x : 'center'
 			},
 			tooltip : {
@@ -135,7 +135,7 @@ function MrBigOccupied(id, name, moreNum, lessNum) {
 			},
 			legend : {
 				x : 'center',
-				y : 'bottom',
+				y : 420,
 				data : [ '超过50%', '低于50%' ]
 			},
 			toolbox : {
@@ -144,19 +144,9 @@ function MrBigOccupied(id, name, moreNum, lessNum) {
 					mark : {
 						show : true
 					},
-					dataView : {
-						show : true,
-						readOnly : false
-					},
 					magicType : {
 						show : true,
-						type : [ 'pie', 'funnel' ]
-					},
-					restore : {
-						show : true
-					},
-					saveAsImage : {
-						show : true
+						type : ['pie']
 					}
 				}
 			},
@@ -165,7 +155,7 @@ function MrBigOccupied(id, name, moreNum, lessNum) {
 				name : '面积模式',
 				type : 'pie',
 				radius : [ 30, 110 ],
-				center : [ '75%', 200 ],
+				center : [ '50%', 200 ],
 				roseType : 'area',
 				data : [ {
 					value : moreNum,
@@ -189,13 +179,26 @@ function BarDistr(id, name, types, names, nums) {
 	var option = {
 			title : {
 				text : name,
+				left: 'center'
 			},
 			tooltip : {},
 			legend : {
-				data : [types]
+				data : [types],
+				x: 'center',
+				y : 'bottom'
 			},
 			xAxis : {
-				data : names
+				data : names,
+				type:'category',
+				axisLabel: {
+					rotate: 30,
+					interval: 0
+					},
+				grid: {
+					x: 100,
+					x2: 100,
+					y2: 150,
+					},
 			},
 			yAxis : {},
 			series : [ {
