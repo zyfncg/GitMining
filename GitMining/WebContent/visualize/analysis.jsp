@@ -65,7 +65,7 @@
 				    <%for (int i : succ.getCollaNum()) {%>
 				    	nums.push(<%= i %>);
 				    <%}%>
-					CollaDistr('succCollaDistr', '成功项目协作者分布',nums);
+					CollaDistr('succCollaDistr', '成功项目协作者人数分布',nums);
 				</script>
 			</div>
 
@@ -75,7 +75,7 @@
 				    <%for (int i : unsucc.getCollaNum()) {%>
 				    	nums.push(<%= i %>);
 				    <%}%>
-					CollaDistr('unsuccCollaDistr', '非成功项目协作者分布',nums);
+					CollaDistr('unsuccCollaDistr', '非成功项目协作者人数分布',nums);
 				</script>
 			</div>
 		</section>
@@ -83,7 +83,7 @@
 		<section class="chartContainer">
 			<div id="succMrBigOccupied" class="twochart">
 				<script type="text/javascript">
-					MrBigOccupied('succMrBigOccupied', '成功项目大牛占collaborator超过50%比例',
+					MrBigOccupied('succMrBigOccupied', '成功项目大牛占协作者总数超过50%的比例',
 							<%= (double)succ.getMrBigOccupyNum() / succ.getProjectNum() %>,
 							<%= 1 - (double)succ.getMrBigOccupyNum() / succ.getProjectNum() %>);
 				</script>
@@ -91,7 +91,7 @@
 
 			<div id="unsuccMrBigOccupied" class="twochart">
 				<script type="text/javascript">
-					MrBigOccupied('unsuccMrBigOccupied', '非成功项目大牛占collaborator超过50%比例',
+					MrBigOccupied('unsuccMrBigOccupied', '非成功项目大牛占协作者总数超过50%的比例',
 							<%= (double)unsucc.getMrBigOccupyNum() / succ.getProjectNum() %>,
 							<%= 1 - (double)unsucc.getMrBigOccupyNum() / succ.getProjectNum() %>);
 				</script>
@@ -154,7 +154,7 @@
 					<% for(int i = 0; i < size; ++i) { %>
 						nums.push(<%= company.get(i).getNum() %>);
 					<% } %>
-					BarDistr('succComDistr', '非成功项目各语言的项目个数','Company', names, nums);
+					BarDistr('succComDistr', '成功项目各公司的项目个数','Company', names, nums);
 				</script>
 			</div>
 			
@@ -171,11 +171,15 @@
 					<% for(int i = 0; i < size; ++i) { %>
 						nums.push(<%= company.get(i).getNum() %>);
 					<% } %>
-					BarDistr('unsuccComDistr', '非成功项目各语言的项目个数','Company', names, nums);
+					BarDistr('unsuccComDistr', '非成功项目各公司的项目个数','Company', names, nums);
 				</script>
 			</div>
 		</section>
 	</div>
+	
+	<br />
+	<br />
+	<br />
 	
 	<%@include file="/visualize/common/footer.jsp" %>
 	
