@@ -1,4 +1,4 @@
-package RecommendLogic;
+package recommend;
 
 import java.util.Collections;
 import java.util.Comparator;

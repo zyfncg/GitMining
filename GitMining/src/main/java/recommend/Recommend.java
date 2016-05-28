@@ -1,4 +1,4 @@
-package RecommendLogic;
+package recommend;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import data.dataImpl.recommendDataImpl.RecommendDataImpl;
 import data.dataServer.recommendDataServer.RecommendDataServer;
 import twaver.base.A.E.b;
 
-public class RecommendLogic implements RecommendService {
+public class Recommend implements RecommendService {
 
 	private RecommendDataServer RecommendData = new RecommendDataImpl();
 	private RecUtil AUtil = new RecUtil();
