@@ -18,7 +18,7 @@ public class RelationAnalysisStatic {
 	private AllRepositoryStatistic ToGetRepository = new AllRepositoryStatistic();
 	private AddressServer GetAddress = new AddressImpl();
 	// 所有与当前用户相关的User
-	List<UserInfoDetail> allrelation = new ArrayList<UserInfoDetail>();
+	private List<UserInfoDetail> allrelation = new ArrayList<UserInfoDetail>();
 
 	public Relationship getAllRelationship(UserInfo ChooseUser) {
 		Relationship relationship = new Relationship();
@@ -26,11 +26,14 @@ public class RelationAnalysisStatic {
 		List<RelationUser> AllRelation = new ArrayList<RelationUser>();
 		// 所有项目详细信息
 		List<ProjectDetail> allProject = ToGetRepository.getStatisticRepositoryInfo();
+		//清空allrelation
+		allrelation.clear();
+		//处理查询用户相关
 		for (ProjectDetail AProject : allProject) {
 			for (UserInfo aUserInfo : AProject.getCollaboratorsInfo()) {
 				if (other.IfUserEqual(aUserInfo, ChooseUser)) {
 					this.IntoRelation(AProject.getCollaboratorsInfo());
-					break;
+					//break;
 				}
 			}
 		}
@@ -41,16 +44,20 @@ public class RelationAnalysisStatic {
 		for (UserInfoDetail userInfoDetail : allrelation) {
 			int power = other.PowerNum(userInfoDetail);
 			AddressInfo addressInfo = GetAddress.getAddressByName(userInfoDetail.getAddress());
-			RelationUser relationUser = new RelationUser(userInfoDetail.getUserName(),
-					userInfoDetail.getDescriptionUser(), userInfoDetail.getAddress(), addressInfo.getLongtitude(),
-					addressInfo.getLatitude(), power);
-			AllRelation.add(relationUser);
+			if (addressInfo==null) {
+			}
+			else {
+				RelationUser relationUser = new RelationUser(userInfoDetail.getUserName(),
+						userInfoDetail.getDescriptionUser(), userInfoDetail.getAddress(), addressInfo.getLongtitude(),
+						addressInfo.getLatitude(), power);
+				AllRelation.add(relationUser);		
+			}
 		}
 		relationship.setRelationUser(AllRelation);
 		return relationship;
 	}
 
-	// 把所有collaboraters加入列表
+	// 把所有collaboraters加入列表(allrelation)
 	public void IntoRelation(List<UserInfo> temp) {
 		for (UserInfo auUserInfo : temp) {
 			UserInfoDetail userInfoDetail = other.BecomeDetail(auUserInfo);

@@ -4,7 +4,7 @@ import java.util.List;
 
 import Info.ProjectDetail;
 import Info.UserInfoDetail;
-import recommend.Recommend;
+import recommend.RecommendLogic;
 import recommend.RecommendService;
 
 public class RecommendTest {
@@ -12,7 +12,7 @@ public class RecommendTest {
 	
 	
 	public static void main(String[] args) {
-		RecommendService recommend = new Recommend();
+		RecommendService recommend = new RecommendLogic();
 		List<ProjectDetail> projectDetails = recommend.getProjects("asd");
 		List<UserInfoDetail> userInfoDetails = recommend.getDevelopers("123");
 		for(ProjectDetail temp:projectDetails){

@@ -25,11 +25,14 @@ public class UserAnalysisTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Relationship relationship = relation.getAllRelationship(userInfos.get(0));
+		Relationship relationship = relation.getAllRelationship(userInfos.get(7));
+		System.out.println(relationship.getUserName());
 		List<RelationUser> relationUsers = relationship.getRelationUser();
+		System.out.println(relationUsers.size());
 		for(RelationUser temp:relationUsers){
 			System.out.println(temp.getUserName());
 			System.out.println(temp.getPower());
+			System.out.println(temp.getLatitude());
 			System.out.println(temp.getLongtitude());
 		}
 	}
