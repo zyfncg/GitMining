@@ -3,6 +3,8 @@ package AnalysisTest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
 import Info.RelationUser;
 import Info.Relationship;
 import Info.UserInfo;
@@ -11,6 +13,11 @@ import UserStatistic.GetUserStatistic.UserAnalysis.RelationAnalysisStatic;
 import businessLogic.businessLogicModel.UserModel.UserHandle;
 
 public class UserAnalysisTest {
+	
+	@Test
+	public void test(){
+		
+	}
 
 	public static void main(String[] args) {
 		UserStatisticFactory factory = new UserStatisticFactory();
