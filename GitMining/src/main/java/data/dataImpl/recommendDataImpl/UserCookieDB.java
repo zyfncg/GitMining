@@ -101,7 +101,7 @@ public class UserCookieDB {
 		}
 		CookieInfo cookie;
 		try {
-			cookie = cookieList.get(num);
+			cookie = cookieList.get(num-1);
 		} catch (Exception e) {
 			return null;
 		}
@@ -125,7 +125,7 @@ public class UserCookieDB {
 		}
 		CookieInfo cookie;
 		try {
-			cookie = cookieList.get(num);
+			cookie = cookieList.get(num-1);
 		} catch (Exception e) {
 			return null;
 		}
@@ -195,7 +195,6 @@ public class UserCookieDB {
 				cookieList.add(cookie);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -224,7 +223,6 @@ public class UserCookieDB {
 				return false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
