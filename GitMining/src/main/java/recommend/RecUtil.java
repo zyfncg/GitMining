@@ -15,6 +15,7 @@ public class RecUtil {
 
 	private AllRepositoryStatistic allRepositoryStatistic = new AllRepositoryStatistic();
 	private List<ProjectDetail> AllProject = allRepositoryStatistic.getStatisticRepositoryInfo();
+	
 	//将projectInfo变为ProjectDetail
 	public ProjectDetail ToProDetail(ProjectInfo Aproject) {
 		for(ProjectDetail temp:AllProject){
@@ -55,7 +56,10 @@ public class RecUtil {
 				return (new Integer(arg1.getStars())).compareTo(new Integer(arg0.getStars()));
 			}
 		});
-		return TempProject.get(num);
+		ProjectDetail res = TempProject.get(num);
+		return new ProjectDetail(res.getDescription(), res.getLanguage(), res.getURL(),
+				res.getProjectName(), res.getForks(), res.getStars(), res.getContributors(),
+				res.getCollaborators(), res.getSubscribers(), res.getContributorsInfo(), res.getCollaboratorsInfo());
 	}
 	
 	public List<ProjectDetail> GetTopSix() {
