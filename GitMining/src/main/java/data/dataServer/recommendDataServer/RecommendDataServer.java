@@ -1,7 +1,6 @@
 package data.dataServer.recommendDataServer;
 
 import Info.ProjectDetail;
-import Info.ProjectInfo;
 import Info.UserInfoDetail;
 
 public interface RecommendDataServer {
@@ -46,20 +45,20 @@ public interface RecommendDataServer {
 
 	
 	/**
-	 * 取得引用次数排序第num的项目
+	 * 取得引用次数排序第num的用户
 	 * @param num
 	 * @return
 	 */
 	public UserInfoDetail getOneUser(String user_id,int num);
 	
 	/**
-	 * 去的引用次数最多的语言
+	 * 取得引用次数最多的语言
 	 * @return
 	 */
 	public String getLanguage(String user_id);
 	
 	/**
-	 * 取得引用次数做多的语言
+	 * 取得引用次数做多的公司
 	 * @return
 	 */
 	public String getCompany(String user_id);
