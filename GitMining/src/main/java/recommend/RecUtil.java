@@ -1,5 +1,6 @@
 package recommend;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -57,11 +58,7 @@ public class RecUtil {
 			}
 		});
 		ProjectDetail res = TempProject.get(num);
-		ProjectDetail Res = new ProjectDetail(res.getDescription(), res.getLanguage(), res.getURL(),
-				res.getProjectName(), res.getForks(), res.getStars(), res.getContributors(),
-				res.getCollaborators(), res.getSubscribers(), res.getContributorsInfo(), res.getCollaboratorsInfo());
-		Res.setStatisticDetail(res.getStatisticDetail());
-		return Res;
+		return res;
 	}
 	
 	public List<ProjectDetail> GetTopSix() {
@@ -73,7 +70,9 @@ public class RecUtil {
 			}
 		});
 		
-		List<ProjectDetail> result = TempProject.subList(0, 6);
+		List<ProjectDetail> result = new ArrayList<>();
+		result.addAll(TempProject.subList(0, 6));
+//		List<ProjectDetail> result = TempProject.subList(0, 6);
 		return result;
 	}
 }

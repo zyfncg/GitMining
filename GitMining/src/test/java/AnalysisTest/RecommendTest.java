@@ -22,5 +22,6 @@ public class RecommendTest {
 		for(UserInfoDetail temp2:userInfoDetails){
 			System.out.println(temp2.getUserName());
 		}
+		List<ProjectDetail> TopSix = recommend.getTop();
 	}
 }
