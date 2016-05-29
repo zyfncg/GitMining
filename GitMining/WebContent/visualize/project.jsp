@@ -1,21 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import="Info.ProjectInfo,
-    java.util.List"%>
+    pageEncoding="utf-8" import="Info.ProjectInfo, java.util.List,
+   constant.InfoType"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="/visualize/js/bootstrap.min.js"></script>	
+<script src="/visualize/js/jquery-1.11.2.min.js"></script>
+<script src="/visualize/js/jquery.scrollUp.min.js"></script>
+<script src="/visualize/js/parallax.js-1.3.1/parallax.js"></script>
+<script src="/visualize/js/prepareScrollUp.js"></script>
 <link href='/visualize/css/font.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css"
 	href="/visualize/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="/visualize/css/templatemo-style.css">
 <link rel="stylesheet" type="text/css" href="/visualize/css/style.css">
-<script src="/visualize/js/bootstrap.min.js"></script>	
-<script src="/visualize/js/jquery-1.11.2.min.js"></script>
-<script src="/visualize/js/jquery.scrollUp.min.js"></script>
-<script src="/visualize/js/parallax.js-1.3.1/parallax.js"></script>
-<script src="/visualize/js/prepareScrollUp.js"></script>
 <title>Project</title>
 </head>
 <body>
@@ -41,9 +41,9 @@
 
 	<form action="/Project" method="post">
 		<div class="searchContainer">
-			<input type="text" placeholder="Project..." maxlength="255"
+			<input type="text" placeholder="输入项目名称" maxlength="255"
 				name="inputProject" class="searchText"> 
-			<input type="submit" value="search" class="searchBtn" />
+			<input type="submit" value="搜索" class="searchBtn" />
 		</div>
 	</form>
 
@@ -53,10 +53,10 @@
 	<br />
 	
 	<div class="sortContainer">
-		<input class="sortButton" type="button" value="General"/>
-		<input class="sortButton" type="button" value="Star"/>
-		<input class="sortButton" type="button" value="Fork"/>
-		<input class="sortButton" type="button" value="Contributor"/>
+		<input class="sortButton" type="button" value="General" onclick="sort('General')"/>
+		<input class="sortButton" type="button" value="Star" onclick="sort('Star')"/>
+		<input class="sortButton" type="button" value="Fork" onclick="sort('Fork')"/>
+		<input class="sortButton" type="button" value="Contributor" onclick="sort('Contributors')"/>
 	</div>
 	
 	<br />
@@ -73,11 +73,21 @@
 	
 	<br />
 	<br />
+	
+	<br />
+	<br />
 	<br />
 	<br />
 	<br />
 	
+	
 	<%@include file="/visualize/common/footer.jsp"%>
+	
+	<script type="text/javascript">
+		function sort(type) {
+			window.location="/Project?sort=" + type;
+		}
+	</script>
 	
 	<script type="text/javascript">
 		$(function() {

@@ -1,4 +1,4 @@
-<%@page import="res.InfoType"%>
+<%@page import="constant.InfoType"%>
 <%@page import="Info.UserInfo" %>
 <%@page import="Info.ProjectInfo" %>
 <%@ page pageEncoding="utf-8"%>
@@ -58,6 +58,8 @@
 					项目star数量 : <%= project.getStars() %></p>
 				<p class="feature-content-item">
 					项目fork数量 : <%= project.getForks() %></p>
+				<p class="feature-content-item">
+					项目contributor数量: <%= project.getContributors() %></p>
 				<br />
 				<p class="feature-content-item">
 				<a href="/ProjectGithub?owner=<%= owner %>&

@@ -96,44 +96,61 @@ body {
 	height: 50px;
 }
 
-/* text of description */
-.description {
-	
+
+.info-container {
+	width: 100%;
+	height: 400px;
 }
 
-/* 项目信息描述，包含左边的图标和右边的数据*/
-.project-info {
-	
+.info-container .icon {
+	float: left;
+	width: 23%;
+	margin-left: 20%;
+}
+.info-container .info {
+	float: left;
+	width: 37%;
+	margin-left: 7%;
 }
 
-/* 项目信息描述中左边的图表 */
-.project-info .project-chart {
-	
+.info-container .info .name {
+	width: 100%;
+	height: 5%;
+	text-align: center;
+	margin: 0 auto;
 }
+
 
 /* 项目信息描述中右边的信息项 */
-.project-info .project-items {
-	
-}
-
-/* 开发者信息项 */
-.developer-items {
-	
+.info-container .info .project-items {
+	width: 100%;
+	height: 50%;
 }
 
 /* 信息项 */
-.item {
-	
+.project-items .item {
+	float: left;
+	width: 13%;
+	height: 100%;
+	margin-left: 3%;
 }
 
 /* 信息项的名字 */
 .item .key {
-	
+	width: 100%;
+	height: 40%;
+	margin-top: 10%;
+	text-align: center;
+	color: #991;
 }
 
 /* 信息项的值 */
 .item .value {
-	
+	width: 100%;
+	height: 40%;
+	margin-top: 10%;
+	text-align: center;
+	color: #199;
 }
 
 img {

@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="/visualize/js/echarts.min.js"></script>
+<script src="/visualize/js/chart/recommend.js"></script>
 <link href="/visualize/css/font.css" rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css"
 	href="/visualize/css/bootstrap.min.css">
@@ -22,34 +24,69 @@
 	<br />
 	<br />
 	
-	
-	<div class="icon">
-		<img alt="" src="">
-	</div>
-	
-	<div class="description">
-		
-	</div>
-	
-	<div class="project-info">
-		<div class="project-chart">
-			<section class="chartContainer">
-				<div id="map">
-					<script type="text/javascript">
-						
-					</script>
-				</div>
-			</section>
+	<div class="info-container">
+		<div class="icon">
+			<img alt="项目图标" src="/visualize/img/code4.jpg">
 		</div>
-		
-		<div class="project-items">
-			<div class="item">
-				<div class="key"></div>
-				<div class="value"></div>
+		<div class="info">
+			<div class="name"><h4>GUN</h4></div>
+			<div class="feature-content-description"><h4>
+				GUN's not Unix.GUN's not Unix.GUN's not Unix.
+				GUN's not Unix.GUN's not Unix.GUN's not Unix.
+				GUN's not Unix.GUN's not Unix.GUN's not Unix.
+			</h4></div>
+			<div class="project-items">
+				<div class="item">
+					<div class="key">language</div>
+					<div class="value">Ruby</div>
+				</div>
+				<div class="item">
+					<div class="key">language</div>
+					<div class="value">Ruby</div>
+				</div>
+				<div class="item">
+					<div class="key">language</div>
+					<div class="value">Ruby</div>
+				</div>
+				<div class="item">
+					<div class="key">language</div>
+					<div class="value">Ruby</div>
+				</div>
+				<div class="item">
+					<div class="key">language</div>
+					<div class="value">Ruby</div>
+				</div>
+				<div class="item">
+					<div class="key">language</div>
+					<div class="value">Ruby</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	
+	<div class="text-center">
+		<h1>项目评价</h1>
+	</div>
+	
+	<br />
+	<br />
+
+	<div class="chartContainer">
+		<div class="onechart" id="radar">
+			<script type="text/javascript">
+				var a = [];
+				for(var i = 0; i < 6; i++) {
+					a.push(5);
+				}
+				var b = [];
+				for(var i = 0; i < 6; i++) {
+					b.push(8);
+				}
+				radar('radar', a, b);
+			</script>
+		</div>
+	</div>
+
 	<br />
 	<br />
 	
@@ -70,9 +107,6 @@
 	%>
 	<%@include file="/visualize/common/info_list.jsp" %>
 
-	<br />
-	<br />
-	<br />
 	<br />
 	<br />
 	<br />

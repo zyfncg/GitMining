@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" import="java.util.List, Info.UserInfo"%>
+	pageEncoding="utf-8" import="java.util.List, Info.UserInfo,
+	constant.InfoType"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,9 +58,9 @@
 
 	<form action="/Developer" method="post">
 		<div class="searchContainer">
-			<input type="text" placeholder="Developer..."
+			<input type="text" placeholder="输入开发者姓名"
 				maxlength="255" name="inputDeveloper" class="searchText">
-			<input type="submit" value="search" class="searchBtn"/>
+			<input type="submit" value="搜索" class="searchBtn"/>
 		</div>
 	</form>
 	<br />
