@@ -61,7 +61,7 @@ public class RecUtil {
 				res.getProjectName(), res.getForks(), res.getStars(), res.getContributors(),
 				res.getCollaborators(), res.getSubscribers(), res.getContributorsInfo(), res.getCollaboratorsInfo());
 		Res.setStatisticDetail(res.getStatisticDetail());
-		return Res;
+		return res;
 	}
 	
 	public List<ProjectDetail> GetTopSix() {

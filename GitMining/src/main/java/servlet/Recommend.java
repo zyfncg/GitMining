@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Info.Date;
+import Info.ProjectInfo;
 import Info.ProjectName;
+import Info.StatisticDetail;
 import Info.UserInfo;
 import Info.UserInfoDetail;
 import recommend.RecommendService;
@@ -36,22 +38,31 @@ public class Recommend extends HttpServlet {
 			throws ServletException, IOException {
 		String user_id = CookieUtil.getUserIDfromCookie(request, response);
 		//TODO 根据用户id获得向用户推荐的项目和开发者信息
-		List<Info.ProjectDetail> top6 = new ArrayList<>();
-		List<UserInfoDetail> developers = new ArrayList<>();
-		List<Info.ProjectDetail> projects = new ArrayList<>();
-		for(int i = 0; i < 10; ++i) {
-			top6.add(new Info.ProjectDetail("a", "b", "c", new ProjectName("d/e"),
-					1, 1, 1, 1, 1, new ArrayList<UserInfo>(), new ArrayList<UserInfo>()));
-			projects.add(new Info.ProjectDetail("a", "b", "c", new ProjectName("d/e"),
-					1, 1, 1, 1, 1, new ArrayList<UserInfo>(), new ArrayList<UserInfo>()));
-		}
-		for(int i = 0; i < 10; ++i) {
-			developers.add(new Info.UserInfoDetail("a", "b", "c", new Date(1, 1, 1),
-					"d", "e", 1, 1, new ArrayList<>()));
-		}
-//		List<Info.ProjectDetail> top6 = service.getTop();
-//		List<UserInfoDetail> developers = service.getDevelopers("");
-//		List<Info.ProjectDetail> projects = service.getProjects("");
+//		List<Info.ProjectDetail> top6 = new ArrayList<>();
+//		List<UserInfoDetail> developers = new ArrayList<>();
+//		List<Info.ProjectDetail> projects = new ArrayList<>();
+//		
+//		List<Info.ProjectInfo> l1 = new ArrayList<>();
+//		List<Info.UserInfo> l2 = new ArrayList<>();
+//		for(int i = 0; i <10; ++i) {
+//			l1.add(new ProjectInfo("a", new ProjectName("b/c"), 1, 1, 1));
+//			l2.add(new UserInfo("a", "b", 1, 1));
+//		}
+//		
+//		for(int i = 0; i < 6; ++i) {
+//			Info.ProjectDetail d = new Info.ProjectDetail("a", "b", "c", new ProjectName("d/e"),
+//					1, 1, 1, 1, 1, l2, l2);
+//			d.setStatisticDetail(new StatisticDetail(0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1));
+//			top6.add(d);
+//			projects.add(d);
+//		}
+//		for(int i = 0; i < 6; ++i) {
+//			developers.add(new Info.UserInfoDetail("a", "b", "c", new Date(1, 1, 1),
+//					"d", "e", 1, 1, l1));
+//		}
+		List<Info.ProjectDetail> top6 = service.getTop();
+		List<UserInfoDetail> developers = service.getDevelopers("");
+		List<Info.ProjectDetail> projects = service.getProjects("");
 		request.setAttribute("guessPros", projects);
 		request.setAttribute("guessDevs", developers);
 		request.setAttribute("top6", top6);
