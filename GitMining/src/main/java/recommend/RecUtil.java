@@ -57,9 +57,11 @@ public class RecUtil {
 			}
 		});
 		ProjectDetail res = TempProject.get(num);
-		return new ProjectDetail(res.getDescription(), res.getLanguage(), res.getURL(),
+		ProjectDetail Res = new ProjectDetail(res.getDescription(), res.getLanguage(), res.getURL(),
 				res.getProjectName(), res.getForks(), res.getStars(), res.getContributors(),
 				res.getCollaborators(), res.getSubscribers(), res.getContributorsInfo(), res.getCollaboratorsInfo());
+		Res.setStatisticDetail(res.getStatisticDetail());
+		return Res;
 	}
 	
 	public List<ProjectDetail> GetTopSix() {
