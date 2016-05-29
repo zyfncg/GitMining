@@ -34,9 +34,8 @@
 			<div class="row">
 				<div class="col-sm-12 text-center">
 					<div class="header-content">
-						<h1>Analysis</h1>
-						<h4>Are you curious about why a project achieve great
-							success?</h4>
+						<h1>分析</h1>
+						<h4>你想知道一个开源项目为什么会成功吗</h4>
 					</div>
 				</div>
 			</div>
@@ -47,6 +46,10 @@
 		SuccAnalysisStatic succ = (SuccAnalysisStatic) request.getAttribute("succStat");
 		SuccAnalysisStatic unsucc = (SuccAnalysisStatic) request.getAttribute("unsuccStat");
 	%>
+	
+	<br />
+	<br />
+	<br />
 	
 	<div class="container">
 		<section class="chartContainer">
@@ -65,7 +68,7 @@
 				    <%for (int i : succ.getCollaNum()) {%>
 				    	nums.push(<%= i %>);
 				    <%}%>
-					CollaDistr('succCollaDistr', '成功项目协作者分布',nums);
+					CollaDistr('succCollaDistr', '成功项目协作者人数分布',nums);
 				</script>
 			</div>
 
@@ -75,7 +78,7 @@
 				    <%for (int i : unsucc.getCollaNum()) {%>
 				    	nums.push(<%= i %>);
 				    <%}%>
-					CollaDistr('unsuccCollaDistr', '非成功项目协作者分布',nums);
+					CollaDistr('unsuccCollaDistr', '非成功项目协作者人数分布',nums);
 				</script>
 			</div>
 		</section>
@@ -83,7 +86,7 @@
 		<section class="chartContainer">
 			<div id="succMrBigOccupied" class="twochart">
 				<script type="text/javascript">
-					MrBigOccupied('succMrBigOccupied', '成功项目大牛占collaborator超过50%比例',
+					MrBigOccupied('succMrBigOccupied', '成功项目大牛占协作者总数超过50%的比例',
 							<%= (double)succ.getMrBigOccupyNum() / succ.getProjectNum() %>,
 							<%= 1 - (double)succ.getMrBigOccupyNum() / succ.getProjectNum() %>);
 				</script>
@@ -91,7 +94,7 @@
 
 			<div id="unsuccMrBigOccupied" class="twochart">
 				<script type="text/javascript">
-					MrBigOccupied('unsuccMrBigOccupied', '非成功项目大牛占collaborator超过50%比例',
+					MrBigOccupied('unsuccMrBigOccupied', '非成功项目大牛占协作者总数超过50%的比例',
 							<%= (double)unsucc.getMrBigOccupyNum() / succ.getProjectNum() %>,
 							<%= 1 - (double)unsucc.getMrBigOccupyNum() / succ.getProjectNum() %>);
 				</script>
@@ -114,7 +117,7 @@
 					<%=language.get(i).getNum()%>,
 					<%}%>
 				];
-					BarDistr('succLangDistr', '成功项目各语言的项目个数','Language',
+					BarDistr('succLangDistr', '成功项目各语言的项目个数','语言',
 							names, nums);
 				</script>
 			</div>
@@ -134,7 +137,7 @@
 						<%=language.get(i).getNum()%>,
 						<%}%>
 					];
-					BarDistr('unsuccLangDistr', '非成功项目各语言的项目个数','Language', names, nums);
+					BarDistr('unsuccLangDistr', '非成功项目各语言的项目个数','语言', names, nums);
 				</script>
 			</div>
 		</section>
@@ -154,7 +157,7 @@
 					<% for(int i = 0; i < size; ++i) { %>
 						nums.push(<%= company.get(i).getNum() %>);
 					<% } %>
-					BarDistr('succComDistr', '非成功项目各语言的项目个数','Company', names, nums);
+					BarDistr('succComDistr', '成功项目各公司的项目个数','公司', names, nums);
 				</script>
 			</div>
 			
@@ -171,18 +174,22 @@
 					<% for(int i = 0; i < size; ++i) { %>
 						nums.push(<%= company.get(i).getNum() %>);
 					<% } %>
-					BarDistr('unsuccComDistr', '非成功项目各语言的项目个数','Company', names, nums);
+					BarDistr('unsuccComDistr', '非成功项目各公司的项目个数','公司', names, nums);
 				</script>
 			</div>
 		</section>
 	</div>
+	
+	<br />
+	<br />
+	<br />
 	
 	<%@include file="/visualize/common/footer.jsp" %>
 	
 	<script>
 		// HTML document is loaded. DOM is ready.
 		$(function() {
-			prepareScrollUP('.head', '/visualize/img/bg-1.jpg');
+			prepareScrollUP('.head', '/visualize/img/analysis_bg.jpg');
 		});
 	</script>
 	

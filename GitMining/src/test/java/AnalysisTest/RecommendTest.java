@@ -4,8 +4,8 @@ import java.util.List;
 
 import Info.ProjectDetail;
 import Info.UserInfoDetail;
-import RecommendLogic.RecommendLogic;
-import RecommendLogic.RecommendService;
+import recommend.RecommendLogic;
+import recommend.RecommendService;
 
 public class RecommendTest {
 

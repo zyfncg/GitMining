@@ -73,21 +73,7 @@
 	<br />
 	
 	<div class="text-center">
-		<h1>该开发者的成长曲线</h1>
-	</div>
-	
-	<div class="container">
-		<section class="chartContainer">
-			<div id="progress">
-				<script type="text/javascript">
-				
-				</script>
-			</div>
-		</section>
-	</div>
-	
-	<div class="text-center">
-		<h1>该开发者创建的项目</h1>
+		<h1>该开发者的项目</h1>
 	</div>
 	
 	<%

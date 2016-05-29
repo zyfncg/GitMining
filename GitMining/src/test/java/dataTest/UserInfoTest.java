@@ -33,7 +33,7 @@ public class UserInfoTest {
 			System.out.println(userList.size());
 		}
 		
-		assertEquals(23,user.getProjectCreate());
+		assertEquals(88,user.getProjectCreate());
 	}
 
 }

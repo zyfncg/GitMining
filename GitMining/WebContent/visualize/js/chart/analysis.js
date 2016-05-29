@@ -185,13 +185,13 @@ function BarDistr(id, name, types, names, nums) {
 			legend : {
 				data : [types],
 				x: 'center',
-				y : 'bottom'
+				y : 'bottom',
 			},
 			xAxis : {
 				data : names,
 				type:'category',
 				axisLabel: {
-					rotate: 30,
+					rotate: -23,
 					interval: 0
 					},
 				grid: {

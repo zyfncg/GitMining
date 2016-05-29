@@ -26,8 +26,8 @@
 			<div class="row">
 				<div class="col-sm-12 text-center">
 					<div class="header-content">
-						<h1>Project</h1>
-						<h4>Go and find your interested projects</h4>
+						<h1>项目</h1>
+						<h4>去寻找感兴趣的项目</h4>
 					</div>
 				</div>
 			</div>
@@ -81,7 +81,7 @@
 	
 	<script type="text/javascript">
 		$(function() {
-			prepareScrollUP('.head', '/visualize/img/bg-1.jpg');
+			prepareScrollUP('.head', '/visualize/img/project_bg.png');
 		});
 	</script>
 	

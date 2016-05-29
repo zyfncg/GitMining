@@ -1,4 +1,6 @@
 <%-- 页面导航菜单 --%>
+<%@page pageEncoding="utf-8"%>
+	
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -9,11 +11,11 @@
 		</div>
 		<div class="single-page-nav sticky-wrapper" id="tmNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="/visualize/home.jsp">Home</a></li>
-				<li><a href="/Analysis">Analysis</a></li>
-				<li><a href="/Developer">Developer</a></li>
-				<li><a href="/Project">Project</a></li>
-				<li><a href="/Recommend">Recommendation</a></li>
+				<li><a href="/visualize/home.jsp">主页</a></li>
+				<li><a href="/Analysis">分析</a></li>
+				<li><a href="/Developer">开发者</a></li>
+				<li><a href="/Project">项目</a></li>
+				<li><a href="/Recommend">推荐</a></li>
 			</ul>
 		</div>
 	</div>
