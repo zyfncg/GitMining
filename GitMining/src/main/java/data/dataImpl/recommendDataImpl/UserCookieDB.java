@@ -17,7 +17,7 @@ public class UserCookieDB {
 	 * @param company
 	 */
 	public boolean updateCompanyInfo(String user_id, String company){
-		String table="developer_ref";
+		String table="company_ref";
 		int ref_num=1;
 		Date time=new Date(new java.util.Date().getTime());
 		CookieInfo cookie=new CookieInfo(user_id, company, ref_num, time);
@@ -140,7 +140,7 @@ public class UserCookieDB {
 	 */
 	public String getCompany(String user_id){
 		String table="company_ref";
-		String colName="company ";
+		String colName="company";
 		List<CookieInfo> cookieList=getCookieInfo(table, colName, user_id);
 		if(cookieList==null){
 			return null;
@@ -198,6 +198,9 @@ public class UserCookieDB {
 			e.printStackTrace();
 			return null;
 		}
+		if(cookieList.size()<1){
+			return null;
+		}
 		
 		
 		return cookieList;
@@ -214,11 +217,12 @@ public class UserCookieDB {
 		String user_id=cookie.getUser_id();
 		String name=cookie.getName();
 		int ref_num=cookie.getRef_num();
-		Date time=cookie.getTime();
+//		Date time=cookie.getTime();
 		
-		String sql="INSERT INTO "+table+" VALUES('"+user_id+"','"+name+"',"+ref_num+","+time+")"+
-				"ON DUPLICATE KEY UPDATE ref_num=ref_num+1,time="+time;
+		String sql="INSERT INTO "+table+" VALUES('"+user_id+"','"+name+"',"+ref_num+",CURDATE())"+
+				"ON DUPLICATE KEY UPDATE ref_num=ref_num+1,time=CURDATE()";
 		try {
+//			System.out.println(sql);
 			if(!Database.operate(sql)){
 				return false;
 			}

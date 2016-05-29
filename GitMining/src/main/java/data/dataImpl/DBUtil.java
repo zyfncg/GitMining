@@ -22,7 +22,9 @@ public class DBUtil {
 		List<ProjectDetail> pList;
     	String target="where name='"+projectName+"'";
     	pList=getProjectDetailListFromDB(target);
-    	
+    	if(pList==null){
+        	return null;
+        }
     	return pList.get(0);
 	}
 	
@@ -101,10 +103,16 @@ public class DBUtil {
             }
 
         } catch (SQLException e) {
+        	
             e.printStackTrace();
+            if(pList.size()<1){
+            	return null;
+            }
             return pList;
         }
-        
+        if(pList.size()<1){
+        	return null;
+        }
         return pList;
     }
     
@@ -279,9 +287,14 @@ public class DBUtil {
             
         } catch (SQLException e) {
             e.printStackTrace();
+            if(pList.size()<1){
+            	return null;
+            }
             return pList;
         }
-
+        if(pList.size()<1){
+        	return null;
+        }
 
 
         return pList;
@@ -323,7 +336,9 @@ public class DBUtil {
     	List<UserInfoDetail> userList;
     	String target="where name='"+userName+"'";
     	userList=getUserDetailListFromDB(target);
-    	
+    	if(userList==null){
+    		return null;
+    	}
     	return userList.get(0);
     }
     
@@ -408,7 +423,13 @@ public class DBUtil {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            if(userList.size()<1){
+            	return null;
+            }
             return userList;
+        }
+        if(userList.size()<1){
+        	return null;
         }
 
         return userList;
@@ -446,7 +467,9 @@ public class DBUtil {
             e.printStackTrace();
             return userList;
         }
-        
+        if(userList.size()<1){
+        	return null;
+        }
         return userList;
     }
 }
