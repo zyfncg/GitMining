@@ -11,7 +11,7 @@ function succRate(id, numSuccess, numFail) {
 	var myChart = echarts.init(document.getElementById(id));
 	myChart.setOption({
 		title : {
-			text : '成功项目与非成功项目所占比例',
+			text : '在统计的样本中,成功项目与非成功项目所占比例',
 			left:'center'
 		},
 		series : [ {

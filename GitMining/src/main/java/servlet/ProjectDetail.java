@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import Info.ProjectName;
 import businessLogic.businessLogicController.RepositoryController.RepositoryController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
+import recommend.RecommendLogic;
+import recommend.RecommendService;
 import res.CookieUtil;
 import res.PaginationUtil;
 
@@ -21,8 +23,11 @@ import res.PaginationUtil;
 public class ProjectDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final RepositoryBLService service =
+	private static final RepositoryBLService project =
 			new RepositoryController();
+	
+	private static final RecommendService recommend =
+			new RecommendLogic();
        
     public ProjectDetail() {
         super();
@@ -32,18 +37,26 @@ public class ProjectDetail extends HttpServlet {
 			throws ServletException, IOException {
 		String owner = request.getParameter("owner");
 		String projectName = request.getParameter("project");
-		//TODO 更新数据库中对该用户的引用，获得该用户的数据
-		String user_id = CookieUtil.getUserIDfromCookie(request, response);
 		
 		Info.ProjectDetail info = null;
 		try {
-			info = service.getRepositoryByName(new ProjectName(owner, projectName));
+			info = project.getRepositoryByName(new ProjectName(owner, projectName));
+			if(info == null) {
+				throw new Exception("找不到名字为" + owner + "/" + projectName + "的项目信息");
+			}
+			String user_id = CookieUtil.getUserIDfromCookie(request, response);
+			recommend.updateProjectInfo(user_id, owner + "/" + projectName);
+			recommend.updateLanguageInfo(user_id, info.getLanguage());
 		} catch (Exception e) {
+			request.getRequestDispatcher("/Project").forward(request, response);
 			e.printStackTrace();
+			return ;
 		}
 		
 		//设置有关页面跳转的一些参数
 		PaginationUtil.setParameters(request, "collaNum", "collaborators", info.getCollaboratorsInfo());
+		
+		request.setAttribute("project_detail", info);
 		request.getRequestDispatcher("/visualize/project_detail.jsp").forward(request, response);
 	}
 

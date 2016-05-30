@@ -1,5 +1,6 @@
 package recommend;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -8,7 +9,6 @@ import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfo;
-import Info.UsrStatisticInfo.CompanyStatistics;
 import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
 
 public class RecUtil {
@@ -73,7 +73,8 @@ public class RecUtil {
 			}
 		});
 		
-		List<ProjectDetail> result = TempProject.subList(0, 6);
+		List<ProjectDetail> result = new ArrayList<ProjectDetail>();
+		result.addAll(TempProject.subList(0, 6));
 		return result;
 	}
 }

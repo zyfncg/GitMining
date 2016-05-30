@@ -103,40 +103,38 @@
 
 		<section class="chartContainer">
 			<div id="succLangDistr" class="twochart">
-				<script type="text/javascript">
 				<%
 					List<LanguageStatistics> language = succ.getLanguageStat();
 					int size = language.size();
 				%>
+				<script type="text/javascript">
 				var names = new Array();
 				<%for (int i = 0; i < size; ++i) {%>
-					names.push('<%= language.get(i).getLanguage()%>');
+					names.push("<%= language.get(i).getLanguage() %>");
 				<%}%>
-				var nums = [
-					<%for (int i = 0; i < size; ++i) {%>
-					<%=language.get(i).getNum()%>,
-					<%}%>
-				];
+					var nums = new Array();
+				<%for (int i = 0; i < size; ++i) {%>
+					nums.push(<%= language.get(i).getNum() %>);
+				<%}%>
 					BarDistr('succLangDistr', '成功项目各语言的项目个数','语言',
 							names, nums);
 				</script>
 			</div>
 			
 			<div id="unsuccLangDistr" class="twochart">
-				<%
-					language = unsucc.getLanguageStat();
-					size = language.size();
-				%>
 				<script type="text/javascript">
 					var names = new Array();
+					<%
+						language = unsucc.getLanguageStat();
+						size = language.size();
+					%>
 					<%for (int i = 0; i < size; ++i) {%>
-						names.push('<%=language.get(i).getLanguage()%>');
+						names.push('<%= language.get(i).getLanguage() %>');
 					<%}%>
-					var nums = [
-						<%for (int i = 0; i < size; ++i) {%>
-						<%=language.get(i).getNum()%>,
-						<%}%>
-					];
+					var nums = new Array();
+					<%for (int i = 0; i < size; ++i) {%>
+						nums.push(<%= language.get(i).getNum() %>);
+					<%}%>
 					BarDistr('unsuccLangDistr', '非成功项目各语言的项目个数','语言', names, nums);
 				</script>
 			</div>
@@ -163,6 +161,7 @@
 			
 			<div id="unsuccComDistr" class="twochart">
 				<script type="text/javascript">
+					var names = new Array();
 					<%
 						company = unsucc.getCompanyStat();
 						size = company.size();

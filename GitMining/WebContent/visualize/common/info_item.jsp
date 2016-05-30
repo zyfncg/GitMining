@@ -23,10 +23,16 @@
 				<%=developer.getUserName()%></a>
 				<p class="feature-content-description">
 					<%="用户简介: " + developer.getDescriptionUser()%></p>
-				<p class="feature-content-item">
-					用户创建项目个数 : <%=developer.getProjectCreate()%></p>
-				<p class="feature-content-item">
-					用户参与项目个数 : <%=developer.getProjectInvolved()%></p>
+				<div class="feature-content-item">
+					<div class="key">用户创建项目个数 : </div>
+					<div class="value"><%=developer.getProjectCreate()%></div>
+					<br />
+				</div>
+				<div class="feature-content-item">
+					<div class="key">用户参与项目个数 : </div>
+					<div class="value"><%=developer.getProjectInvolved()%></div>
+					<br />
+				</div>
 				<br />
 				<p class="feature-content-item">
 				<a href="/DeveloperGithub?chooseDeveloper=<%= developer.getUserName() %>">
@@ -52,14 +58,26 @@
 					 <%= projectName %></a>
 				<p class="feature-content-description">
 					<%="项目简介: " + project.getDescription()%></p>
-				<p class="feature-content-item">
-					项目拥有者 : <%= owner %></p>
-				<p class="feature-content-item">
-					项目star数量 : <%= project.getStars() %></p>
-				<p class="feature-content-item">
-					项目fork数量 : <%= project.getForks() %></p>
-				<p class="feature-content-item">
-					项目contributor数量: <%= project.getContributors() %></p>
+				<div class="feature-content-item">
+					<div class="key">项目拥有者 : </div>
+					<div class="value"><%= owner %></div>
+					<br />
+				</div>
+				<div class="feature-content-item">
+					<div class="key">项目star数量 : </div>
+					<div class="value"><%= project.getStars() %></div>
+					<br />
+				</div>
+				<div class="feature-content-item">
+					<div class="key">项目fork数量 : </div>
+					<div class="value"><%= project.getForks() %></div>
+					<br />
+				</div>
+				<div class="feature-content-item">
+					<div class="key">项目contributor数量:  </div>
+					<div class="value"><%=project.getContributors() %></div>
+					<br />
+				</div>
 				<br />
 				<p class="feature-content-item">
 				<a href="/ProjectGithub?owner=<%= owner %>&

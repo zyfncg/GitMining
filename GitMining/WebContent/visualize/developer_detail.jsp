@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" import="constant.InfoType"%>
+	pageEncoding="utf-8" import="constant.InfoType,
+	Info.UserInfoDetail"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,30 +22,43 @@
 	<br />
 	<br />
 	<br />
+	
+	<%
+		UserInfoDetail detail = (UserInfoDetail)request.getAttribute("developer_detail");
+	%>
 
 	<div class="info-container">
 		<div class="icon">
 			<img alt="开发者图标" src="/visualize/img/developer3.jpg">
 		</div>
 		<div class="info">
-			<div class="name"><h4>Linus Torvalds</h4></div>
-			<div class="feature-content-description"><h4>Talk is Cheap, Show me your code
-			Hello World Hello World Hello World Hello World Hello World Hello World
-			Hello World Hello World</h4></div>
+			<div class="name"><h4><%= detail.getUserName() %></h4></div>
+			<div class="feature-content-description"><h4>
+				用户简介 : <%= detail.getDescriptionUser() %></h4></div>
 			<div class="feature-content-item">
-				邮箱： linus@example.com
+				<div class="key">邮箱：</div>
+				<div class="value"><%= detail.getEmail() %></div>
+				<br />
 			</div>
 			<div class="feature-content-item">
-				公司： linus@example.com
+				<div class="key">公司： </div>
+				<div class="value"><%= detail.getCompany() %></div>
+				<br />
 			</div>
 			<div class="feature-content-item">
-				住址： linus@example.com
+				<div class="key">住址：</div>
+				<div class="value"><%= detail.getAddress() %></div>
+				<br />
 			</div>
 			<div class="feature-content-item">
-				创建项目个数： linus@example.com
+				<div class="key">创建项目个数：</div>
+				<div class="value"><%= detail.getProjectCreate() %></div>
+				<br />
 			</div>
 			<div class="feature-content-item">
-				参与项目个数： linus@example.com
+				<div class="key">参与项目个数：</div>
+				<div class="value"> <%= detail.getProjectInvolved() %></div>
+				<br />
 			</div>
 		</div>
 	</div>

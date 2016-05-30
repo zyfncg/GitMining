@@ -53,6 +53,7 @@
 	<br />
 	
 	<div class="sortContainer">
+		<input class="sortButton" type="button" value="排序依据"/>
 		<input class="sortButton" type="button" value="General" onclick="sort('General')"/>
 		<input class="sortButton" type="button" value="Star" onclick="sort('Star')"/>
 		<input class="sortButton" type="button" value="Fork" onclick="sort('Fork')"/>
