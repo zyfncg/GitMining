@@ -57,10 +57,6 @@ public class RecUtil {
 			}
 		});
 		ProjectDetail res = TempProject.get(num);
-		ProjectDetail Res = new ProjectDetail(res.getDescription(), res.getLanguage(), res.getURL(),
-				res.getProjectName(), res.getForks(), res.getStars(), res.getContributors(),
-				res.getCollaborators(), res.getSubscribers(), res.getContributorsInfo(), res.getCollaboratorsInfo());
-		Res.setStatisticDetail(res.getStatisticDetail());
 		return res;
 	}
 	
@@ -73,8 +69,9 @@ public class RecUtil {
 			}
 		});
 		
-		List<ProjectDetail> result = new ArrayList<ProjectDetail>();
+		List<ProjectDetail> result = new ArrayList<>();
 		result.addAll(TempProject.subList(0, 6));
+//		List<ProjectDetail> result = TempProject.subList(0, 6);
 		return result;
 	}
 }

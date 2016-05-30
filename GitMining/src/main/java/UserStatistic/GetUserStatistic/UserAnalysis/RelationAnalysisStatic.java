@@ -22,6 +22,7 @@ public class RelationAnalysisStatic {
 
 	public Relationship getAllRelationship(UserInfo ChooseUser) {
 		Relationship relationship = new Relationship();
+		boolean find = false;
 		// 于当前查询用户相关的用户
 		List<RelationUser> AllRelation = new ArrayList<RelationUser>();
 		// 所有项目详细信息
@@ -33,9 +34,13 @@ public class RelationAnalysisStatic {
 			for (UserInfo aUserInfo : AProject.getCollaboratorsInfo()) {
 				if (other.IfUserEqual(aUserInfo, ChooseUser)) {
 					this.IntoRelation(AProject.getCollaboratorsInfo());
+					find  = true;
 					//break;
 				}
 			}
+		}
+		if (!find) {
+			return null;
 		}
 		// UserInfoDetail ChooseOne = other.BecomeDetail(ChooseUser);
 		relationship.setUserName(ChooseUser.getUserName());
