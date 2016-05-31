@@ -13,6 +13,7 @@
 <script src="/visualize/js/jquery-1.11.2.min.js"></script>
 <script src="/visualize/js/jquery.scrollUp.min.js"></script>
 <script src="/visualize/js/parallax.js-1.3.1/parallax.js"></script>
+<script src="/visualize/js/world.js"></script>
 <script type="text/javascript" src="/visualize/js/prepareScrollUp.js"></script>
 <link href="/visualize/css/font.css" rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css"
