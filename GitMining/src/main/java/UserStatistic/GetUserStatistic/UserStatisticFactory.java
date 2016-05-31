@@ -41,4 +41,7 @@ public class UserStatisticFactory {
 	public RelationAnalysisStatic GetRelationAnalysisStatic() {
 		return new RelationAnalysisStatic();
 	}
+	public Distribution GetDistribution() {
+		return new Distribution();
+	}
 }
