@@ -115,8 +115,11 @@ public class RecommendLogic implements RecommendService {
 	@Override
 	public void updateLanguageInfo(String user_id, String language) {
 		// TODO Auto-generated method stub
-		boolean result = RecommendData.SaveLanguage(user_id, language);
-		
+		if(!language.equals("unknown")){
+			boolean result = RecommendData.SaveLanguage(user_id, language);
+		}
+		else {
+		}
 	}
 
 	@Override
@@ -129,7 +132,11 @@ public class RecommendLogic implements RecommendService {
 	@Override
 	public void updateCompanyInfo(String user_id, String company) {
 		// TODO Auto-generated method stub
-		boolean result = RecommendData.updateCompanyInfo(user_id, company);
+		if(!company.equals("unknown")){
+			boolean result = RecommendData.updateCompanyInfo(user_id, company);			
+		}
+		else {
+		}
 	}
 
 	@Override
