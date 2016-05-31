@@ -12,17 +12,43 @@ public class Relationship {
 	 */
 	private String descriptionUser;
 	/**
-	 * 用户姓名
+	 * 经度
 	 */
-	private List<RelationUser> RelationUser;
+	private double longtitude;
+	/**
+	 * 纬度
+	 */
+	private double latitude;
+	/**
+	 * 相关用户姓名
+	 */
+	private List<RelationUser> relationUsers;
 	
 	public Relationship(String name, String Des, List<RelationUser> relation){
 		this.userName = name;
 		this.descriptionUser = Des;
-		this.RelationUser = relation;
+		this.relationUsers = relation;
 	}
 	public Relationship(){
 		
+	}
+	public double getLongtitude() {
+		return longtitude;
+	}
+	public void setLongtitude(double longtitude) {
+		this.longtitude = longtitude;
+	}
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public List<RelationUser> getRelationUsers() {
+		return relationUsers;
+	}
+	public void setRelationUsers(List<RelationUser> relationUsers) {
+		this.relationUsers = relationUsers;
 	}
 	public String getUserName() {
 		return userName;
@@ -35,12 +61,6 @@ public class Relationship {
 	}
 	public void setDescriptionUser(String descriptionUser) {
 		this.descriptionUser = descriptionUser;
-	}
-	public List<RelationUser> getRelationUser() {
-		return RelationUser;
-	}
-	public void setRelationUser(List<RelationUser> relationUser) {
-		RelationUser = relationUser;
 	}
 	
 	

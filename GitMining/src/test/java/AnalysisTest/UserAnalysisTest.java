@@ -34,7 +34,7 @@ public class UserAnalysisTest {
 		}
 		Relationship relationship = relation.getAllRelationship(userInfos.get(7));
 		System.out.println(relationship.getUserName());
-		List<RelationUser> relationUsers = relationship.getRelationUser();
+		List<RelationUser> relationUsers = relationship.getRelationUsers();
 		System.out.println(relationUsers.size());
 		for(RelationUser temp:relationUsers){
 			System.out.println(temp.getUserName());

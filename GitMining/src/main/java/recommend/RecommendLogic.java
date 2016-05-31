@@ -8,7 +8,6 @@ import Info.ProjectInfo;
 import Info.UserInfoDetail;
 import data.dataImpl.recommendDataImpl.RecommendDataImpl;
 import data.dataServer.recommendDataServer.RecommendDataServer;
-import twaver.base.A.E.b;
 
 public class RecommendLogic implements RecommendService {
 

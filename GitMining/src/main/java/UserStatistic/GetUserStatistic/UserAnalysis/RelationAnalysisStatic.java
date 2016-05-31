@@ -33,7 +33,7 @@ public class RelationAnalysisStatic {
 		for (ProjectDetail AProject : allProject) {
 			for (UserInfo aUserInfo : AProject.getCollaboratorsInfo()) {
 				if (other.IfUserEqual(aUserInfo, ChooseUser)) {
-					this.IntoRelation(AProject.getCollaboratorsInfo());
+					this.IntoRelation(AProject.getCollaboratorsInfo(),ChooseUser);
 					find  = true;
 					//break;
 				}
@@ -43,8 +43,13 @@ public class RelationAnalysisStatic {
 			return null;
 		}
 		// UserInfoDetail ChooseOne = other.BecomeDetail(ChooseUser);
+		//设置当前用户的相关值
+		UserInfoDetail ChooseUserDetail = other.BecomeDetail(ChooseUser);
+		AddressInfo ChooseaddressInfo = GetAddress.getAddressByName(ChooseUserDetail.getAddress());
 		relationship.setUserName(ChooseUser.getUserName());
 		relationship.setDescriptionUser(ChooseUser.getDescriptionUser());
+		relationship.setLatitude(ChooseaddressInfo.getLatitude());
+		relationship.setLongtitude(ChooseaddressInfo.getLongtitude());
 		//
 		for (UserInfoDetail userInfoDetail : allrelation) {
 			int power = other.PowerNum(userInfoDetail);
@@ -58,15 +63,15 @@ public class RelationAnalysisStatic {
 				AllRelation.add(relationUser);		
 			}
 		}
-		relationship.setRelationUser(AllRelation);
+		relationship.setRelationUsers(AllRelation);
 		return relationship;
 	}
 
 	// 把所有collaboraters加入列表(allrelation)
-	public void IntoRelation(List<UserInfo> temp) {
+	public void IntoRelation(List<UserInfo> temp,UserInfo ChooseUser) {
 		for (UserInfo auUserInfo : temp) {
 			UserInfoDetail userInfoDetail = other.BecomeDetail(auUserInfo);
-			if (!allrelation.contains(userInfoDetail)) {
+			if ((!allrelation.contains(userInfoDetail)) && (!other.IfEqualDetail(ChooseUser, userInfoDetail)) ) {
 				allrelation.add(userInfoDetail);
 			}
 		}
