@@ -6,12 +6,11 @@ import Info.ProjectDetail;
 import Info.UserInfo;
 import Info.UserInfoDetail;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfSuccess;
-import UserStatistic.SetUserStatistic.AllUserStatistic;
 
 public class OtherAnalysis {
-	private AllUserStatistic allUserStatistic = new AllUserStatistic();
+//	private AllUserStatistic allUserStatistic = new AllUserStatistic();
 	private IfSuccess ToGetSucc = new IfSuccess();
-	private List<UserInfoDetail> allUserDetail = allUserStatistic.getStatisticUserInfo();
+	private List<UserInfoDetail> allUserDetail = StaticAllUserDetail.AllUserDetailInfo;
 	//判断两个UserInfo是否一致
 	public boolean IfUserEqual(UserInfo Auser,UserInfo Buser) {
 		if ( (Auser.getUserName().equals(Buser.getUserName())) && (Auser.getDescriptionUser().equals(Buser.getDescriptionUser())) ) {
@@ -30,6 +29,15 @@ public class OtherAnalysis {
 			return false;
 		}
 	}
+	//判断在UserInfoDetail的List中是否包含某一个UserInfoDetail
+	public boolean IfContained(List<UserInfoDetail> aList,UserInfoDetail anDetail) {
+		for(UserInfoDetail tempUser:aList){
+			if (tempUser.getUserName().equals(anDetail.getUserName()) && (tempUser.getDescriptionUser().equals(anDetail.getDescriptionUser()))) {
+				return true;
+			}
+		}
+		return false;
+	}
 	//将UserInfo变为UserInfoDetail
 	public UserInfoDetail BecomeDetail(UserInfo tempUser) {
 		for(UserInfoDetail temp:allUserDetail){
@@ -44,7 +52,7 @@ public class OtherAnalysis {
 		int power = 0;
 		List<ProjectDetail> allProject = ToGetSucc.GetAllSuccess();
 		for(ProjectDetail temp:allProject){
-			for(UserInfo tempUser:temp.getCollaboratorsInfo()){
+			for(UserInfo tempUser:temp.getContributorsInfo()){
 				if(this.IfEqualDetail(tempUser, AnUSer)){
 					power++;
 					break;

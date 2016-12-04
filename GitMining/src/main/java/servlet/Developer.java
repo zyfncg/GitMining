@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Info.UserInfo;
+import UserStatistic.GetUserStatistic.Distribution;
 import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.UserBLService.UserBLService;
 import res.PaginationUtil;
@@ -23,6 +24,8 @@ public class Developer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final UserBLService user = new UserController();
+	
+	private static final Distribution distribution = new Distribution();
 	
 	private static List<UserInfo> developers;
 	
@@ -56,6 +59,7 @@ public class Developer extends HttpServlet {
 		
 		//设置有关页面跳转的一些参数
 		PaginationUtil.setParameters(request, "developerNum", "developers", developers);
+		request.setAttribute("distribution", distribution.getDistribution());
 		
 		request.getRequestDispatcher("/visualize/developer.jsp").forward(request, response);
 	}

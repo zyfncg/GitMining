@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.text.NumberFormat;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -28,6 +29,7 @@ import org.jfree.data.general.DatasetUtilities;
 import org.jfree.util.SortOrder;
 
 import Info.RepStatisticInfo.LanguageStatistics;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryStatisticFactory;
 import res.Colors;
 import res.Strings;
 
@@ -101,13 +103,14 @@ public class LanguageChart extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(panel,BorderLayout.CENTER);
 	}
-//	public static void main(String[] args) {
-//		JFrame frame = new JFrame();
-//		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
-//		LanguageChart company = new LanguageChart(repositoryStatisticFactory, 800, 500);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.add(company);
-//		frame.pack();
-//		frame.setVisible(true);
-//	}
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		RepositoryStatisticFactory repositoryStatisticFactory = new RepositoryStatisticFactory();
+		LanguageChart company = new LanguageChart(
+				repositoryStatisticFactory.GetLanguage().getLanguageStatistic(), 800, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(new ui.statistics.ChartPanel(company, 600, 600));
+		frame.pack();
+		frame.setVisible(true);
+	}
 }

@@ -1,5 +1,0 @@
-who:张云飞，肖安祥，阮威威，张仁知
-when：第三周
-what：讨论项目开发过程中遇到的问题（解决Bug）以及美化界面
-how long:3h （以小时为单位）
-arrived solutions: 修复了Bug，界面初步美化完成

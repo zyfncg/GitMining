@@ -9,12 +9,12 @@ import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.ProjectName;
 import Info.UserInfo;
-import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.StaticAllProjectDetail;
 
 public class RecUtil {
 
-	private AllRepositoryStatistic allRepositoryStatistic = new AllRepositoryStatistic();
-	private List<ProjectDetail> AllProject = allRepositoryStatistic.getStatisticRepositoryInfo();
+//	private AllRepositoryStatistic allRepositoryStatistic = new AllRepositoryStatistic();
+	private List<ProjectDetail> AllProject = StaticAllProjectDetail.AllProjectDetailInfo;
 	
 	//将projectInfo变为ProjectDetail
 	public ProjectDetail ToProDetail(ProjectInfo Aproject) {

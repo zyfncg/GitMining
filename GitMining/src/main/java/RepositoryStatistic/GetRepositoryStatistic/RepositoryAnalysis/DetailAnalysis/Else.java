@@ -5,20 +5,26 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import Info.AddressInfo;
 import Info.ProjectDetail;
 import Info.UserInfoDetail;
 import Info.RepStatisticInfo.LanguageStatistics;
 import Info.UsrStatisticInfo.CompanyStatistics;
-import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
 
 public class Else {
 	// private IfSuccess success = new IfSuccess();
 	// private IfBigCow bigCow = new IfBigCow();
 	// private List<ProjectDetail> temp = success.GetAllSuccess();
 
-	private AllRepositoryStatistic allRepositoryStatistic = new AllRepositoryStatistic();
-	private List<ProjectDetail> AllProject = allRepositoryStatistic.getStatisticRepositoryInfo();
+//	private AllRepositoryStatistic allRepositoryStatistic = new AllRepositoryStatistic();
+	private List<ProjectDetail> AllProject = StaticAllProjectDetail.AllProjectDetailInfo;
 
+//	public Else(){
+//		if (AllProject == null) {
+//			StaticAllProjectDetail staticAllProjectDetail = new StaticAllProjectDetail();
+//			AllProject = staticAllProjectDetail.AllProjectDetailInfo;
+//		}
+//	}
 	//取得分析相关的语言种类
 	public List<String> GetLanguage() {
 		List<LanguageStatistics> Sortlanguage = new ArrayList<LanguageStatistics>();
@@ -92,11 +98,32 @@ public class Else {
 			}
 		});
 		
-		List<CompanyStatistics> subComp = SortCompany.subList(0, 10);
+		List<CompanyStatistics> subComp = new ArrayList<CompanyStatistics>();
+		subComp.addAll(SortCompany.subList(0, 10));
 		allCompany.clear();
 		for(CompanyStatistics company:subComp){
 			allCompany.add(company.getCompany());
 		}
 		return allCompany;
+	}
+	
+	
+	//处理项目的Contributor分布内容
+	//
+	public boolean IfContain(List<AddressInfo> allAddress,AddressInfo nowAddress) {
+//		boolean ifCon = false;
+		boolean IfFound = false;
+		for(AddressInfo temp:allAddress){
+			if (temp.getSite().equals(nowAddress.getSite())) {
+				int a = temp.getWorkerNumber();
+				a++;
+				temp.setWorkerNumber(a);
+				IfFound = true;
+			}
+		}
+		if (!IfFound) {
+			allAddress.add(nowAddress);
+		}
+		return false;
 	}
 }

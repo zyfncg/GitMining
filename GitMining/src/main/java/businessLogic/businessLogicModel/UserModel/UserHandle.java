@@ -16,6 +16,7 @@ public class UserHandle {
 	//最近一次搜索的用户信息列表
 //	private static List<UserInfo> searchuser = new ArrayList<UserInfo>();
 	public List<UserInfo> GetAllUsers()throws Exception {
+		alluser.clear();
 		List<UserInfo> allUsers = userData.getAllUsers();
 		alluser.addAll(allUsers);
 		return allUsers;

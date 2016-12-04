@@ -25,7 +25,7 @@ public class MapDataTest {
 //		System.out.println(localInfo.getSite());
 		
 		
-		assertEquals(100.0,addressInfo.getLongtitude(),0.01);
+		assertEquals(113.0,addressInfo.getLongtitude(),0.01);
 		assertEquals(30.0,addressInfo.getLatitude(),0.01);
 	}
 

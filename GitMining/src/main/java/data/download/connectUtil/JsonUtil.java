@@ -253,6 +253,7 @@ public class JsonUtil {
 		String userName;
 		String descriptionUser = "";
 		String email="";
+		String pictureURL;
 		Date joinDate;
 		String type;
 		String company = "";
@@ -266,6 +267,7 @@ public class JsonUtil {
 		json = JSONObject.fromObject(jsonString);
 		
 		userName=json.getString("login");
+		pictureURL=getPictureURL(json);
 		type=json.getString("type");
 		String dateString=json.getString("created_at");
 		joinDate=Date.stringToDate(dateString);
@@ -300,8 +302,19 @@ public class JsonUtil {
 		UserInfoDetail userDetail=new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
 				address, projectInvolved, projectCreate, ProjectCreatList);
 		userDetail.setUserType(type);
+		userDetail.setPictureURL(pictureURL);
 		return userDetail;
 			
+	}
+	
+	private static String getPictureURL(JSONObject json){
+		String picture=null;
+		try {
+			picture=json.getString("avatar_url");
+		} catch (Exception e) {
+			return picture;
+		}
+		return picture;
 	}
 	
 	/**

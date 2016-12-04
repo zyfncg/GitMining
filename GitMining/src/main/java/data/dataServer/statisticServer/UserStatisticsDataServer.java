@@ -3,6 +3,7 @@ package data.dataServer.statisticServer;
 import java.util.List;
 
 import Info.UserInfoDetail;
+import Info.Relation.AllUsrRelation;
 import Info.UsrStatisticInfo.SaveUserStatisticInfo;
 
 public interface UserStatisticsDataServer {
@@ -33,4 +34,19 @@ public interface UserStatisticsDataServer {
 	 * @throws Exception 
 	 */
 	public SaveUserStatisticInfo GetStatisticedInfo() throws Exception;
+	
+	/**
+	 * 保存人物关系数据
+	 * @param Result
+	 * @return
+	 */
+	public boolean SaveAllRelation(List<AllUsrRelation> Result);
+	
+	/**
+	 * 获得人物关系数据
+	 * @return
+	 */
+	public List<AllUsrRelation> getAllRelation();
+
+
 }

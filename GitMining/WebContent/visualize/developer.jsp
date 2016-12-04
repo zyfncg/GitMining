@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" import="java.util.List, Info.UserInfo,
-	constant.InfoType"%>
+	constant.InfoType, Info.AddressInfo"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="echarts.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +12,8 @@
 <script src="/visualize/js/jquery-1.11.2.min.js"></script>
 <script src="/visualize/js/jquery.scrollUp.min.js"></script>
 <script src="/visualize/js/parallax.js-1.3.1/parallax.js"></script>
-<script src="/visualize/js/world.js"></script>
+<script src="/visualize/js/chart/world.js"></script>
+<script src="/visualize/js/chart/developer.js"></script>
 <script type="text/javascript" src="/visualize/js/prepareScrollUp.js"></script>
 <link href="/visualize/css/font.css" rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css"
@@ -44,18 +44,44 @@
 	<br />
 	<br />
 	<br />
-	<!-- TODO test -->
-	<script type="text/javascript" src="/visualize/js/chart/analysis.js"></script>
-	<script src="/visualize/js/echarts.min.js"></script>
+
 	<div class="container">
 	<section class="chartContainer">
-		<div id='aaa' class="onechart">
+		<div id='distribution' class="map">
+			<%
+				@SuppressWarnings("unchecked")
+				List<AddressInfo> relation = (List<AddressInfo>)request.getAttribute("distribution");
+				int size = relation.size();
+				AddressInfo info = null;
+				String address = null;
+			%>
+			
 			<script type="text/javascript">
-				succRate('aaa',100,100);
+				var lat = new Array();
+				var lon = new Array();
+				var cityName = [];
+				var value = [];
+				<%
+					for(int i = 0; i < size; ++i) {
+						info = relation.get(i);
+				%>
+						lat.push(<%= info.getLatitude() %>);
+						lon.push(<%= info.getLongtitude() %>);
+						cityName.push('<%= info.getSite() %>');
+						value.push(<%= info.getWorkerNumber() %>);
+				<%
+					}
+				%>
+				map('distribution', lat, lon, cityName, value);
 			</script>
 		</div>
 	</section>
 	</div>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 
 	<form action="/Developer" method="post">
 		<div class="searchContainer">
@@ -77,8 +103,6 @@
 	%>
 	<%@include file="/visualize/common/info_list.jsp" %>
 
-	<br />
-	<br />
 	<br />
 	<br />
 	<br />

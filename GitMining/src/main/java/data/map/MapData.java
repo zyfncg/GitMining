@@ -17,10 +17,6 @@ public class MapData {
 	
 	private static String path="files/mapInfo.txt";
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Hello map!!!");
-	}
 	/**
 	 * 获取地图数据及人员分布信息
 	 * @return Map形式数据

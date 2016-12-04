@@ -1,6 +1,7 @@
 package data.dataImpl;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -91,9 +92,19 @@ public class FileUtil {
 	public List<ProjectDetail> getProjectDetailList() throws Exception{
 		
 		List<ProjectDetail> pList = null;	
-		
-		ObjectInputStream is=new ObjectInputStream(new FileInputStream(
-				"projectDetailData.ser"));
+		String path=System.getProperty("user.dir");
+		System.out.println(path);
+
+		ObjectInputStream is = null;
+		try {
+			is = new ObjectInputStream(new FileInputStream(
+					"projectDetailData.ser"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			throw new FileNotFoundException(path);		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 			
 		pList=(List<ProjectDetail>) is.readObject();
 		is.close();

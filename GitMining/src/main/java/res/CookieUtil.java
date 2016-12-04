@@ -28,26 +28,27 @@ public class CookieUtil {
 			HttpServletResponse response) {
 		Cookie[] cookies = request.getCookies();
 		if(cookies == null) {
-			setUserIDCookie(response);
-			return null;
+			return setUserIDCookie(response);
 		}else {
 			String user_id = getUserIDfromCookie(cookies);
 			if(user_id == null) {
-				setUserIDCookie(response);
+				user_id = setUserIDCookie(response);
 			}
 			return user_id;
 		}
 	}
 
 	/**
-	 *为客户端用户在cookie设置一个id 
+	 *为客户端用户在cookie设置一个id
+	 *返回设置的 id
 	 */
-	private static void setUserIDCookie(HttpServletResponse response) {
+	private static String setUserIDCookie(HttpServletResponse response) {
 		Random random = new Random();
-		Cookie cookie = new Cookie(USER_ID, getCurrentTime()
-				+ random.nextInt(10000));
+		String id = getCurrentTime() + random.nextInt(10000);
+		Cookie cookie = new Cookie(USER_ID, id);
 		cookie.setMaxAge(14 * 24 * 60 * 3600); //两周
 		response.addCookie(cookie);
+		return id;
 	}
 	
 	/**

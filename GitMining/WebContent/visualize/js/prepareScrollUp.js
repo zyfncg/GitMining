@@ -26,20 +26,20 @@ function prepareScrollUP(head, bgImg) {
 
 	// ScrollUp Placement
 	$(window).on(
-			'scroll',
-			function() {
+		'scroll',
+		function() {
 
-				// If the height of the document less the height of the document is the same as the
-				// distance the window has scrolled from the top...
-				if ($(document).height() - $(window).height() === $(
-						window).scrollTop()) {
+			// If the height of the document less the height of the document is the same as the
+			// distance the window has scrolled from the top...
+			if ($(document).height() - $(window).height() === $(
+					window).scrollTop()) {
 
-					// Adjust the scrollUp image so that it's a few pixels above the footer
-					$('#scrollUp').css('bottom', '80px');
+				// Adjust the scrollUp image so that it's a few pixels above the footer
+				$('#scrollUp').css('bottom', '80px');
 
-				} else {
-					// Otherwise, leave set it to its default value.
-					$('#scrollUp').css('bottom', '30px');
-				}
-			});
+			} else {
+				// Otherwise, leave set it to its default value.
+				$('#scrollUp').css('bottom', '30px');
+			}
+		});
 }

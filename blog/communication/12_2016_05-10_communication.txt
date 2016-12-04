@@ -1,5 +1,0 @@
-who:张云飞，肖安祥，阮威威，张仁知
-when：第十二周
-what：迭代三界面设计和布局
-how long:2.5h （以小时为单位）
-arrived solutions: 初步完成迭代三界面模版

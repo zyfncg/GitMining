@@ -14,11 +14,11 @@ public class DataSave {
 
 	public static void main(String args[]){
 		DataSave ds=new DataSave();
-		if(ds.saveProjectData()){
-			System.out.println("项目信息保存成功！");
-		}else{
-			System.out.println("项目信息保存失败！");
-		}
+//		if(ds.saveProjectData()){
+//			System.out.println("项目信息保存成功！");
+//		}else{
+//			System.out.println("项目信息保存失败！");
+//		}
 		if(ds.saveUserData()){
 			System.out.println("用户信息保存成功！");
 		}else{
@@ -228,6 +228,7 @@ public class DataSave {
 		int count = 0;
 		
 		String userName;
+		String pictureURL;
 		String descriptionUser ;
 		String email;
 		Date date;
@@ -268,6 +269,7 @@ public class DataSave {
 		for(UserInfoDetail user:userInfoDetailList){
 			userName=user.getUserName();
 			descriptionUser=user.getDescriptionUser();
+			pictureURL=user.getPictureURL();
 			descriptionUser=descriptionUser.replace("'", "\\'");
 			email=user.getEmail();
 			date=user.getJoinDate();
@@ -280,7 +282,8 @@ public class DataSave {
 			projectInvolved=user.getProjectInvolved();
 			projectCreate=user.getProjectCreate();
 
-			sql="INSERT INTO userInfo VALUES('"+userName+linkStr+descriptionUser+linkStr+email+linkStr+joinDate+linkStr+
+			sql="INSERT INTO userInfo VALUES('"+userName+linkStr+pictureURL+linkStr
+					+descriptionUser+linkStr+email+linkStr+joinDate+linkStr+
 					type+linkStr+company+linkStr+address+"',"+projectInvolved+","+projectCreate+")";
 			try {
 				if(!Database.operate(sql)){

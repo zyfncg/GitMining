@@ -194,6 +194,7 @@ public class UserCookieDB {
 				cookie=new CookieInfo(user_id, name, ref_num, time);
 				cookieList.add(cookie);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

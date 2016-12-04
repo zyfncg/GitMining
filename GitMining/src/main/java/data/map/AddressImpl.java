@@ -67,6 +67,10 @@ public class AddressImpl implements AddressServer{
 		
 		List<String> addrList=new ArrayList<String>();
 		
+		if(addr.contains("UK")){
+			addr=", uk";
+		}
+		
 		String address=addr.toLowerCase();
 		
 		if(address.contains("san francisco")&&!address.contains(", ca")){

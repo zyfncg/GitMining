@@ -5,17 +5,17 @@ import java.util.List;
 
 import Info.AddressInfo;
 import Info.ProjectDetail;
-import Info.RelationUser;
-import Info.Relationship;
 import Info.UserInfo;
 import Info.UserInfoDetail;
-import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
+import Info.Relation.RelationUser;
+import Info.Relation.Relationship;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.StaticAllProjectDetail;
 import data.dataServer.statisticServer.AddressServer;
 import data.map.AddressImpl;
 
 public class RelationAnalysisStatic {
 	private OtherAnalysis other = new OtherAnalysis();
-	private AllRepositoryStatistic ToGetRepository = new AllRepositoryStatistic();
+//	private AllRepositoryStatistic ToGetRepository = new AllRepositoryStatistic();
 	private AddressServer GetAddress = new AddressImpl();
 	// 所有与当前用户相关的User
 	private List<UserInfoDetail> allrelation = new ArrayList<UserInfoDetail>();
@@ -26,14 +26,16 @@ public class RelationAnalysisStatic {
 		// 于当前查询用户相关的用户
 		List<RelationUser> AllRelation = new ArrayList<RelationUser>();
 		// 所有项目详细信息
-		List<ProjectDetail> allProject = ToGetRepository.getStatisticRepositoryInfo();
+		List<ProjectDetail> allProject = StaticAllProjectDetail.AllProjectDetailInfo;
 		//清空allrelation
 		allrelation.clear();
 		//处理查询用户相关
 		for (ProjectDetail AProject : allProject) {
-			for (UserInfo aUserInfo : AProject.getCollaboratorsInfo()) {
+			for (UserInfo aUserInfo : AProject.getContributorsInfo()) {
 				if (other.IfUserEqual(aUserInfo, ChooseUser)) {
-					this.IntoRelation(AProject.getCollaboratorsInfo(),ChooseUser);
+//					AProject.getContributorsInfo().addAll(AProject.getCollaboratorsInfo());
+//					this.IntoRelation(AProject.getContributorsInfo(),ChooseUser);
+					this.IntoRelation(AProject.getContributorsInfo(), ChooseUser);
 					find  = true;
 					//break;
 				}
@@ -46,6 +48,9 @@ public class RelationAnalysisStatic {
 		//设置当前用户的相关值
 		UserInfoDetail ChooseUserDetail = other.BecomeDetail(ChooseUser);
 		AddressInfo ChooseaddressInfo = GetAddress.getAddressByName(ChooseUserDetail.getAddress());
+		if (ChooseaddressInfo == null) {
+			return null;
+		}
 		relationship.setUserName(ChooseUser.getUserName());
 		relationship.setDescriptionUser(ChooseUser.getDescriptionUser());
 		relationship.setLatitude(ChooseaddressInfo.getLatitude());
@@ -71,7 +76,7 @@ public class RelationAnalysisStatic {
 	public void IntoRelation(List<UserInfo> temp,UserInfo ChooseUser) {
 		for (UserInfo auUserInfo : temp) {
 			UserInfoDetail userInfoDetail = other.BecomeDetail(auUserInfo);
-			if ((!allrelation.contains(userInfoDetail)) && (!other.IfEqualDetail(ChooseUser, userInfoDetail)) ) {
+			if ((!other.IfContained(allrelation, userInfoDetail)) && (!other.IfEqualDetail(ChooseUser, userInfoDetail)) ) {
 				allrelation.add(userInfoDetail);
 			}
 		}

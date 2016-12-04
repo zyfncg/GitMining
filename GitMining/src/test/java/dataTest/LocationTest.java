@@ -44,9 +44,9 @@ public class LocationTest {
 		}
 		System.out.println(addressList.size());
 		
-		for(int i=0;i<addressList.size();i++){
-			System.out.println(addressList.get(i));
-		}
+//		for(int i=0;i<addressList.size();i++){
+//			System.out.println(addressList.get(i));
+//		}
 		
 //		List<String> cityList=new ArrayList<String>();
 //		for(int i=0;i<addressList.size();i++){

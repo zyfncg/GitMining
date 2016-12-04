@@ -10,20 +10,19 @@ import Info.ProjectInfo;
 import Info.RecommendUser;
 import Info.UserInfo;
 import Info.UserInfoDetail;
-import Info.UsrStatisticInfo.CompanyStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfSuccess;
 import UserStatistic.GetUserStatistic.UserAnalysis.OtherAnalysis;
-import data.dataImpl.statistisDataImpl.UserStatisticData;
-import data.dataServer.statisticServer.UserStatisticsDataServer;
+import UserStatistic.GetUserStatistic.UserAnalysis.StaticAllUserDetail;
 
 public class UsrRecommend {
 
 	private RecUtil Autil = new RecUtil();
 	private OtherAnalysis other = new OtherAnalysis();
 	private IfSuccess ifSuccess = new IfSuccess();
-	private UserStatisticsDataServer userStatisticsDataServer = new UserStatisticData();
+//	private UserStatisticsDataServer userStatisticsDataServer = new UserStatisticData();
+	private List<UserInfoDetail> tempDetailUser = StaticAllUserDetail.AllUserDetailInfo;
 	
-	public UserInfoDetail getMostRelat(List<ProjectInfo> relatePro) {
+	public UserInfoDetail getMostRelat(List<ProjectInfo> relatePro,UserInfo CenterUser) {
 		UserInfo resultOne = null;
 		int resultNum = 0;
 		
@@ -34,13 +33,21 @@ public class UsrRecommend {
 			ProjectDetail projectDetail = Autil.ToProDetail(ProInfo);
 //			tempA = projectDetail.getCollaboratorsInfo();
 			for(UserInfo UsrInfo:projectDetail.getCollaboratorsInfo()){
-				int i = this.SortNum(UsrInfo, relatePro);
-				if (i>resultNum) {
-					resultNum = i;
-					resultOne = UsrInfo;
+				if(UsrInfo.getUserName().equals(CenterUser.getUserName())){
+				}
+				else {
+					int i = this.SortNum(UsrInfo, relatePro);
+					if (i>resultNum) {
+						resultNum = i;
+						resultOne = UsrInfo;
+					}
+					
 				}
 			}
 			
+		}
+		if(resultOne == null){
+			return null;
 		}
 		UserInfoDetail detail = other.BecomeDetail(resultOne);
 		
@@ -64,12 +71,12 @@ public class UsrRecommend {
 	}
 	
 	public UserInfoDetail GetTop(int num) {
-		List<UserInfoDetail> tempDetailUser = new ArrayList<UserInfoDetail>();
-		try {
-			tempDetailUser = userStatisticsDataServer.getStatisticUsersInfo();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		List<UserInfoDetail> tempDetailUser = new ArrayList<UserInfoDetail>();
+//		try {
+//			tempDetailUser = userStatisticsDataServer.getStatisticUsersInfo();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		List<RecommendUser> AllRecommend = new ArrayList<RecommendUser>();
 		
 		for(UserInfoDetail userDetail:tempDetailUser){

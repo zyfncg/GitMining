@@ -72,7 +72,7 @@ public class AddressTest {
 	
 		
 		assertEquals(-71.3,addressInfo.getLongtitude(),0.01);
-		assertEquals(41.5,addressInfo.getLatitude(),0.01);
+		assertEquals(41.7,addressInfo.getLatitude(),0.01);
 	}
 
 }

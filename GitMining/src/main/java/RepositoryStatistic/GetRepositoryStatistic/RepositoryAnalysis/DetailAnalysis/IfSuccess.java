@@ -6,12 +6,18 @@ import java.util.List;
 import Info.ProjectDetail;
 import Info.ProjectInfo;
 import Info.UserInfoDetail;
-import RepositoryStatistic.SetRepositoryStatistic.AllRepositoryStatistic;
 
 public class IfSuccess {
-	private AllRepositoryStatistic allRepositoryStatistic = new AllRepositoryStatistic();
-	private List<ProjectDetail> AllProject = allRepositoryStatistic.getStatisticRepositoryInfo();
+//	private AllRepositoryStatistic allRepositoryStatistic = new AllRepositoryStatistic();
+	private List<ProjectDetail> AllProject = StaticAllProjectDetail.AllProjectDetailInfo;
 //	private static  Succ = 7708;
+	
+//	public IfSuccess(){
+//		if (AllProject == null) {
+//			StaticAllProjectDetail staticAllProjectDetail = new StaticAllProjectDetail();
+//			AllProject = staticAllProjectDetail.AllProjectDetailInfo;
+//		}
+//	}
 	
 	public boolean getIfSuccess(ProjectDetail AProject) {
 		if (AProject.getStars()>=5000) {
@@ -42,6 +48,7 @@ public class IfSuccess {
 		return AllUnSuccess;
 	}
 	
+	//计算某一个用户创建的项目的成功数量
 	public int CalSuccNum(UserInfoDetail userDetail) {
 		int num = 0;
 		for(ProjectInfo temp:userDetail.getProjectCreatInfo()){

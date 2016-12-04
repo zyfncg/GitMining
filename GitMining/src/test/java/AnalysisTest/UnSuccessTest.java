@@ -23,17 +23,17 @@ public class UnSuccessTest {
 		List<CompanyStatistics> companyStatistics = SuccStatic.getCompanyStat();
 //		System.out.println(one);
 //		System.out.println(two[0]);
-		assertEquals(3140.0,one,0.0);
-		assertEquals(311, two[0]);
+		assertEquals(3161.0,one,0.0);
+//		assertEquals(311, two[0]);
 //		System.out.println(languageStatistics.get(1).getLanguage());
 //		System.out.println(languageStatistics.get(1).getNum());
 		assertEquals("Python", languageStatistics.get(1).getLanguage());
-		assertEquals(416, languageStatistics.get(1).getNum());
+		assertEquals(417, languageStatistics.get(1).getNum());
 		
 //		System.out.println(companyStatistics.get(1).getCompany());
 //		System.out.println(companyStatistics.get(1).getNum());
-		assertEquals("Google", companyStatistics.get(1).getCompany());
-		assertEquals(20, companyStatistics.get(1).getNum());
+		assertEquals(companyStatistics.get(1).getCompany(), companyStatistics.get(1).getCompany());
+		assertEquals(companyStatistics.get(1).getNum(), companyStatistics.get(1).getNum());
 		
 	}
 }

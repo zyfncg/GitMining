@@ -95,8 +95,8 @@
 			<div id="unsuccMrBigOccupied" class="twochart">
 				<script type="text/javascript">
 					MrBigOccupied('unsuccMrBigOccupied', '非成功项目大牛占协作者总数超过50%的比例',
-							<%= (double)unsucc.getMrBigOccupyNum() / succ.getProjectNum() %>,
-							<%= 1 - (double)unsucc.getMrBigOccupyNum() / succ.getProjectNum() %>);
+							<%= (double)unsucc.getMrBigOccupyNum() / unsucc.getProjectNum() %>,
+							<%= 1 - (double)unsucc.getMrBigOccupyNum() / unsucc.getProjectNum() %>);
 				</script>
 			</div>
 		</section>

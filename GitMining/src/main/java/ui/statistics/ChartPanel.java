@@ -13,7 +13,7 @@ import ui.component.EmptyPanel;
 @SuppressWarnings("serial")
 public class ChartPanel extends JPanel {
 	
-	 ChartPanel(JPanel chart, int width, int height) {
+	 public ChartPanel(JPanel chart, int width, int height) {
 		 Dimension size = chart.getPreferredSize();
 		 int w = (width - size.width) >> 1;
 		 EmptyPanel left = new EmptyPanel(w, height);

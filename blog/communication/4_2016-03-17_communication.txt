@@ -1,5 +1,0 @@
-who:张云飞，肖安祥，阮威威，张仁知
-when：第四周
-what：讨论迭代二安排和计划
-how long:3h （以小时为单位）
-arrived solutions: 类图和图表demo初步完成

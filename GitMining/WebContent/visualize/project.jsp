@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script src="/visualize/js/bootstrap.min.js"></script>	
 <script src="/visualize/js/jquery-1.11.2.min.js"></script>
 <script src="/visualize/js/jquery.scrollUp.min.js"></script>

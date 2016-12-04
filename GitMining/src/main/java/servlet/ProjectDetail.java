@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Info.ProjectName;
+import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.ProjectMap;
 import businessLogic.businessLogicController.RepositoryController.RepositoryController;
 import businessLogicService.RepositoryBLService.RepositoryBLService;
 import recommend.RecommendLogic;
@@ -28,6 +29,12 @@ public class ProjectDetail extends HttpServlet {
 	
 	private static final RecommendService recommend =
 			new RecommendLogic();
+	
+	/**
+	 *提供项目开发人员地理分布的信息 
+	 */
+	private static final ProjectMap map =
+			new ProjectMap();
        
     public ProjectDetail() {
         super();
@@ -57,6 +64,7 @@ public class ProjectDetail extends HttpServlet {
 		PaginationUtil.setParameters(request, "collaNum", "collaborators", info.getCollaboratorsInfo());
 		
 		request.setAttribute("project_detail", info);
+		request.setAttribute("distribution", map.GetAddressDis(info));
 		request.getRequestDispatcher("/visualize/project_detail.jsp").forward(request, response);
 	}
 

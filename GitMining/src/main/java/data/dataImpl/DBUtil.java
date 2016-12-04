@@ -101,6 +101,8 @@ public class DBUtil {
                 project=new ProjectInfo(description, pn, forks, stars, contributors);
                 pList.add(project);
             }
+            
+            rs.close();
 
         } catch (SQLException e) {
         	
@@ -145,7 +147,7 @@ public class DBUtil {
         int size;
         long commit;
         int issue;
-        int oneUserCommit;
+//        int oneUserCommit;
 
         double StarStatistic;
 		double ContributorStatistic;
@@ -170,13 +172,14 @@ public class DBUtil {
         String sql="select * from projectInfo "+target;
         String contributorSQL;
         String collaboratorSQL;
-        String commitSQL;
+//        String commitSQL;
         String statisticSQL;
 
         String userName;
 
         try {
             rs= Database.query(sql);
+//            System.out.println(sql);
             while(rs.next()) {
                 projectName = rs.getString("name");
                 pn = new ProjectName(projectName);
@@ -219,7 +222,7 @@ public class DBUtil {
                 List<UserInfo> contributorsInfo=new ArrayList<UserInfo>();
                 List<UserInfo> collaboratorsInfo=new ArrayList<UserInfo>();
 
-                contributorSQL = "select * from projectContributors where name='" + projectName + "'";
+                contributorSQL = "select contributorsName from projectContributors where name='" + projectName + "'";
                 userRS = Database.query(contributorSQL);
                 while (userRS.next()) {
                     userName=userRS.getString("contributorsName");
@@ -230,7 +233,7 @@ public class DBUtil {
                 }
                 userRS.close();
 
-                collaboratorSQL="select * from projectCollaborators where name='" + projectName + "'";
+                collaboratorSQL="select cllaboratorsName from projectCollaborators where name='" + projectName + "'";
                 userRS = Database.query(collaboratorSQL);
                 while (userRS.next()) {
                     userName=userRS.getString("cllaboratorsName");
@@ -241,14 +244,14 @@ public class DBUtil {
                 }
                 userRS.close();
 
-                commitSQL="select * from projectCommits where projectName='" + projectName + "'";
-                userRS = Database.query(commitSQL);
-                while (userRS.next()) {
-                    userName=userRS.getString("userName");
-                    oneUserCommit=userRS.getInt("commits");
-                    userCommits.put(userName,oneUserCommit);
-                }
-                userRS.close();
+//                commitSQL="select * from projectCommits where projectName='" + projectName + "'";
+//                userRS = Database.query(commitSQL);
+//                while (userRS.next()) {
+//                    userName=userRS.getString("userName");
+//                    oneUserCommit=userRS.getInt("commits");
+//                    userCommits.put(userName,oneUserCommit);
+//                }
+//                userRS.close();
                 
                 statisticSQL="select * from projectStatistic where name='" + projectName + "'";
                 userRS = Database.query(statisticSQL);
@@ -277,11 +280,16 @@ public class DBUtil {
             		statistic.setSizeAverage(sizeAverage);
             		
                 }
+                userRS.close();
                 
                 projectDetail.setContributorsInfo(contributorsInfo);
                 projectDetail.setCollaboratorsInfo(collaboratorsInfo);
                 projectDetail.setUserCommits(userCommits);
                 projectDetail.setStatisticDetail(statistic);
+                if(i%50==0){
+                	System.out.println(i);
+                }
+                
                 pList.set(i, projectDetail);
             }
             
@@ -334,7 +342,8 @@ public class DBUtil {
      */
     public UserInfoDetail getUserDetail(String userName){
     	List<UserInfoDetail> userList;
-    	String target="where name='"+userName+"'";
+    	String target="where name='"+userName+"';";
+//    	System.out.println(target);
     	userList=getUserDetailListFromDB(target);
     	if(userList==null){
     		return null;
@@ -366,6 +375,7 @@ public class DBUtil {
         UserInfoDetail userDetail;
 
         String userName;
+        String pictureURL;
         String descriptionUser;
         String email;
         Date joinDate;
@@ -382,8 +392,10 @@ public class DBUtil {
 
         try {
             rs=Database.query(sql);
+//            System.out.println(sql);
             while(rs.next()){
                 userName=rs.getString("name");
+                pictureURL=rs.getString("pictureURL");
                 descriptionUser=rs.getString("description");
                 email=rs.getString("email");
                 joinDate=Date.stringToDate(rs.getString("joinDate"));
@@ -397,7 +409,8 @@ public class DBUtil {
                 userDetail=new UserInfoDetail(userName, descriptionUser, email, joinDate, company,
                         address, projectInvolved, projectCreate, null);
                 userDetail.setUserType(type);
-
+                userDetail.setPictureURL(pictureURL);
+                
                 userList.add(userDetail);
             }
             
@@ -409,6 +422,7 @@ public class DBUtil {
             	List<ProjectInfo> projectCreatList=new ArrayList<ProjectInfo>();
             	proCreatSQL="select * from projectCreated where userName='" + userName + "'";
                 ResultSet proCreatRS=Database.query(proCreatSQL);
+//                System.out.println(proCreatSQL);
                 while(proCreatRS.next()){
                      projectName=proCreatRS.getString("projectName");
                      projectInfo=getProjectInfo(projectName);

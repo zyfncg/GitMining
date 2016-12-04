@@ -98,11 +98,11 @@ function CollaDistr(id, name, collaNums) {
                     formatter: function (param) {
                         return [
                             'Experiment ' + param.name + ': ',
-                            'upper: ' + param.data[0],
+                            'lower: ' + param.data[0],
                             'Q1: ' + param.data[1],
                             'median: ' + param.data[2],
                             'Q3: ' + param.data[3],
-                            'lower: ' + param.data[4]
+                            'upper: ' + param.data[4]
                         ].join('<br/>')
                     }
                 }

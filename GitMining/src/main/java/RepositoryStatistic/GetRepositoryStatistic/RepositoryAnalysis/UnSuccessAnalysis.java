@@ -16,15 +16,23 @@ import Info.UsrStatisticInfo.CompanyStatistics;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.Else;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfBigCow;
 import RepositoryStatistic.GetRepositoryStatistic.RepositoryAnalysis.DetailAnalysis.IfSuccess;
-import data.dataImpl.statistisDataImpl.UserStatisticData;
-import data.dataServer.statisticServer.UserStatisticsDataServer;
+import UserStatistic.GetUserStatistic.UserAnalysis.StaticAllUserDetail;
 
 public class UnSuccessAnalysis implements SuccAnalysisStatic{
 	private IfSuccess success = new IfSuccess();
 	private IfBigCow bigCow = new IfBigCow();
 	private Else theelse = new Else();
 	private List<ProjectDetail> temp = success.GetAllUnSuccess();
-	private UserStatisticsDataServer userStatisticsDataServer = new UserStatisticData();
+	List<UserInfoDetail> tempDetailUser = StaticAllUserDetail.AllUserDetailInfo;
+//	private UserStatisticsDataServer userStatisticsDataServer = new UserStatisticData();
+	
+	public UnSuccessAnalysis() {
+		if (tempDetailUser == null) {
+			StaticAllUserDetail staticAllUserDetail = new StaticAllUserDetail();
+			tempDetailUser = staticAllUserDetail.AllUserDetailInfo;
+		}
+	
+	}
 	
 	@Override
 	public double getProjectNum() {
@@ -89,14 +97,15 @@ public class UnSuccessAnalysis implements SuccAnalysisStatic{
 	public List<CompanyStatistics> getCompanyStat() {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-		List<UserInfoDetail> tempDetailUser = new ArrayList<UserInfoDetail>();
+//		List<UserInfoDetail> tempDetailUser = new ArrayList<UserInfoDetail>();
 		List<CompanyStatistics> statistics = new ArrayList<CompanyStatistics>();
-		// List<UserInfoDetail> EndDetailUser = new ArrayList<UserInfoDetail>();
-		try {
-			tempDetailUser = userStatisticsDataServer.getStatisticUsersInfo();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		//取得全部的用户详细信息
+//		try {
+//			tempDetailUser = userStatisticsDataServer.getStatisticUsersInfo();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		// 统计用户的全部公司种类
 		HashMap<String, Integer> CompanyResult = new HashMap<>();
 		List<String> allCompany = theelse.GetCompany(tempDetailUser);

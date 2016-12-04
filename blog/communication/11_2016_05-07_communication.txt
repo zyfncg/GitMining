@@ -1,5 +1,0 @@
-who:张云飞，肖安祥，阮威威，张仁知
-when：第十一周
-what：学习迭代三网页相关知识，选择统计图表绘制工具
-how long:3h （以小时为单位）
-arrived solutions: 确定Echarts绘制图表，初步学习和了解HTML语言

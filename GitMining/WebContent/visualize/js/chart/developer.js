@@ -5,44 +5,51 @@
 /**
  *开发者地理位置分布图 
  */
-function map(id, lat, long, name, value) {
+function map(id, lat, long, cityName, value) {
 	var myChart = echarts.init(document.getElementById(id));
-
+	
 	var attr = [];
 
 	for(i = 0; i < lat.length; ++i) {
 		attr.push("attr" + i);
 	}
-
+	
 	var latlong = {};
 	for(i = 0; i < lat.length; ++i) {
-		latlong[attr[i]] = {'latitude': lat[i], 'longitude': lon[i]};
+		latlong[attr[i]] = {'latitude': lat[i], 'longitude': long[i]};
 	}
 	var color;
 	var mapData = [];
+
 	for(i = 0; i < lat.length; ++i) {
-		color(value);
 		mapData[i] = {'code':latlong[attr[i]] , 'name':name[i], 'value':value[i], 'color':color};
 	}
-	function color(value) {
-		if(0 <value< 50) {
+	
+	function colorChoose(valueOne) {
+		if(0 <valueOne< 50) {
 			color = '#eea638';
-			} 
-			else if (50 <= value < 100) {
+		} 
+		else if (50 <= valueOne < 100) {
 			color = '#d8854f';
-			}
-			else if(100 <= value < 150) {
-			color = '#de4c4f';
-			}
-			else if(150 <= value < 200) {
-			color = '#86a965';
-			}
-			else if (value >= 200) {
-			color = '#8aabb0';
-			} else {
-			color = '#a7a737';
-			}
 		}
+		else if(100 <= valueOne < 150) {
+			color = '#de4c4f';
+		}
+		else if(150 <= valueOne < 200) {
+			color = '#86a965';
+		}
+		else if (valueOne >= 200) {
+			color = '#8aabb0';
+		} else {
+			color = '#a7a737';
+		}
+	}
+	
+	for(i = 0; i < lat.length; ++i) {
+		colorChoose(value[i]);
+		mapData[i] = {'code':attr[i] , 'name':cityName[i], 'value':value[i], 'color':color};
+	}
+	
 	var max = -Infinity;
 	var min = Infinity;
 	mapData.forEach(function (itemOpt) {
@@ -54,15 +61,16 @@ function map(id, lat, long, name, value) {
 		}
 	});
 	
+	
+	
 	option = {
-		backgroundColor: '#404a59',
+		backgroundColor: '#ffffff',
 		title : {
-			text: 'World Population (2011)',
-			subtext: 'From Gapminder',
+			text: '开发者地理分布图',
 			left: 'center',
 			top: 'top',
 			textStyle: {
-				color: '#fff'
+				color: '#000'
 			}
 		},
 		tooltip : {
@@ -94,11 +102,11 @@ function map(id, lat, long, name, value) {
 			},
 			itemStyle: {
 				normal: {
-					areaColor: '#323c48',
+					areaColor: '#233',
 					borderColor: '#111'
 				},
 				emphasis: {
-					areaColor: '#2a333d'
+					areaColor: '#ff333d'
 				}
 			}
 		},
@@ -111,7 +119,7 @@ function map(id, lat, long, name, value) {
 						name: itemOpt.name,
 						value: [
 							latlong[itemOpt.code].longitude,
-							latlong[itemOpt.code].latitude,
+                        	latlong[itemOpt.code].latitude,
 							itemOpt.value
 						],
 						label: {
@@ -136,113 +144,106 @@ function map(id, lat, long, name, value) {
 /**
  *开发者社交网络图 
  */
-function network(id, geoCoordMap, name, Data) {
+function network(id, geoCoordMap, personName, Data) {
 	var chart = echarts.init(document.getElementById(id));
-	 var planePath = 'path://M1705.06';
+	var planePath = 'path://M1705.06';
 
-     var convertData = function (data) {
-         var res = [];
-         for (var i = 0; i < data.length; i++) {
-             var dataItem = data[i];
-             var fromCoord = geoCoordMap[dataItem[0].name];
-             var toCoord = geoCoordMap[dataItem[1].name];
-             if (fromCoord && toCoord) {
-                 res.push([{
-                     coord: fromCoord
-                 }, {
-                     coord: toCoord
-                 }]);
-             }
-         }
-         return res;
-     };
-
+	var convertData = function (data) {
+		var res = [];
+		for (var i = 0; i < data.length; i++) {
+			var dataItem = data[i];
+			var fromCoord = geoCoordMap[dataItem[0].name];
+			var toCoord = geoCoordMap[dataItem[1].name];
+			if (fromCoord && toCoord) {
+				res.push([{
+					coord: fromCoord
+				}, {
+					coord: toCoord
+				}]);
+			}
+		}
+		return res;
+	};
+	
      var color = ['#ffa022'];
      var series = [];
-     [ [name, Data]].forEach(function (item, i) {
-         series.push({
-             name: item[0],
-             type: 'lines',
-             zlevel: 1,
-             effect: {
-                 show: true,
-                 period: 6,
-                 trailLength: 0.7,
-                 color: '#fff',
-                 symbolSize: 3
-             },
-             lineStyle: {
-                 normal: {
-                     color: color[0],
-                     width: 0,
-                     curveness: 0.2
-                 }
-             },
-             data: convertData(item[1])
-         },
-         {
-             name: item[0],
-             type: 'lines',
-             zlevel: 2,
-             effect: {
-                 show: true,
-                 period: 6,
-                 trailLength: 0,
-                 symbol: planePath,
-                 symbolSize: 15
-             },
-             lineStyle: {
-                 normal: {
-                     color: color[0],
-                     width: 1,
-                     opacity: 0.4,
-                     curveness: 0.2
-                 }
-             },
-             data: convertData(item[1])
-         },
-         {
-             name: item[0],
-             type: 'effectScatter',
-             coordinateSystem: 'geo',
-             zlevel: 2,
-             rippleEffect: {
-                 brushType: 'stroke'
-             },
-             label: {
-                 normal: {
-                     show: true,
-                     position: 'right',
-                     formatter: '{b}'
-                 }
-             },
-             symbolSize: function (val) {
-                 return val[2] / 8;
-             },
-             itemStyle: {
-                 normal: {
-                     color: color[0]
-                 }
-             },
-             data: item[1].map(function (dataItem) {
-                 return {
-                     name: dataItem[1].name,
-                     value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
-                 };
-             })
-         });
-     });
-
+    
+     [[personName, Data]].forEach(function (item, i) {
+    	    series.push({
+    	        name: item[0],
+    	        type: 'lines',
+    	        zlevel: 1,
+    	        effect: {
+    	            show: true,
+    	            period: 6,
+    	            trailLength: 0.7,
+    	            color: '#fff',
+    	            symbolSize: 3
+    	        },
+    	        lineStyle: {
+    	            normal: {
+    	                color: color[i],
+    	                width: 0,
+    	                curveness: 0.2
+    	            }
+    	        },
+    	        data: convertData(item[1])
+    	    },
+    	    {
+    	        name: item[0],
+    	        type: 'lines',
+    	        zlevel: 2,
+    	        effect: {
+    	            show: true,
+    	            period: 6,
+    	            trailLength: 0,
+    	            symbol: planePath,
+    	            symbolSize: 15
+    	        },
+    	        lineStyle: {
+    	            normal: {
+    	                color: color[i],
+    	                width: 1,
+    	                opacity: 0.4,
+    	                curveness: 0.2
+    	            }
+    	        },
+    	        data: convertData(item[1])
+    	    },
+    	    {
+    	        name: item[0],
+    	        type: 'effectScatter',
+    	        coordinateSystem: 'geo',
+    	        zlevel: 2,
+    	        rippleEffect: {
+    	            brushType: 'stroke'
+    	        },
+    	        label: {
+    	            normal: {
+    	                show: true,
+    	                position: 'right',
+    	                formatter: '{b}'
+    	            }
+    	        },
+    	        symbolSize: function (val) {
+    	            return val[2] / 8;
+    	        },
+    	        itemStyle: {
+    	            normal: {
+    	                color: color[i]
+    	            }
+    	        },
+    	        data: item[1].map(function (dataItem) {
+    	            return {
+    	                name: dataItem[1].name,
+    	                value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+    	            };
+    	        })
+    	    });
+    	});
+     
      option = {
-         backgroundColor: '#404a59',
-         title : {
-             text: '社交网络',
-             subtext: '人物关系图',
-             left: 'center',
-             textStyle : {
-                 color: '#fff'
-             }
-         },
+         backgroundColor: '#fdfdfd',
          tooltip : {
              trigger: 'item'
          },
@@ -250,7 +251,7 @@ function network(id, geoCoordMap, name, Data) {
              orient: 'vertical',
              top: 'bottom',
              left: 'right',
-             data:[name],
+             data:[personName],
              textStyle: {
                  color: '#fff'
              },
@@ -266,7 +267,7 @@ function network(id, geoCoordMap, name, Data) {
              roam: true,
              itemStyle: {
                  normal: {
-                     areaColor: '#323c48',
+                     areaColor: '#326c98',
                      borderColor: '#404a59'
                  },
                  emphasis: {
@@ -277,5 +278,11 @@ function network(id, geoCoordMap, name, Data) {
          series: series
      };
      // 使用刚指定的配置项和数据显示图表。
+     chart.on('click', function (params) {
+	    var city = params.name;
+	    if(geoCoordMap.hasOwnProperty(city)) {
+	    	window.location = "/DeveloperDetail?chooseDeveloper=" + city;
+	    }
+	 });
      chart.setOption(option);
 }

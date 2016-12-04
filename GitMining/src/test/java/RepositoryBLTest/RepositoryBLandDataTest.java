@@ -30,7 +30,7 @@ public class RepositoryBLandDataTest {
 			// TODO: handle exception
 		}	
 		for(int i=0;i<2000;i++){
-			System.out.println(sortlist.get(i).getProjectName().getrepository()+"  "+sortlist.get(i).getProjectName().getowner()+"  "+sortlist.get(i).getForks()+"  "+sortlist.get(i).getStars()+"  "+sortlist.get(i).getContributors());
+//			System.out.println(sortlist.get(i).getProjectName().getrepository()+"  "+sortlist.get(i).getProjectName().getowner()+"  "+sortlist.get(i).getForks()+"  "+sortlist.get(i).getStars()+"  "+sortlist.get(i).getContributors());
 			
 		}
 //		ProjectDetail detail = null;

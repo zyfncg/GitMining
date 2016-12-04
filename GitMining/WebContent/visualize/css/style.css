@@ -38,6 +38,13 @@ body {
 	margin: 0 auto;
 }
 
+.map {
+	width: 96%;
+	height: 600px;
+	margin-top: 100px;
+	margin: 0 auto;
+}
+
 /* only one chart in a line */
 .onechart {
 	width: 76%;
@@ -56,8 +63,8 @@ body {
 
 /* style of radar chart*/
 .radar {
-	width: 370px;
-	height: 500px;
+	width: 100%;
+	height: 430px;
 	margin: 0 auto;
 }
 
@@ -157,7 +164,7 @@ body {
 	height: 40px;
 	margin-top: 10px;
 	text-align: center;
-	color: #ff7800;
+	font-family: cursive;
 }
 
 img {
@@ -274,8 +281,8 @@ z-index: 999;
 .feature-content-item .value {
 	float: left;
 	text-align: left;
-	color: #ff7800;
 	margin-left: 5px;
+	font-family: cursive;
 }
 
 .feature-content-title {

@@ -37,7 +37,6 @@ public class ProjectStatisticDB {
 			sql="delete from projectStatistic";
 			Database.operate(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -60,10 +59,11 @@ public class ProjectStatisticDB {
 				sizeAverage=statistic.getSizeAverage();
 				totalStatistic=statistic.getTotalStatistic();
 				
-				sql="INSERT INTO projectInfo VALUES('"+name+"',"+StarStatistic+ContributorStatistic+CommitStatistic+
-						issueStatistic+PullRequestStatistic+sizeStatistic+StarAverage+ContibutorAverage+CommitAverage+
-						issueAverage+PullRequestAverage+sizeAverage+totalStatistic+");";
-				
+				sql="INSERT INTO projectStatistic VALUES('"+name+"',"+StarStatistic+","+ContributorStatistic+","+CommitStatistic+
+						","+issueStatistic+","+PullRequestStatistic+","+sizeStatistic+
+						","+StarAverage+","+ContibutorAverage+","+CommitAverage+
+						","+issueAverage+","+PullRequestAverage+","+sizeAverage+","+totalStatistic+");";
+//				System.out.println(sql);
 				Database.operate(sql);
 				
 			}

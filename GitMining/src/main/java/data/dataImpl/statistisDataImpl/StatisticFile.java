@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
+import Info.Relation.AllUsrRelation;
 import Info.RepStatisticInfo.SaveRepositoryStatisticInfo;
 import Info.UsrStatisticInfo.SaveUserStatisticInfo;
 
@@ -74,6 +76,43 @@ public class StatisticFile {
 			return false;
 		}
 		return true;
+	}
+	
+	
+	
+	/**
+	 * 保存用户关系
+	 * @param Result
+	 * @return
+	 */
+	public boolean saveUserRelation(List<AllUsrRelation> Result) {
+		try {
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("files/relation.ser"));
+			oos.writeObject(Result);
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public List<AllUsrRelation> getUserRelation() throws Exception {
+		List<AllUsrRelation> relation = null;	
+		
+		ObjectInputStream is=new ObjectInputStream(new FileInputStream("files/relation.ser"));
+			
+		try {
+			relation=(List<AllUsrRelation>) is.readObject();
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return relation;
+		}
+		
+		 	
+		return relation;
 	}
 	
 }

@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" import="java.util.List,
 	Info.UserInfoDetail, Info.ProjectDetail,
-	Info.StatisticDetail"%>
+	Info.StatisticDetail, Info.AddressInfo"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script src="/visualize/js/echarts.min.js"></script>
 <script src="/visualize/js/chart/recommend.js"></script>
+<script src="/visualize/js/chart/world.js"></script>
+<script src="/visualize/js/chart/developer.js"></script>
 <link href="/visualize/css/font.css" rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css"
 	href="/visualize/css/bootstrap.min.css">
@@ -104,6 +107,40 @@
 
 	<br />
 	<br />
+	
+	<div class="chartContainer">
+		<div class="map" id="distribution">
+			<%
+				@SuppressWarnings("unchecked")
+				List<AddressInfo> distribution = (List<AddressInfo>)request.getAttribute("distribution");
+				int size = distribution.size();
+				AddressInfo info = null;
+				String address = null;
+			%>
+			<script type="text/javascript">
+				var lat = new Array();
+				var lon = new Array();
+				var cityName = [];
+				var value = [];
+			<%
+				for(int i = 0; i < size; ++i) {
+					info = distribution.get(i);
+			%>
+					lat.push(<%= info.getLatitude() %>);
+					lon.push(<%= info.getLongtitude() %>);
+					cityName.push('<%= info.getSite() %>');
+					value.push(<%= info.getWorkerNumber() %>);
+			<%
+				}
+			%>
+				map('distribution', lat, lon, cityName, value);
+			</script>
+		</div>
+	</div>
+
+	<br />
+	<br />
+	
 	
 	<div class="text-center">
 		<h1>项目协作者</h1>

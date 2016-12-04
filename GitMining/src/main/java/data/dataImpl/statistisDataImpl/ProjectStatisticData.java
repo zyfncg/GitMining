@@ -5,6 +5,7 @@ import java.util.List;
 import Info.ProjectDetail;
 import Info.RepStatisticInfo.SaveRepositoryStatisticInfo;
 import data.dataImpl.FileUtil;
+import data.dataImpl.ProjectStatisticDB;
 import data.dataServer.statisticServer.RepositoryStatisticsDataServer;
 
 public class ProjectStatisticData implements RepositoryStatisticsDataServer{
@@ -49,15 +50,15 @@ public class ProjectStatisticData implements RepositoryStatisticsDataServer{
 	public boolean setDetailStatisticInfo(List<ProjectDetail> list) {
 		
 		
-//		ProjectStatisticDB statisticUtil=new ProjectStatisticDB();
-//		if(!statisticUtil.saveProjectStatis(list)){
-//			return false;
-//		}
-		System.out.println("------------");
-		FileUtil statisticUtil=new FileUtil();
-		if(!statisticUtil.saveProjectDetail(list)){
+		ProjectStatisticDB statisticUtil=new ProjectStatisticDB();
+		if(!statisticUtil.saveProjectStatis(list)){
 			return false;
 		}
+//		System.out.println("------------");
+//		FileUtil statisticUtil=new FileUtil();
+//		if(!statisticUtil.saveProjectDetail(list)){
+//			return false;
+//		}
 		return true;
 	}
 

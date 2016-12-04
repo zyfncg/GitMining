@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Info.UserInfoDetail;
+import Info.Relation.Relationship;
+import UserStatistic.GetUserStatistic.UserStatisticFactory;
+import UserStatistic.GetUserStatistic.UserAnalysis.RelationAnalysisStatic;
 import businessLogic.businessLogicController.UserController.UserController;
 import businessLogicService.UserBLService.UserBLService;
 import recommend.RecommendLogic;
@@ -26,6 +29,12 @@ public class DeveloperDetail extends HttpServlet {
 	private static final UserBLService developer = new UserController();
 	
 	private static final RecommendService recommend = new RecommendLogic();
+	
+	private static final UserStatisticFactory stat =
+			new UserStatisticFactory();
+	
+	private static final RelationAnalysisStatic relation =
+			stat.GetRelationAnalysisStatic();
        
     public DeveloperDetail() {
         super();
@@ -58,6 +67,9 @@ public class DeveloperDetail extends HttpServlet {
 		PaginationUtil.setParameters(request, "createNum", "projects", info.getProjectCreatInfo());
 		
 		request.setAttribute("developer_detail", info);
+		Relationship r = relation.getAllRelationship(info.ChangeDetailToInfo());
+		request.setAttribute("relation", r);
+		
 		request.getRequestDispatcher("/visualize/developer_detail.jsp").forward(request, response);
 	}
 

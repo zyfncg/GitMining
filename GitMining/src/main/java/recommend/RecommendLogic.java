@@ -18,6 +18,8 @@ public class RecommendLogic implements RecommendService {
 	@Override
 	public List<ProjectDetail> getProjects(String user_id) {
 		int TOPNum = 0;
+		List<String> projectName = new ArrayList<String>();
+		projectName.clear();
 		// TODO Auto-generated method stub
 		// 推荐1
 		ProjectDetail FstGet = RecommendData.getOneProject(user_id,0);
@@ -25,12 +27,19 @@ public class RecommendLogic implements RecommendService {
 			FstGet = AUtil.GetTOP(TOPNum);
 			TOPNum++;
 		}
+		projectName.add(FstGet.getProjectName().toString());
 		// 推荐2
 		ProjectDetail SecGet = RecommendData.getOneProject(user_id,1);
 		if (SecGet == null) {
 			SecGet = AUtil.GetTOP(TOPNum);
 			TOPNum++;
 		}
+		
+		while(projectName.contains(SecGet.getProjectName().toString())){
+			SecGet = AUtil.GetTOP(TOPNum);
+			TOPNum++;
+		}
+		projectName.add(SecGet.getProjectName().toString());
 		// 推荐3
 		ProjectDetail TrdGet = new ProjectDetail(null, null, null, null, 0, 0, 0, 0, 0, null, null);
 		// 推荐4
@@ -49,6 +58,11 @@ public class RecommendLogic implements RecommendService {
 				}
 			}			
 		}
+		while(projectName.contains(TrdGet.getProjectName().toString())){
+			TrdGet = AUtil.GetTOP(TOPNum);
+			TOPNum++;
+		}
+		projectName.add(TrdGet.getProjectName().toString());
 		// 推荐四
 		String mostLanguage = RecommendData.getLanguage(user_id);
 		if ((mostLanguage == null) || (FstUser == null)) {
@@ -65,6 +79,11 @@ public class RecommendLogic implements RecommendService {
 				}
 			}
 		}
+		while(projectName.contains(FthGet.getProjectName().toString())){
+			FthGet = AUtil.GetTOP(TOPNum);
+			TOPNum++;
+		}
+		projectName.add(FthGet.getProjectName().toString());
 
 		List<ProjectDetail> result = new ArrayList<ProjectDetail>();
 		result.add(FstGet);
@@ -74,37 +93,58 @@ public class RecommendLogic implements RecommendService {
 		return result;
 	}
 
+//	@SuppressWarnings("unused")
 	@Override
 	public List<UserInfoDetail> getDevelopers(String user_id) {
 		int TopNum = 0;
-		
+		List<String> userName = new ArrayList<>();
+		userName.clear();
 		// 推荐1
 		UserInfoDetail FstGet = RecommendData.getOneUser(user_id,0);
 		if (FstGet == null) {
 			FstGet = user.GetTop(TopNum);
 			TopNum++;
 		}
+		userName.add(FstGet.getUserName());
 		// 推荐2
-		UserInfoDetail SecGet = user.getMostRelat(FstGet.getProjectCreatInfo());
+		UserInfoDetail SecGet = user.getMostRelat(FstGet.getProjectCreatInfo(),FstGet.ChangeDetailToInfo());
 		if (SecGet == null) {
 			SecGet = user.GetTop(TopNum);
 			TopNum++;
 		}
+		
+		while(userName.contains(SecGet.getUserName())){
+			SecGet = user.GetTop(TopNum);
+			TopNum++;
+		}
+			
+		userName.add(SecGet.getUserName());
 		// 推荐3
 		UserInfoDetail TrdGet = RecommendData.getOneUser(user_id,1);
 		if (TrdGet == null) {
 			TrdGet = user.GetTop(TopNum);
 			TopNum++;
 		}
+		while(userName.contains(TrdGet.getUserName())){
+			TrdGet = user.GetTop(TopNum);
+			TopNum++;
+		}
+		
+		userName.add(TrdGet.getUserName());
 		// 推荐4
-		UserInfoDetail FthGet = user.getMostRelat(TrdGet.getProjectCreatInfo());
+		UserInfoDetail FthGet = user.getMostRelat(TrdGet.getProjectCreatInfo(),TrdGet.ChangeDetailToInfo());
 		if (FthGet == null) {
 			FthGet = user.GetTop(TopNum);
 			TopNum++;
 		}
-
+		while(userName.contains(FthGet.getUserName())){
+			FthGet = user.GetTop(TopNum);
+			TopNum++;
+		}
+		userName.add(FthGet.getUserName());
+		
 		List<UserInfoDetail> result = new ArrayList<UserInfoDetail>();
-		result.add(FthGet);
+		result.add(FstGet);
 		result.add(SecGet);
 		result.add(TrdGet);
 		result.add(FthGet);

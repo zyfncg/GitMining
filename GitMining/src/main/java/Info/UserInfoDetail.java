@@ -23,6 +23,11 @@ public class UserInfoDetail implements Serializable{
 	private String userName;
 	
 	/**
+	 * 用户头像
+	 */
+	private String pictureURL;
+	
+	/**
 	 * 对用户的简要描述
 	 */
 	private String descriptionUser;
@@ -87,6 +92,14 @@ public class UserInfoDetail implements Serializable{
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getPictureURL() {
+		return pictureURL;
+	}
+
+	public void setPictureURL(String pictureURL) {
+		this.pictureURL = pictureURL;
 	}
 
 	public String getDescriptionUser() {
